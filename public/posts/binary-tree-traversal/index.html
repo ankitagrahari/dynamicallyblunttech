@@ -11,7 +11,7 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -76,23 +76,23 @@ When we traverse a binary tree, we can go either breadth first or depth first.
   
   
   
-    <link rel="canonical" href="http://localhost:1313/posts/binary-tree-traversal/" />
+    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
+    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/binary-tree-traversal/">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/">
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="Binary Tree Traversal">
 	<meta property="og:description" content="In this post we will look into the different ways to traverse a Binary Tree.
@@ -125,7 +125,7 @@ Breadth first traversal Depth first traversal In-order Pre-order Post-order Lets
     
     "abstract": "\u003cp\u003eIn this post we will look into the different ways to traverse a Binary Tree.\u003c\/p\u003e\n\u003cp\u003eIn a binary tree, you can traverse in two different ways:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eBreadth first traversal\u003c\/li\u003e\n\u003cli\u003eDepth first traversal\u003c\/li\u003e\n\u003cli\u003eIn-order\u003c\/li\u003e\n\u003cli\u003ePre-order\u003c\/li\u003e\n\u003cli\u003ePost-order\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eLets start with an example. Given the following binary tree:\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre tabindex=\u00220\u0022 style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;\u0022\u003e\u003ccode class=\u0022language-java\u0022 data-lang=\u0022java\u0022\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e4\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e   \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e  2     7\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e1   3 6   9\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003eWhen we traverse a binary tree, we can go either breadth first or depth first.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/posts\/binary-tree-traversal\/",
+    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/binary-tree-traversal\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -150,19 +150,19 @@ Breadth first traversal Depth first traversal In-order Pre-order Post-order Lets
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/",
+       "item": "http://localhost:1313/dynamicallyblunttech/",
        "name": "Dynamically Blunt Tech",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/posts/",
+       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/categories/",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/",
        "name": "[]",
        "position": 3
      },
@@ -214,7 +214,7 @@ Breadth first traversal Depth first traversal In-order Pre-order Post-order Lets
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/"
+    href="/dynamicallyblunttech/"
     >DynamicallyBluntTech</a
   >
 
@@ -228,7 +228,7 @@ Breadth first traversal Depth first traversal In-order Pre-order Post-order Lets
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/posts/"
+                  href="/dynamicallyblunttech/posts/"
                   title="Posts"
                   
                   
@@ -369,7 +369,7 @@ Also, refer here to know <a href="https://dynamicallyblunttech.blogspot.com/2020
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/posts/custom-iterators-in-java/">
+            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/custom-iterators-in-java/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -391,7 +391,7 @@ Also, refer here to know <a href="https://dynamicallyblunttech.blogspot.com/2020
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/posts/spring4shell-zero-day-vulnerability-in-spring-framework/">
+            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/spring4shell-zero-day-vulnerability-in-spring-framework/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"

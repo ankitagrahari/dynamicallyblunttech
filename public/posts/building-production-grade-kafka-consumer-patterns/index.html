@@ -11,7 +11,7 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -64,23 +64,23 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
   
   
   
-    <link rel="canonical" href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/" />
+    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
+    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/">
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="Building Production-Grade Apache Kafka Consumer Patterns">
 	<meta property="og:description" content="Part 2 of the StreamMetrics Series
@@ -113,7 +113,7 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
     
     "abstract": "\u003cp\u003e\u003cstrong\u003ePart 2 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 3: Real-time Aggregation *\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 4: From *\u003c\/a\u003e\u003ca href=\u0022http:\/\/Localhost\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eLocalhost\u003c\/em\u003e\u003c\/a\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* to Kubernetes*\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot \u002b Apache Kafka. This is part 2 of the series Stream Metrics application. *In \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 1\u003c\/a\u003e we built the producer, today we add the consumer.\u003c\/p\u003e\n\u003ch4 id=\u0022why-this-matters\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWhy This Matters\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#why-this-matters\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003cp\u003eMost tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/posts\/building-production-grade-kafka-consumer-patterns\/",
+    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -138,19 +138,19 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/",
+       "item": "http://localhost:1313/dynamicallyblunttech/",
        "name": "Dynamically Blunt Tech",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/posts/",
+       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/",
        "name": "[\"619c9d9d8da2c200166cb558\"",
        "position": 3
      },
@@ -202,7 +202,7 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/"
+    href="/dynamicallyblunttech/"
     >DynamicallyBluntTech</a
   >
 
@@ -216,7 +216,7 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/posts/"
+                  href="/dynamicallyblunttech/posts/"
                   title="Posts"
                   
                   
@@ -613,7 +613,7 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/posts/kubernetes-learning-phase-1-basic-commands/">
+            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/kubernetes-learning-phase-1-basic-commands/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -635,7 +635,7 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/">
+            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>&#34;69a5166ca84159d4b5dd8ff1&#34;] on DynamicallyBluntTech</title>
-		<link>http://localhost:1313/categories/69a5166ca84159d4b5dd8ff1/</link>
+		<link>http://localhost:1313/dynamicallyblunttech/categories/69a5166ca84159d4b5dd8ff1/</link>
 		<description>Recent content in &#34;69a5166ca84159d4b5dd8ff1&#34;] on DynamicallyBluntTech</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
@@ -12,40 +12,40 @@
 		
 			<lastBuildDate>Tue, 27 Oct 2026 08:14:20 +0530</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/categories/69a5166ca84159d4b5dd8ff1/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/categories/69a5166ca84159d4b5dd8ff1/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Real-Time Aggregations with Kafka Streams at 10K Events/Sec</title>
-				<link>http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/</link>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:20 +0530</pubDate>
-				<guid>http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/</guid>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/</guid>
 				<description>&lt;p&gt;&lt;strong&gt;Part 3 of the StreamMetrics Series&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;*Previous parts: &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 1: Kafka Producer&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 2: Consumer + DLQ&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | *&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 4: From Localhost to Kubernetes&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Building production-grade streaming analytics: windows, state stores, and performance validation&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;In Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;How do you extract insights from that fire hose of data?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>From Localhost to Kubernetes: Deploying StreamMetrics at Scale</title>
-				<link>http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/</link>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:19 +0530</pubDate>
-				<guid>http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/</guid>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/</guid>
 				<description>&lt;p&gt;&lt;strong&gt;Part 4 of the StreamMetrics Series&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;*Previous parts: &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 1: Kafka Producer&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 2: Consumer + DLQ&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | *&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 3: Real-Time Aggregations&lt;/em&gt;&lt;/a&gt;Streammetric Bottleneck Explainer by NotebookLM&lt;/p&gt;&#xA;&lt;p&gt;Love how after building something locally, you think &amp;ldquo;&lt;em&gt;okay, it works on my machine!&lt;/em&gt;&amp;rdquo; and then reality hits when you try to deploy it. Docker says &amp;ldquo;&lt;em&gt;works on my machine&lt;/em&gt;&amp;rdquo; is not an excuse anymore, and Kubernetes says &amp;ldquo;&lt;em&gt;hold my beer, let&amp;rsquo;s make it production-ready.&lt;/em&gt;&amp;rdquo;&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Production Monitoring: You Can&#39;t Fix What You Can&#39;t See</title>
-				<link>http://localhost:1313/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/</link>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:19 +0530</pubDate>
-				<guid>http://localhost:1313/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/</guid>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/</guid>
 				<description>&lt;p&gt;Previous parts: &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Part 1: Kafka Producer&lt;/a&gt; | &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Part 2: Consumer + DLQ&lt;/a&gt; | &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Part 3: Real-Time Aggregations&lt;/a&gt; | &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Part 4: Docker + Kubernetes&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;You know that feeling when your app is running in production and someone asks &amp;ldquo;Is everything okay?&amp;rdquo; and you respond with &amp;ldquo;&amp;hellip;I think so?&amp;rdquo; Yeah, that&amp;rsquo;s not good enough.&lt;/p&gt;&#xA;&lt;p&gt;After deploying StreamMetrics to Kubernetes with a 3-node KRaft Kafka cluster, dockerized microservices, and validated 10K events/sec throughput, I realized I was flying blind. Sure, the pods were running. The logs looked fine. But I had no idea:&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Building Production-Grade Apache Kafka Consumer Patterns</title>
-				<link>http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/</link>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:15 +0530</pubDate>
-				<guid>http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/</guid>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/</guid>
 				<description>&lt;p&gt;&lt;strong&gt;Part 2 of the StreamMetrics Series&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;*Previous parts: &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 1: Kafka Producer&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;*Part 3: Real-time Aggregation *&lt;/a&gt;&lt;/em&gt; | *&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;*Part 4: From *&lt;/a&gt;&lt;a href=&#34;http://Localhost&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Localhost&lt;/em&gt;&lt;/a&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;* to Kubernetes*&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot + Apache Kafka. This is part 2 of the series Stream Metrics application. *In &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Part 1&lt;/a&gt; we built the producer, today we add the consumer.&lt;/p&gt;&#xA;&lt;h4 id=&#34;why-this-matters&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Why This Matters&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#why-this-matters&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Building a Production Kafka Producer</title>
-				<link>http://localhost:1313/posts/building-a-production-kafka-producer/</link>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:12 +0530</pubDate>
-				<guid>http://localhost:1313/posts/building-a-production-kafka-producer/</guid>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/</guid>
 				<description>&lt;p&gt;&lt;strong&gt;Part 1 of the StreamMetrics Series&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;*Previous parts: &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 2: Consumer + DLQ&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | &lt;em&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Part 3: Real-Time Aggregations&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | *&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;*Part 4: From *&lt;/a&gt;&lt;a href=&#34;http://Localhost&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Localhost&lt;/em&gt;&lt;/a&gt;&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;* to Kubernetes*&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Love how it rhymes &amp;ldquo;Production Kafka Producer&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving &amp;ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the &lt;em&gt;&lt;strong&gt;Tale&lt;/strong&gt;&lt;/em&gt; of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.&lt;/p&gt;</description>
 			</item>
 	</channel>

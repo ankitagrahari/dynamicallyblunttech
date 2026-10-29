@@ -11,7 +11,7 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -68,23 +68,23 @@ In the above binary tree, root node has a value of 4 and 2 is the left node of t
   
   
   
-    <link rel="canonical" href="http://localhost:1313/posts/lc226-inversion-of-binary-tree-using-recursion/" />
+    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
+    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/lc226-inversion-of-binary-tree-using-recursion/">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/">
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="#LC226 - Inversion Of Binary Tree Using Recursion">
 	<meta property="og:description" content="Following the last post on the* binary tree traversals*, in this post we will try to invert a given binary tree.
@@ -115,7 +115,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
     
     "abstract": "\u003cp\u003eFollowing the last post on the\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/binary-tree-traversal\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* binary tree traversals*\u003c\/a\u003e, in this post we will try to invert a given binary tree.\u003c\/p\u003e\n\u003cp\u003eBinary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre tabindex=\u00220\u0022 style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;\u0022\u003e\u003ccode class=\u0022language-java\u0022 data-lang=\u0022java\u0022\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e4\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e   \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e  2     7\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e1   3 6   9\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003eIn the above binary tree, root node has a value of 4 and 2 is the left node of the root and 7 is right node of the root. \u003cem\u003e\u003cstrong\u003eAn inverted node will look like this, where the left node is swapped with the right node.\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/posts\/lc226-inversion-of-binary-tree-using-recursion\/",
+    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/lc226-inversion-of-binary-tree-using-recursion\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -140,19 +140,19 @@ Binary tree is a data structure in which a node can have maximum two child nodes
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/",
+       "item": "http://localhost:1313/dynamicallyblunttech/",
        "name": "Dynamically Blunt Tech",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/posts/",
+       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/categories/",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/",
        "name": "[]",
        "position": 3
      },
@@ -204,7 +204,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/"
+    href="/dynamicallyblunttech/"
     >DynamicallyBluntTech</a
   >
 
@@ -218,7 +218,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/posts/"
+                  href="/dynamicallyblunttech/posts/"
                   title="Posts"
                   
                   
@@ -381,7 +381,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/posts/building-a-production-kafka-producer/">
+            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -403,7 +403,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/posts/read-write-excel-using-apache-poi-java/">
+            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/read-write-excel-using-apache-poi-java/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
