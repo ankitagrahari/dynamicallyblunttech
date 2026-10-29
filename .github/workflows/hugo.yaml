@@ -22,7 +22,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.140.0 # Standard stable version
+      HUGO_VERSION: 0.168.0 # Standard stable version
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
