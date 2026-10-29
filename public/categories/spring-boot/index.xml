@@ -20,5 +20,12 @@
 				<guid>http://localhost:1313/posts/dynamic-scheduling-any-rest-api-s/</guid>
 				<description>&lt;p&gt;Spring boot provides an easy option of scheduling tasks which will be triggered when the interval or time is right. We can use the @Scheduled annotation to achieve this, but what if we want to schedule the jobs on certain events, or by invoking some services.&lt;/p&gt;&#xA;&lt;p&gt;Lets say you are working on a project in which you want to schedule your API&amp;rsquo;s to run at 12:00pm every night and collect the data for the entire day and save it to either in database or in some files. There could be multiple task for which you will invoke other API&amp;rsquo;s such as data collection for specific scenarios, or sending notification or updating the status of certain entity when certain event happened etc.&lt;/p&gt;</description>
 			</item>
+			<item>
+				<title>Aspect Programming in Spring - Logging</title>
+				<link>http://localhost:1313/posts/aspect-programming-in-spring-logging/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
+				<guid>http://localhost:1313/posts/aspect-programming-in-spring-logging/</guid>
+				<description>&lt;p&gt;Spring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;The key unit of modularity in Aspects oriented programming (AOP) is the  Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as &amp;ldquo;cross-cutting&amp;rdquo; concerns.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;AOP is used in Spring framework to:&lt;/p&gt;</description>
+			</item>
 	</channel>
 </rss>

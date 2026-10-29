@@ -1,7 +1,7 @@
 baseURL = 'https://dynamicallyblunttech.com'
 locale = 'en-us'
 title = 'DynamicallyBluntTech'
-theme = 'Congo'
+theme = 'congo'
 
 [outputs]
   home = ["HTML", "RSS"]
