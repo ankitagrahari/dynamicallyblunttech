@@ -1,0 +1,789 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        As we discussed in the previous post on Domain 1-Agentic Architecture and Orchestration, this part of the post will cover the Domain 2 which holds 18% weightage in the exam. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts">
+	<meta property="og:description" content="As we discussed in the previous post on Domain 1-Agentic Architecture and Orchestration, this part of the post will cover the Domain 2 which holds 18% weightage in the exam. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:13+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:13+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts">
+	<meta name="twitter:description" content="As we discussed in the previous post on Domain 1-Agentic Architecture and Orchestration, this part of the post will cover the Domain 2 which holds 18% weightage in the exam. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts",
+    "headline": "CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts",
+    
+    "abstract": "\u003ch3 id=\u0022as-we-discussed-in-the-previous-post-on-domain-1-agentic-architecture-and-orchestration-this-part-of-the-post-will-cover-the-domain-2-which-holds-18-weightage-in-the-exam\u0022 class=\u0022relative group\u0022\u003eAs we discussed in the previous post on \u003ca href=\u0022\/post\/cca-f-domain1-agentic-architecture-orchestration-key-concepts\u0022\u003eDomain 1-Agentic Architecture and Orchestration\u003c\/a\u003e, this part of the post will cover the Domain 2 which holds 18% weightage in the exam. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#as-we-discussed-in-the-previous-post-on-domain-1-agentic-architecture-and-orchestration-this-part-of-the-post-will-cover-the-domain-2-which-holds-18-weightage-in-the-exam\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003ch3 id=\u0022if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 class=\u0022relative group\u0022\u003eIf you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eWhere to Register: \u003ca href=\u0022https:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u003c\/a\u003e\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:13\u002b05:30",
+    "datePublished": "2026-10-27T08:14:13\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:13\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3475"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6a89342d6797a1f792f34566/",
+       "name": "[\"6a89342d6797a1f792f34566\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Cca F Domain 2 Tool Design and MC P Integration Key Concepts",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:13 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <h3 id="as-we-discussed-in-the-previous-post-on-domain-1-agentic-architecture-and-orchestration-this-part-of-the-post-will-cover-the-domain-2-which-holds-18-weightage-in-the-exam" class="relative group">As we discussed in the previous post on <a href="/post/cca-f-domain1-agentic-architecture-orchestration-key-concepts">Domain 1-Agentic Architecture and Orchestration</a>, this part of the post will cover the Domain 2 which holds 18% weightage in the exam. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#as-we-discussed-in-the-previous-post-on-domain-1-agentic-architecture-and-orchestration-this-part-of-the-post-will-cover-the-domain-2-which-holds-18-weightage-in-the-exam" aria-label="Anchor">#</a></span></h3><h3 id="if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" class="relative group">If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" aria-label="Anchor">#</a></span></h3><p>Where to Register: <a href="https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification" target="_blank" rel="noreferrer">https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification</a></p>
+<blockquote>
+<p>Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.</p>
+</blockquote>
+<h4 id="topics-covered" class="relative group"><em><strong>Topics Covered</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#topics-covered" aria-label="Anchor">#</a></span></h4><ul>
+<li>Tool Design Principles (descriptions, boundaries)</li>
+<li>Input Formats, Examples &amp; Edge Cases</li>
+<li>Structured Error Handling</li>
+<li>Tool Distribution Across Agents</li>
+<li>Tool Choice Configuration (tool_choice)</li>
+<li>Tool Selection / Routing Behavior</li>
+<li>Model Context Protocol (MCP) — Core Concepts</li>
+<li>MCP Servers, Clients, and Resources</li>
+<li>MCP Transport (stdio vs SSE/HTTP) — Trade-offs</li>
+<li>Authentication Patterns for MCP</li>
+<li>Built-in Claude Tools</li>
+<li>Scoped Permissions &amp; Safe Tool Usage</li>
+<li>Tool Schemas (writing reliable ones)</li>
+<li>Integrating MCP into Claude Code / Agent workflows</li>
+</ul>
+<h2 id="1-tool-design-principles--descriptions--boundaries" class="relative group">1. Tool Design Principles — Descriptions &amp; Boundaries <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-tool-design-principles--descriptions--boundaries" aria-label="Anchor">#</a></span></h2><p>A <strong>tool description</strong> is the plain-English explanation you give Claude about what a tool does, when to use it, and what it returns.</p>
+<p><strong>Boundaries</strong> mean making clear what the tool is <em>for</em> and <em>not for</em>, so Claude doesn&rsquo;t reach for it in the wrong situation. Vague or overlapping descriptions cause Claude to pick the wrong tool.</p>
+<p><strong>Key rule:</strong> the description should read like documentation for a new team member — purpose, when to use it, and when NOT to use it.</p>
+<p><strong>Q1.</strong> Two tools exist: search_orders and lookup_order, with near-identical descriptions. What problem does this most likely cause?</p>
+<p>A) Faster tool selection</p>
+<p>B) Claude may call the wrong one, or waste a call trying both</p>
+<p>C) No effect — Claude always picks correctly</p>
+<p>D) It reduces token usage</p>
+<p>Answer: B — overlapping/unclear boundaries between similarly-named tools cause tool-selection errors.</p>
+<p><strong>Q2.</strong> Which tool description is best?</p>
+<p>A) &ldquo;get_data — gets data&rdquo;</p>
+<p>B)  &ldquo;invoice_tool — does invoice stuff, also sometimes orders&rdquo;</p>
+<p>C) &ldquo;get_customer_invoice — retrieves a single invoice by invoice ID; use only for invoice lookups, not for order or shipping data&rdquo;</p>
+<p>D) No description, rely on the function name</p>
+<p>Answer: C — specific purpose, specific scope, explicit exclusion.</p>
+<p><strong>Q3.</strong> True/False: A tool&rsquo;s name alone (without a description) is usually sufficient for reliable tool selection.</p>
+<p>Answer: False — names are ambiguous at scale; descriptions carry the real signal.</p>
+<h2 id="2-input-formats-examples--edge-cases" class="relative group">2. Input Formats, Examples &amp; Edge Cases <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-input-formats-examples--edge-cases" aria-label="Anchor">#</a></span></h2><p>Specifying the <strong>exact shape of input</strong> a tool expects (data types, required vs optional fields, formats like date strings), plus <strong>example calls</strong> and <strong>known edge cases</strong> (empty results, invalid IDs) so Claude knows how to call the tool correctly and what to expect back.</p>
+<p><strong>Q4.</strong> A get_weather tool expects a date as YYYY-MM-DD but the schema just says date: string. What&rsquo;s the risk?</p>
+<p>A) None, Claude always guesses correctly</p>
+<p>B) The tool will auto-correct any format</p>
+<p>C) Claude may pass an ambiguous format (e.g. &ldquo;tomorrow&rdquo; or &ldquo;03/04/2026&rdquo;), causing tool errors</p>
+<p>D) This only matters for numeric fields</p>
+<p>Answer: B — always specify exact format expectations, ideally with an example in the description.</p>
+<p><strong>Q5.</strong> Why include example queries/example calls in a tool&rsquo;s description?</p>
+<p>A) They&rsquo;re required by the MCP spec</p>
+<p>B) They anchor Claude&rsquo;s understanding of correct usage, especially for less-common parameter combinations</p>
+<p>C) They replace the need for a schema</p>
+<p>D) They reduce the tool&rsquo;s latency</p>
+<p>Answer: B.</p>
+<p><strong>Q6.</strong> A search_products tool has no defined behavior for &ldquo;zero results found.&rdquo; What should the tool design account for?</p>
+<p>A) Nothing — Claude will assume success</p>
+<p>B) The tool should throw a fatal error</p>
+<p>C) Zero-result cases can&rsquo;t happen</p>
+<p>D) An explicit edge case: define what&rsquo;s returned (e.g., empty array + message) so Claude doesn&rsquo;t misinterpret it as an error or hallucinate results</p>
+<p>Answer: D.</p>
+<h2 id="3-structured-error-handling" class="relative group">3. Structured Error Handling <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-structured-error-handling" aria-label="Anchor">#</a></span></h2><p>Instead of returning a raw crash or a vague failure, a well-designed tool returns <strong>structured, informative error responses</strong> (e.g., {&ldquo;error&rdquo;: &ldquo;invalid_order_id&rdquo;, &ldquo;message&rdquo;: &ldquo;&hellip;&rdquo;}) so Claude can understand <em>what</em> went wrong and decide what to do next (retry, ask user, try a different tool).</p>
+<p><strong>Q7.</strong> A tool fails and returns just &ldquo;Error&rdquo; with no detail. What&rsquo;s the consequence for the agent loop?</p>
+<p>A) Claude will always retry correctly</p>
+<p>B) No consequence, the loop still terminates properly</p>
+<p>C) Claude lacks enough information to decide the right recovery action (retry vs. abort vs. ask for clarification)</p>
+<p>D) This is the correct way to signal failure</p>
+<p>Answer: C.</p>
+<p><strong>Q8.</strong> Which is a well-structured tool error response?</p>
+<p>A) &ldquo;failed&rdquo;</p>
+<p>B) {&ldquo;status&rdquo;: &ldquo;error&rdquo;, &ldquo;error_code&rdquo;: &ldquo;insufficient_funds&rdquo;, &ldquo;message&rdquo;: &ldquo;Account balance is $12, requested $50&rdquo;, &ldquo;retryable&rdquo;: false}</p>
+<p>C) An HTTP 500 with no body</p>
+<p>D) Silently returning an empty string</p>
+<p>Answer: B — structured, specific, and tells Claude whether retrying makes sense.<!-- raw HTML omitted --></p>
+<p><strong>Q9.</strong> Why should error responses indicate whether a failure is retryable?</p>
+<p>A) It&rsquo;s purely cosmetic</p>
+<p>B) MCP requires this field</p>
+<p>C) It has no effect on agent behavior</p>
+<p>D) It lets Claude (or the orchestrating code) decide whether to retry automatically or escalate/stop</p>
+<p>Answer: D.</p>
+<h2 id="4-tool-distribution-across-agents" class="relative group">4. Tool Distribution Across Agents <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-tool-distribution-across-agents" aria-label="Anchor">#</a></span></h2><p>Deciding <strong>which tools go to which agent/subagent</strong> in a multi-agent system. Related to &ldquo;scoped tool access&rdquo; from Domain 1, but here it&rsquo;s specifically about designing the tool <em>set</em> per role.</p>
+<p><strong>Q10.</strong> In a hub-and-spoke system, a &ldquo;billing subagent&rdquo; and a &ldquo;shipping subagent&rdquo; both get the exact same full toolset of 20 tools. What&rsquo;s the design flaw?</p>
+<p>A) None — more tools is always better</p>
+<p>B) Tools should be distributed by role; giving both agents the same broad set increases confusion and misuse risk instead of scoping tools to each agent&rsquo;s actual job</p>
+<p>C) This is required by MCP</p>
+<p>D) Subagents cannot have different toolsets</p>
+<p>Answer: B.</p>
+<p><strong>Q11.</strong> What&rsquo;s a good principle for distributing tools across a multi-agent system?</p>
+<p>A) Every agent gets every tool &ldquo;just in case&rdquo;</p>
+<p>B) Each agent gets the minimal set of tools required for its specific responsibility</p>
+<p>C) Only the coordinator should have any tools</p>
+<p>D) Tool distribution doesn&rsquo;t affect reliability</p>
+<p>Answer: B.</p>
+<h2 id="5-tool-choice-configuration-tool_choice" class="relative group">5. Tool Choice Configuration (tool_choice) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-tool-choice-configuration-tool_choice" aria-label="Anchor">#</a></span></h2><p>An API-level setting controlling <strong>how Claude is allowed to use tools</strong> in a given call:</p>
+<ul>
+<li>auto — Claude decides whether to call a tool or just respond in text</li>
+<li>any — Claude must call <em>some</em> tool, but picks which one</li>
+<li>tool (specific) — Claude is forced to call one named tool</li>
+<li>none — Claude must not call any tool</li>
+</ul>
+<p><strong>Q12.</strong> You want to force Claude to always extract data using exactly one specific tool, never respond in free text. Which tool_choice setting fits?</p>
+<p>A) auto</p>
+<p>B) any</p>
+<p>C) A specific named tool (tool choice)</p>
+<p>D) none</p>
+<p>Answer: C.</p>
+<p><strong>Q13.</strong> In an open-ended research agent where Claude should decide for itself whether a tool is needed at each step, which setting is correct?</p>
+<p>A) auto</p>
+<p>B) none</p>
+<p>C) A specific forced tool</p>
+<p>D) any</p>
+<p>Answer: A.</p>
+<p><strong>Q14.</strong> When would tool_choice: none make sense?</p>
+<p>A) When you want Claude to guarantee a tool call</p>
+<p>B) When you want a plain text-only response for this turn, with no tool use, even though tools are defined</p>
+<p>C) When no tools exist at all</p>
+<p>D) Never — this option doesn&rsquo;t exist</p>
+<p>Answer: B.</p>
+<h2 id="6-tool-selection--routing-behavior" class="relative group">6. Tool Selection / Routing Behavior <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-tool-selection--routing-behavior" aria-label="Anchor">#</a></span></h2><p>How Claude decides <strong>which tool (of many available) to call</strong> for a given task — driven by description quality, boundaries, and how distinct the tools are from each other. &ldquo;Routing&rdquo; here means the agent choosing the correct path/tool based on the input.</p>
+<p><strong>Q15.</strong> A customer query &ldquo;Where&rsquo;s my order?&rdquo; could match both track_shipment and get_order_status. What causes ambiguous routing here?</p>
+<p>A) Descriptions/boundaries that don&rsquo;t clearly differentiate the two tools&rsquo; purposes</p>
+<p>B) Claude cannot handle 2 similar tools</p>
+<p>C) MCP protocol limitation</p>
+<p>D) The query is too long</p>
+<p>Answer: A.</p>
+<p><strong>Q16.</strong> What&rsquo;s the best fix for chronically incorrect tool routing between two similar tools?</p>
+<p>A) Delete both tools</p>
+<p>B) Increase temperature</p>
+<p>C) Sharpen the descriptions to clarify distinct purpose/scope, or merge them if they&rsquo;re truly redundant</p>
+<p>D) Add more unrelated tools to dilute the choice</p>
+<p>Answer: C.</p>
+<h2 id="7-model-context-protocol-mcp--core-concepts" class="relative group">7. Model Context Protocol (MCP) — Core Concepts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-model-context-protocol-mcp--core-concepts" aria-label="Anchor">#</a></span></h2><p>MCP is an <strong>open standard/protocol</strong> that lets AI applications connect to external tools, data sources, and systems in a consistent way. Three core roles:</p>
+<ul>
+<li><strong>Host</strong> — the application the user interacts with (e.g., Claude Code, Claude Desktop)</li>
+<li><strong>Client</strong> — lives inside the host, manages one connection to one MCP server</li>
+<li><strong>Server</strong> — exposes tools, resources, and prompts to the client</li>
+</ul>
+<p><strong>Q17.</strong> What is the relationship between an MCP host and an MCP client?</p>
+<p>A) They are the same thing</p>
+<p>B) The host application contains one or more clients, each client maintaining a 1:1 connection to a server</p>
+<p>C) The client is external to the host</p>
+<p>D) A host can only ever have one client</p>
+<p>Answer: B.</p>
+<p><strong>Q18.</strong> What does an MCP <strong>server</strong> expose to a client?</p>
+<p>A) Only raw text</p>
+<p>B) Tools, resources, and prompts</p>
+<p>C) Only the model weights</p>
+<p>D) Nothing — servers are passive</p>
+<p>Answer: B.</p>
+<p><strong>Q19.</strong> Why does MCP exist as a standard, rather than every integration being custom-built?</p>
+<p>A) To make integrations harder</p>
+<p>B) To give a consistent, reusable way for any AI app to connect to any tool/data source, instead of N×M custom integrations</p>
+<p>C) It&rsquo;s only for Anthropic&rsquo;s internal use</p>
+<p>D) It replaces the need for tool schemas</p>
+<p>Answer: B.</p>
+<h2 id="8-mcp-servers-clients--resources" class="relative group">8. MCP Servers, Clients &amp; Resources <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-mcp-servers-clients--resources" aria-label="Anchor">#</a></span></h2><p>Beyond tools, MCP servers can expose <strong>resources</strong> (read-only data the client can fetch, like files or records) and <strong>prompts</strong> (reusable prompt templates the server provides). A <strong>server</strong> is typically a discrete process/service tied to one system (e.g., a GitHub MCP server, a Postgres MCP server).</p>
+<p><strong>Q20.</strong> What&rsquo;s the difference between an MCP <strong>tool</strong> and an MCP <strong>resource</strong>?</p>
+<p>A) No difference</p>
+<p>B) A tool is an action Claude can invoke (with side effects or computation); a resource is more like readable data/context the client can pull in</p>
+<p>C) Resources can only be used by the server, never the client</p>
+<p>D) Tools are read-only, resources are write-only</p>
+<p>Answer: B.</p>
+<p><strong>Q21.</strong> A team wants to connect Claude to both a GitHub repo and a company Postgres database. What&rsquo;s the correct MCP architecture?</p>
+<p>A) One server handling both, undifferentiated</p>
+<p>B) MCP doesn&rsquo;t support databases</p>
+<p>C) A single client with no server</p>
+<p>D) Separate MCP servers, one per system, each exposing tools/resources scoped to that system</p>
+<p>Answer: D — MCP servers are typically scoped to one system/integration.</p>
+<h2 id="9-mcp-transport--stdio-vs-ssehttp-trade-offs" class="relative group">9. MCP Transport — stdio vs SSE/HTTP Trade-offs <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-mcp-transport--stdio-vs-ssehttp-trade-offs" aria-label="Anchor">#</a></span></h2><p><strong>Transport</strong> is <em>how</em> the client and server communicate. Common options:</p>
+<ul>
+<li><strong>stdio</strong> — local process communication (client launches server as a subprocess); simple, fast, good for local tools, but tied to one machine.</li>
+<li><strong>SSE / HTTP (remote/streamable HTTP)</strong> — server runs remotely, communicates over network; enables remote/shared servers, multiple clients, but adds network latency, auth complexity, and connection management concerns.</li>
+</ul>
+<p><strong>Q22.</strong> You&rsquo;re building an MCP server that must be shared across many users&rsquo; Claude Code instances from a central deployed service. Which transport fits better?</p>
+<p>A) stdio</p>
+<p>B) SSE/HTTP (remote transport)</p>
+<p>C) Neither — MCP doesn&rsquo;t support remote servers</p>
+<p>D) It doesn&rsquo;t matter</p>
+<p>Answer: B — remote/shared access needs a network transport, not a local subprocess.</p>
+<p><strong>Q23.</strong> What&rsquo;s a trade-off of choosing stdio transport for an MCP server?</p>
+<p>A) It requires complex authentication</p>
+<p>B) It&rsquo;s local-only — tied to the machine running the client, not shareable across users/services</p>
+<p>C) It&rsquo;s always slower than SSE</p>
+<p>D) It can&rsquo;t expose tools</p>
+<p>Answer: B.</p>
+<p><strong>Q24.</strong> What&rsquo;s a key operational concern introduced specifically by SSE/HTTP transport that stdio doesn&rsquo;t have?</p>
+<p>A) Tool schema design</p>
+<p>B) Authentication, network reliability, and connection/session management over the wire</p>
+<p>C) The need for tool descriptions</p>
+<p>D) Structured error handling</p>
+<p>Answer: B.</p>
+<h2 id="10-authentication-patterns-for-mcp" class="relative group">10. Authentication Patterns for MCP <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-authentication-patterns-for-mcp" aria-label="Anchor">#</a></span></h2><p>How an MCP <strong>client proves its identity / gets authorized access</strong> to a server, especially for remote servers. Patterns include API keys, OAuth flows, and scoped tokens — chosen based on whether the server is local/trusted or remote/multi-tenant.</p>
+<p><strong>Q25.</strong> A remote MCP server exposes access to a company&rsquo;s internal ticketing system for multiple external users. What&rsquo;s the most appropriate authentication approach?</p>
+<p>A) No authentication needed since it&rsquo;s &ldquo;just a tool&rdquo;</p>
+<p>B) A proper auth flow (e.g., OAuth or scoped tokens) so each user only accesses data they&rsquo;re authorized for</p>
+<p>C) A single shared static API key hardcoded into every client</p>
+<p>D) Authentication is handled automatically by MCP with no configuration</p>
+<p>Answer: B.</p>
+<p><strong>Q26.</strong> Why is a single shared credential across all users of a remote MCP server considered a poor pattern?</p>
+<p>A) It&rsquo;s more efficient</p>
+<p>B) MCP forbids shared credentials technically</p>
+<p>C) It removes per-user access boundaries — one compromised client exposes everyone&rsquo;s access, and you can&rsquo;t scope permissions per user</p>
+<p>D) It&rsquo;s actually the recommended pattern</p>
+<p>Answer: C.</p>
+<h2 id="11-built-in-claude-tools" class="relative group">11. Built-in Claude Tools <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#11-built-in-claude-tools" aria-label="Anchor">#</a></span></h2><p>Tools Claude/Claude Code ships with out of the box, without needing an MCP server — e.g., file tools (<strong>Read, Edit, Write, Glob, Grep</strong>), and execution tools (<strong>Bash</strong>). These handle common local dev tasks; MCP is for <em>external/custom</em> integrations beyond these.</p>
+<p><strong>Q27.</strong> When should you build a custom MCP tool instead of relying on Claude Code&rsquo;s built-in file tools?</p>
+<p>A) Never — built-ins cover every case</p>
+<p>B) Built-in tools should always be replaced by MCP</p>
+<p>C) MCP tools are only for file operations too</p>
+<p>D) When the task needs access to something outside the local filesystem/shell — e.g., an external API, database, or SaaS product</p>
+<p>Answer: D.</p>
+<p><strong>Q28.</strong> What is Grep (as a built-in tool) primarily used for?</p>
+<p>A) Editing files</p>
+<p>B) Searching file contents for patterns</p>
+<p>C) Making network requests</p>
+<p>D) Running shell scripts</p>
+<p>Answer: B.</p>
+<p><strong>Q29.</strong> User is requesting to look for all *.md files which are present in folder to read the architecture prepared by Claude. Which tool will be used for file name search ?</p>
+<p>A) glob</p>
+<p>B) grep</p>
+<p>C) bash</p>
+<p>D) wildcard search not possible</p>
+<p>Answer: A - <strong>Glob</strong> finds files <strong>by name pattern</strong> — you give it something like <em>.java or **/</em><a href="http://Controller.java" target="_blank" rel="noreferrer">Controller.java</a> and it returns a list of matching file paths. It doesn&rsquo;t look inside the files at all.</p>
+<h2 id="12-scoped-permissions--safe-tool-usage" class="relative group">12. Scoped Permissions &amp; Safe Tool Usage <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#12-scoped-permissions--safe-tool-usage" aria-label="Anchor">#</a></span></h2><p>Restricting <strong>what a tool/agent is allowed to do</strong> — e.g., read-only vs. write access, which directories/records it can touch, or requiring approval before high-risk actions run. This is the practical safety layer around tool use.</p>
+<p><strong>Q30.</strong> A code-review agent should be able to read any file in a repo but should NEVER be allowed to push to the remote or delete branches. How should this be enforced?</p>
+<p>A) A prompt instruction asking it nicely not to</p>
+<p>B) Trust the model&rsquo;s judgment alone</p>
+<p>C) Scoped permissions / hooks that technically restrict which tools or actions are available, not just prompt-level requests</p>
+<p>D) Give it all tools and monitor after the fact only</p>
+<p>Answer: C — consistent with Domain 1&rsquo;s hooks-vs-prompts distinction: hard restrictions need enforcement, not persuasion.</p>
+<p><strong>Q31.</strong> What does &ldquo;safe tool usage&rdquo; mean in the context of an agent with filesystem access?</p>
+<p>A) Giving it unrestricted access for convenience</p>
+<p>B) Disabling all tools</p>
+<p>C) Only using tools that have no side effects, ever</p>
+<p>D) Scoping access to only the necessary directories/files and requiring confirmation for destructive actions</p>
+<p>Answer: D.</p>
+<h2 id="13-tool-schemas-writing-reliable-ones" class="relative group">13. Tool Schemas (Writing Reliable Ones) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#13-tool-schemas-writing-reliable-ones" aria-label="Anchor">#</a></span></h2><p>The <strong>formal, structured definition</strong> of a tool&rsquo;s inputs (JSON Schema-style: types, required fields, enums, descriptions per field) that Claude uses to know exactly how to call it. Good schemas reduce malformed calls and validation failures.</p>
+<p><strong>Q32.</strong> A schema defines status as a free-text string, but only 4 valid values actually exist (pending, shipped, delivered, cancelled). What&rsquo;s the fix?</p>
+<p>A) Leave it as a free string</p>
+<p>B) Remove the field entirely</p>
+<p>C) Use an enum constraining status to those 4 exact values, so Claude can&rsquo;t pass an invalid one</p>
+<p>D) Make it a boolean</p>
+<p>Answer: C.</p>
+<p><strong>Q33.</strong> Why mark fields as required vs optional explicitly in a tool schema?</p>
+<p>A) It has no functional effect</p>
+<p>B) It tells Claude precisely which inputs must always be provided vs. which can be omitted, reducing malformed calls</p>
+<p>C) All fields should always be optional</p>
+<p>D) MCP ignores the required field</p>
+<p>Answer: B.</p>
+<p><strong>Q34.</strong> A tool schema has 25 required parameters for a single call. What design problem does this likely cause?</p>
+<p>A) High cognitive load / error rate — Claude is more likely to omit or mis-fill parameters; consider breaking into multiple simpler tools or reducing required fields</p>
+<p>B) None, more parameters means more precision</p>
+<p>C) MCP has no parameter limit so it&rsquo;s fine</p>
+<p>D) It reduces the chance of tool-selection errors</p>
+<p>Answer: A.</p>
+<h2 id="14-integrating-mcp-into-claude-code--agent-workflows" class="relative group">14. Integrating MCP into Claude Code / Agent Workflows <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#14-integrating-mcp-into-claude-code--agent-workflows" aria-label="Anchor">#</a></span></h2><p>Connecting MCP servers into an actual Claude Code project or agent system — configuring which servers are available, at what scope (project vs. user level), and how their tools combine with built-in tools during real workflows.</p>
+<p><strong>Q35.</strong> A company wants an MCP server (e.g., Jira integration) available to everyone on a project, checked into version control, vs. a developer&rsquo;s personal Slack MCP server only for themselves. What&rsquo;s the right configuration split?</p>
+<p>A) Both should be user-level only</p>
+<p>B) Project-level config (e.g. .mcp.json checked into the repo) for the shared Jira server; user/personal-level config for the individual&rsquo;s Slack server</p>
+<p>C) Both should be project-level</p>
+<p>D) MCP doesn&rsquo;t support per-project configuration</p>
+<p>Answer: B — matches the project-level vs. user-level MCP config split.</p>
+<p><strong>Q36.</strong> Why scope some MCP servers at the project level rather than always at the user level?</p>
+<p>A) Project-level is always slower</p>
+<p>B) So the whole team automatically gets consistent, shared tool access tied to that specific project/repo, without each person configuring it manually</p>
+<p>C) User-level configs are deprecated</p>
+<p>D) It has no practical benefit</p>
+<p>Answer: B.</p>
+<h1 id="scenario-questions-mixed-topics-exam-realistic" class="relative group">SCENARIO QUESTIONS (mixed topics, exam-realistic) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#scenario-questions-mixed-topics-exam-realistic" aria-label="Anchor">#</a></span></h1><p><strong>Q37.</strong> An MCP server for a payments system lets any authenticated client call issue_refund with no scoping. A support agent using this server can now refund any amount to any account. What are the TWO design flaws?</p>
+<p>A) Bad tool naming; missing examples</p>
+<p>B) Missing scoped permissions (e.g., refund limits/approval) and inadequate authentication/authorization boundaries</p>
+<p>C) Wrong transport choice</p>
+<p>D) Missing enum in schema</p>
+<p>Answer: B.</p>
+<p><strong>Q38.</strong> A tool process_payment sometimes fails silently and returns null. Claude interprets this as success and tells the user their payment went through when it didn&rsquo;t. What domain-2 principle was violated?</p>
+<p>A) Structured error handling — failures must be clearly signaled, not returned as ambiguous/null success-like responses</p>
+<p>B) Tool distribution</p>
+<p>C) Transport selection</p>
+<p>D) Tool choice configuration</p>
+<p>Answer: A.</p>
+<p><strong>Q39.</strong> A team builds 15 separate near-duplicate tools (get_user_v1, get_user_v2, fetch_user, user_lookup&hellip;) accumulated over time. What Domain 1 anti-pattern does this create, and what Domain 2 fix addresses it?</p>
+<p>A) Anti-pattern: same-session self-review. Fix: hooks</p>
+<p>B) Anti-pattern: tool sprawl. Fix: consolidate/redesign tool boundaries and descriptions so each tool has one clear, non-overlapping purpose</p>
+<p>C) Anti-pattern: natural-language termination. Fix: stop_reason</p>
+<p>D) No anti-pattern present</p>
+<p>Answer: B — ties Domain 1&rsquo;s tool sprawl anti-pattern directly to Domain 2&rsquo;s tool design fix.</p>
+<p><strong>Q40.</strong> You&rsquo;re designing an MCP server for a healthcare records system used by multiple hospitals remotely. Which combination of choices is most appropriate?</p>
+<p>A) stdio transport, no authentication, single shared tool with 30 parameters</p>
+<p>B) Remote (SSE/HTTP) transport, per-user OAuth-based authentication, scoped permissions per hospital/role, and well-defined schemas with enums for constrained fields</p>
+<p>C) stdio transport, shared static API key, unscoped access</p>
+<p>D) No MCP server needed, use built-in tools only</p>
+<p>Answer: B — remote + multi-tenant + sensitive data demands network transport, real auth, and scoping.</p>
+<p><strong>Q41.</strong> A search_flights tool&rsquo;s description says only &ldquo;searches flights.&rdquo; Claude keeps calling it with malformed date ranges and gets confused about round-trip vs one-way. What are the missing elements?</p>
+<p>A) MCP transport configuration</p>
+<p>B) Authentication pattern</p>
+<p>C) Tool distribution across agents</p>
+<p>D) Clear input format specification, examples, and edge-case handling in the schema/description</p>
+<p>Answer: D.</p>
+<h1 id="quick-reference-table" class="relative group">QUICK REFERENCE TABLE <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#quick-reference-table" aria-label="Anchor">#</a></span></h1><table>
+	<thead>
+			<tr>
+					<th>Concept</th>
+					<th>One-line definition</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Tool description</td>
+					<td>Plain-English explanation of what a tool does and when to use it</td>
+			</tr>
+			<tr>
+					<td>Tool boundaries</td>
+					<td>What a tool is/isn&rsquo;t for, to avoid overlap with other tools</td>
+			</tr>
+			<tr>
+					<td>Structured error</td>
+					<td>Machine-readable failure response with code/message/retryable flag</td>
+			</tr>
+			<tr>
+					<td>Tool distribution</td>
+					<td>Deciding which tools go to which agent/subagent</td>
+			</tr>
+			<tr>
+					<td>tool_choice</td>
+					<td>API setting: auto / any / specific tool / none</td>
+			</tr>
+			<tr>
+					<td>MCP Host</td>
+					<td>The application the user uses (e.g. Claude Code)</td>
+			</tr>
+			<tr>
+					<td>MCP Client</td>
+					<td>Lives in host; 1:1 connection to a server</td>
+			</tr>
+			<tr>
+					<td>MCP Server</td>
+					<td>Exposes tools/resources/prompts to a client</td>
+			</tr>
+			<tr>
+					<td>Resource (MCP)</td>
+					<td>Read-only data exposed by a server</td>
+			</tr>
+			<tr>
+					<td>stdio transport</td>
+					<td>Local subprocess communication; simple, single-machine</td>
+			</tr>
+			<tr>
+					<td>SSE/HTTP transport</td>
+					<td>Remote/networked; supports shared, multi-client access</td>
+			</tr>
+			<tr>
+					<td>Scoped permissions</td>
+					<td>Restricting what actions/data a tool or agent can touch</td>
+			</tr>
+			<tr>
+					<td>Tool schema</td>
+					<td>Structured input definition (types, required fields, enums)</td>
+			</tr>
+			<tr>
+					<td>Project-level MCP config</td>
+					<td>Shared team config (e.g. .mcp.json in repo)</td>
+			</tr>
+			<tr>
+					<td>User-level MCP config</td>
+					<td>Personal config, not shared with the team</td>
+			</tr>
+	</tbody>
+</table>
+<p>Referring to these questions just gives you an idea how the exam looks like, and can vary. Share if you have any answers or questions not correctly placed or explained.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Produce & Consume Messages Using Apache Kafka</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:13 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Meet Smart Devops Assistant: Vision, Stack and Journey so far</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

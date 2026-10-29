@@ -1,0 +1,513 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Reactive Programming in Java &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Reactive Programming in Java &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post, we will try to understand the basics of the Reactive programming, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.
+According to Wikipedia, Reactive Programming is defined as:
+
+Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).
+
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/reactive-programming-in-java/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/reactive-programming-in-java/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Reactive Programming in Java">
+	<meta property="og:description" content="In this post, we will try to understand the basics of the Reactive programming, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.
+According to Wikipedia, Reactive Programming is defined as:
+Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:13+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:13+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Reactive Programming in Java">
+	<meta name="twitter:description" content="In this post, we will try to understand the basics of the Reactive programming, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.
+According to Wikipedia, Reactive Programming is defined as:
+Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Reactive Programming in Java",
+    "headline": "Reactive Programming in Java",
+    
+    "abstract": "\u003cp\u003eIn this post, we will try to understand the basics of the \u003cem\u003e\u003cstrong\u003eReactive programming\u003c\/strong\u003e\u003c\/em\u003e, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.\u003c\/p\u003e\n\u003cp\u003eAccording to Wikipedia, Reactive Programming is defined as:\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eReactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).\u003c\/p\u003e\n\u003c\/blockquote\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/reactive-programming-in-java\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:13\u002b05:30",
+    "datePublished": "2026-10-27T08:14:13\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:13\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "915"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Reactive Programming in Java",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Reactive Programming in Java
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:13 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post, we will try to understand the basics of the <em><strong>Reactive programming</strong></em>, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.</p>
+<p>According to Wikipedia, Reactive Programming is defined as:</p>
+<blockquote>
+<p>Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).</p>
+</blockquote>
+<p>Reactive programming paradigm is often presented in object oriented languages as an extension of the Observer design pattern. It can also be compared to familiar iterator design pattern, with one difference where Iterator is <strong>pull</strong> based, while reactive streams are **push **based.</p>
+<p>Reactive streams follows the <em>Publisher-Subscriber</em> pattern, where the publisher notifies the subscribers of newly available values as they come, and this push aspect is the key to being reactive. Also, operations applied to pushed values are expressed declaratively rather than imperatively. The programmer expressed the logic of the computation rather than describing its exact control flow.</p>
+<p>In addition to pushing values, the error-handling and completion aspects are also covered in a well defined manner. A <em>Publisher</em> can push new values to its *Subscriber *(by calling <em>onNext</em>) but can also signal an error (by calling <em>onError</em>) or completion (by calling <em>onComplete</em>). Both errors and completion terminate the sequence.</p>
+<h3 id="why-reactive" class="relative group"><strong>Why Reactive</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-reactive" aria-label="Anchor">#</a></span></h3><p>There is a detailed explanation about why it is used on the <a href="https://projectreactor.io/docs/core/release/reference/#intro-reactive" target="_blank" rel="noreferrer"><em>official site</em></a>.</p>
+<blockquote>
+<p>By writing asynchronous, non-blocking code, you let the execution switch to another active task that uses the same underlying resources and later comes back to the current process when the asynchronous processing has finished.</p>
+</blockquote>
+<p>Reactor libraries, such as Reactor, aim to address these drawbacks of <em>classic</em> asynchronous approaches on the JVM:</p>
+<ul>
+<li>Composability and readability</li>
+<li>Data as a flow manipulated with a rich vocabulary of operators.</li>
+<li>Nothing happens until you subscribe</li>
+<li>Backpressure or the ability for the customer to signal thte producer that the rate of emission is too high.</li>
+<li>High level but high values abstraction that is concurrency-agnostics.</li>
+</ul>
+<h3 id="reactor-core-features" class="relative group"><strong>Reactor Core Features</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reactor-core-features" aria-label="Anchor">#</a></span></h3><p>You can use the following maven dependency in your project to use reactive features.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;!--</span> https:<span style="color:#75715e">//mvnrepository.com/artifact/io.projectreactor/reactor-core --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>io.<span style="color:#a6e22e">projectreactor</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>reactor<span style="color:#f92672">-</span>core<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>3.<span style="color:#a6e22e">4</span>.<span style="color:#a6e22e">22</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>In reactive paradigm, there are two types of response</p>
+<ul>
+<li>
+<p>Single Object(Mono), or</p>
+</li>
+<li>
+<p>List of Objects(Flux)</p>
+</li>
+</ul>
+<p>A <em>Flux</em> object represents a reactive sequence of <em>0..N</em> items, while a *Mono *object represents a single-value-or-empty(<em>0..1</em>) result.</p>
+<h3 id="flux-an-asynchronous-sequence-of-0n-items" class="relative group"><em><strong>Flux</strong></em>**, an Asynchronous Sequence of 0..N Items** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#flux-an-asynchronous-sequence-of-0n-items" aria-label="Anchor">#</a></span></h3><p>The following image shows how a <code>Flux</code> transforms items:</p>
+<p>A <em>Flux<!-- raw HTML omitted --></em> is a standard <em>Publisher<!-- raw HTML omitted --></em> that represents an asynchronous sequence of 0 to N emitted items, optionally terminated by either a completion signal or an error. As in the Reactive Streams spec, these three types of signal translate to calls to a downstream Subscriber’s <em>onNext</em>, <em>onComplete</em>, and <em>onError</em> methods.</p>
+<h3 id="mono-an-asynchronous-0-1-result" class="relative group"><em><strong>Mono</strong></em>**, an Asynchronous 0-1 Result** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#mono-an-asynchronous-0-1-result" aria-label="Anchor">#</a></span></h3><p>The following image shows how a <code>Mono</code> transforms an item:</p>
+<p>A <em>Mono<!-- raw HTML omitted --></em> is a specialized <em>Publisher<!-- raw HTML omitted --></em> that emits at most one item <em>via</em> the <em>onNext</em> signal then terminates with an <em>onComplete</em> signal (successful <em>Mono</em>, with or without value), or only emits a single <em>onError</em> signal (failed <em>Mono</em>).</p>
+<h3 id="simple-ways-to-create-mono-and-flux" class="relative group"><strong>Simple ways to create Mono and Flux</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#simple-ways-to-create-mono-and-flux" aria-label="Anchor">#</a></span></h3><ul>
+<li>Mono.empty() or Flux.empty() provide an empty Mono or Flux objects respectively.</li>
+<li>Mono.just(T) or Flux.just(T &hellip;data) provide a mono of T object or Flux of T object respectively.</li>
+</ul>
+<p>You can find following options to create Mono or Flux from either Publisher, Supplier, Stream, Array or Iterables.</p>
+<h3 id="handling-errors" class="relative group"><strong>Handling Errors</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#handling-errors" aria-label="Anchor">#</a></span></h3><p>These items below will allow you to easily identify the scenario and which operator to use.</p>
+<ul>
+<li>I want to create an erroring sequence: <em>error</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#error-java.lang.Throwable-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#error-java.lang.Throwable-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>to replace the completion of a successful <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html" target="_blank" rel="noreferrer"><em>Flux</em></a>: <em>.concat(Flux.error(e))</em></li>
+<li>to replace the emission of a successful <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html" target="_blank" rel="noreferrer"><em>Mono</em></a>): <em>.then(Mono.error(e))</em></li>
+<li>if too much time elapses between <em>onNexts</em>: <em>timeout</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#timeout-java.time.Duration-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#timeout-java.time.Duration-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>lazily: <em>error(Supplier<!-- raw HTML omitted -->)</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#error-java.util.function.Supplier-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#error-java.util.function.Supplier-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>I want the try/catch equivalent of:</li>
+<li>throwing: <em>error **(</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#error-java.lang.Throwable-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#error-java.lang.Throwable-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>catching an exception:</li>
+<li>and falling back to a default value: <em>onErrorReturn **(</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onErrorReturn-java.lang.Class-T-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#onErrorReturn-java.lang.Class-T-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>and falling back to another <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html" target="_blank" rel="noreferrer"><em>Flux</em></a> or <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html" target="_blank" rel="noreferrer"><em>Mono</em></a>: <em>onErrorResume</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onErrorResume-java.lang.Class-java.util.function.Function-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#onErrorResume-java.lang.Class-java.util.function.Function-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>and wrapping and re-throwing: <em>.onErrorMap(t → new RuntimeException(t))</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onErrorMap-java.util.function.Function-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#onErrorMap-java.util.function.Function-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>the finally block: <em>doFinally</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#doFinally-java.util.function.Consumer-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#doFinally-java.util.function.Consumer-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>the using pattern from Java 7: <em>using **(</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#using-java.util.concurrent.Callable-java.util.function.Function-java.util.function.Consumer-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#using-java.util.concurrent.Callable-java.util.function.Function-java.util.function.Consumer-" target="_blank" rel="noreferrer"><em>Mono</em></a>) factory method</li>
+<li>I want to recover from errors</li>
+<li>by falling back:</li>
+<li>to a value: <em>onErrorReturn</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onErrorReturn-java.lang.Class-T-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#onErrorReturn-java.lang.Class-T-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>to a <a href="https://www.reactive-streams.org/reactive-streams-1.0.3-javadoc/org/reactivestreams/Publisher.html?is-external=true" target="_blank" rel="noreferrer"><em>Publisher</em></a> or <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html" target="_blank" rel="noreferrer"><em>Mono</em></a>, possibly different ones depending on the error: <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onErrorResume-java.lang.Class-java.util.function.Function-" target="_blank" rel="noreferrer"><em>Flux#onErrorResume</em></a> and <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#onErrorResume-java.lang.Class-java.util.function.Function-" target="_blank" rel="noreferrer"><em>Mono#onErrorResume</em></a></li>
+<li>by retrying</li>
+<li>with a simple policy (max number of attempts): <em>retry()</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#retry--" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retry--" target="_blank" rel="noreferrer"><em>Mono</em></a>), <em>retry(long)</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#retry-long-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retry-long-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>triggered by a companion control Flux: <em>retryWhen</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#retryWhen-reactor.util.retry.Retry-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retryWhen-reactor.util.retry.Retry-" target="_blank" rel="noreferrer"><em>Mono</em></a>)</li>
+<li>using a standard backoff strategy (exponential backoff with jitter): <em>retryWhen(Retry.backoff(…​))</em> (<a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#retryWhen-reactor.util.retry.Retry-" target="_blank" rel="noreferrer"><em>Flux</em></a><em>|</em><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#retryWhen-reactor.util.retry.Retry-" target="_blank" rel="noreferrer"><em>Mono</em></a>) (see also other factory methods in <a href="https://projectreactor.io/docs/core/release/api/reactor/util/retry/Retry.html" target="_blank" rel="noreferrer"><em>Retry</em></a>)</li>
+<li>I want to deal with backpressure &ldquo;errors&rdquo; (request max from upstream and apply the strategy when downstream does not produce enough request)</li>
+<li>by throwing a special <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" target="_blank" rel="noreferrer"><em>IllegalStateException</em></a>: <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onBackpressureError--" target="_blank" rel="noreferrer"><em>Flux#onBackpressureError</em></a></li>
+<li>by dropping excess values: <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onBackpressureDrop--" target="_blank" rel="noreferrer"><em>Flux#onBackpressureDrop</em></a></li>
+<li>except the last one seen: <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onBackpressureLatest--" target="_blank" rel="noreferrer"><em>Flux#onBackpressureLatest</em></a></li>
+<li>by buffering excess values (bounded or unbounded): <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onBackpressureBuffer--" target="_blank" rel="noreferrer"><em>Flux#onBackpressureBuffer</em></a></li>
+<li>and applying a strategy when bounded buffer also overflows: <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#onBackpressureBuffer-int-reactor.core.publisher.BufferOverflowStrategy-" target="_blank" rel="noreferrer"><em>Flux#onBackpressureBuffer</em></a> with a <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/BufferOverflowStrategy.html" target="_blank" rel="noreferrer"><em>BufferOverflowStrategy</em></a></li>
+</ul>
+<p>Refer to the operators needed <a href="https://projectreactor.io/docs/core/release/reference/#which-operator" target="_blank" rel="noreferrer"><em>here</em></a></p>
+<p><em><strong>References</strong></em>: <a href="https://projectreactor.io/docs/core/release/reference" target="_blank" rel="noreferrer"><em>https://projectreactor.io/docs/core/release/reference</em></a></p>
+<p>I hope this will help in understanding and getting a brief idea about the Reactive programming. Most of the content is taken from the official documentation with some explanation here and there. More on the reactive programming with the some examples will be covered in the upcoming posts.</p>
+<p>You can find my <a href="https://github.com/ankitagrahari/" target="_blank" rel="noreferrer"><em>Github</em></a>* *profile. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/read-write-excel-using-apache-poi-java/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Read/Write Excel Using Apache POI & Java</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:13 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Produce & Consume Messages Using Apache Kafka</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:13 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

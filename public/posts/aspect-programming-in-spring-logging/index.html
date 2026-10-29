@@ -1,0 +1,976 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Aspect Programming in Spring - Logging &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Aspect Programming in Spring - Logging &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Spring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.
+
+The key unit of modularity in Aspects oriented programming (AOP) is the  Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as &ldquo;cross-cutting&rdquo; concerns.
+
+AOP is used in Spring framework to:
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/aspect-programming-in-spring-logging/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/aspect-programming-in-spring-logging/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Aspect Programming in Spring - Logging">
+	<meta property="og:description" content="Spring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.
+The key unit of modularity in Aspects oriented programming (AOP) is the Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as “cross-cutting” concerns.
+AOP is used in Spring framework to:">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:14+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:14+05:30">
+		<meta property="article:tag" content="Spring Boot">
+		<meta property="article:tag" content="Aspects">
+		<meta property="og:image" content="http://localhost:1313/posts/aspect-programming-in-spring-logging/feature.jpg">
+
+  
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/posts/aspect-programming-in-spring-logging/feature.jpg">
+	<meta name="twitter:title" content="Aspect Programming in Spring - Logging">
+	<meta name="twitter:description" content="Spring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.
+The key unit of modularity in Aspects oriented programming (AOP) is the Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as “cross-cutting” concerns.
+AOP is used in Spring framework to:">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Aspect Programming in Spring - Logging",
+    "headline": "Aspect Programming in Spring - Logging",
+    
+    "abstract": "\u003cp\u003eSpring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eThe key unit of modularity in Aspects oriented programming (AOP) is the  Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as \u0026ldquo;cross-cutting\u0026rdquo; concerns.\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eAOP is used in Spring framework to:\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/aspect-programming-in-spring-logging\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:14\u002b05:30",
+    "datePublished": "2026-10-27T08:14:14\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:14\u002b05:30",
+    
+    "keywords": ["Spring Boot","Aspects"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1356"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/spring-boot/",
+       "name": "Spring Boot",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Aspect Programming in Spring Logging",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Aspect Programming in Spring - Logging
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_e21fda8231fcacbc.webp 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_ed2b6323da871cad.webp 660w
+            
+              ,http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_1ee445a4cdf33540.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_538aca64bc11ca9d.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="3648"
+        height="2045"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_44f90b9351d633f6.jpg" srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_137d76f75c6012c3.jpg 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_44f90b9351d633f6.jpg 660w
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_ebe997169495200a.jpg 1024w
+          
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/feature_hu_926942b5ad3e81de.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Spring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.</p>
+<blockquote>
+<p>The key unit of modularity in Aspects oriented programming (AOP) is the  Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as &ldquo;cross-cutting&rdquo; concerns.</p>
+</blockquote>
+<p>AOP is used in Spring framework to:</p>
+<ul>
+<li>Provide declarative enterprise services (e.g. declarative transaction management)</li>
+<li>Implements custom aspects.</li>
+</ul>
+<p>The above details are directly taken from the Spring documentation. When we talk about the modularity, it means how each functional unit behaves. Aspects-oriented programming allow developers to do specific things around these functional unit in order to add more value to its behavior. Logging is a very common example, where I want to add logging to all the methods before or after or around its execution. Transaction management is also one such example.</p>
+<p>We will use Logging as an example in this post to explore more on this feature. Before that, let&rsquo;s look into few more terminology that is used in Aspect-oriented programming.</p>
+<p>Now, it is evident that we have three important items when we want to execute something around some functionality.</p>
+<ul>
+<li>First is my code where I want to add the extra functionality (cross-cutting concerns). This is know as #JoinPoint.</li>
+<li>Second is the selection criteria to select the #Joinpoint to apply that cross-cutting concerns.</li>
+<li>Third is the reusable code which I want to implement when the #Joinpoint is recognized. This is known as #Advice.</li>
+</ul>
+<p>Now lets look into the official definition of these terms:</p>
+<ul>
+<li><strong>Aspects</strong>: A modularization of a concern that cut across multiple classes. In Spring AOP, aspects are implemented by using regular classes (the scheme-based approach) or regular classes annotated with the @Aspect annotation (the @AspectJ style.)</li>
+<li><strong>Join point</strong>: A point during the execution of a program, such as execution of a method or handling of exception. In Spring AOP, a join point always represent method execution.</li>
+<li><strong>Advice</strong>: Action taken by an aspect at a particular join point. Different types of advice include &ldquo;<em>around</em>&rdquo;, &ldquo;<em>before</em>&rdquo; and &ldquo;<em>after</em>&rdquo; advice.</li>
+<li><strong>Pointcut</strong>: A predicate that matches the join point.</li>
+<li><strong>Weaving</strong>: linking aspects with other application types or objects to create and advised object. This can be done at compile time (using AspectJ compiler), load time, or at runtime. The weaving is done at byte-code level and called byte-code weaving as well.</li>
+</ul>
+<h5 id="-aop-proxies" class="relative group">** AOP Proxies** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#-aop-proxies" aria-label="Anchor">#</a></span></h5><ul>
+<li>Spring AOP default to use standard JDK dynamic proxies for AOP proxies. This enables all the interface can be proxied.</li>
+<li>Spring AOP can also use CGLIB proxies which makes the classes rather than interfaces.</li>
+</ul>
+<p>Lets look into the basics implementation of creating any Aspects.</p>
+<p>First and Foremost is to enable AspectJ in you spring application. In this example we are taking the spring-core libraries only with AspectJ dependency.</p>
+<h4 id="dependencies" class="relative group"><strong>Dependencies</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dependencies" aria-label="Anchor">#</a></span></h4><p>So, the pom will look like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>core<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>${spring.<span style="color:#a6e22e">version</span>}<span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>context<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>${spring.<span style="color:#a6e22e">version</span>}<span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">aspectj</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>aspectjweaver<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>1.<span style="color:#a6e22e">9</span>.<span style="color:#a6e22e">19</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Additionally, we will add the log4j libraries to enable logging for all methods.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">slf4j</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>slf4j<span style="color:#f92672">-</span>log4j12<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">7</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>These are all the dependencies required for our Spring core project.</p>
+<h4 id="configuration" class="relative group"><strong>Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#configuration" aria-label="Anchor">#</a></span></h4><p>In order to enable AspectJ and load the configuration we will create a configuration class.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.ComponentScan;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.Configuration;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.EnableAspectJAutoProxy;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.PropertySource;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PropertySource</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classpath:application.properties&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ComponentScan</span>(basePackages <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;org.aa&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EnableAspectJAutoProxy</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppConfig</span> {}
+</span></span></code></pre></div><p>The above code</p>
+<ul>
+<li>sets the configuration files location</li>
+<li>sets the base packages to recognize the components.</li>
+<li>enable AspectJ proxy.</li>
+</ul>
+<h4 id="aspects" class="relative group"><strong>Aspects</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#aspects" aria-label="Anchor">#</a></span></h4><p>To enable logging for all the method execution, we will be creating Logging interface which will be used over method as annotation where we want to enable logging.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.annotation.ElementType;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.annotation.Retention;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.annotation.RetentionPolicy;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.annotation.Target;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Target</span>(ElementType.<span style="color:#a6e22e">METHOD</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Retention</span>(RetentionPolicy.<span style="color:#a6e22e">RUNTIME</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Loggable {}
+</span></span></code></pre></div><p>In the above code, we are creating custom annotation for logging purpose which sets</p>
+<ul>
+<li>if @Target meta-annotation is present, then compiler will restrict the usage based on the *ElementType *enum, in this case it is methods.</li>
+<li>@Retention annotation indicates how long the annotation with the annotated method to be retained.</li>
+</ul>
+<p>Now we will be creating the *LoggingAspect *using the Logging annotation which we created above. In this class we will create different types of Advices and also see the order of the execution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Aspect</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoggingAspect</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Logger LOG <span style="color:#f92672">=</span> LoggerFactory.<span style="color:#a6e22e">getLogger</span>(LoggingAspect.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Pointcut</span>(<span style="color:#e6db74">&#34;@annotation(Loggable)&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">executeLogging</span>(){}
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span></code></pre></div><p>We have to annotate the <em>LoggingAspect</em> class with the @Aspect annotation to use this as the aspect class for our logging objective.</p>
+<p>In the above code, we have defined our Pointcut operation which are method annotated with the annotation <em>Loggable</em>, there by separating the concerns.</p>
+<h4 id="services" class="relative group"><strong>Services</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#services" aria-label="Anchor">#</a></span></h4><p>For this task, we have two services created, where one service calls another service.</p>
+<h6 id="a1servicejava" class="relative group"><strong>A1Service.java</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#a1servicejava" aria-label="Anchor">#</a></span></h6><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A1Service</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    B1Service b1Service;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">A1Service</span>(B1Service b1Service){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">b1Service</span> <span style="color:#f92672">=</span> b1Service;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Loggable</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">serviceClass</span>(){
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;A1 service class method&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;A1&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Loggable</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">serviceSubClass</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;A1 service sub class calling B1&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> serviceClass()<span style="color:#f92672">+</span>b1Service.<span style="color:#a6e22e">serviceSubClass</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h6 id="b1servicejava" class="relative group"><strong>B1Service.java</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#b1servicejava" aria-label="Anchor">#</a></span></h6><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B1Service</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">serviceClass</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;B1&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">serviceSubClass</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;-b1&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you observe, we have @Loggable added on the <em>A1Service</em> methods while the <em>B1Service</em> is not bounded by the aspects.</p>
+<h4 id="main" class="relative group"><strong>Main</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main" aria-label="Anchor">#</a></span></h4><p>In my main method, we are calling the <em>serviceSubClass</em>() method of <em>A1Service</em> odd number of times in the range 1 to 10.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>( String<span style="color:#f92672">[]</span> args ) {
+</span></span><span style="display:flex;"><span>        ApplicationContext ac <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AnnotationConfigApplicationContext(AppConfig.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>        B1Service b1 <span style="color:#f92672">=</span> ac.<span style="color:#a6e22e">getBean</span>(B1Service.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>        A1Service a1 <span style="color:#f92672">=</span> ac.<span style="color:#a6e22e">getBean</span>(A1Service.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        IntStream
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">rangeClosed</span>(1, 10)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">filter</span>(x <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">%</span>2<span style="color:#f92672">!=</span>0)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">forEach</span>(x <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(x<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;-&#34;</span><span style="color:#f92672">+</span> a1.<span style="color:#a6e22e">serviceSubClass</span>()));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We are using *AnnotationConfigApplicationContext *to get the service beans.</p>
+<p>Next, we will implement different Advices.</p>
+<h5 id="before" class="relative group"><strong>@Before</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#before" aria-label="Anchor">#</a></span></h5><p>This advice will run before the execution of the method starts.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Before</span>(<span style="color:#e6db74">&#34;executeLogging()&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">logCall</span>(JoinPoint jp){
+</span></span><span style="display:flex;"><span>    LOG.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Before-&#34;</span><span style="color:#f92672">+</span>jp.<span style="color:#a6e22e">getSignature</span>().<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>.
+</span></span></code></pre></div><p>In continuation with the above code sample, this method will be added with @Before advice annotation which tells the Pointcut expression where to bind the object. In this case it is <em>executeLogging</em>() method.</p>
+<p>So before executing the method, it will execute this advice.
+
+
+
+
+
+
+
+  
+  
+<figure><img src="images//df024c_a73bbedae21e4d8592ceda30d9bb0150.jpg" alt="Execution Order" class="mx-auto my-0 rounded-md" /><figcaption class="text-center">Execution Order</figcaption>
+</figure>
+
+If you see the order, before executing the method, we have the <em>LoggingAspect</em> log in the run console.</p>
+<h5 id="after" class="relative group"><strong>@After</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#after" aria-label="Anchor">#</a></span></h5><p>Unlike @Before, this advice will be executed after the method execution is done. The important aspect to consider is that the advice will run irrespective of whether an exception occurred during the method execution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@After</span>(<span style="color:#e6db74">&#34;executeLogging()&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">logAfterCall</span>(JoinPoint jp){
+</span></span><span style="display:flex;"><span>    LOG.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;After-&#34;</span><span style="color:#f92672">+</span>jp.<span style="color:#a6e22e">getSignature</span>().<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We can see from the logs that it is executed after the method execution
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_f031476557795d06.webp 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_3e3d45f89439ccd.webp 660w
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_3bf337d6cbdb3013.webp 674w
+              
+            
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_3bf337d6cbdb3013.webp 674w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="674"
+        height="401"
+        class="mx-auto my-0 rounded-md"
+        alt="Execution Order"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_294efdf730b8b828.jpg" srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_ec39c938ce8a9f3.jpg 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169_hu_294efdf730b8b828.jpg 660w
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169.jpg 674w
+          
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_23b7c18bb01b48d89d23445f0443a169.jpg 674w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Execution Order</figcaption>
+</figure>
+</p>
+<p>@After has two more variation to it, @AfterThrowing and @AfterReturning. As the name suggests, @AfterThrowing advice will get executed if the method is throwing any exception, and @AfterReturning advice will get executed if the method is returning something.</p>
+<h5 id="afterretuning" class="relative group"><strong>@AfterRetuning</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#afterretuning" aria-label="Anchor">#</a></span></h5><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@AfterReturning</span>(<span style="color:#e6db74">&#34;executeLogging()&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">logAfterReturnCall</span>(JoinPoint jp){
+</span></span><span style="display:flex;"><span>    LOG.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;After Returning-&#34;</span><span style="color:#f92672">+</span>jp.<span style="color:#a6e22e">getSignature</span>().<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This will have following logs
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_3021a6e531736da5.webp 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_4df8b8453671e02f.webp 660w
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_78d6f529be963545.webp 763w
+              
+            
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_78d6f529be963545.webp 763w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="763"
+        height="412"
+        class="mx-auto my-0 rounded-md"
+        alt="Logs"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_8e8991bae046d918.jpg" srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_2c2a826b45d303d5.jpg 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93_hu_8e8991bae046d918.jpg 660w
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93.jpg 763w
+          
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_9b96cb17802e4922a4c98acc741e3a93.jpg 763w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Logs</figcaption>
+</figure>
+</p>
+<h5 id="afterthrowing" class="relative group"><strong>@AfterThrowing</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#afterthrowing" aria-label="Anchor">#</a></span></h5><p>We have to change the <em>serviceSubClass</em>() to throw *NoSuchFileException *for this to work.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@AfterThrowing</span>(<span style="color:#e6db74">&#34;executeLogging()&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">logAfterThrowingCall</span>(JoinPoint jp){
+</span></span><span style="display:flex;"><span>    LOG.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;After Exception-&#34;</span><span style="color:#f92672">+</span>jp.<span style="color:#a6e22e">getSignature</span>().<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This will have following logs
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_78057d1bbc175e8b.webp 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_237278e3d5849388.webp 660w
+            
+              ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_d1124eeb83179e96.webp 1024w
+            
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_bbc8bf3c58078678.webp 1094w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1094"
+        height="336"
+        class="mx-auto my-0 rounded-md"
+        alt="Logs"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_fd2e116a468a26a4.jpg" srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_add983dee918ff12.jpg 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_fd2e116a468a26a4.jpg 660w
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329_hu_418ebe31b3413207.jpg 1024w
+          
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_f614348ee33e4b0f9f061fde625d8329.jpg 1094w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Logs</figcaption>
+</figure>
+</p>
+<h5 id="around" class="relative group"><strong>@Around</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#around" aria-label="Anchor">#</a></span></h5><p>The @Around annotation will bring a new variant where the <em>ProceedingJoinPoint</em> exposes proceed() method to support @Around advice execution.</p>
+<p>Before the proceed() call, the advice is executed, and</p>
+<p>on the proceed() call, it will execute the method and return an Object</p>
+<p>After the proceed() call, the remaining advice part is executed.</p>
+<p>You can see the advice implementation</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Around</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;executeLogging()&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">logMethodCall</span>(ProceedingJoinPoint pjp) <span style="color:#66d9ef">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> startTime <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>();
+</span></span><span style="display:flex;"><span>    LOG.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;before calling proceed&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//method return value</span>
+</span></span><span style="display:flex;"><span>    Object returnValue <span style="color:#f92672">=</span> pjp.<span style="color:#a6e22e">proceed</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> runTimeForMethod <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> startTime;
+</span></span><span style="display:flex;"><span>    LOG.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Time to execute &#34;</span><span style="color:#f92672">+</span> pjp.<span style="color:#a6e22e">getSignature</span>().<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; is &#34;</span><span style="color:#f92672">+</span> runTimeForMethod <span style="color:#f92672">+</span><span style="color:#e6db74">&#34; ms&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> returnValue;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>and the logs will be evident to tell how the order of execution will be.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_4d24343075ae8ab.webp 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_8de860282c66dbfb.webp 660w
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_ae0a5c6c25b184a1.webp 854w
+              
+            
+            
+              
+                ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_ae0a5c6c25b184a1.webp 854w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="854"
+        height="491"
+        class="mx-auto my-0 rounded-md"
+        alt="Execution Order"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_78c4984373dd631d.jpg" srcset="http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_143112840b3d38f3.jpg 330w,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4_hu_78c4984373dd631d.jpg 660w
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4.jpg 854w
+          
+          
+            ,http://localhost:1313/posts/aspect-programming-in-spring-logging/images/df024c_a2c3ab6c6d1f472da4af692259a185e4.jpg 854w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Execution Order</figcaption>
+</figure>
+</p>
+<p>This all on the Spring AOP implementation. This time all the code is present in this post and will update this, once all my Github check-in&rsquo;s are done.</p>
+<p>Do comment out and like if you like the post or wanted more details on its working, or if any modification is to be done. It will be helpful as a community to grow.</p>
+<h3 id="references" class="relative group"><strong>References</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
+<li><a href="https://docs.spring.io/spring-framework/reference/core/aop/using-aspectj.html" target="_blank" rel="noreferrer">https://docs.spring.io/spring-framework/reference/core/aop/using-aspectj.html</a></li>
+<li><a href="https://www.linkedin.com/learning/spring-spring-mvc-2" target="_blank" rel="noreferrer">https://www.linkedin.com/learning/spring-spring-mvc-2</a></li>
+</ul>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/exploring-government-s-cowin-apis/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Exploring Government's Cowin APIs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/kubernetes-learning-phase-1-basic-commands/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >KUBERNETES LEARNING PHASE 1 - BASIC COMMANDS</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:15 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

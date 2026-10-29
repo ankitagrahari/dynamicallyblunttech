@@ -1,0 +1,22 @@
+baseURL = 'https://dynamicallyblunttech.com'
+locale = 'en-us'
+title = 'DynamicallyBluntTech'
+theme = 'Congo'
+
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+
+[params]
+  defaultTheme = "dark"          # Activates Congo's sleek tech dark-mode layout
+  showReadingTime = true         # Surfaces reading statistics per post
+
+[params.homepage]
+    showRecent = true
+    recentLimit = 10
+    showSummary = true
+
+[[menu.main]]
+  name = "All Posts"
+  pageRef = "posts"
+  weight = 10

@@ -1,0 +1,533 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Multi Release Functionality &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Multi Release Functionality &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.
+When Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/multi-release-functionality/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/multi-release-functionality/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Multi Release Functionality">
+	<meta property="og:description" content="In this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.
+When Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:25+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:25+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Multi Release Functionality">
+	<meta name="twitter:description" content="In this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.
+When Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Multi Release Functionality",
+    "headline": "Multi Release Functionality",
+    
+    "abstract": "\u003cp\u003eIn this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.\u003c\/p\u003e\n\u003cp\u003eWhen Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/multi-release-functionality\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:25\u002b05:30",
+    "datePublished": "2026-10-27T08:14:25\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:25\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "897"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Multi Release Functionality",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Multi Release Functionality
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.</p>
+<p>When Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are</p>
+<ul>
+<li>Multi-Release Jar functionality,</li>
+<li>Introduction of reactive streams,</li>
+<li>Private methods in Interface,</li>
+<li>Deprecations of JavaFX, which is finally removed in Java 11 and maintained as a different project out of JDK umbrella,</li>
+<li>Modularity, which is on same concept as Microservices.</li>
+</ul>
+<p>Since this release was not a Long Term Support (LTS), Oracle came up with another release Java 10 and soon a LTS version Java 11.</p>
+<p>At the time of writing this post, Oracle is advertising Java 19 (non-LTS) which is released in 2022. GA is in September, 2022.</p>
+<h3 id="importance" class="relative group"><strong>Importance</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#importance" aria-label="Anchor">#</a></span></h3><p>Now lets say we have our project written in Java 7, which was upgraded to Java 8 and then to the next LTS version which is Java 11. To perform these upgrades, developers took a long time as it is not just JDK upgrade, but all dependencies need to be made compatible. If some dependencies are not working, then look for their latest release or other alternatives which again involves other code changes. So upgrading to the latest is not an easy task and that&rsquo;s why the estimation is also big.</p>
+<p>Since the bytecode version varies with each release, developers have to maintain the functionality and if there is a big release jump, like upgrading directly from Java 8 to Java 17 (LTS), it will bring a lot of changes which also brings load of maintaining the dependencies changes as well.</p>
+<p>To help with this issue, Java 9 introduced multi-release functionality, which helps in maintaining Java code of different versions. This way the files changed as part of upgrade process, can be kept in another directory which will be picked by complier based on the version of Java it is running.</p>
+<p>Lets go through an example using maven as build tool to create a project which is originally written in Java 8 and then was upgraded to Java 11 (multi-release).</p>
+<h3 id="example" class="relative group"><strong>Example</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#example" aria-label="Anchor">#</a></span></h3><p>This will be a very simple example where we are maintaining two codebase for the files that need change and will have the respective methods present, such that if this class is run by an incompatible version of Java, it would throw errors.</p>
+<p>The project structure will be like this:</p>
+<p>Lets create our Main class, where we will create an instance of Worker class. Assuming this worker class is the code that will be changed in the upgrade process, we will maintain another directory for Java 11 Worker class file.</p>
+<h4 id="main-class" class="relative group"><strong>Main Class</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main-class" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Worker worker <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Worker();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>worker.<span style="color:#a6e22e">isNameBlank</span>())
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(worker.<span style="color:#a6e22e">getName</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;---&#34;</span><span style="color:#f92672">+</span>worker.<span style="color:#a6e22e">getVersion</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Name is Blank&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="java-8-worker-class" class="relative group"><strong>Java 8 Worker class</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#java-8-worker-class" aria-label="Anchor">#</a></span></h4><p>This class is written with Functional Interface annotation specific to Java 8. Also some print statements which will identify it is coming from Worker.java complied and executed with Java 8.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">FunctionOne</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">addTwoNum</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> version <span style="color:#f92672">=</span> 8;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Worker8&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isNameBlank</span>(){
+</span></span><span style="display:flex;"><span>        FunctionOne total <span style="color:#f92672">=</span> (a, b) <span style="color:#f92672">-&gt;</span> a<span style="color:#f92672">+</span>b;
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Sum of 10, 20 is =&#34;</span><span style="color:#f92672">+</span> total.<span style="color:#a6e22e">addTwoNum</span>(10, 20));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">trim</span>().<span style="color:#a6e22e">isEmpty</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getVersion</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">version</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="java-11-worker-class" class="relative group"><strong>Java 11 Worker Class</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#java-11-worker-class" aria-label="Anchor">#</a></span></h4><p>Notice that in this class, we have used isBlank() and stripLeading() methods introduced in Java 11.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> version <span style="color:#f92672">=</span> 11;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Worker11&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isNameBlank</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">isBlank</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">stripLeading</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getVersion</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">version</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="pomxml" class="relative group"><strong>POM.xml</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#pomxml" aria-label="Anchor">#</a></span></h5><p>Since I am using Maven as the build tool, I will add the configurations which tells the complier while compiling/building which Java class to pick.</p>
+<p><strong>1. Set the Source and Target Complier version</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>properties<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>maven.<span style="color:#a6e22e">compiler</span>.<span style="color:#a6e22e">source</span><span style="color:#f92672">&gt;</span>11<span style="color:#f92672">&lt;/</span>maven.<span style="color:#a6e22e">compiler</span>.<span style="color:#a6e22e">source</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>maven.<span style="color:#a6e22e">compiler</span>.<span style="color:#a6e22e">target</span><span style="color:#f92672">&gt;</span>11<span style="color:#f92672">&lt;/</span>maven.<span style="color:#a6e22e">compiler</span>.<span style="color:#a6e22e">target</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>properties<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p><strong>2. Add the maven-complier plugin</strong>, which will have two executions ways, one for Java 8 and another for Java11.</p>
+<p><strong>3. Add execution for Java 8</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>execution<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>id<span style="color:#f92672">&gt;</span>java8<span style="color:#f92672">&lt;/</span>id<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>goals<span style="color:#f92672">&gt;&lt;</span>goal<span style="color:#f92672">&gt;</span>compile<span style="color:#f92672">&lt;/</span>goal<span style="color:#f92672">&gt;&lt;/</span>goals<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>source<span style="color:#f92672">&gt;</span>1.<span style="color:#a6e22e">8</span><span style="color:#f92672">&lt;/</span>source<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>target<span style="color:#f92672">&gt;</span>1.<span style="color:#a6e22e">8</span><span style="color:#f92672">&lt;/</span>target<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>execution<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>**4. Add execution for Java 11 **</p>
+<p>Notice here that we are specifically telling complier that the source class is present in which directory for Java 11, and also letting it know that Multi-Release output is set to True.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>execution<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>id<span style="color:#f92672">&gt;</span>java11<span style="color:#f92672">&lt;/</span>id<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>goals<span style="color:#f92672">&gt;&lt;</span>goal<span style="color:#f92672">&gt;</span>compile<span style="color:#f92672">&lt;/</span>goal<span style="color:#f92672">&gt;&lt;/</span>goals<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>release<span style="color:#f92672">&gt;</span>11<span style="color:#f92672">&lt;/</span>release<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>compileSourceRoots<span style="color:#f92672">&gt;</span>${project.<span style="color:#a6e22e">basedir</span>}<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>main<span style="color:#f92672">/</span>java11<span style="color:#f92672">&lt;/</span>compileSourceRoots<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>multiReleaseOutput<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">true</span><span style="color:#f92672">&lt;/</span>multiReleaseOutput<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>execution<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p><strong>5. Adding Maven-Jar Plugin</strong> to create a manifest file which will have the Main class to start the execution.</p>
+<p>Once the pom.xml is properly set, do a <em>maven clean install</em> to build the project. This will create a target directory which will have the final jar file.</p>
+<p>Now when executing using Java 8, it will give following output:</p>
+<p>While executing using Java 11, it will give the following output</p>
+<p>If you open the Jar file, you will find the following structure:</p>
+<p>Notice that the version specific code is present under the <em><strong>META-INF/versions</strong></em> directory.</p>
+<p>You can refer to my <a href="https://github.com/ankitagrahari/MultiRelease" target="_blank" rel="noreferrer"><em>Github Repository</em></a> for the full code base and unzipped jar file as well.</p>
+<p>Hope this helps others also. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/lc1481-find-least-number-of-unique-integers-after-k-removals/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC1481 - Find Least Number of Unique Integers After K Removals</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/aes-algorithm-with-gcm-mode-in-java/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >AES Algorithm with GCM Mode in Java</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

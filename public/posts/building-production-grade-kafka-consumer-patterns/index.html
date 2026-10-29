@@ -1,0 +1,719 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Building Production-Grade Apache Kafka Consumer Patterns &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Building Production-Grade Apache Kafka Consumer Patterns &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Part 2 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | **Part 4: From *Localhost* to Kubernetes*
+*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
+Why This Matters #Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Building Production-Grade Apache Kafka Consumer Patterns">
+	<meta property="og:description" content="Part 2 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | **Part 4: From *Localhost* to Kubernetes*
+*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
+Why This Matters #Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:15+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:15+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Building Production-Grade Apache Kafka Consumer Patterns">
+	<meta name="twitter:description" content="Part 2 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | **Part 4: From *Localhost* to Kubernetes*
+*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
+Why This Matters #Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Building Production-Grade Apache Kafka Consumer Patterns",
+    "headline": "Building Production-Grade Apache Kafka Consumer Patterns",
+    
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 2 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 3: Real-time Aggregation *\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 4: From *\u003c\/a\u003e\u003ca href=\u0022http:\/\/Localhost\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eLocalhost\u003c\/em\u003e\u003c\/a\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* to Kubernetes*\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot \u002b Apache Kafka. This is part 2 of the series Stream Metrics application. *In \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 1\u003c\/a\u003e we built the producer, today we add the consumer.\u003c\/p\u003e\n\u003ch4 id=\u0022why-this-matters\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWhy This Matters\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#why-this-matters\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003cp\u003eMost tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/building-production-grade-kafka-consumer-patterns\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:15\u002b05:30",
+    "datePublished": "2026-10-27T08:14:15\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:15\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1626"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Building Production Grade Apache Kafka Consumer Patterns",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Building Production-Grade Apache Kafka Consumer Patterns
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:15 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><strong>Part 2 of the StreamMetrics Series</strong></p>
+<p>*Previous parts: <em><a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer"><em>Part 1: Kafka Producer</em></a></em> | <em><a href="https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec" target="_blank" rel="noreferrer">*Part 3: Real-time Aggregation *</a></em> | *<a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">*Part 4: From *</a><a href="http://Localhost" target="_blank" rel="noreferrer"><em>Localhost</em></a><a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">* to Kubernetes*</a></p>
+<p>*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot + Apache Kafka. This is part 2 of the series Stream Metrics application. *In <a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer">Part 1</a> we built the producer, today we add the consumer.</p>
+<h4 id="why-this-matters" class="relative group"><strong>Why This Matters</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-this-matters" aria-label="Anchor">#</a></span></h4><p>Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!</p>
+<p>Production Kafka consumers need to answer hard questions:</p>
+<ul>
+<li>What happens when your database is down and you can&rsquo;t process a message?</li>
+<li>What happens when a malformed event enters your topic?</li>
+<li>How do you know if your consumer is falling behind?</li>
+<li>How do you trace a message from producer to consumer?</li>
+</ul>
+<p>This post answers all of those questions with code from StreamMetrics, a real-time analytics platform I built to process 10,000+ events per second from multiple microservices.</p>
+<p><strong>Architecture Overview</strong></p>
+<p>Before diving into code, here is the data flow StreamMetrics uses:</p>
+<p>The consumer group has 3 threads, each owning 2 partitions from the 6-partition topic. This gives us parallelism while maintaining partition-level ordering guarantees.</p>
+<h2 id="1-manual-offset-management-why-auto-commit-will-eventually-burn-you" class="relative group"><strong>1. Manual Offset Management: Why Auto-Commit Will Eventually Burn You</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-manual-offset-management-why-auto-commit-will-eventually-burn-you" aria-label="Anchor">#</a></span></h2><p>Spring Kafka&rsquo;s default is <em>enable.auto.commit=true</em>, which commits offsets every 5 seconds regardless of whether your processing succeeded. This creates a silent data loss scenario that is extremely hard to debug in production.</p>
+<p><strong>The Problem with Auto-Commit</strong></p>
+<p>Consider this sequence of events with auto-commit enabled:</p>
+<ul>
+<li>Consumer polls 500 records from Kafka</li>
+<li>Auto-commit timer fires at 3rd second, commits offset for all 500 records</li>
+<li>At second 4, your database goes down, processing failed for records 301-500</li>
+<li>Consumer restarts - but offsets are already committed</li>
+<li>Records 301-500 are silently lost forever.</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th><em>Auto-commit is optimistic. Manual offset management is pessimistic. For financial metrics, audit logs, or any data you cannot afford to lose, always use manual commits.</em></th>
+			</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h4 id="configuration" class="relative group"><strong>Configuration:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#configuration" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> application.<span style="color:#a6e22e">yml</span>
+</span></span><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  kafka:
+</span></span><span style="display:flex;"><span>    consumer:
+</span></span><span style="display:flex;"><span>      enable<span style="color:#f92672">-</span>auto<span style="color:#f92672">-</span>commit: <span style="color:#66d9ef">false</span>         <span style="color:#960050;background-color:#1e0010">#</span> Manual control
+</span></span><span style="display:flex;"><span>      auto<span style="color:#f92672">-</span>offset<span style="color:#f92672">-</span>reset: earliest       <span style="color:#960050;background-color:#1e0010">#</span> Start from beginning on
+</span></span><span style="display:flex;"><span>                                        <span style="color:#960050;background-color:#1e0010">#</span>    <span style="color:#66d9ef">new</span> group
+</span></span><span style="display:flex;"><span>      max<span style="color:#f92672">-</span>poll<span style="color:#f92672">-</span>records: 500             <span style="color:#960050;background-color:#1e0010">#</span> Batch size per poll
+</span></span><span style="display:flex;"><span>      max<span style="color:#f92672">-</span>poll<span style="color:#f92672">-</span>interval<span style="color:#f92672">-</span>ms: 300000      <span style="color:#960050;background-color:#1e0010">#</span> 5 min max processing time
+</span></span><span style="display:flex;"><span>      session<span style="color:#f92672">-</span>timeout<span style="color:#f92672">-</span>ms: 10000         <span style="color:#960050;background-color:#1e0010">#</span> Broker considers consumer 
+</span></span><span style="display:flex;"><span>                                        <span style="color:#960050;background-color:#1e0010">#</span>    dead after 10s
+</span></span><span style="display:flex;"><span>      heartbeat<span style="color:#f92672">-</span>interval<span style="color:#f92672">-</span>ms: 3000       <span style="color:#960050;background-color:#1e0010">#</span> Send heartbeat every 3s
+</span></span><span style="display:flex;"><span>      isolation<span style="color:#f92672">-</span>level: read_committed     <span style="color:#960050;background-color:#1e0010">#</span> Only read committed transactions
+</span></span></code></pre></div><p><em>max-poll-records: 500</em> — This is your throughput knob.</p>
+<ul>
+<li>Higher = better throughput,</li>
+<li>lower = faster failure recovery.</li>
+<li>At 500, if processing fails, you re-process at most 500 records.</li>
+</ul>
+<p><em>isolation-level: read_committed</em> — Critical if your producers use transactions. Without this, you will read uncommitted messages that might be rolled back.</p>
+<p><em>session-timeout-ms: 10000</em> — If your consumer does not send a heartbeat for 10 seconds, the broker triggers a rebalance. <em>Set this higher than your max processing time for a single batch</em>.</p>
+<h4 id="the-listener-container-configuration" class="relative group"><strong>The Listener Container Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-listener-container-configuration" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ConcurrentKafkaListenerContainerFactory<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">kafkaListenerContainerFactory</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ConcurrentKafkaListenerContainerFactory<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span> factory <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">new</span> ConcurrentKafkaListenerContainerFactory<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  factory.<span style="color:#a6e22e">setConsumerFactory</span>(consumerFactory());
+</span></span><span style="display:flex;"><span>  factory.<span style="color:#a6e22e">setConcurrency</span>(3); <span style="color:#75715e">// 3 threads for 6 partitions = 2 partitions/thread</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// CRITICAL: Manual acknowledgment mode</span>
+</span></span><span style="display:flex;"><span>  factory.<span style="color:#a6e22e">getContainerProperties</span>()
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">setAckMode</span>(ContainerProperties.<span style="color:#a6e22e">AckMode</span>.<span style="color:#a6e22e">MANUAL</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> factory;
+</span></span></code></pre></div><h4 id="committing-offsets-in-the-listener" class="relative group"><strong>Committing Offsets in the Listener</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#committing-offsets-in-the-listener" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@KafkaListener</span>(
+</span></span><span style="display:flex;"><span>    topics <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${app.kafka.topic.metrics-events}&#34;</span>,
+</span></span><span style="display:flex;"><span>    groupId <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${spring.kafka.consumer.group-id}&#34;</span>,
+</span></span><span style="display:flex;"><span>    containerFactory <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kafkaListenerContainerFactory&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">consumeMetric</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Payload</span> ConsumerRecord<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span> record,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Header</span>(KafkaHeaders.<span style="color:#a6e22e">RECEIVED_PARTITION</span>) <span style="color:#66d9ef">int</span> partition,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Header</span>(KafkaHeaders.<span style="color:#a6e22e">OFFSET</span>) <span style="color:#66d9ef">long</span> offset,
+</span></span><span style="display:flex;"><span>    Acknowledgment acknowledgment) {  <span style="color:#75715e">// Injected by Spring</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  MetricEvent event <span style="color:#f92672">=</span> record.<span style="color:#a6e22e">value</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    metricProcessor.<span style="color:#a6e22e">process</span>(event);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Only commit AFTER successful processing</span>
+</span></span><span style="display:flex;"><span>    acknowledgment.<span style="color:#a6e22e">acknowledge</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Send to DLQ, then commit to avoid poison pill</span>
+</span></span><span style="display:flex;"><span>    sendToDeadLetterQueue(event, e.<span style="color:#a6e22e">getMessage</span>(), <span style="color:#e6db74">&#34;PROCESSING_ERROR&#34;</span>);
+</span></span><span style="display:flex;"><span>    acknowledgment.<span style="color:#a6e22e">acknowledge</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><table>
+	<thead>
+			<tr>
+					<th><em><strong>Key insight:</strong></em>* Even when processing fails, we commit the offset after sending to DLQ. This prevents a single bad message (<strong><strong>poison pill)</strong></strong> from blocking the entire partition forever.*</th>
+			</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h2 id="2-the-dead-letter-queue-pattern" class="relative group"><strong>2. The Dead Letter Queue Pattern</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-the-dead-letter-queue-pattern" aria-label="Anchor">#</a></span></h2><p>A Dead Letter Queue (DLQ) is where messages go when they cannot be processed.</p>
+<p>Without a DLQ, you have two terrible options:</p>
+<ul>
+<li>drop the message (data loss) or</li>
+<li>retry forever (partition stall).</li>
+</ul>
+<p>The DLQ gives you a third option: park the message safely, keep the main pipeline moving, and investigate later.</p>
+<h4 id="two-categories-of-failures" class="relative group"><strong>Two Categories of Failures</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#two-categories-of-failures" aria-label="Anchor">#</a></span></h4><p><strong>Validation Failures</strong></p>
+<p>The message arrived but is semantically wrong. A null <em>serviceId</em>, a negative metric value, a missing required field. These will never succeed no matter how many times you retry. Send immediately to DLQ.</p>
+<p><strong>Processing Failures</strong></p>
+<p>The message is valid but something downstream failed. Redis is unavailable, database connection timed out, network blip. These might succeed on retry - but for simplicity in this implementation, we also send to DLQ and handle retry separately.</p>
+<h4 id="validation-before-processing" class="relative group"><strong>Validation Before Processing</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#validation-before-processing" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Validate using Jakarta Bean Validation</span>
+</span></span><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>ConstraintViolation<span style="color:#f92672">&lt;</span>MetricEvent<span style="color:#f92672">&gt;&gt;</span> violations <span style="color:#f92672">=</span> validator.<span style="color:#a6e22e">validate</span>(event);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>violations.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>    String errorMsg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Validation failed: &#34;</span> <span style="color:#f92672">+</span> violations.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;Invalid metric event: eventId={}, errors={}&#34;</span>,
+</span></span><span style="display:flex;"><span>              event.<span style="color:#a6e22e">getEventId</span>(), errorMsg);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sendToDeadLetterQueue(event, errorMsg, <span style="color:#e6db74">&#34;VALIDATION_ERROR&#34;</span>);
+</span></span><span style="display:flex;"><span>    acknowledgment.<span style="color:#a6e22e">acknowledge</span>(); <span style="color:#75715e">// Commit and move on</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="the-dlq-sender" class="relative group"><strong>The DLQ Sender</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-dlq-sender" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendToDeadLetterQueue</span>(
+</span></span><span style="display:flex;"><span>    MetricEvent event, String reason, String errorType) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Enrich event with failure metadata before sending to DLQ</span>
+</span></span><span style="display:flex;"><span>  Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> metadata <span style="color:#f92672">=</span> event.<span style="color:#a6e22e">getMetadata</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (metadata <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    metadata <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    event.<span style="color:#a6e22e">setMetadata</span>(metadata);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  metadata.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;dlq_reason&#34;</span>, reason);
+</span></span><span style="display:flex;"><span>  metadata.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;dlq_error_type&#34;</span>, errorType);
+</span></span><span style="display:flex;"><span>  metadata.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;dlq_timestamp&#34;</span>,
+</span></span><span style="display:flex;"><span>      String.<span style="color:#a6e22e">valueOf</span>(System.<span style="color:#a6e22e">currentTimeMillis</span>()));
+</span></span><span style="display:flex;"><span>  metadata.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;dlq_original_topic&#34;</span>, inputTopic);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  deadLetterProducer
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">send</span>(deadLetterTopic, event.<span style="color:#a6e22e">getEventId</span>(), event)
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">whenComplete</span>((result, ex) <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (ex <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>              log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Sent to DLQ: eventId={}&#34;</span>, event.<span style="color:#a6e22e">getEventId</span>());
+</span></span><span style="display:flex;"><span>          } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>              <span style="color:#75715e">// Critical: DLQ itself failed</span>
+</span></span><span style="display:flex;"><span>              log.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;DLQ send failed: eventId={}&#34;</span>,
+</span></span><span style="display:flex;"><span>                        event.<span style="color:#a6e22e">getEventId</span>(), ex);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><table>
+	<thead>
+			<tr>
+					<th><em>Always enrich DLQ messages with failure metadata before sending. When you investigate failures 3 days later, you need to know WHY the message failed, WHEN it failed, and WHERE it came from.</em></th>
+			</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h4 id="monitoring-your-dlq" class="relative group"><strong>Monitoring Your DLQ</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#monitoring-your-dlq" aria-label="Anchor">#</a></span></h4><p>A growing DLQ is a production alert. In Kafka UI (or any Kafka management tool), watch the message count on your dead-letter topic. If it grows faster than your team can investigate, you have a systemic problem.</p>
+<p>In StreamMetrics, we track this with a custom Micrometer counter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Increment on every DLQ send</span>
+</span></span><span style="display:flex;"><span>Counter.<span style="color:#a6e22e">builder</span>(<span style="color:#e6db74">&#34;metrics.failed&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">tag</span>(<span style="color:#e6db74">&#34;service&#34;</span>, event.<span style="color:#a6e22e">getServiceId</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">tag</span>(<span style="color:#e6db74">&#34;reason&#34;</span>, errorType)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">register</span>(meterRegistry)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">increment</span>();
+</span></span></code></pre></div><h2 id="3-observability-you-cannot-fix-what-you-cannot-see" class="relative group"><strong>3. Observability: You Cannot Fix What You Cannot See</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-observability-you-cannot-fix-what-you-cannot-see" aria-label="Anchor">#</a></span></h2><p>The observability stack in StreamMetrics has three layers:</p>
+<ul>
+<li>metrics (what happened),</li>
+<li>tracing (how it happened), and</li>
+<li>logging (why it happened).</li>
+</ul>
+<p>This section focuses on metrics and tracing since those are the hardest to set up correctly with Kafka.</p>
+<p><strong>The Stack</strong></p>
+<ul>
+<li>Micrometer — metrics facade (same API regardless of backend)</li>
+<li>Prometheus — metrics storage and query engine</li>
+<li>Grafana — dashboards and alerting</li>
+<li>Zipkin — distributed tracing (optional, gracefully degraded)</li>
+</ul>
+<h4 id="spring-boot-actuator-configuration" class="relative group"><strong>Spring Boot Actuator Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#spring-boot-actuator-configuration" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> application.<span style="color:#a6e22e">yml</span>
+</span></span><span style="display:flex;"><span>management:
+</span></span><span style="display:flex;"><span>  endpoints:
+</span></span><span style="display:flex;"><span>    web:
+</span></span><span style="display:flex;"><span>      exposure:
+</span></span><span style="display:flex;"><span>        include: health,info,metrics,prometheus
+</span></span><span style="display:flex;"><span>  metrics:
+</span></span><span style="display:flex;"><span>    export:
+</span></span><span style="display:flex;"><span>      prometheus:
+</span></span><span style="display:flex;"><span>        enabled: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    tags:
+</span></span><span style="display:flex;"><span>      application: ${spring.<span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">name</span>}
+</span></span><span style="display:flex;"><span>    distribution:
+</span></span><span style="display:flex;"><span>      percentiles<span style="color:#f92672">-</span>histogram:
+</span></span><span style="display:flex;"><span>        http.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">requests</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      percentiles:
+</span></span><span style="display:flex;"><span>        http.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">requests</span>: 0.<span style="color:#a6e22e">5</span>, 0.<span style="color:#a6e22e">95</span>, 0.<span style="color:#a6e22e">99</span>
+</span></span></code></pre></div><p>The <em>tags.application</em> tag is critical. Without it, all your metrics from different services look identical in Prometheus. Always tag with the application name.</p>
+<h4 id="the-key-apache-kafka-metrics" class="relative group"><strong>The Key Apache Kafka Metrics</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-key-apache-kafka-metrics" aria-label="Anchor">#</a></span></h4><p>After starting both producer and consumer, hit <em>/actuator/prometheus</em> and look for these:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Producer: How many messages sent and at what latency
+</span></span><span style="display:flex;"><span>spring_kafka_template_seconds_count{result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;success&#34;</span>}
+</span></span><span style="display:flex;"><span>spring_kafka_template_seconds_max
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Consumer: Records consumed per second
+</span></span><span style="display:flex;"><span>kafka_consumer_records_consumed_total
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Circuit breaker <span style="color:#a6e22e">state</span> (<span style="color:#66d9ef">if</span> using Resilience4j)
+</span></span><span style="display:flex;"><span>resilience4j_circuitbreaker_state
+</span></span><span style="display:flex;"><span>resilience4j_circuitbreaker_calls_seconds_count
+</span></span></code></pre></div><h4 id="grafana-queries-that-actually-matter" class="relative group"><strong>Grafana Queries That Actually Matter</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#grafana-queries-that-actually-matter" aria-label="Anchor">#</a></span></h4><p>These are the three panels on the StreamMetrics dashboard:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Panel 1: Producer <span style="color:#a6e22e">throughput</span> (messages<span style="color:#f92672">/</span>sec)
+</span></span><span style="display:flex;"><span>rate(spring_kafka_template_seconds_count{result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;success&#34;</span>}<span style="color:#f92672">[</span>1m<span style="color:#f92672">]</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Panel 2: Max send latency
+</span></span><span style="display:flex;"><span>spring_kafka_template_seconds_max
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Panel 3: JVM heap pressure
+</span></span><span style="display:flex;"><span>jvm_memory_used_bytes{area<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;heap&#34;</span>}
+</span></span></code></pre></div><h4 id="distributed-tracing-making-tracer-optional" class="relative group"><strong>Distributed Tracing: Making Tracer Optional</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#distributed-tracing-making-tracer-optional" aria-label="Anchor">#</a></span></h4><p>One lesson learned the hard way: never make your critical path depend on your observability infrastructure. If Zipkin is down, your Kafka producer should still work. Make the Tracer optional:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RequiredArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MetricProducerService</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> KafkaTemplate<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span> kafkaTemplate;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Optional<span style="color:#f92672">&lt;</span>Tracer<span style="color:#f92672">&gt;</span> tracer; <span style="color:#75715e">// Optional - won&#39;t fail if Zipkin is down</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> CompletableFuture<span style="color:#f92672">&lt;</span>SendResult<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">sendMetric</span>(MetricEvent event) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Only add trace context if tracer is available</span>
+</span></span><span style="display:flex;"><span>    tracer.<span style="color:#a6e22e">ifPresent</span>(t <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (t.<span style="color:#a6e22e">currentSpan</span>() <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        String traceId <span style="color:#f92672">=</span> t.<span style="color:#a6e22e">currentSpan</span>().<span style="color:#a6e22e">context</span>().<span style="color:#a6e22e">traceId</span>();
+</span></span><span style="display:flex;"><span>        event.<span style="color:#a6e22e">getMetadata</span>().<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;traceId&#34;</span>, traceId);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> kafkaTemplate.<span style="color:#a6e22e">send</span>(topic, event.<span style="color:#a6e22e">getServiceId</span>(), event);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><table>
+	<thead>
+			<tr>
+					<th><em>This is a general principle: observability tools should observe your system, not be a dependency of it. If your tracing library throws an exception and crashes your producer, you have made your system less reliable in the name of observability.</em></th>
+			</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<h2 id="4-hard-won-lessons-from-building-this" class="relative group"><strong>4. Hard-Won Lessons from Building This</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-hard-won-lessons-from-building-this" aria-label="Anchor">#</a></span></h2><h4 id="kafka-docker-listener-configuration-is-unintuitive" class="relative group"><strong>Kafka Docker Listener Configuration Is Unintuitive</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#kafka-docker-listener-configuration-is-unintuitive" aria-label="Anchor">#</a></span></h4><p>The single biggest time sink in this project was Kafka&rsquo;s listener configuration in Docker. When running Kafka in Docker and your Spring Boot app on the host machine, you need two separate listeners: one for internal <em>broker-to-broker</em> communication, and one for <em>external</em> clients.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> docker<span style="color:#f92672">-</span>compose.<span style="color:#a6e22e">yml</span> <span style="color:#960050;background-color:#1e0010">—</span> The config that <span style="color:#66d9ef">finally</span> worked
+</span></span><span style="display:flex;"><span>KAFKA_LISTENERS: <span style="color:#960050;background-color:#1e0010">&#39;</span>PLAINTEXT:<span style="color:#75715e">//kafka1:19092,EXTERNAL://0.0.0.0:9092,CONTROLLER://kafka1:9093&#39;</span>
+</span></span><span style="display:flex;"><span>KAFKA_ADVERTISED_LISTENERS: <span style="color:#960050;background-color:#1e0010">&#39;</span>PLAINTEXT:<span style="color:#75715e">//kafka1:19092,EXTERNAL://localhost:9092&#39;</span>
+</span></span></code></pre></div><ul>
+<li>The PLAINTEXT listener (port 19092) handles broker-to-broker traffic inside the Docker network.</li>
+<li>The EXTERNAL listener (port 9092) is what your Spring Boot app connects to via localhost.</li>
+</ul>
+<p>Both are necessary.</p>
+<h4 id="stale-kafka-data-causes-mysterious-errors" class="relative group"><strong>Stale Kafka Data Causes Mysterious Errors</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stale-kafka-data-causes-mysterious-errors" aria-label="Anchor">#</a></span></h4><p>After changing Kafka configuration, always delete the data directories before restarting. Old cluster metadata causes <em><strong>DUPLICATE_BROKER_REGISTRATION</strong></em> errors that are confusing if you do not know what to look for.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>docker<span style="color:#f92672">-</span>compose down
+</span></span><span style="display:flex;"><span>rm <span style="color:#f92672">-</span>rf kafka1<span style="color:#f92672">/</span>data kafka2<span style="color:#f92672">/</span>data kafka3<span style="color:#f92672">/</span>data
+</span></span><span style="display:flex;"><span>docker<span style="color:#f92672">-</span>compose up <span style="color:#f92672">-</span>d
+</span></span></code></pre></div><h4 id="multi-module-maven-requires-careful-ordering" class="relative group"><strong>Multi-Module Maven Requires Careful Ordering</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#multi-module-maven-requires-careful-ordering" aria-label="Anchor">#</a></span></h4><p>In a multi-module Maven project, the parent POM&rsquo;s module list determines build order. Common module must be listed first, or the producer will fail to find MetricEvent even though the dependency is declared correctly.</p>
+<h2 id="5-results" class="relative group"><strong>5. Results</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-results" aria-label="Anchor">#</a></span></h2><p>After implementing all of the above, StreamMetrics processes over 10,000 events per second through a 3-broker Kafka cluster with:</p>
+<ul>
+<li>Zero message loss (verified by tracking event IDs end to end)</li>
+<li>Failed messages safely parked in DLQ with full failure context</li>
+<li>Real-time throughput and latency visible in Grafana</li>
+<li>Optional distributed tracing through Zipkin</li>
+<li>Manual offset commits ensuring exactly-once processing semantics</li>
+</ul>
+<h2 id="what" class="relative group"><strong>What&rsquo;s Next</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what" aria-label="Anchor">#</a></span></h2><p>Part 3 will cover Kafka Streams for real-time aggregations: computing 1-minute and 5-minute rolling averages of metric values, handling late-arriving data, and storing aggregated results back to Kafka and Redis.</p>
+<p>The full code is available at: <a href="http://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer">github.com/ankitagrahari/StreamAnalytics</a></p>
+<p>You can find my:</p>
+<p>Github:</p>
+<p>Instagram:</p>
+<p>Medium:</p>
+<p>Share your thoughts whether you liked or disliked it. Do let me know if you having any queries or suggestions. Never forget, Learning is the primary goal.</p>
+<p>Learn with every commit.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/kubernetes-learning-phase-1-basic-commands/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >KUBERNETES LEARNING PHASE 1 - BASIC COMMANDS</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:15 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Web Socket Client - Receiving Stream of Messages</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

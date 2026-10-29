@@ -1,0 +1,1028 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Day to Day Lambda & Functional Programming in Java 8 &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Day to Day Lambda & Functional Programming in Java 8 &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        If you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.
+This post will be a bit lengthy where we will write Junit5 tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Day to Day Lambda & Functional Programming in Java 8">
+	<meta property="og:description" content="If you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.
+This post will be a bit lengthy where we will write Junit5 tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:12+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:12+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Day to Day Lambda & Functional Programming in Java 8">
+	<meta name="twitter:description" content="If you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.
+This post will be a bit lengthy where we will write Junit5 tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Day to Day Lambda \u0026 Functional Programming in Java 8",
+    "headline": "Day to Day Lambda \u0026 Functional Programming in Java 8",
+    
+    "abstract": "\u003cp\u003eIf you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines\/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.\u003c\/p\u003e\n\u003cp\u003eThis post will be a bit lengthy where we will write \u003cem\u003eJunit5\u003c\/em\u003e tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/day-to-day-lambda-functional-programming-java-8\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:12\u002b05:30",
+    "datePublished": "2026-10-27T08:14:12\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:12\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3212"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6249579158f0bd10b2a57273/",
+       "name": "[\"6249579158f0bd10b2a57273\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Day to Day Lambda \u0026 Functional Programming in Java 8",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Day to Day Lambda & Functional Programming in Java 8
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:12 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>If you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.</p>
+<p>This post will be a bit lengthy where we will write <em>Junit5</em> tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.</p>
+<p>Lets start considering we have a User object which has its attributes like <em>firstName</em>, <em>lastName</em>, *age *and a set of <em>Privileges</em>. The Privileges is an <em>enum</em>, which defines all privileges a user can have, like Read, Create, Update, Delete.</p>
+<p>So my User and Privilege class looks like this:</p>
+<p><strong>User.java</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String firstName;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String lastName;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Integer age;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Privilege<span style="color:#f92672">&gt;</span> privileges;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span>(<span style="color:#66d9ef">final</span> Long id,
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">final</span> String firstName,
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">final</span> String lastName,
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">final</span> Integer age,
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span>Privilege<span style="color:#f92672">&gt;</span> privileges) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstName</span> <span style="color:#f92672">=</span> firstName;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastName</span> <span style="color:#f92672">=</span> lastName;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">privileges</span> <span style="color:#f92672">=</span> Collections.<span style="color:#a6e22e">unmodifiableList</span>(privileges);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//getters and setters for its attributes</span>
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">id</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;_&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;_&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastName</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;_&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;_(&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> ((<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">privileges</span>.<span style="color:#a6e22e">size</span>()<span style="color:#f92672">==</span>4)
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;All&#34;</span>
+</span></span><span style="display:flex;"><span>                : <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">privileges</span>.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">map</span>(String::valueOf)
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">joining</span>(<span style="color:#e6db74">&#34;,&#34;</span>))
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;)&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Privilege.java</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> Privilege {
+</span></span><span style="display:flex;"><span>    CREATE,
+</span></span><span style="display:flex;"><span>    UPDATE,
+</span></span><span style="display:flex;"><span>    READ,
+</span></span><span style="display:flex;"><span>    DELETE
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The User class does not override *hashcode *and *equals *method.</p>
+<p>Lets start with each scenario one by one.</p>
+<h2 id="scenarios" class="relative group"><strong>Scenarios</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#scenarios" aria-label="Anchor">#</a></span></h2><h3 id="1-sort-by-name-in-ascending-and-age-in-descending-order" class="relative group"><strong>1. Sort</strong> By Name in Ascending and Age in Descending Order <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-sort-by-name-in-ascending-and-age-in-descending-order" aria-label="Anchor">#</a></span></h3><p>We need to sort the list of users</p>
+<p>by first name, then</p>
+<p>by last name, and then</p>
+<p>by age in reverse order.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Sort Users by Name in ascending and then by Age in descending order&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sortByAgeDescAndNameAsc</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(4L, <span style="color:#e6db74">&#34;Dynamic&#34;</span>, <span style="color:#e6db74">&#34;Blunt&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">READ</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user5 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(5L, <span style="color:#e6db74">&#34;Dynamic&#34;</span>, <span style="color:#e6db74">&#34;BluntTech&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> sortedUsers <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            userService.<span style="color:#a6e22e">sortByAgeDescAndNameAsc</span>(
+</span></span><span style="display:flex;"><span>                Arrays.<span style="color:#a6e22e">asList</span>(user1, user2, user3, user4, user5)
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(sortedUsers);
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertArrayEquals</span>(
+</span></span><span style="display:flex;"><span>            sortedUsers.<span style="color:#a6e22e">toArray</span>(), 
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> User<span style="color:#f92672">[]</span>{ user4, user5, user2, user1, user3}
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 5 users, with</p>
+<ul>
+<li>Greg and Alex user with same last name and different age</li>
+<li>Dynamic Blunt and Dynamic BluntTech user with same first name and age but different last name.</li>
+</ul>
+<p>We are asserting and expecting the users to be in this order</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>user4(Dynamic Blunt) <span style="color:#f92672">--&gt;</span> user5(Dynamic BluntTech) <span style="color:#f92672">--&gt;</span> user2(Greg) <span style="color:#f92672">--&gt;</span> user1(John) <span style="color:#f92672">--&gt;</span> user3(Alex)
+</span></span></code></pre></div><h4 id="lets-check-the-logic-for-this" class="relative group">Lets check the logic for this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-for-this" aria-label="Anchor">#</a></span></h4><p>We need to use lambda expression to first sort it based on first name, then last name and then the age in reverse order. So we do what we say:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sortByAgeDescAndNameAsc</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">sorted</span>(
+</span></span><span style="display:flex;"><span>                    Comparator.<span style="color:#a6e22e">comparing</span>(User::getFirstName)
+</span></span><span style="display:flex;"><span>                            .<span style="color:#a6e22e">thenComparing</span>(User::getLastName)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::print)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">sorted</span>(
+</span></span><span style="display:flex;"><span>                    Comparator.<span style="color:#a6e22e">comparingInt</span>(User::getAge)
+</span></span><span style="display:flex;"><span>                            .<span style="color:#a6e22e">reversed</span>()
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::println)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">toList</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>On the stream of users, we are using <em>Comparator.comparing()</em> method to sort. We also have to tell on what basis it has to compare and for that we used Functional programming to get the first name (<em>getFirstName()</em>). Once we have compared on first name, then we have to compare on the last name, and for that we used <em>thenComparing()</em> method.</p>
+<blockquote>
+<p><em>peek()</em> takes Consumer as argument and we can use this to know the values from the previous lambda operation. Very useful in debugging.</p>
+</blockquote>
+<p>Similarly, we can sort based on the age, but this time we will use <em>reversed()</em>, as we need the age to sorted in descending order.</p>
+<p>And at last, we have the terminal operation, which will collect the sorted users in a <em>List</em>.</p>
+<p>So the output on console will have the print statements from peek() and final list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>3_Alex_Smith_13_(All)4_Dynamic_Blunt_30_(READ)5_Dynamic_BluntTech_30_(All)2_Greg_Smith_30_(All)1_John_Doe_26_(All)4_Dynamic_Blunt_30_(READ)
+</span></span><span style="display:flex;"><span>5_Dynamic_BluntTech_30_(All)
+</span></span><span style="display:flex;"><span>2_Greg_Smith_30_(All)
+</span></span><span style="display:flex;"><span>1_John_Doe_26_(All)
+</span></span><span style="display:flex;"><span>3_Alex_Smith_13_(All)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">----------------------------------------------&gt;&gt;</span>Above are from <span style="color:#a6e22e">Peek</span>()
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>4_Dynamic_Blunt_30_(READ), 5_Dynamic_BluntTech_30_(All), 2_Greg_Smith_30_(All), 1_John_Doe_26_(All), 3_Alex_Smith_13_(All)<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="2-distinct-privileges" class="relative group">**2. Distinct **Privileges <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-distinct-privileges" aria-label="Anchor">#</a></span></h3><p>We need to return all the distinct privileges which are part of the input list of User.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-1" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-1" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Return all distinct privilege in the list&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getAllDistinctPrivileges</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User createUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26,
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">CREATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 20, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User deleteUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(4L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13,         
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span>Privilege<span style="color:#f92672">&gt;</span> distinctPrivileges <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            userService.<span style="color:#a6e22e">getAllDistinctPrivileges</span>(
+</span></span><span style="display:flex;"><span>                    Arrays.<span style="color:#a6e22e">asList</span>(
+</span></span><span style="display:flex;"><span>                            createUser, 
+</span></span><span style="display:flex;"><span>                            updateUser, 
+</span></span><span style="display:flex;"><span>                            updateUser1, 
+</span></span><span style="display:flex;"><span>                            deleteUser
+</span></span><span style="display:flex;"><span>                    )
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(distinctPrivileges);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(distinctPrivileges.<span style="color:#a6e22e">size</span>(), 3);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 4 users, which are having Create, Update and Delete as the distinct privileges and the output size will be the assertion criteria.</p>
+<h4 id="lets-look-into-the-logic-of-how-to-get-the-listlist-to-list-using-flatmap" class="relative group">Lets look into the logic of how to get the <em>List&lt;List&lt;&raquo;</em> to <em>List&lt;&gt;</em> using* flatMap()*. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-look-into-the-logic-of-how-to-get-the-listlist-to-list-using-flatmap" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Privilege<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getAllDistinctPrivileges</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(user <span style="color:#f92672">-&gt;</span> user.<span style="color:#a6e22e">getPrivileges</span>())
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::print)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">flatMap</span>(List::stream)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">distinct</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::println)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">toList</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>See, how precise and easy to understand this code looks. We are first getting the list of privileges for each user and then converting that List to Stream of Privilege. Doing a distinct() and converting to list will be our output.</p>
+<blockquote>
+<p>More intuitive it will be, if you are using some editor, and properly separating it to new line after every lambda operation. I am using IntelliJ, and this is how it looks</p>
+</blockquote>
+<p>You can refer the yellow marked ones, where the editor is displaying the return type of that operation. Like,</p>
+<p><em>user.stream()</em> returns a *Stream<!-- raw HTML omitted --> *</p>
+<p>then applying <em>map()</em> on it, returns a <em>Stream&lt;List<!-- raw HTML omitted -->&gt;</em></p>
+<p>then applying <em>flatMap()</em> on it, will give me a <em>Stream<!-- raw HTML omitted --></em>.</p>
+<p>So, the output of this method will be:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>CREATE<span style="color:#f92672">]</span>CREATE
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>UPDATE<span style="color:#f92672">]</span>UPDATE
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>UPDATE<span style="color:#f92672">][</span>DELETE<span style="color:#f92672">]</span>DELETE
+</span></span><span style="display:flex;"><span><span style="color:#f92672">----------------------------------------------&gt;&gt;</span>Above are from <span style="color:#a6e22e">peek</span>()
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>CREATE, UPDATE, DELETE<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="3-filter-user-with-update-privilege-and-age29" class="relative group"><strong>3. Filter</strong> User with Update Privilege and Age&gt;29 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-filter-user-with-update-privilege-and-age29" aria-label="Anchor">#</a></span></h3><p>We will be filtering the list of user with Update Privilege and Age greater than given input(29).</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-2" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-2" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Return User with higher age than X of Update Privilege&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getUpdateUserWithAgeHigherThan</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26,
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User deleteUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Optional<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> user <span style="color:#f92672">=</span> userService.<span style="color:#a6e22e">getUpdateUserWithAgeHigherThan</span>(
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(updateUser1, updateUser, deleteUser),
+</span></span><span style="display:flex;"><span>            29
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(user.<span style="color:#a6e22e">get</span>());
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(user.<span style="color:#a6e22e">get</span>(), updateUser1);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I have 3 Users, of which 2 are having Update Privilege, and only one is having Age greater than 29. So my assertion criteria will be on that User.</p>
+<h4 id="lets-check-the-logic-for-this-1" class="relative group">Lets check the logic for this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-for-this-1" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Optional<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getUpdateUserWithAgeHigherThan</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users, <span style="color:#66d9ef">int</span> age) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">filter</span>(user <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>                    user.<span style="color:#a6e22e">getAge</span>() <span style="color:#f92672">&gt;</span> age 
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&amp;&amp;</span> user.<span style="color:#a6e22e">getPrivileges</span>().<span style="color:#a6e22e">contains</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>)
+</span></span><span style="display:flex;"><span>             )
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::println)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">findFirst</span>();         <span style="color:#75715e">//Can use both findFirst() or findAny()</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you notice, we are returning an <em>Option<!-- raw HTML omitted --></em> because, there might be a scenario where the given filter constraints never gets fulfilled, and in this scenario will return <em>Optional.empty</em>.</p>
+<blockquote>
+<p>Terminal operation like <em>findFirst()</em>, <em>findAny(), average() etc</em> return *Optional *object, which uses <em>isPresent()</em> to return false, if the return value is null, else true.</p>
+</blockquote>
+<p>Output of this test is this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>2_Greg_Smith_30_(UPDATE)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">----------------------------------------------&gt;&gt;</span>Above are from <span style="color:#a6e22e">peek</span>()
+</span></span><span style="display:flex;"><span>2_Greg_Smith_30_(UPDATE)
+</span></span></code></pre></div><h3 id="4-group-users-by-count-of-privileges" class="relative group"><strong>4. Group</strong> Users By Count of Privileges <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-group-users-by-count-of-privileges" aria-label="Anchor">#</a></span></h3><p>We have to find the users who have either one Privilege, or two or three or all 4 Privilege.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-3" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-3" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Count of Users for each Privilege&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">groupByCountOfPrivileges</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> ONE_PRIVILEGE <span style="color:#f92672">=</span> 1;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> TWO_PRIVILEGES <span style="color:#f92672">=</span> 2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> FOUR_PRIVILEGES <span style="color:#f92672">=</span> 4;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User userWith2Privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26,
+</span></span><span style="display:flex;"><span>             Arrays.<span style="color:#a6e22e">asList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>, Privilege.<span style="color:#a6e22e">CREATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User userWith4Privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User userWith4Privileges1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Anton&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 34, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User userWith1Privileges1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User userWith1Privileges2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Neo&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>Integer, List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;&gt;</span> privilegesCountUsersMap <span style="color:#f92672">=</span> userService
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">groupByCountOfPrivileges</span>(
+</span></span><span style="display:flex;"><span>                    Arrays.<span style="color:#a6e22e">asList</span>(
+</span></span><span style="display:flex;"><span>                            userWith1Privileges1, 
+</span></span><span style="display:flex;"><span>                            userWith1Privileges2, 
+</span></span><span style="display:flex;"><span>                            userWith2Privileges, 
+</span></span><span style="display:flex;"><span>                            userWith4Privileges, 
+</span></span><span style="display:flex;"><span>                            userWith4Privileges1
+</span></span><span style="display:flex;"><span>                   )
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(privilegesCountUsersMap);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertArrayEquals</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span>{2, 1, 2},
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span>{
+</span></span><span style="display:flex;"><span>                    privilegesCountUsersMap.<span style="color:#a6e22e">get</span>(ONE_PRIVILEGE).<span style="color:#a6e22e">size</span>(),
+</span></span><span style="display:flex;"><span>                    privilegesCountUsersMap.<span style="color:#a6e22e">get</span>(TWO_PRIVILEGES).<span style="color:#a6e22e">size</span>(),
+</span></span><span style="display:flex;"><span>                    privilegesCountUsersMap.<span style="color:#a6e22e">get</span>(FOUR_PRIVILEGES).<span style="color:#a6e22e">size</span>()
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, we have 5 Users, which has either 1 or 2 or 3 Privileges. The method will be returning a Map of Count of Privileges and List of Users. My assertion criteria will be to look each element of map, and assert on the size of User list for each privilege.</p>
+<h4 id="lets-check-the-logic-of-this" class="relative group">Lets check the logic of this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-of-this" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Map<span style="color:#f92672">&lt;</span>Integer, List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">groupByCountOfPrivileges</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">collect</span>(
+</span></span><span style="display:flex;"><span>                    Collectors.<span style="color:#a6e22e">groupingBy</span>(
+</span></span><span style="display:flex;"><span>                            user <span style="color:#f92672">-&gt;</span> user.<span style="color:#a6e22e">getPrivileges</span>().<span style="color:#a6e22e">size</span>()
+</span></span><span style="display:flex;"><span>                    )
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We only have to group by the list of users based on the size of the Privileges each user has. And so we used <em>Collectors.groupingBy()</em> on the Privilege list size.</p>
+<p>Output of the test is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>{1<span style="color:#f92672">=[</span>3_Alex_Smith_13_(DELETE), 3_Neo_Smith_13_(UPDATE)<span style="color:#f92672">]</span>, 
+</span></span><span style="display:flex;"><span>2<span style="color:#f92672">=[</span>1_John_Doe_26_(UPDATE,CREATE)<span style="color:#f92672">]</span>, 
+</span></span><span style="display:flex;"><span>4<span style="color:#f92672">=[</span>2_Greg_Smith_30_(All), 2_Anton_Smith_34_(All)<span style="color:#f92672">]</span>}
+</span></span></code></pre></div><h3 id="5-count-of-privileges-for-each-user" class="relative group"><strong>5. Count</strong> of Privileges for each User <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-count-of-privileges-for-each-user" aria-label="Anchor">#</a></span></h3><p>We have to return the count of Privileges each user possess. This scenario is very similar to the above one, where we have to find the count of User for each Privilege.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-4" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-4" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Count of Privileges per User&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">countOfPrivilegesPerUser</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user1With2Privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26,
+</span></span><span style="display:flex;"><span>             Arrays.<span style="color:#a6e22e">asList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>, Privilege.<span style="color:#a6e22e">CREATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user2With4Privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user3With4Privileges <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Anton&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 34, 
+</span></span><span style="display:flex;"><span>            ALL_PRIVILEGES);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user4With1Privilege <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user5With1Privilege <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Neo&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>User, Integer<span style="color:#f92672">&gt;</span> privilegesCountPerUserMap <span style="color:#f92672">=</span> userService
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">countOfPrivilegesPerUser</span>(
+</span></span><span style="display:flex;"><span>                    Arrays.<span style="color:#a6e22e">asList</span>(
+</span></span><span style="display:flex;"><span>                            user4With1Privilege, 
+</span></span><span style="display:flex;"><span>                            user5With1Privilege, 
+</span></span><span style="display:flex;"><span>                            user1With2Privileges, 
+</span></span><span style="display:flex;"><span>                            user2With4Privileges, 
+</span></span><span style="display:flex;"><span>                            user3With4Privileges
+</span></span><span style="display:flex;"><span>                    )
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(privilegesCountPerUserMap);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertArrayEquals</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span>{2, 4, 4, 1, 1},
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span>{
+</span></span><span style="display:flex;"><span>                    privilegesCountPerUserMap.<span style="color:#a6e22e">get</span>(user1With2Privileges),
+</span></span><span style="display:flex;"><span>                    privilegesCountPerUserMap.<span style="color:#a6e22e">get</span>(user2With4Privileges),
+</span></span><span style="display:flex;"><span>                    privilegesCountPerUserMap.<span style="color:#a6e22e">get</span>(user3With4Privileges),
+</span></span><span style="display:flex;"><span>                    privilegesCountPerUserMap.<span style="color:#a6e22e">get</span>(user4With1Privilege),
+</span></span><span style="display:flex;"><span>                    privilegesCountPerUserMap.<span style="color:#a6e22e">get</span>(user5With1Privilege)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 5 users, which will have different privileges, and we have to assert on the Map returned by the method, which holds the count of Privilege each User has. Map is of User and the count of Privileges.</p>
+<h4 id="lets-check-the-logic-to-get-this" class="relative group">Lets check the logic to get this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-to-get-this" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Map<span style="color:#f92672">&lt;</span>User, Integer<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">countOfPrivilegesPerUser</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">collect</span>(
+</span></span><span style="display:flex;"><span>                    Collectors.<span style="color:#a6e22e">groupingBy</span>(
+</span></span><span style="display:flex;"><span>                            user <span style="color:#f92672">-&gt;</span> user,
+</span></span><span style="display:flex;"><span>                            Collectors.<span style="color:#a6e22e">summingInt</span>(
+</span></span><span style="display:flex;"><span>                                   value <span style="color:#f92672">-&gt;</span> value.<span style="color:#a6e22e">getPrivileges</span>().<span style="color:#a6e22e">size</span>()
+</span></span><span style="display:flex;"><span>                            )
+</span></span><span style="display:flex;"><span>                    )
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have the same logic applied as previous one, but this time, we are using <em>Collectors.summingInt()</em> method to define on what basis the <em>Collectors.groupingBy()</em> will group the users.</p>
+<p>Output of this test is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> 3_Alex_Smith_13_(DELETE)<span style="color:#f92672">=</span>1, 
+</span></span><span style="display:flex;"><span> 2_Greg_Smith_30_(All)<span style="color:#f92672">=</span>4, 
+</span></span><span style="display:flex;"><span> 1_John_Doe_26_(UPDATE,CREATE)<span style="color:#f92672">=</span>2, 
+</span></span><span style="display:flex;"><span> 2_Anton_Smith_34_(All)<span style="color:#f92672">=</span>4, 
+</span></span><span style="display:flex;"><span> 3_Neo_Smith_13_(UPDATE)<span style="color:#f92672">=</span>1
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="6-average-age-of-users" class="relative group"><strong>6. Average</strong> Age of Users <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-average-age-of-users" aria-label="Anchor">#</a></span></h3><p>We have to return the average age of all the users. The return type should be <em>double</em>.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-5" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-5" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Return average age of Users&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getAverageAgeForUsers</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User createUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26,
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">CREATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 20, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User deleteUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(4L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> averageAge <span style="color:#f92672">=</span> userService.<span style="color:#a6e22e">getAverageAgeForUsers</span>(
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(createUser, updateUser, updateUser1, deleteUser)
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(averageAge);
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(averageAge, 22.<span style="color:#a6e22e">25</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 4 Users, whose age is given and we need to assert on the average age of the users.</p>
+<h4 id="lets-check-the-logic-of-this-1" class="relative group">Lets check the logic of this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-of-this-1" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getAverageAgeForUsers</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">mapToDouble</span>(User::getAge)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">average</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">getAsDouble</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have mapped the User stream to its attributes *Age *and called the terminal operation average(), which will return an *Optional *object. To get the values from *Optional *object, we can use the <em>get()</em> method. Here, to get the double value, we have used <em>getAsDouble()</em>.</p>
+<p>Output of the test is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>22.<span style="color:#a6e22e">25</span>
+</span></span></code></pre></div><h3 id="7-most-frequent-last-name-of-users" class="relative group"><strong>7. Most Frequent</strong> Last Name of Users <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-most-frequent-last-name-of-users" aria-label="Anchor">#</a></span></h3><p>We have to find the Last name from the list of User, which has occurred most number of times in the list.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-6" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-6" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Return most frequent occurring last name from the list&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getMostFrequentLastName</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User createUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">CREATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 30,         
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User updateUser1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 20, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User deleteUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(4L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String lastName <span style="color:#f92672">=</span> userService.<span style="color:#a6e22e">getMostFrequentLastName</span>(
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(createUser, updateUser, updateUser1, deleteUser)
+</span></span><span style="display:flex;"><span>    ).<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(lastName);
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(lastName, <span style="color:#e6db74">&#34;Smith&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 4 Users, among which Smith is the last name for 3 Users. So our assertions criteria will also be the same.</p>
+<h4 id="let-check-the-logic-for-this" class="relative group">Let check the logic for this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#let-check-the-logic-for-this" aria-label="Anchor">#</a></span></h4><p>A normal operation would be something like, getting the map of last name and the count of it. But we can do this in one line.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getMostFrequentLastName</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>String, Long<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">groupingBy</span>(
+</span></span><span style="display:flex;"><span>                            User::getLastName,
+</span></span><span style="display:flex;"><span>                            Collectors.<span style="color:#a6e22e">counting</span>()
+</span></span><span style="display:flex;"><span>                    ));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">of</span>(
+</span></span><span style="display:flex;"><span>            map.<span style="color:#a6e22e">entrySet</span>()
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">max</span>((e1, e2) <span style="color:#f92672">-&gt;</span> e1.<span style="color:#a6e22e">getValue</span>()<span style="color:#f92672">&lt;</span>e2.<span style="color:#a6e22e">getValue</span>()<span style="color:#f92672">?-</span>1:1)
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">get</span>()
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">getKey</span>()
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the map, we have grouped the Users by Last Name and captured the count of the last name found in the list. Then from the Map, we have found the <em>max()</em> by passing the comparator logic  to get the highest count value first. Since max() is also a terminal operation, it will return Optional<!-- raw HTML omitted --> object.</p>
+<p>You can see the return type of each operation here:</p>
+<p>Output is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Smith
+</span></span></code></pre></div><p><strong>8. Filter</strong> by Multiple Predicates</p>
+<p>We are given with multiple filter constraints, and we have to apply all the filters in the same user Stream.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-7" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-7" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Filter Users by first name length &gt; 3 and privileges &gt; 2&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">filterBy</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Jonson&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">UPDATE</span>, 
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">CREATE</span>, 
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">DELETE</span>
+</span></span><span style="display:flex;"><span>           ));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Predicate<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> firstNameLongerThan3 <span style="color:#f92672">=</span> user <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>            user.<span style="color:#a6e22e">getFirstName</span>().<span style="color:#a6e22e">length</span>()<span style="color:#f92672">&gt;</span>3;
+</span></span><span style="display:flex;"><span>    Predicate<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> privilegeGreaterThan2 <span style="color:#f92672">=</span> user <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>            user.<span style="color:#a6e22e">getPrivileges</span>().<span style="color:#a6e22e">size</span>()<span style="color:#f92672">&gt;</span>2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users <span style="color:#f92672">=</span> userService.<span style="color:#a6e22e">filterBy</span>(
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(user1, user2, user3),
+</span></span><span style="display:flex;"><span>            firstNameLongerThan3,
+</span></span><span style="display:flex;"><span>            privilegeGreaterThan2
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(users);
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(users.<span style="color:#a6e22e">size</span>(), 1);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 3 Users, on which we two Predicates/Filters applied, and our assertion criteria will also be same.</p>
+<blockquote>
+<p>*Predicate *is a *boolean *valued one argument functional Interface, which has <em>test()</em> as the functional method.</p>
+</blockquote>
+<h4 id="lets-check-the-logic-to-get-this-1" class="relative group">Lets check the logic to get this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-to-get-this-1" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filterBy</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users, 
+</span></span><span style="display:flex;"><span>        Predicate<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span>... predicates) {
+</span></span><span style="display:flex;"><span>    Predicate<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> allPredicates <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">stream</span>(predicates)
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">reduce</span>(w<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">true</span>, Predicate::and);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">filter</span>(allPredicates)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">toList</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In order to club all the predicates together, we will create a new Predicate, which will take the input list of all predicate and reduce it with an AND operation. We can also use OR operation as well.</p>
+<p>The <em>w&ndash;&gt; true</em> is the initial value, so now when we club together all predicates it would be something like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">true</span> AND Predicate1_Output AND Predicate2_Output AND....
+</span></span></code></pre></div><p>Output for this scenario is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>2_Greg_Jonson_30_(UPDATE,CREATE,DELETE)<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>We can have one more scenario where there are no predicates or filters applies. When we don&rsquo;t have any filter, it will return the same list as output.</p>
+<h4 id="lets-check-the-junit-for-empty-filters" class="relative group">Lets check the Junit for Empty Filters: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-junit-for-empty-filters" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Return same list if found no filterBy conditions(predicates)&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">emptyFilter</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Jonson&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">UPDATE</span>, 
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">CREATE</span>, 
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">DELETE</span>
+</span></span><span style="display:flex;"><span>            ));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users <span style="color:#f92672">=</span> userService.<span style="color:#a6e22e">filterBy</span>(
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(user1, user2, user3)
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(users);
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(users.<span style="color:#a6e22e">size</span>(), 3);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this we don&rsquo;t have any filters applied, which will return the same input list as output.</p>
+<p>Output is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span> 1_John_Doe_26_(UPDATE), 
+</span></span><span style="display:flex;"><span> 2_Greg_Jonson_30_(UPDATE,CREATE,DELETE), 
+</span></span><span style="display:flex;"><span> 3_Alex_Smith_13_(DELETE)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="9-map-given-function-with-delimiter" class="relative group"><strong>9. Map</strong> given Function with Delimiter <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-map-given-function-with-delimiter" aria-label="Anchor">#</a></span></h3><p>We are given with a function which we need to apply for the list of User and join it based on the delimiter provided.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-8" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-8" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@DisplayName</span>(<span style="color:#e6db74">&#34;Convert Users by applying Function and delimited by |&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">convertTo</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">emptyList</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Jonson&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">emptyList</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> User user3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">emptyList</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Function<span style="color:#f92672">&lt;</span>User, String<span style="color:#f92672">&gt;</span> function <span style="color:#f92672">=</span> User::getLastName;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String convertedStr <span style="color:#f92672">=</span> userService.<span style="color:#a6e22e">convertTo</span>(
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(user1, user2, user3),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;|&#34;</span>,
+</span></span><span style="display:flex;"><span>            function
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(convertedStr);
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertEquals</span>(convertedStr, <span style="color:#e6db74">&#34;Doe|Jonson|Smith&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We have 3 Users, and a Function, where we have to map the User stream to each User&rsquo;s last name. Then return the String joined by pipe delimiter. And this String will be out assertion criteria as well.</p>
+<blockquote>
+<p>Function is a functional Interface which takes one argument and produces the result. It has <em>apply()</em> as the functional method.</p>
+</blockquote>
+<p>Like the previous one, where we have to apply Predicates, here will be mapping the Function given.</p>
+<h4 id="lets-check-the-logic-for-this-2" class="relative group">Lets check the logic for this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-for-this-2" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">convertTo</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users, String delimiter, 
+</span></span><span style="display:flex;"><span>        Function<span style="color:#f92672">&lt;</span>User, String<span style="color:#f92672">&gt;</span> mapFun) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(mapFun)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::println)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">joining</span>(delimiter));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, we are using <em>map()</em> to pass the Function, and the while collecting we are using <em>Collectors.joining()</em> method to convert it to String with delimiter.</p>
+<p>Output is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Doe
+</span></span><span style="display:flex;"><span>Jonson
+</span></span><span style="display:flex;"><span>Smith
+</span></span><span style="display:flex;"><span><span style="color:#f92672">----------------------------------------------&gt;&gt;</span>Above are from <span style="color:#a6e22e">peek</span>()
+</span></span><span style="display:flex;"><span>Doe<span style="color:#f92672">|</span>Jonson<span style="color:#f92672">|</span>Smith
+</span></span></code></pre></div><h3 id="10-group-by-privileges" class="relative group"><strong>10. Group</strong> by Privileges <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-group-by-privileges" aria-label="Anchor">#</a></span></h3><p>We have to group the Users on the Privileges, such that it returns Map&lt;Privilege, List<!-- raw HTML omitted -->&gt;. This is a bit tricky.</p>
+<h4 id="lets-the-check-the-junit-for-this-scenario-9" class="relative group">Lets the check the Junit for this scenario: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-the-check-the-junit-for-this-scenario-9" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">groupByPrivileges</span>() {
+</span></span><span style="display:flex;"><span>    User user1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(1L, <span style="color:#e6db74">&#34;John&#34;</span>, <span style="color:#e6db74">&#34;Doe&#34;</span>, 26,
+</span></span><span style="display:flex;"><span>             Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>));
+</span></span><span style="display:flex;"><span>    User user2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(2L, <span style="color:#e6db74">&#34;Greg&#34;</span>, <span style="color:#e6db74">&#34;Jonson&#34;</span>, 30, 
+</span></span><span style="display:flex;"><span>            Arrays.<span style="color:#a6e22e">asList</span>(
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">UPDATE</span>, 
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">CREATE</span>, 
+</span></span><span style="display:flex;"><span>                    Privilege.<span style="color:#a6e22e">DELETE</span>
+</span></span><span style="display:flex;"><span>            ));
+</span></span><span style="display:flex;"><span>    User user3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User(3L, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Smith&#34;</span>, 13, 
+</span></span><span style="display:flex;"><span>            Collections.<span style="color:#a6e22e">singletonList</span>(Privilege.<span style="color:#a6e22e">DELETE</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>Privilege, List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;&gt;</span> privilegesMap <span style="color:#f92672">=</span> userService
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">groupByPrivileges</span>(
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(Arrays.<span style="color:#a6e22e">asList</span>(user1, user2, user3)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Assertions.<span style="color:#a6e22e">assertArrayEquals</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span>{0, 1, 2, 2},
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span>{
+</span></span><span style="display:flex;"><span>                    privilegesMap.<span style="color:#a6e22e">containsKey</span>(Privilege.<span style="color:#a6e22e">READ</span>) <span style="color:#f92672">?</span> privilegesMap.<span style="color:#a6e22e">get</span>(Privilege.<span style="color:#a6e22e">READ</span>).<span style="color:#a6e22e">size</span>() : 0,
+</span></span><span style="display:flex;"><span>                    privilegesMap.<span style="color:#a6e22e">containsKey</span>(Privilege.<span style="color:#a6e22e">CREATE</span>) <span style="color:#f92672">?</span> privilegesMap.<span style="color:#a6e22e">get</span>(Privilege.<span style="color:#a6e22e">CREATE</span>).<span style="color:#a6e22e">size</span>() : 0,
+</span></span><span style="display:flex;"><span>                    privilegesMap.<span style="color:#a6e22e">containsKey</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>) <span style="color:#f92672">?</span> privilegesMap.<span style="color:#a6e22e">get</span>(Privilege.<span style="color:#a6e22e">UPDATE</span>).<span style="color:#a6e22e">size</span>() : 0,
+</span></span><span style="display:flex;"><span>                    privilegesMap.<span style="color:#a6e22e">containsKey</span>(Privilege.<span style="color:#a6e22e">DELETE</span>) <span style="color:#f92672">?</span> privilegesMap.<span style="color:#a6e22e">get</span>(Privilege.<span style="color:#a6e22e">DELETE</span>).<span style="color:#a6e22e">size</span>() : 0
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, we have 3 Users, which has different Privilege, and we are asserting on Map elements to return the correct size of the users for each Privilege.</p>
+<blockquote>
+<p><em>Arrays.asList()</em> always returns a fixed sized list. If you try to change the size by adding or removing, it will throw <em>UnsupportedOperationException</em>.</p>
+</blockquote>
+<p>To get a variable sized list from Arrays.asList(), have</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(Arrays.<span style="color:#a6e22e">asList</span>())
+</span></span></code></pre></div><h4 id="lets-check-the-logic-for-this-3" class="relative group">Lets check the logic for this: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lets-check-the-logic-for-this-3" aria-label="Anchor">#</a></span></h4><p>This logic is from <a href="https://stackoverflow.com/a/55145947" target="_blank" rel="noreferrer"><em>Stackoverflow</em></a>* post*.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Map<span style="color:#f92672">&lt;</span>Privilege, List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">groupByPrivileges</span>(List<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> users) {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        Map&lt;Privilege, List&lt;User&gt;&gt; map = new HashMap&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        for(User user: users){</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//            for(Privilege p: user.getPrivileges()){</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                if(map.containsKey(p)) {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                    List&lt;User&gt; tmp = map.get(p);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                    tmp.add(user);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                    map.put(p, tmp);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                } else {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                    map.put(p, new ArrayList&lt;&gt;(Arrays.asList(user)));</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                }</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//            }</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        }</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        return map;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> users.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">flatMap</span>(
+</span></span><span style="display:flex;"><span>                    user <span style="color:#f92672">-&gt;</span> user.<span style="color:#a6e22e">getPrivileges</span>().<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">map</span>(privilege <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">new</span> AbstractMap.<span style="color:#a6e22e">SimpleEntry</span><span style="color:#f92672">&lt;&gt;</span>(privilege, user))
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">peek</span>(System.<span style="color:#a6e22e">out</span>::println)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">collect</span>(
+</span></span><span style="display:flex;"><span>                        Collectors.<span style="color:#a6e22e">groupingBy</span>(
+</span></span><span style="display:flex;"><span>                                Map.<span style="color:#a6e22e">Entry</span>::getKey,
+</span></span><span style="display:flex;"><span>                                Collectors.<span style="color:#a6e22e">mapping</span>(
+</span></span><span style="display:flex;"><span>                                        Map.<span style="color:#a6e22e">Entry</span>::getValue,
+</span></span><span style="display:flex;"><span>                                        Collectors.<span style="color:#a6e22e">toList</span>()
+</span></span><span style="display:flex;"><span>                                )
+</span></span><span style="display:flex;"><span>                        )
+</span></span><span style="display:flex;"><span>                );
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>If you notice the commented piece of code, it is the old way of how you would approach the same problem. But with lambdas, and functional programming, we are using the <em>flatMap()</em> to convert the List&lt;List<!-- raw HTML omitted -->&gt; to create a <em>AbstractMap.SimpleEntry()</em> of Privilege object and User object.</p>
+<blockquote>
+<p><em>AbstractMap</em> provides skeletal implementation of the *Map *Interface, to minimize the effort required to implement this interface. To return an *Unmodifiable *map, don&rsquo;t implement the *entrySet() *method. On add or remove, throw <em>UnsupportedOperationException</em>. Do vice-versa to implement *Modifiable *Map.</p>
+</blockquote>
+<p>After creating a map of Privilege and list of user, we have to group by the map&rsquo;s key which is Privilege class based on map&rsquo;s value&rsquo;s size count.</p>
+<p>Its a bit difficult to think this implementation way, which makes it tricky comparing the ask is only to group by Privilege.</p>
+<h3 id="references" class="relative group">References <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
+<li><a href="https://github.com/vbrenister/java8-practice" target="_blank" rel="noreferrer"><em>https://github.com/vbrenister/java8-practice</em></a> - I have used the problem set from this Github profile. Do check it out.</li>
+<li><a href="https://stackoverflow.com/a/55145947" target="_blank" rel="noreferrer"><em>https://stackoverflow.com/a/55145947</em></a> - this is for the 10th scenario.</li>
+</ul>
+<p>This will conclude the list of different scenarios which should help us in learning these implementation ways using lambdas and functional programming. Its always good to try before appearing for an interview, as these have some common ways which are frequently asked in interviews.</p>
+<p>There will be other ways to do these problem set. Please do comment out if you find any.</p>
+<p>Hope this will help you in your learning process. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/maven-manifest-file-and-jar-with-dependencies/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Maven - Manifest file and Jar with Dependencies</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:12 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/building-a-production-kafka-producer/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building a Production Kafka Producer</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:12 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

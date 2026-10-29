@@ -1,0 +1,879 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Production Monitoring: You Can&#39;t Fix What You Can&#39;t See &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Production Monitoring: You Can&#39;t Fix What You Can&#39;t See &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: Docker &#43; Kubernetes
+You know that feeling when your app is running in production and someone asks &ldquo;Is everything okay?&rdquo; and you respond with &ldquo;&hellip;I think so?&rdquo; Yeah, that&rsquo;s not good enough.
+After deploying StreamMetrics to Kubernetes with a 3-node KRaft Kafka cluster, dockerized microservices, and validated 10K events/sec throughput, I realized I was flying blind. Sure, the pods were running. The logs looked fine. But I had no idea:
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Production Monitoring: You Can&#39;t Fix What You Can&#39;t See">
+	<meta property="og:description" content="Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: Docker &#43; Kubernetes
+You know that feeling when your app is running in production and someone asks “Is everything okay?” and you respond with “…I think so?” Yeah, that’s not good enough.
+After deploying StreamMetrics to Kubernetes with a 3-node KRaft Kafka cluster, dockerized microservices, and validated 10K events/sec throughput, I realized I was flying blind. Sure, the pods were running. The logs looked fine. But I had no idea:">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:19+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:19+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Production Monitoring: You Can&#39;t Fix What You Can&#39;t See">
+	<meta name="twitter:description" content="Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: Docker &#43; Kubernetes
+You know that feeling when your app is running in production and someone asks “Is everything okay?” and you respond with “…I think so?” Yeah, that’s not good enough.
+After deploying StreamMetrics to Kubernetes with a 3-node KRaft Kafka cluster, dockerized microservices, and validated 10K events/sec throughput, I realized I was flying blind. Sure, the pods were running. The logs looked fine. But I had no idea:">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Production Monitoring: You Can\u0027t Fix What You Can\u0027t See",
+    "headline": "Production Monitoring: You Can\u0027t Fix What You Can\u0027t See",
+    
+    "abstract": "\u003cp\u003ePrevious parts: \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 1: Kafka Producer\u003c\/a\u003e | \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-production-grade-kafka-consumer-patterns\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 2: Consumer \u002b DLQ\u003c\/a\u003e | \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 3: Real-Time Aggregations\u003c\/a\u003e | \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 4: Docker \u002b Kubernetes\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003eYou know that feeling when your app is running in production and someone asks \u0026ldquo;Is everything okay?\u0026rdquo; and you respond with \u0026ldquo;\u0026hellip;I think so?\u0026rdquo; Yeah, that\u0026rsquo;s not good enough.\u003c\/p\u003e\n\u003cp\u003eAfter deploying StreamMetrics to Kubernetes with a 3-node KRaft Kafka cluster, dockerized microservices, and validated 10K events\/sec throughput, I realized I was flying blind. Sure, the pods were running. The logs looked fine. But I had no idea:\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/production-monitoring-you-can-t-fix-what-you-can-t-see\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:19\u002b05:30",
+    "datePublished": "2026-10-27T08:14:19\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:19\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2012"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6249579158f0bd10b2a57273/",
+       "name": "[\"6249579158f0bd10b2a57273\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Production Monitoring You Can't Fix What You Can't See",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Production Monitoring: You Can't Fix What You Can't See
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:19 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">10 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Previous parts: <a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer">Part 1: Kafka Producer</a> | <a href="https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns" target="_blank" rel="noreferrer">Part 2: Consumer + DLQ</a> | <a href="https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec" target="_blank" rel="noreferrer">Part 3: Real-Time Aggregations</a> | <a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">Part 4: Docker + Kubernetes</a></p>
+<p>You know that feeling when your app is running in production and someone asks &ldquo;Is everything okay?&rdquo; and you respond with &ldquo;&hellip;I think so?&rdquo; Yeah, that&rsquo;s not good enough.</p>
+<p>After deploying StreamMetrics to Kubernetes with a 3-node KRaft Kafka cluster, dockerized microservices, and validated 10K events/sec throughput, I realized I was flying blind. Sure, the pods were running. The logs looked fine. But I had no idea:</p>
+<ul>
+<li>How much memory each service was using</li>
+<li>Whether consumer lag was building up</li>
+<li>If HTTP request latencies were spiking</li>
+<li>When Redis was about to run out of memory</li>
+</ul>
+<p>This is the story of adding production-grade monitoring to StreamMetrics using Prometheus and Grafana, discovering why Spring Boot metrics need special dependencies, why imported Grafana dashboards break mysteriously, and why ${DS_PROMETHEUS} is the most frustrating variable in observability.</p>
+<p><strong>Objective:</strong> </p>
+<ul>
+<li>Set up Prometheus for metrics collection,</li>
+<li>Grafana for visualization,</li>
+<li>create custom dashboards for JVM/Kafka/Redis metrics, and</li>
+<li>configure alerts for consumer lag and pod failures.</li>
+</ul>
+<h2 id="why-monitoring-matters-beyond" class="relative group"><strong>Why Monitoring Matters (Beyond &ldquo;It&rsquo;s Running&rdquo;)</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-monitoring-matters-beyond" aria-label="Anchor">#</a></span></h2><h3 id="the-production-incident-that-never-happened" class="relative group">The Production Incident That Never Happened <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-production-incident-that-never-happened" aria-label="Anchor">#</a></span></h3><p>Imagine this scenario:</p>
+<p>Consumer starts falling behind (lag builds to 10K messages)</p>
+<p>JVM heap slowly fills up (90% usage)</p>
+<p>GC pauses increase (300ms → 2 seconds)</p>
+<p>HTTP requests start timing out</p>
+<p>Pod gets OOMKilled</p>
+<p>Kubernetes restarts it</p>
+<p>Repeat</p>
+<p><strong>Without monitoring:</strong> You find out when users complain.</p>
+<p><strong>With monitoring:</strong> Alert fires at step 1, you scale before step 4.</p>
+<p>That&rsquo;s the difference.</p>
+<h2 id="the-monitoring-stack-prometheus--grafana" class="relative group"><strong>The Monitoring Stack: Prometheus + Grafana</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-monitoring-stack-prometheus--grafana" aria-label="Anchor">#</a></span></h2><h3 id="why-prometheus" class="relative group"><strong>Why Prometheus?</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-prometheus" aria-label="Anchor">#</a></span></h3><p><strong>Prometheus</strong> is the de-facto standard for Kubernetes monitoring because:</p>
+<ul>
+<li><strong>Pull-based</strong>: Scrapes metrics from /metrics endpoints</li>
+<li><strong>Time-series database</strong>: Stores metrics with timestamps</li>
+<li><strong>PromQL</strong>: Powerful query language for aggregations</li>
+<li><strong>Service discovery</strong>: Auto-discovers pods via Kubernetes API</li>
+<li><strong>Alert manager</strong>: Built-in alerting</li>
+</ul>
+<h3 id="why-grafana" class="relative group"><strong>Why Grafana?</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-grafana" aria-label="Anchor">#</a></span></h3><p><strong>Grafana</strong> turns raw metrics into visual insights:</p>
+<ul>
+<li>Beautiful dashboards</li>
+<li>Supports multiple data sources (Prometheus, Loki, etc.)</li>
+<li>Templating and variables</li>
+<li>Alerting (can also use Prometheus AlertManager)</li>
+<li>JSON-based dashboard sharing</li>
+</ul>
+<h2 id="the-architecture" class="relative group"><strong>The Architecture</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-architecture" aria-label="Anchor">#</a></span></h2><h2 id="step-1-installing-prometheus-stack-with-helm" class="relative group"><strong>Step 1: Installing Prometheus Stack with Helm</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-1-installing-prometheus-stack-with-helm" aria-label="Anchor">#</a></span></h2><p>Instead of deploying Prometheus and Grafana manually (hundreds of YAML lines), we use <strong>kube-prometheus-stack</strong> - a batteries-included Helm chart.</p>
+<h3 id="install-helm" class="relative group">Install Helm <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#install-helm" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> macOS
+</span></span><span style="display:flex;"><span>brew install helm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Verify
+</span></span><span style="display:flex;"><span>helm version
+</span></span></code></pre></div><h3 id="install-prometheus-stack" class="relative group">Install Prometheus Stack <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#install-prometheus-stack" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Add Helm repo
+</span></span><span style="display:flex;"><span>helm repo add prometheus<span style="color:#f92672">-</span>community https:<span style="color:#75715e">//prometheus-community.github.io/helm-charts</span>
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Create monitoring namespace
+</span></span><span style="display:flex;"><span>kubectl create namespace monitoring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Install the stack
+</span></span><span style="display:flex;"><span>helm install prometheus prometheus<span style="color:#f92672">-</span>community<span style="color:#f92672">/</span>kube<span style="color:#f92672">-</span>prometheus<span style="color:#f92672">-</span>stack <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>namespace monitoring <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>set prometheus.<span style="color:#a6e22e">prometheusSpec</span>.<span style="color:#a6e22e">serviceMonitorSelectorNilUsesHelmValues</span><span style="color:#f92672">=</span><span style="color:#66d9ef">false</span> <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>set grafana.<span style="color:#a6e22e">adminPassword</span><span style="color:#f92672">=</span>admin123
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Wait <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">pods</span> (2<span style="color:#f92672">-</span>3 minutes)
+</span></span><span style="display:flex;"><span>kubectl get pods <span style="color:#f92672">-</span>n monitoring <span style="color:#f92672">-</span>w
+</span></span></code></pre></div><p><strong>What this installs:</strong></p>
+<ul>
+<li>Prometheus server (metrics storage)</li>
+<li>Grafana (visualization)</li>
+<li>AlertManager (alerting)</li>
+<li>Node exporter (host-level metrics)</li>
+<li>Kube-state-metrics (Kubernetes object metrics)</li>
+<li>Prometheus operator (manages Prometheus via CRDs)</li>
+</ul>
+<p><strong>The magic flag:</strong> <em>serviceMonitorSelectorNilUsesHelmValues=false</em> tells Prometheus to scrape ALL ServiceMonitors, not just ones with specific labels. Critical for discovering our apps.</p>
+<h3 id="access-grafana" class="relative group">Access Grafana <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#access-grafana" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Port<span style="color:#f92672">-</span>forward Grafana
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward <span style="color:#f92672">-</span>n monitoring svc<span style="color:#f92672">/</span>prometheus<span style="color:#f92672">-</span>grafana 3000:80
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Open browser
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">open</span> http:<span style="color:#75715e">//localhost:3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Login: admin <span style="color:#f92672">/</span> admin123
+</span></span></code></pre></div><p>You should see Grafana&rsquo;s home page with default Kubernetes dashboards already configured!</p>
+<h2 id="step-2-exposing-metrics-from-spring-boot" class="relative group"><strong>Step 2: Exposing Metrics from Spring Boot</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-2-exposing-metrics-from-spring-boot" aria-label="Anchor">#</a></span></h2><p>Spring Boot apps don&rsquo;t expose Prometheus metrics by default. We need <strong>Micrometer</strong>.</p>
+<h3 id="add-dependencies" class="relative group">Add Dependencies <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#add-dependencies" aria-label="Anchor">#</a></span></h3><p><strong>Update all three modules (producer, consumer, streams) pom.xml:</strong></p>
+<p>xml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>io.<span style="color:#a6e22e">micrometer</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>micrometer<span style="color:#f92672">-</span>registry<span style="color:#f92672">-</span>prometheus<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h3 id="configure-metrics-endpoint" class="relative group">Configure Metrics Endpoint <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#configure-metrics-endpoint" aria-label="Anchor">#</a></span></h3><p>Update application.yml in all modules:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>management:
+</span></span><span style="display:flex;"><span>  endpoints:
+</span></span><span style="display:flex;"><span>    web:
+</span></span><span style="display:flex;"><span>      exposure:
+</span></span><span style="display:flex;"><span>        include: health,info,metrics,prometheus
+</span></span><span style="display:flex;"><span>  metrics:
+</span></span><span style="display:flex;"><span>    export:
+</span></span><span style="display:flex;"><span>      prometheus:
+</span></span><span style="display:flex;"><span>        enabled: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    tags:
+</span></span><span style="display:flex;"><span>      application: ${spring.<span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">name</span>}
+</span></span><span style="display:flex;"><span>      environment: kubernetes
+</span></span></code></pre></div><p><strong>What this does:</strong></p>
+<ul>
+<li>Exposes /actuator/prometheus endpoint</li>
+<li>Formats metrics in Prometheus format</li>
+<li>Adds tags to every metric (helps filter in queries)</li>
+</ul>
+<h3 id="rebuild-and-redeploy" class="relative group">Rebuild and Redeploy <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#rebuild-and-redeploy" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mvn clean <span style="color:#f92672">package</span> <span style="color:#960050;background-color:#1e0010">-</span>DskipTests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>producer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>producer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>consumer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>consumer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>streams<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>streams:latest .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Restart deployments
+</span></span><span style="display:flex;"><span>kubectl rollout restart deployment<span style="color:#f92672">/</span>producer <span style="color:#f92672">-</span>n streammetrics
+</span></span><span style="display:flex;"><span>kubectl rollout restart deployment<span style="color:#f92672">/</span>consumer <span style="color:#f92672">-</span>n streammetrics
+</span></span><span style="display:flex;"><span>kubectl rollout restart deployment<span style="color:#f92672">/</span>streams <span style="color:#f92672">-</span>n streammetrics
+</span></span></code></pre></div><h3 id="verify-metrics-endpoint" class="relative group">Verify Metrics Endpoint <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#verify-metrics-endpoint" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward <span style="color:#f92672">-</span>n streammetrics deployment<span style="color:#f92672">/</span>producer 8085:8085 <span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl http:<span style="color:#75715e">//localhost:8085/actuator/prometheus | head -20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Should show:
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">#</span> HELP jvm_memory_used_bytes The amount of used memory
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">#</span> TYPE jvm_memory_used_bytes gauge
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> jvm_memory_used_bytes{area<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;heap&#34;</span>,id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;G1 Eden Space&#34;</span>} 1.<span style="color:#a6e22e">2345678E7</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> ...
+</span></span></code></pre></div><p>If you see Prometheus-formatted metrics, you&rsquo;re golden!</p>
+<h2 id="step-3-servicemonitors---auto-discovery-magic" class="relative group"><strong>Step 3: ServiceMonitors - Auto-Discovery Magic</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-3-servicemonitors---auto-discovery-magic" aria-label="Anchor">#</a></span></h2><p>Prometheus Operator uses <strong>ServiceMonitors</strong> (a Custom Resource Definition) to discover what to scrape.</p>
+<h3 id="the-pattern" class="relative group">The Pattern <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-pattern" aria-label="Anchor">#</a></span></h3><p>For each app, we need:</p>
+<p>A <strong>Service</strong> that exposes the metrics port</p>
+<p>A <strong>ServiceMonitor</strong> that tells Prometheus to scrape it</p>
+<h3 id="producer-servicemonitor" class="relative group">Producer ServiceMonitor <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#producer-servicemonitor" aria-label="Anchor">#</a></span></h3><p><strong>Create k8s/monitoring/servicemonitors/producer-servicemonitor.yaml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: v1
+</span></span><span style="display:flex;"><span>kind: Service
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: producer<span style="color:#f92672">-</span>metrics
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    app: producer
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  ports:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> name: metrics
+</span></span><span style="display:flex;"><span>      port: 8085
+</span></span><span style="display:flex;"><span>      targetPort: 8085
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    app: producer
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span>apiVersion: monitoring.<span style="color:#a6e22e">coreos</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span>v1
+</span></span><span style="display:flex;"><span>kind: ServiceMonitor
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: producer<span style="color:#f92672">-</span>monitor
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    release: prometheus  <span style="color:#960050;background-color:#1e0010">#</span> Important: matches Helm release
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    matchLabels:
+</span></span><span style="display:flex;"><span>      app: producer
+</span></span><span style="display:flex;"><span>  endpoints:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> port: metrics
+</span></span><span style="display:flex;"><span>    path: <span style="color:#f92672">/</span>actuator<span style="color:#f92672">/</span>prometheus
+</span></span><span style="display:flex;"><span>    interval: 30s
+</span></span></code></pre></div><p><strong>Key points:</strong></p>
+<ul>
+<li>labels.release: prometheus - Must match your Helm release name</li>
+<li>interval: 30s - Scrape every 30 seconds</li>
+<li>path: /actuator/prometheus - Where Spring Boot exposes metrics</li>
+</ul>
+<h3 id="create-for-consumer-and-streams" class="relative group">Create for Consumer and Streams <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-for-consumer-and-streams" aria-label="Anchor">#</a></span></h3><p>Repeat the same pattern for consumer (port 8081) and streams (port 8082).</p>
+<p>Apply all ServiceMonitors:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>monitoring<span style="color:#f92672">/</span>servicemonitors<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check they exist
+</span></span><span style="display:flex;"><span>kubectl get servicemonitor <span style="color:#f92672">-</span>n streammetrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Should show:
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> NAME               AGE
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> producer<span style="color:#f92672">-</span>monitor   10s
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> consumer<span style="color:#f92672">-</span>monitor   10s
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> streams<span style="color:#f92672">-</span>monitor    10s
+</span></span></code></pre></div><h3 id="verify-prometheus-is-scraping" class="relative group">Verify Prometheus is Scraping <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#verify-prometheus-is-scraping" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Port<span style="color:#f92672">-</span>forward Prometheus
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward <span style="color:#f92672">-</span>n monitoring svc<span style="color:#f92672">/</span>prometheus<span style="color:#f92672">-</span>kube<span style="color:#f92672">-</span>prometheus<span style="color:#f92672">-</span>prometheus 9090:9090 <span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Open Prometheus UI
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">open</span> http:<span style="color:#75715e">//localhost:9090</span>
+</span></span></code></pre></div><ul>
+<li>Go to Status → Targets</li>
+<li>Look for: streammetrics/producer-monitor, consumer-monitor, streams-monitor</li>
+<li>Status should be: UP (green)</li>
+</ul>
+<p>If targets are <strong>UP</strong>, Prometheus is successfully scraping!</p>
+<p>If targets are <strong>DOWN</strong>, check:</p>
+<ul>
+<li>ServiceMonitor labels match Helm release</li>
+<li>Service selector matches pod labels</li>
+<li>Pod is actually running and healthy</li>
+</ul>
+<h2 id="step-4-creating-grafana-dashboards" class="relative group"><strong>Step 4: Creating Grafana Dashboards</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-4-creating-grafana-dashboards" aria-label="Anchor">#</a></span></h2><h3 id="the-jvm-dashboard-saga" class="relative group">The JVM Dashboard Saga <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-jvm-dashboard-saga" aria-label="Anchor">#</a></span></h3><p><strong>Attempt 1:</strong> Import community dashboard ID <em><strong>4701</strong></em> (<em>JVM Micrometer</em>)</p>
+<p><strong>Result:</strong> Error - &ldquo;Data source ${DS_PROMETHEUS} was not found&rdquo;</p>
+<p><strong>Why it fails:</strong> Imported dashboards use variables that don&rsquo;t match your datasource name.</p>
+<p><strong>The fix:</strong></p>
+<p>Dashboard Settings → JSON Model</p>
+<p>Find all &ldquo;<em>${DS_PROMETHEUS}</em>&rdquo;</p>
+<p>Replace with &ldquo;Prometheus&rdquo; (your actual datasource name)</p>
+<p>Save</p>
+<p><strong>OR</strong> - Create the variable manually:</p>
+<ul>
+<li>Dashboard Settings → Variables → Add variable</li>
+<li>Name: <em>DS_PROMETHEUS</em></li>
+<li>Type: Data source</li>
+<li>Query: Prometheus</li>
+<li>Save</li>
+</ul>
+<h3 id="building-a-custom-dashboard-recommended" class="relative group">Building a Custom Dashboard (Recommended) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#building-a-custom-dashboard-recommended" aria-label="Anchor">#</a></span></h3><p>Instead of fighting with imported dashboards, let&rsquo;s build one from scratch.</p>
+<h4 id="create-new-dashboard-add-panels" class="relative group">Create New Dashboard → Add Panels: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-new-dashboard-add-panels" aria-label="Anchor">#</a></span></h4><h4 id="panel-1-jvm-heap-memory-usage" class="relative group">Panel 1: JVM Heap Memory Usage <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#panel-1-jvm-heap-memory-usage" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>jvm_memory_used_bytes{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>, area<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;heap&#34;</span>}
+</span></span></code></pre></div><p>Panel 2: CPU Usage %</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>rate(process_cpu_seconds_total{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}<span style="color:#f92672">[</span>1m<span style="color:#f92672">]</span>) <span style="color:#f92672">*</span> 100
+</span></span></code></pre></div><h4 id="panel-3-kafka-messages-sentsec" class="relative group">Panel 3: Kafka Messages Sent/sec <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#panel-3-kafka-messages-sentsec" aria-label="Anchor">#</a></span></h4><p>Spring Boot exposes Kafka template metrics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>rate(spring_kafka_template_seconds_count{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}<span style="color:#f92672">[</span>1m<span style="color:#f92672">]</span>)
+</span></span></code></pre></div><p><strong>Note:</strong> We discovered that Kafka Streams doesn&rsquo;t expose kafka_streams_* metrics by default. Instead, we use Spring Boot&rsquo;s spring_kafka_template_* metrics.</p>
+<h4 id="panel-4-pod-status" class="relative group">Panel 4: Pod Status <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#panel-4-pod-status" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>up{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}
+</span></span></code></pre></div><h4 id="panel-5-http-requests-per-second" class="relative group">Panel 5: HTTP Requests per Second <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#panel-5-http-requests-per-second" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>rate(http_server_requests_seconds_count{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}<span style="color:#f92672">[</span>1m<span style="color:#f92672">]</span>)
+</span></span></code></pre></div><p><strong>Save dashboard as:</strong> &ldquo;StreamMetrics - Application Metrics&rdquo;</p>
+<h2 id="step-5-redis-metrics-with-exporter" class="relative group"><strong>Step 5: Redis Metrics with Exporter</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-5-redis-metrics-with-exporter" aria-label="Anchor">#</a></span></h2><p>Redis doesn&rsquo;t expose Prometheus metrics natively. We need a <strong>sidecar exporter</strong>.</p>
+<p><strong>Create k8s/monitoring/redis-exporter.yaml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: apps<span style="color:#f92672">/</span>v1
+</span></span><span style="display:flex;"><span>kind: Deployment
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  replicas: 1
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    matchLabels:
+</span></span><span style="display:flex;"><span>      app: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>  template:
+</span></span><span style="display:flex;"><span>    metadata:
+</span></span><span style="display:flex;"><span>      labels:
+</span></span><span style="display:flex;"><span>        app: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>    spec:
+</span></span><span style="display:flex;"><span>      containers:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>        image: oliver006<span style="color:#f92672">/</span>redis_exporter:latest
+</span></span><span style="display:flex;"><span>        ports:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> containerPort: 9121
+</span></span><span style="display:flex;"><span>        env:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> name: REDIS_ADDR
+</span></span><span style="display:flex;"><span>          value: <span style="color:#e6db74">&#34;redis:6379&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span>apiVersion: v1
+</span></span><span style="display:flex;"><span>kind: Service
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    app: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  ports:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> port: 9121
+</span></span><span style="display:flex;"><span>    targetPort: 9121
+</span></span><span style="display:flex;"><span>    name: metrics
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    app: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span>apiVersion: monitoring.<span style="color:#a6e22e">coreos</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span>v1
+</span></span><span style="display:flex;"><span>kind: ServiceMonitor
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: redis<span style="color:#f92672">-</span>monitor
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    release: prometheus
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    matchLabels:
+</span></span><span style="display:flex;"><span>      app: redis<span style="color:#f92672">-</span>exporter
+</span></span><span style="display:flex;"><span>  endpoints:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> port: metrics
+</span></span><span style="display:flex;"><span>    interval: 30s
+</span></span></code></pre></div><p><strong>Deploy:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>monitoring<span style="color:#f92672">/</span>redis<span style="color:#f92672">-</span>exporter.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Wait
+</span></span><span style="display:flex;"><span>kubectl wait <span style="color:#f92672">--</span><span style="color:#66d9ef">for</span><span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>ready pod <span style="color:#f92672">-</span>l app<span style="color:#f92672">=</span>redis<span style="color:#f92672">-</span>exporter <span style="color:#f92672">-</span>n streammetrics <span style="color:#f92672">--</span>timeout<span style="color:#f92672">=</span>60s
+</span></span></code></pre></div><p><strong>Add Redis panels to dashboard:</strong></p>
+<p><strong>Redis Memory Usage:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>redis_memory_used_bytes{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}
+</span></span></code></pre></div><p><strong>Redis Keys Count:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>redis_db_keys{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}
+</span></span></code></pre></div><p><strong>Redis Operations/sec:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>rate(redis_commands_processed_total{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}<span style="color:#f92672">[</span>1m<span style="color:#f92672">]</span>)
+</span></span></code></pre></div><h2 id="step-6-alerting---when-things-go-wrong" class="relative group"><strong>Step 6: Alerting - When Things Go Wrong</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-6-alerting---when-things-go-wrong" aria-label="Anchor">#</a></span></h2><p>Dashboards are great for investigation, but you need <strong>alerts</strong> for production.</p>
+<p><strong>Create k8s/monitoring/alerts.yaml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: monitoring.<span style="color:#a6e22e">coreos</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span>v1
+</span></span><span style="display:flex;"><span>kind: PrometheusRule
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: streammetrics<span style="color:#f92672">-</span>alerts
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    release: prometheus
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  groups:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> name: streammetrics
+</span></span><span style="display:flex;"><span>    interval: 30s
+</span></span><span style="display:flex;"><span>    rules:
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> Alert: Pod is down
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> alert: PodDown
+</span></span><span style="display:flex;"><span>      expr: up{namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>} <span style="color:#f92672">==</span> 0
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span>: 1m
+</span></span><span style="display:flex;"><span>      labels:
+</span></span><span style="display:flex;"><span>        severity: critical
+</span></span><span style="display:flex;"><span>      annotations:
+</span></span><span style="display:flex;"><span>        summary: <span style="color:#e6db74">&#34;Pod {{ $labels.pod }} is down&#34;</span>
+</span></span><span style="display:flex;"><span>        description: <span style="color:#e6db74">&#34;{{ $labels.pod }} in {{ $labels.namespace }} has been down for 1 minute&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> Alert: High memory <span style="color:#a6e22e">usage</span> (<span style="color:#f92672">&gt;</span>90<span style="color:#f92672">%</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> alert: HighMemoryUsage
+</span></span><span style="display:flex;"><span>      expr: (jvm_memory_used_bytes{area<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;heap&#34;</span>,namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>} <span style="color:#f92672">/</span> jvm_memory_max_bytes{area<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;heap&#34;</span>,namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}) <span style="color:#f92672">&gt;</span> 0.<span style="color:#a6e22e">9</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span>: 5m
+</span></span><span style="display:flex;"><span>      labels:
+</span></span><span style="display:flex;"><span>        severity: warning
+</span></span><span style="display:flex;"><span>      annotations:
+</span></span><span style="display:flex;"><span>        summary: <span style="color:#e6db74">&#34;{{ $labels.pod }} memory usage is high&#34;</span>
+</span></span><span style="display:flex;"><span>        description: <span style="color:#e6db74">&#34;{{ $labels.pod }} is using {{ $value | humanizePercentage }} of heap memory&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> Alert: High HTTP error rate
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> alert: HighErrorRate
+</span></span><span style="display:flex;"><span>      expr: rate(http_server_requests_seconds_count{status<span style="color:#f92672">=~</span><span style="color:#e6db74">&#34;5..&#34;</span>,namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}<span style="color:#f92672">[</span>5m<span style="color:#f92672">]</span>) <span style="color:#f92672">&gt;</span> 0.<span style="color:#a6e22e">1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span>: 5m
+</span></span><span style="display:flex;"><span>      labels:
+</span></span><span style="display:flex;"><span>        severity: critical
+</span></span><span style="display:flex;"><span>      annotations:
+</span></span><span style="display:flex;"><span>        summary: <span style="color:#e6db74">&#34;High HTTP error rate on {{ $labels.uri }}&#34;</span>
+</span></span><span style="display:flex;"><span>        description: <span style="color:#e6db74">&#34;{{ $labels.uri }} has {{ $value }} errors/sec&#34;</span>
+</span></span></code></pre></div><p><strong>Apply:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>monitoring<span style="color:#f92672">/</span>alerts.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> View alerts in Prometheus
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">open</span> http:<span style="color:#75715e">//localhost:9090/alerts</span>
+</span></span></code></pre></div><p><strong>Alert states:</strong></p>
+<ul>
+<li><strong>Inactive</strong> (green): Condition is false</li>
+<li><strong>Pending</strong> (yellow): Condition true, waiting for for duration</li>
+<li><strong>Firing</strong> (red): Alert is active, notifications sent</li>
+</ul>
+<h2 id="step-7-testing-the-monitoring" class="relative group"><strong>Step 7: Testing the Monitoring</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-7-testing-the-monitoring" aria-label="Anchor">#</a></span></h2><h3 id="generate-load" class="relative group">Generate Load <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#generate-load" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Port<span style="color:#f92672">-</span>forward producer
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward <span style="color:#f92672">-</span>n streammetrics svc<span style="color:#f92672">/</span>producer 8085:8085 <span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Send 1000 events
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i in {1..<span style="color:#a6e22e">10</span>}; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  curl <span style="color:#e6db74">&#34;http://localhost:8085/produce?events=100&#34;</span>
+</span></span><span style="display:flex;"><span>  sleep 1
+</span></span><span style="display:flex;"><span>done
+</span></span></code></pre></div><h3 id="watch-the-dashboard-update" class="relative group">Watch the Dashboard Update <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#watch-the-dashboard-update" aria-label="Anchor">#</a></span></h3><p>Open Grafana → StreamMetrics dashboard</p>
+<p><strong>You should see:</strong></p>
+<ul>
+<li>CPU spike as producer sends events</li>
+<li>Memory increase in consumer</li>
+<li>HTTP requests/sec jump to 10 req/sec</li>
+<li>Kafka messages sent counter increasing</li>
+<li>HTTP request duration (p95) showing latency</li>
+</ul>
+<p><strong>This is the magic moment</strong> - seeing your application&rsquo;s behavior in real-time!</p>
+<h2 id="production-lessons-learned" class="relative group">Production Lessons Learned <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#production-lessons-learned" aria-label="Anchor">#</a></span></h2><h3 id="1-servicemonitors-must-match-helm-release" class="relative group">1. ServiceMonitors Must Match Helm Release <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-servicemonitors-must-match-helm-release" aria-label="Anchor">#</a></span></h3><p>This error consumed 30 minutes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Error: ServiceMonitor not discovered by Prometheus
+</span></span></code></pre></div><p><strong>Root cause:</strong> ServiceMonitor labels didn&rsquo;t match Prometheus selector.</p>
+<p><strong>Fix:</strong> Add labels.release: prometheus to match Helm release name.</p>
+<h3 id="2-imported-dashboards-break-with-variables" class="relative group">2. Imported Dashboards Break with Variables <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-imported-dashboards-break-with-variables" aria-label="Anchor">#</a></span></h3><p>Community dashboards use ${DS_PROMETHEUS} as a variable, but your datasource is named &ldquo;Prometheus&rdquo;.</p>
+<p><strong>Solution:</strong> Create custom dashboards or fix the JSON manually.</p>
+<h3 id="3-spring-boot-kafka-metrics-are-limited" class="relative group">3. Spring Boot Kafka Metrics Are Limited <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-spring-boot-kafka-metrics-are-limited" aria-label="Anchor">#</a></span></h3><p>We expected kafka_consumer_fetch_manager_records_lag_max but got spring_kafka_template_seconds_*.</p>
+<p><strong>Why:</strong> Spring Boot&rsquo;s Kafka integration exposes template metrics, not consumer internals.</p>
+<p><strong>Solution:</strong> Use what&rsquo;s available or add custom metrics with MeterRegistry.</p>
+<h3 id="4-redis-needs-an-exporter" class="relative group">4. Redis Needs an Exporter <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-redis-needs-an-exporter" aria-label="Anchor">#</a></span></h3><p>Unlike Spring Boot apps with /actuator/prometheus, Redis requires a separate exporter pod.</p>
+<p><strong>Pattern:</strong> For any non-Prometheus-native service (MySQL, MongoDB, etc.), use an exporter.</p>
+<h3 id="5-promql-is-powerful-but-tricky" class="relative group">5. PromQL is Powerful but Tricky <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-promql-is-powerful-but-tricky" aria-label="Anchor">#</a></span></h3><p><strong>Wrong query:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>jvm_memory_used_bytes  <span style="color:#960050;background-color:#1e0010">#</span> Shows all memory types
+</span></span></code></pre></div><p><strong>Right query:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>jvm_memory_used_bytes{area<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;heap&#34;</span>, namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;streammetrics&#34;</span>}  <span style="color:#960050;background-color:#1e0010">#</span> Filtered
+</span></span></code></pre></div><p><strong>Learn PromQL:</strong> It&rsquo;s the key to unlocking insights.</p>
+<h2 id="exporting-and-sharing-dashboards" class="relative group"><strong>Exporting and Sharing Dashboards</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exporting-and-sharing-dashboards" aria-label="Anchor">#</a></span></h2><h3 id="export-dashboard" class="relative group">Export Dashboard <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#export-dashboard" aria-label="Anchor">#</a></span></h3><p>In Grafana:</p>
+<p>Open dashboard</p>
+<p>Click &ldquo;Share&rdquo; (top right)</p>
+<p>Click &ldquo;Export&rdquo; tab</p>
+<p>Toggle &ldquo;Export for sharing externally&rdquo; ON</p>
+<p>Save to file</p>
+<h3 id="import-dashboard-later" class="relative group">Import Dashboard Later <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#import-dashboard-later" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> In Grafana UI
+</span></span><span style="display:flex;"><span>Dashboards <span style="color:#960050;background-color:#1e0010">→</span> Import <span style="color:#960050;background-color:#1e0010">→</span> Upload JSON file
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Or via API
+</span></span><span style="display:flex;"><span>curl <span style="color:#f92672">-</span>X POST <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>u admin:admin123 <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  http:<span style="color:#75715e">//localhost:3000/api/dashboards/db \</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>d <span style="color:#a6e22e">@k8s</span><span style="color:#f92672">/</span>monitoring<span style="color:#f92672">/</span>dashboards<span style="color:#f92672">/</span>streammetrics<span style="color:#f92672">-</span>dashboard.<span style="color:#a6e22e">json</span>
+</span></span></code></pre></div><h2 id="monitoring-best-practices" class="relative group">Monitoring Best Practices <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#monitoring-best-practices" aria-label="Anchor">#</a></span></h2><h3 id="1-start-with-the-four-golden-signals" class="relative group">1. Start with the Four Golden Signals <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-start-with-the-four-golden-signals" aria-label="Anchor">#</a></span></h3><p>From Google&rsquo;s SRE book:</p>
+<ul>
+<li><strong>Latency</strong>: How long requests take</li>
+<li><strong>Traffic</strong>: How many requests</li>
+<li><strong>Errors</strong>: Rate of failed requests</li>
+<li><strong>Saturation</strong>: How &ldquo;full&rdquo; your service is (CPU, memory)</li>
+</ul>
+<h3 id="2-alert-on-symptoms-not-causes" class="relative group">2. Alert on Symptoms, Not Causes <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-alert-on-symptoms-not-causes" aria-label="Anchor">#</a></span></h3><p><strong>Bad alert:</strong> &ldquo;CPU usage &gt; 80%&rdquo;</p>
+<p><strong>Good alert:</strong> &ldquo;HTTP request p99 latency &gt; 500ms&rdquo;</p>
+<p>Why? Users don&rsquo;t care about CPU, they care about slow responses.</p>
+<h3 id="3-use-percentiles-not-averages" class="relative group">3. Use Percentiles, Not Averages <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-use-percentiles-not-averages" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Average <span style="color:#f92672">-</span> hides outliers
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">avg</span>(http_server_requests_seconds_sum <span style="color:#f92672">/</span> http_server_requests_seconds_count)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> P95 <span style="color:#f92672">-</span> shows what 95<span style="color:#f92672">%</span> of users experience
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">histogram_quantile</span>(0.<span style="color:#a6e22e">95</span>, rate(http_server_requests_seconds_bucket<span style="color:#f92672">[</span>5m<span style="color:#f92672">]</span>))
+</span></span></code></pre></div><h3 id="4-tag-everything" class="relative group">4. Tag Everything <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-tag-everything" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>metrics:
+</span></span><span style="display:flex;"><span>  tags:
+</span></span><span style="display:flex;"><span>    application: streammetrics<span style="color:#f92672">-</span>producer
+</span></span><span style="display:flex;"><span>    environment: production
+</span></span><span style="display:flex;"><span>    region: us<span style="color:#f92672">-</span>west<span style="color:#f92672">-</span>2
+</span></span><span style="display:flex;"><span>    version: v1.<span style="color:#a6e22e">2</span>.<span style="color:#a6e22e">3</span>
+</span></span></code></pre></div><p>Makes filtering in PromQL trivial: {application=&ldquo;streammetrics-producer&rdquo;, environment=&ldquo;production&rdquo;}</p>
+<h3 id="5-keep-dashboards-simple" class="relative group">5. Keep Dashboards Simple <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-keep-dashboards-simple" aria-label="Anchor">#</a></span></h3><p><strong>Bad dashboard:</strong> 50 panels, loads in 30 seconds</p>
+<p><strong>Good dashboard:</strong> 10 key panels, loads instantly</p>
+<p>Create multiple focused dashboards instead of one giant one.</p>
+<h2 id="try-it-yourself" class="relative group">Try It Yourself <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#try-it-yourself" aria-label="Anchor">#</a></span></h2><p>Full code on GitHub: <a href="https://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/StreamAnalytics</a></p>
+<h2 id="useful-commands" class="relative group">Useful Commands <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#useful-commands" aria-label="Anchor">#</a></span></h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check <span style="color:#66d9ef">if</span> Prometheus is scraping targets
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward <span style="color:#f92672">-</span>n monitoring svc<span style="color:#f92672">/</span>prometheus<span style="color:#f92672">-</span>kube<span style="color:#f92672">-</span>prometheus<span style="color:#f92672">-</span>prometheus 9090:9090
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">open</span> http:<span style="color:#75715e">//localhost:9090/targets</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> View alerts
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">open</span> http:<span style="color:#75715e">//localhost:9090/alerts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check ServiceMonitors
+</span></span><span style="display:flex;"><span>kubectl get servicemonitor <span style="color:#f92672">-</span>n streammetrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> View Prometheus config
+</span></span><span style="display:flex;"><span>kubectl get prometheus <span style="color:#f92672">-</span>n monitoring <span style="color:#f92672">-</span>o yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Export dashboard via API
+</span></span><span style="display:flex;"><span>curl <span style="color:#f92672">-</span>s http:<span style="color:#75715e">//admin:admin123@localhost:3000/api/dashboards/uid/&lt;dashboard-uid&gt; | jq &#39;.dashboard&#39; &gt; dashboard.json</span>
+</span></span></code></pre></div><h2 id="key-takeaways" class="relative group">Key Takeaways <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#key-takeaways" aria-label="Anchor">#</a></span></h2><p><strong>Monitoring is not optional</strong> - Production without observability is gambling</p>
+<p><strong>Prometheus Operator simplifies setup</strong> - ServiceMonitors &gt; manual scrape configs</p>
+<p><strong>Start with basics</strong> - JVM, HTTP, pod health; expand from there</p>
+<p><strong>Custom dashboards &gt; imported ones</strong> - You control the layout and queries</p>
+<p><strong>Alert on what matters</strong> - User-facing symptoms, not internal metrics</p>
+<p><strong>PromQL is worth learning</strong> - Powerful query language, steep but rewarding</p>
+<p><strong>Export and version-control dashboards</strong> - Treat infrastructure as code</p>
+<p>Share your thoughts on whether you liked or disliked it. Let me know if you have any queries or suggestions.</p>
+<p><strong>Never forget, Learning is the primary goal.</strong></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/docker-desktop-model-runner/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Docker Desktop Model Runner</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:18 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >From Localhost to Kubernetes: Deploying StreamMetrics at Scale</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:19 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

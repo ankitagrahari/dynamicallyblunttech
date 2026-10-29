@@ -1,0 +1,546 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>#LC105 - Binary Tree from In-Order and Pre-Order Traversal &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="#LC105 - Binary Tree from In-Order and Pre-Order Traversal &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here leetcode #105.
+So, in a binary tree, we can do depth first traversal in three ways:
+
+***In-order traversal  (left -&gt; root -&gt; right) ***
+***Pre-order traversal  (root -&gt; left -&gt; right) ***
+***Post-order traversal  (left -&gt; right -&gt; root) ***
+
+Refer Binary Tree - Traversal to understand on how to traverse using the above three ways.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/lc105-binary-tree-from-in-order-and-pre-order-traversal/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/lc105-binary-tree-from-in-order-and-pre-order-traversal/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="#LC105 - Binary Tree from In-Order and Pre-Order Traversal">
+	<meta property="og:description" content="In this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here leetcode #105.
+So, in a binary tree, we can do depth first traversal in three ways:
+***In-order traversal (left -&gt; root -&gt; right) *** ***Pre-order traversal (root -&gt; left -&gt; right) *** ***Post-order traversal (left -&gt; right -&gt; root) *** Refer Binary Tree - Traversal to understand on how to traverse using the above three ways.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:25+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:25+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="#LC105 - Binary Tree from In-Order and Pre-Order Traversal">
+	<meta name="twitter:description" content="In this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here leetcode #105.
+So, in a binary tree, we can do depth first traversal in three ways:
+***In-order traversal (left -&gt; root -&gt; right) *** ***Pre-order traversal (root -&gt; left -&gt; right) *** ***Post-order traversal (left -&gt; right -&gt; root) *** Refer Binary Tree - Traversal to understand on how to traverse using the above three ways.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "#LC105 - Binary Tree from In-Order and Pre-Order Traversal",
+    "headline": "#LC105 - Binary Tree from In-Order and Pre-Order Traversal",
+    
+    "abstract": "\u003cp\u003eIn this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here \u003ca href=\u0022https:\/\/leetcode.com\/problems\/construct-binary-tree-from-preorder-and-inorder-traversal\/\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003e\u003cstrong\u003eleetcode #105\u003c\/strong\u003e\u003c\/em\u003e\u003c\/a\u003e.\u003c\/p\u003e\n\u003cp\u003eSo, in a binary tree, we can do depth first traversal in three ways:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003e***In-order traversal  (left -\u0026gt; root -\u0026gt; right) ***\u003c\/li\u003e\n\u003cli\u003e***Pre-order traversal  (root -\u0026gt; left -\u0026gt; right) ***\u003c\/li\u003e\n\u003cli\u003e***Post-order traversal  (left -\u0026gt; right -\u0026gt; root) ***\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eRefer \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/binary-tree-traversal\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003e\u003cstrong\u003eBinary Tree - Traversal\u003c\/strong\u003e\u003c\/em\u003e\u003c\/a\u003e to understand on how to traverse using the above three ways.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/lc105-binary-tree-from-in-order-and-pre-order-traversal\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:25\u002b05:30",
+    "datePublished": "2026-10-27T08:14:25\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:25\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "908"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "# Lc105 Binary Tree From in Order and Pre Order Traversal",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        #LC105 - Binary Tree from In-Order and Pre-Order Traversal
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noreferrer"><em><strong>leetcode #105</strong></em></a>.</p>
+<p>So, in a binary tree, we can do depth first traversal in three ways:</p>
+<ul>
+<li>***In-order traversal  (left -&gt; root -&gt; right) ***</li>
+<li>***Pre-order traversal  (root -&gt; left -&gt; right) ***</li>
+<li>***Post-order traversal  (left -&gt; right -&gt; root) ***</li>
+</ul>
+<p>Refer <a href="https://www.dynamicallyblunttech.com/post/binary-tree-traversal" target="_blank" rel="noreferrer"><em><strong>Binary Tree - Traversal</strong></em></a> to understand on how to traverse using the above three ways.</p>
+<h3 id="problem-statement" class="relative group"><strong>Problem Statement</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-statement" aria-label="Anchor">#</a></span></h3><p>The problem states to construct the binary tree with the given pre-order traversal and in-order traversal.</p>
+<p>Input:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>pre<span style="color:#f92672">-</span>order    : <span style="color:#f92672">[</span>4, 2, 1, 3, 7, 6, 9<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>in<span style="color:#f92672">-</span>order      : <span style="color:#f92672">[</span>1, 2, 3, 4, 6, 7, 9<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>Output:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>4
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  2     7
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>   <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>1   3 6   9
+</span></span></code></pre></div><h3 id="algorithmlogic" class="relative group"><strong>Algorithm/Logic</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#algorithmlogic" aria-label="Anchor">#</a></span></h3><p>Using the pre-order traversal, we can deduce that the first node in the pre-order array will be the root of the binary tree, we are going to construct.</p>
+<p>Further, now we will look in the in-order traversal for the root and whatever comes on the left side of the root in the in-order traversal will be the nodes present on the left side of the root node and whatever comes on the right side of the root in the in-order traversal will be on the right side of the root node.</p>
+<p>From the first node in the pre-order traversal, we know that 4 is the root node of our binary tree. We will find the root node in in-order and divide the left nodes and right nodes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>4
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>1,2,3  6,7,9
+</span></span></code></pre></div><p>Now, for the second round of recursion, we will take the left node list and perform the same approach as applied to find the first level of the binary tree.</p>
+<p>From the left node list (1, 2, 3), the root node will be 2 which is the next node after 4 in the pre-order traversal. Now, in the in-order traversal, nodes to the left of the new root node 2 is 1 and to the right of root node 2 is 3. So, we have the left nodes set for our binary tree.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>4
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  2   6,7,9
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>  
+</span></span><span style="display:flex;"><span>1   3
+</span></span></code></pre></div><p>Using the same approach, we can construct the rights nodes of our binary tree and can construct the entire binary tree.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>4
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  2     7
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>   <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>1   3 6   9
+</span></span></code></pre></div><h3 id="code-snippet" class="relative group"><strong>Code-snippet</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#code-snippet" aria-label="Anchor">#</a></span></h3><p>We will add the lombok dependency to avoid any boilerplate code. If you are just writing the program without using maven or gradle, then you can skip adding this dependency and instead just add the constructor, getter and setter methods.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependencies<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">projectlombok</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>lombok<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>1.<span style="color:#a6e22e">18</span>.<span style="color:#a6e22e">22</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;</span>scope<span style="color:#f92672">&gt;</span>provided<span style="color:#f92672">&lt;/</span>scope<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependencies<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>For any TreeNode, we will have the left node, right node and the value of the node.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> TreeNode left;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> TreeNode right;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> intValue;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <em><strong>@Data</strong></em> annotation will add the required constructors, getters and setters method for all these attributes.</p>
+<p>With this, we will need a utility to find the root node in the in-order traversal in the given index range.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getNodeIndexInIn</span>(<span style="color:#66d9ef">int</span> node, <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> inOrder, <span style="color:#66d9ef">int</span> start, <span style="color:#66d9ef">int</span> end){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>start; i<span style="color:#f92672">&lt;=</span>end; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(node<span style="color:#f92672">==</span>inOrder<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>){
+</span></span><span style="display:flex;"><span>            index <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> index;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> index;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now we will use recursion to create my left sub tree and then my right sub tree. To keep track on the node which will be our root for sub-trees, we will keep a global index variable.</p>
+<p>***NOTE: ***<em>Always be extra careful for the exit criteria when you write programs using recursion. These exit points are the key in stopping the recursion. Else you will get <strong><strong>StackOverflow</strong></strong> error.</em></p>
+<p>There will be two exit criteria defined for our recursion:</p>
+<p>first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//1st Exit Criteria: Return null, when the indexes are crossing each other, means no value can be found in the array</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(inStart <span style="color:#f92672">&gt;</span> inEnd){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Second:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Second exit criteria: When the node is a leaf node, means no left or right node exists, then return the node</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (inStart <span style="color:#f92672">==</span> inEnd) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rootNode;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>To construct our left and right subtree it will call the recursively with proper start and end index with the correct root index for our subtrees.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Find the rootIndex in Inorder array</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> rootIndexInInorder <span style="color:#f92672">=</span> getNodeIndexInIn(root, in, inStart, inEnd);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rootNode.<span style="color:#a6e22e">setLeft</span>(constructBTree(<span style="color:#e6db74">&#34;left&#34;</span>, inStart, rootIndexInInorder <span style="color:#f92672">-</span> 1, in, pre));
+</span></span><span style="display:flex;"><span>rootNode.<span style="color:#a6e22e">setRight</span>(constructBTree(<span style="color:#e6db74">&#34;right&#34;</span>, rootIndexInInorder <span style="color:#f92672">+</span> 1, inEnd, in, pre));
+</span></span></code></pre></div><p>So finally the entire code of recursion now will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//This will be used for get the root index in preOrder</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> preRootIndex <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> TreeNode <span style="color:#a6e22e">constructBTree</span>(String side, <span style="color:#66d9ef">int</span> inStart, <span style="color:#66d9ef">int</span> inEnd, <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> in, <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> pre){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//1st Exit Criteria: Return null, when the indexes are crossing each other, means no value can be found in the array</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(inStart <span style="color:#f92672">&gt;</span> inEnd){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> root <span style="color:#f92672">=</span> pre<span style="color:#f92672">[</span>preRootIndex<span style="color:#f92672">++]</span>;
+</span></span><span style="display:flex;"><span>    TreeNode rootNode <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(root);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Second exit criteria: When the node is a leaf node, means no left or right node exists, then return the node</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (inStart <span style="color:#f92672">==</span> inEnd) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rootNode;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Find the rootIndex in Inorder array</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> rootIndexInInorder <span style="color:#f92672">=</span> getNodeIndexInIn(root, in, inStart, inEnd);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    rootNode.<span style="color:#a6e22e">setLeft</span>(constructBTree(<span style="color:#e6db74">&#34;left&#34;</span>, inStart, rootIndexInInorder <span style="color:#f92672">-</span> 1, in, pre));
+</span></span><span style="display:flex;"><span>    rootNode.<span style="color:#a6e22e">setRight</span>(constructBTree(<span style="color:#e6db74">&#34;right&#34;</span>, rootIndexInInorder <span style="color:#f92672">+</span> 1, inEnd, in, pre));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> rootNode;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The code for the above program can be found here <a href="https://github.com/ankitagrahari/Tryouts/blob/master/src/main/java/com/tree/binary/ConstructBtreeFromInPreOrder.java" target="_blank" rel="noreferrer"><em><strong>Github Link</strong></em></a></p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/lc983-find-the-minimum-cost-for-tickets-dp/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC983 - Find The Minimum Cost For Tickets (DP)</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/reactive-programming-in-java-with-spring-ai-generated/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Reactive Programming in Java with Spring (AI Generated)</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:26 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,624 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Building an AI Tutor with Spring AI, Ollama, and Vaadin &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Building an AI Tutor with Spring AI, Ollama, and Vaadin &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        AI Tutor is a web application that uses Spring Boot and Spring AI on the backend, an Ollama-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and Vaadin for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a PGVector-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions specific to the uploaded documents, avoiding “hallucinations”  .
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Building an AI Tutor with Spring AI, Ollama, and Vaadin">
+	<meta property="og:description" content="AI Tutor is a web application that uses Spring Boot and Spring AI on the backend, an Ollama-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and Vaadin for the rich web UI. Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a PGVector-enabled PostgreSQL database. At chat time, similar chunks are retrieved and included as context so the LLM can answer questions specific to the uploaded documents, avoiding “hallucinations” .">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:27+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:27+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Building an AI Tutor with Spring AI, Ollama, and Vaadin">
+	<meta name="twitter:description" content="AI Tutor is a web application that uses Spring Boot and Spring AI on the backend, an Ollama-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and Vaadin for the rich web UI. Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a PGVector-enabled PostgreSQL database. At chat time, similar chunks are retrieved and included as context so the LLM can answer questions specific to the uploaded documents, avoiding “hallucinations” .">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Building an AI Tutor with Spring AI, Ollama, and Vaadin",
+    "headline": "Building an AI Tutor with Spring AI, Ollama, and Vaadin",
+    
+    "abstract": "\u003cp\u003e\u003cstrong\u003eAI Tutor\u003c\/strong\u003e is a web application that uses \u003cstrong\u003eSpring Boot\u003c\/strong\u003e and \u003cstrong\u003eSpring AI\u003c\/strong\u003e on the backend, an \u003cstrong\u003eOllama\u003c\/strong\u003e-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and \u003cstrong\u003eVaadin\u003c\/strong\u003e for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a \u003cstrong\u003ePGVector\u003c\/strong\u003e-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions \u003cem\u003especific to the uploaded documents\u003c\/em\u003e, avoiding “hallucinations”  .\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:27\u002b05:30",
+    "datePublished": "2026-10-27T08:14:27\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:27\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1207"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/681676055d80aaac0c9329be/",
+       "name": "[\"681676055d80aaac0c9329be\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Building an Ai Tutor With Spring Ai, Ollama, and Vaadin",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Building an AI Tutor with Spring AI, Ollama, and Vaadin
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><strong>AI Tutor</strong> is a web application that uses <strong>Spring Boot</strong> and <strong>Spring AI</strong> on the backend, an <strong>Ollama</strong>-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and <strong>Vaadin</strong> for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a <strong>PGVector</strong>-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions <em>specific to the uploaded documents</em>, avoiding “hallucinations”  .</p>
+<h2 id="tech-stack-and-configuration" class="relative group"><strong>Tech Stack and Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tech-stack-and-configuration" aria-label="Anchor">#</a></span></h2><p>The project uses <strong>Spring AI</strong> to glue all pieces together.  In application.yml, we configure Ollama and PGVector.  For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  datasource:
+</span></span><span style="display:flex;"><span>    url: jdbc:postgresql:<span style="color:#75715e">//localhost:5432/vectordb</span>
+</span></span><span style="display:flex;"><span>    username: aagrahari
+</span></span><span style="display:flex;"><span>    password: password
+</span></span><span style="display:flex;"><span>  ai:
+</span></span><span style="display:flex;"><span>    ollama:
+</span></span><span style="display:flex;"><span>      base<span style="color:#f92672">-</span>url: http:<span style="color:#75715e">//localhost:11434</span>
+</span></span><span style="display:flex;"><span>      chat:
+</span></span><span style="display:flex;"><span>        options:
+</span></span><span style="display:flex;"><span>          model: gemma3:4b
+</span></span><span style="display:flex;"><span>          temperature: 0.<span style="color:#a6e22e">7</span>
+</span></span><span style="display:flex;"><span>      embedding:
+</span></span><span style="display:flex;"><span>        options:
+</span></span><span style="display:flex;"><span>          model: mxbai<span style="color:#f92672">-</span>embed<span style="color:#f92672">-</span>large
+</span></span><span style="display:flex;"><span>    vectorstore:
+</span></span><span style="display:flex;"><span>      pgvector:
+</span></span><span style="display:flex;"><span>        initialize<span style="color:#f92672">-</span>schema: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        schema<span style="color:#f92672">-</span>name: <span style="color:#66d9ef">public</span>
+</span></span><span style="display:flex;"><span>        table<span style="color:#f92672">-</span>name: vector_store
+</span></span><span style="display:flex;"><span>        schema<span style="color:#f92672">-</span>validation: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        index<span style="color:#f92672">-</span>type: HNSW
+</span></span><span style="display:flex;"><span>        distance<span style="color:#f92672">-</span>type: COSINE_DISTANCE
+</span></span><span style="display:flex;"><span>        dimensions: 1536
+</span></span><span style="display:flex;"><span>        max<span style="color:#f92672">-</span>document<span style="color:#f92672">-</span>batch<span style="color:#f92672">-</span>size: 10000 <span style="color:#960050;background-color:#1e0010">#</span> Optional: Maximum number of documents per batch
+</span></span></code></pre></div><p>Here we tell Spring AI to connect to the local Ollama server (base-url), use the <em>gemma3:4b</em> model for chat, and use the <em>mxbai-embed-large</em> model for embeddings. We also enable PGVector and set the index to HNSW with cosine distance, matching the 1024-dimensional embedding vectors. When the app starts, Spring AI will initialize the database schema (via initialize-schema=true) and (if needed) pull the specified models locally so that responses are generated by the on-prem Ollama models.</p>
+<h2 id="document-ingestion-and-embeddings" class="relative group"><strong>Document Ingestion and Embeddings</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#document-ingestion-and-embeddings" aria-label="Anchor">#</a></span></h2><p>When the user uploads a file, the backend reads and chunks it, then creates and stores embeddings. In the Vaadin MainView, we set up an <strong>Upload</strong> component and handle successful uploads.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// In MainView class:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">@NonNull</span> Upload <span style="color:#a6e22e">getUpload</span>(FileUploadHandler fileUploadHandler) {
+</span></span><span style="display:flex;"><span>        Upload docUpload <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Upload(fileUploadHandler);
+</span></span><span style="display:flex;"><span>        docUpload.<span style="color:#a6e22e">setAcceptedFileTypes</span>(<span style="color:#e6db74">&#34;application/pdf&#34;</span>, <span style="color:#e6db74">&#34;.pdf&#34;</span>, <span style="color:#e6db74">&#34;.doc&#34;</span>);
+</span></span><span style="display:flex;"><span>        docUpload.<span style="color:#a6e22e">setMaxFiles</span>(1);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> maxFileSizeInBytes <span style="color:#f92672">=</span> 10 <span style="color:#f92672">*</span> 1024 <span style="color:#f92672">*</span> 1024; <span style="color:#75715e">// 10MB</span>
+</span></span><span style="display:flex;"><span>        docUpload.<span style="color:#a6e22e">setMaxFileSize</span>(maxFileSizeInBytes);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        docUpload.setAutoUpload(false);</span>
+</span></span><span style="display:flex;"><span>        docUpload.<span style="color:#a6e22e">addFileRejectedListener</span>(event <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>            String errorMsg <span style="color:#f92672">=</span> event.<span style="color:#a6e22e">getErrorMessage</span>();
+</span></span><span style="display:flex;"><span>            Notification notification <span style="color:#f92672">=</span> Notification.<span style="color:#a6e22e">show</span>(errorMsg, 5000, Notification.<span style="color:#a6e22e">Position</span>.<span style="color:#a6e22e">MIDDLE</span>);
+</span></span><span style="display:flex;"><span>            notification.<span style="color:#a6e22e">addThemeVariants</span>(NotificationVariant.<span style="color:#a6e22e">LUMO_ERROR</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> docUpload;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>When a file is uploaded, we parse it and split it into chunks using Apache Tika and a text splitter.  In the listener:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">uploadToVectorDB</span>(String directoryName){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Read from directory all the files</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Split the documents and upload to VectorStore</span>
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;RAG Service processing files under directory {}&#34;</span>, directoryName);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    PdfDocumentReaderConfig readerConfig <span style="color:#f92672">=</span> PdfDocumentReaderConfig
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withPageExtractedTextFormatter</span>(
+</span></span><span style="display:flex;"><span>                   <span style="color:#66d9ef">new</span> ExtractedTextFormatter.<span style="color:#a6e22e">Builder</span>()
+</span></span><span style="display:flex;"><span>                     .<span style="color:#a6e22e">withNumberOfBottomTextLinesToDelete</span>(0)
+</span></span><span style="display:flex;"><span>                     .<span style="color:#a6e22e">withNumberOfTopPagesToSkipBeforeDelete</span>(0)
+</span></span><span style="display:flex;"><span>                     .<span style="color:#a6e22e">build</span>())
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withPagesPerDocument</span>(1)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Resource<span style="color:#f92672">&gt;</span> resources <span style="color:#f92672">=</span> getFilesUnderDirectory(
+</span></span><span style="display:flex;"><span>        directoryName);
+</span></span><span style="display:flex;"><span>    resources.<span style="color:#a6e22e">forEach</span>(resource <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        PagePdfDocumentReader pdfDocumentReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PagePdfDocumentReader(resource, readerConfig);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> textSplitter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TokenTextSplitter();
+</span></span><span style="display:flex;"><span>    vectorStore.<span style="color:#a6e22e">accept</span>(
+</span></span><span style="display:flex;"><span>        textSplitter.<span style="color:#a6e22e">apply</span>(
+</span></span><span style="display:flex;"><span>            pdfDocumentReader.<span style="color:#a6e22e">get</span>()));
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Document uploaded to vector store!!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Each Document chunk carries a metadata field source=filename. Calling vectorStore.accept(docs) instructs Spring AI to invoke the configured embedding model (mxbai-embed-large) on each text chunk and store the resulting vectors in PostgreSQL. The uploadedFiles multi-select box is updated so the user can choose which documents to include in the chat context.</p>
+<h2 id="chat-service-spring-ai-integration" class="relative group"><strong>Chat Service (Spring AI Integration)</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#chat-service-spring-ai-integration" aria-label="Anchor">#</a></span></h2><p>The core chat logic is encapsulated in a ChatService Spring component, which is injected into the UI.  In this service we build a ChatClient using Spring AI’s fluent builder. We set a <strong>system prompt</strong> to instruct the model (e.g. to be concise and knowledgeable), add an in-memory ChatMemory for conversation history, and attach a QuestionAnswerAdvisor (for RAG) and a simple logger.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ChatService</span>(ChatClient.<span style="color:#a6e22e">Builder</span> chatClientBuilder,
+</span></span><span style="display:flex;"><span>                       ChatMemory chatMemory, VectorStore vectorStore) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">vectorStore</span> <span style="color:#f92672">=</span> vectorStore;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Add a memory advisor to the chat client</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> chatMemoryAdvisor <span style="color:#f92672">=</span> MessageChatMemoryAdvisor
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">builder</span>(chatMemory)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Build the chat client</span>
+</span></span><span style="display:flex;"><span>        chatClient <span style="color:#f92672">=</span> chatClientBuilder
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">defaultAdvisors</span>(chatMemoryAdvisor)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>The prompt template looks something likes this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>You are a helpful and friendly AI assistant who can answer questions based on the document uploaded strictly
+</span></span><span style="display:flex;"><span>in DOCUMENTS section. Anything outside the document uploaded should sent response <span style="color:#e6db74">&#34;This questions is not related
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">to the document uploaded!&#34;</span>. Use the DOCUMENTS section <span style="color:#66d9ef">to</span> answer accurately. If unsure or <span style="color:#66d9ef">if</span> the answer isn<span style="color:#960050;background-color:#1e0010">&#39;</span>t found
+</span></span><span style="display:flex;"><span>in the DOCUMENTS section, simply reply <span style="color:#e6db74">&#34;Information Not available for me respond!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>QUESTIONS:
+</span></span><span style="display:flex;"><span>{input}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DOCUMENTS:
+</span></span><span style="display:flex;"><span>{documents}
+</span></span></code></pre></div><p>This constructor defines the RAG logic. The QuestionAnswerAdvisor uses the VectorStore to find the most relevant document chunks (based on the user’s question and selected sources). The MessageChatMemoryAdvisor ensures conversation history is preserved across prompts.  We do not explicitly specify the model here; Spring AI uses the Ollama configuration we set in application.yml to choose <em>gemma3:4b</em> as the chat model.</p>
+<p>To ask a question, the service provides a method that sends a prompt to the model with the proper advisors and metadata:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Flux<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">chatStream</span>(String message, String chatId) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        PromptTemplate template <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PromptTemplate(sbPromptTemplate);
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, Object<span style="color:#f92672">&gt;</span> promptParam <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        promptParam.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;input&#34;</span>, message);
+</span></span><span style="display:flex;"><span>        promptParam.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;documents&#34;</span>, String.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;\n&#34;</span>, findSimilarDocuments(message)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> chatClient.<span style="color:#a6e22e">prompt</span>(template.<span style="color:#a6e22e">create</span>(promptParam))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">advisors</span>(advisorSpec <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>                        advisorSpec.<span style="color:#a6e22e">param</span>(ChatMemory.<span style="color:#a6e22e">CONVERSATION_ID</span>, chatId)
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">content</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findSimilarDocuments</span>(String message) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Document<span style="color:#f92672">&gt;</span> similarDocuments <span style="color:#f92672">=</span> vectorStore.<span style="color:#a6e22e">similaritySearch</span>(
+</span></span><span style="display:flex;"><span>                SearchRequest.<span style="color:#a6e22e">builder</span>().<span style="color:#a6e22e">query</span>(message).<span style="color:#a6e22e">topK</span>(3).<span style="color:#a6e22e">build</span>()
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> similarDocuments.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">map</span>(Document::getText).<span style="color:#a6e22e">toList</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Here we build a chat request with the user’s question, pass in the conversation ID (so the in-memory history is keyed to the Vaadin UI session), and include a filter expression so that the QuestionAnswerAdvisor only searches embeddings tagged with the selected source files. The returned ChatResponse contains the LLM’s answer .</p>
+<h2 id="vaadin-ui-and-chat-view" class="relative group"><strong>Vaadin UI and Chat View</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#vaadin-ui-and-chat-view" aria-label="Anchor">#</a></span></h2><p>On the front end, a Vaadin MainView assembles the upload component, file selector, and chat interface.  We create a text field and button for user input, and a vertical layout to display messages. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Analyze the uploaded document</span>
+</span></span><span style="display:flex;"><span>Button analyzeButton <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Button(<span style="color:#e6db74">&#34;Analyze Uploaded Documents&#34;</span>);
+</span></span><span style="display:flex;"><span>analyzeButton.<span style="color:#a6e22e">addThemeVariants</span>(ButtonVariant.<span style="color:#a6e22e">LUMO_PRIMARY</span>);
+</span></span><span style="display:flex;"><span>analyzeButton.<span style="color:#a6e22e">setEnabled</span>(triple.<span style="color:#a6e22e">getLeft</span>());
+</span></span><span style="display:flex;"><span>analyzeButton.<span style="color:#a6e22e">addClickListener</span>(event <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">//Call the RAGService to upload the document to Vector Database.</span>
+</span></span><span style="display:flex;"><span>   ragService.<span style="color:#a6e22e">uploadToVectorDB</span>(triple.<span style="color:#a6e22e">getMiddle</span>().<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docUpload.<span style="color:#a6e22e">addAllFinishedListener</span>(event <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>    analyzeButton.<span style="color:#a6e22e">setEnabled</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>buttonLayout.<span style="color:#a6e22e">add</span>(analyzeButton);
+</span></span><span style="display:flex;"><span>mainFeatures.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>    docUpload, buttonLayout
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Span span <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Span(<span style="color:#e6db74">&#34;Chatbot&#34;</span>);
+</span></span><span style="display:flex;"><span>Scroller scroller <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scroller(messageList);
+</span></span><span style="display:flex;"><span>scroller.<span style="color:#a6e22e">setHeightFull</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> messageInput <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MessageInput();
+</span></span><span style="display:flex;"><span>messageInput.<span style="color:#a6e22e">addSubmitListener</span>(<span style="color:#66d9ef">this</span>::onSubmit);
+</span></span><span style="display:flex;"><span>messageInput.<span style="color:#a6e22e">setWidthFull</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>getContent().<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>         header,
+</span></span><span style="display:flex;"><span>         mainFeatures,
+</span></span><span style="display:flex;"><span>         span,
+</span></span><span style="display:flex;"><span>         scroller,
+</span></span><span style="display:flex;"><span>         messageInput
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>The handleNewMessageRequest lambda reads the user’s input, displays it in the UI, calls the ChatService.ask(&hellip;) method, and then appends the assistant’s answer to the chat layout:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onSubmit</span>(MessageInput.<span style="color:#a6e22e">SubmitEvent</span> submitEvent) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//create and handle a prompt message</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> promptMessage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MessageListItem(submitEvent.<span style="color:#a6e22e">getValue</span>(), Instant.<span style="color:#a6e22e">now</span>(), <span style="color:#e6db74">&#34;User&#34;</span>);
+</span></span><span style="display:flex;"><span>    promptMessage.<span style="color:#a6e22e">setUserColorIndex</span>(0);
+</span></span><span style="display:flex;"><span>    messageList.<span style="color:#a6e22e">addItem</span>(promptMessage);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//create and handle the response message</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> responseMessage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MessageListItem(<span style="color:#e6db74">&#34;&#34;</span>, Instant.<span style="color:#a6e22e">now</span>(), <span style="color:#e6db74">&#34;Bot&#34;</span>);
+</span></span><span style="display:flex;"><span>    responseMessage.<span style="color:#a6e22e">setUserColorIndex</span>(1);
+</span></span><span style="display:flex;"><span>    messageList.<span style="color:#a6e22e">addItem</span>(responseMessage);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//append a response message to the existing UI</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> userPrompt <span style="color:#f92672">=</span> submitEvent.<span style="color:#a6e22e">getValue</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> uiOptional <span style="color:#f92672">=</span> submitEvent.<span style="color:#a6e22e">getSource</span>().<span style="color:#a6e22e">getUI</span>();
+</span></span><span style="display:flex;"><span>    uiOptional.<span style="color:#a6e22e">ifPresent</span>(ui <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>         chatService.<span style="color:#a6e22e">chatStream</span>(userPrompt, chatId)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">subscribe</span>(token <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>                    ui.<span style="color:#a6e22e">access</span>(() <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>                        responseMessage.<span style="color:#a6e22e">appendText</span>(token))));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This code uses Spring AI’s ChatService to fetch an answer. The session ID ensures each browser session has its own chat history.  After sending the message, the Vaadin view scrolls and shows the assistant’s response in the conversation.</p>
+<p>In summary, the <strong>MainView</strong> wires together:</p>
+<ul>
+<li>An <strong>Upload</strong> component (for PDF) to upload documents.</li>
+<li>A message display area (chatContainer) and input controls.</li>
+<li>The ChatService, which runs the RAG-enabled Spring AI logic.</li>
+</ul>
+<h2 id="putting-it-all-together" class="relative group"><strong>Putting It All Together</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#putting-it-all-together" aria-label="Anchor">#</a></span></h2><p>With these pieces, the AI Tutor works as follows:</p>
+<p><strong>Document Upload</strong>: User uploads course materials. The backend chunks and embeds these, storing vectors in PGVector.</p>
+<p><strong>Question Input</strong>: User asks a question in the chat UI.</p>
+<p><strong>Retrieval</strong>: Spring AI’s QuestionAnswerAdvisor queries PGVector for chunks similar to the question (limited to chosen source files).</p>
+<p><strong>Response</strong>: The LLM (Gemma3 via Ollama) receives the question plus retrieved context, and generates a tailored answer.</p>
+<p><strong>Display</strong>: The Vaadin UI shows the answer to the user.</p>
+<p>You can refer to the complete codebase in my Github account <a href="https://github.com/ankitagrahari/AITutor" target="_blank" rel="noreferrer">@ankitagrahari</a>.</p>
+<p>If you like the content, do like and comment your feedback. It keeps the motivation machine running.</p>
+<h2 id="references" class="relative group"><strong>References</strong>: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h2><ul>
+<li><a href="https://github.com/danvega/spring-ai-workshop/" target="_blank" rel="noreferrer">https://github.com/danvega/spring-ai-workshop/</a></li>
+<li><a href="https://docs.spring.io/spring-ai/reference/api/retrieval-augmented-generation.html" target="_blank" rel="noreferrer">https://docs.spring.io/spring-ai/reference/api/retrieval-augmented-generation.html</a></li>
+<li>YT- <a href="https://www.youtube.com/playlist?list=PLZV0a2jwt22uoDm3LNDFvN6i2cAVU_HTH" target="_blank" rel="noreferrer">https://www.youtube.com/playlist?list=PLZV0a2jwt22uoDm3LNDFvN6i2cAVU_HTH</a></li>
+<li><a href="https://notebooklm.google.com/" target="_blank" rel="noreferrer">https://notebooklm.google.com/</a></li>
+</ul>
+<p>Happy learning :)</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/cca-f-domain-5-context-management-and-reliability/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CCA-F Domain 5: Context Management and Reliability</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Stop Guessing, Find Perfect Local LLM with OllamaAdvisor</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,953 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>From Localhost to Kubernetes: Deploying StreamMetrics at Scale &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Part 4 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+Love how after building something locally, you think &ldquo;okay, it works on my machine!&rdquo; and then reality hits when you try to deploy it. Docker says &ldquo;works on my machine&rdquo; is not an excuse anymore, and Kubernetes says &ldquo;hold my beer, let&rsquo;s make it production-ready.&rdquo;
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale">
+	<meta property="og:description" content="Part 4 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+Love how after building something locally, you think “okay, it works on my machine!” and then reality hits when you try to deploy it. Docker says “works on my machine” is not an excuse anymore, and Kubernetes says “hold my beer, let’s make it production-ready.”">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:19+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:19+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale">
+	<meta name="twitter:description" content="Part 4 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+Love how after building something locally, you think “okay, it works on my machine!” and then reality hits when you try to deploy it. Docker says “works on my machine” is not an excuse anymore, and Kubernetes says “hold my beer, let’s make it production-ready.”">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "From Localhost to Kubernetes: Deploying StreamMetrics at Scale",
+    "headline": "From Localhost to Kubernetes: Deploying StreamMetrics at Scale",
+    
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 4 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-production-grade-kafka-consumer-patterns\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003eStreammetric Bottleneck Explainer by NotebookLM\u003c\/p\u003e\n\u003cp\u003eLove how after building something locally, you think \u0026ldquo;\u003cem\u003eokay, it works on my machine!\u003c\/em\u003e\u0026rdquo; and then reality hits when you try to deploy it. Docker says \u0026ldquo;\u003cem\u003eworks on my machine\u003c\/em\u003e\u0026rdquo; is not an excuse anymore, and Kubernetes says \u0026ldquo;\u003cem\u003ehold my beer, let\u0026rsquo;s make it production-ready.\u003c\/em\u003e\u0026rdquo;\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:19\u002b05:30",
+    "datePublished": "2026-10-27T08:14:19\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:19\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1954"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "From Localhost to Kubernetes Deploying Stream Metrics at Scale",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        From Localhost to Kubernetes: Deploying StreamMetrics at Scale
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:19 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">10 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><strong>Part 4 of the StreamMetrics Series</strong></p>
+<p>*Previous parts: <em><a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer"><em>Part 1: Kafka Producer</em></a></em> | <em><a href="https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns" target="_blank" rel="noreferrer"><em>Part 2: Consumer + DLQ</em></a></em> | *<a href="https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec" target="_blank" rel="noreferrer"><em>Part 3: Real-Time Aggregations</em></a>Streammetric Bottleneck Explainer by NotebookLM</p>
+<p>Love how after building something locally, you think &ldquo;<em>okay, it works on my machine!</em>&rdquo; and then reality hits when you try to deploy it. Docker says &ldquo;<em>works on my machine</em>&rdquo; is not an excuse anymore, and Kubernetes says &ldquo;<em>hold my beer, let&rsquo;s make it production-ready.</em>&rdquo;</p>
+<p>This is the tale of taking StreamMetrics from docker-compose on <a href="http://localhost" target="_blank" rel="noreferrer">localhost</a> to a full Kubernetes deployment with KRaft Kafka, discovering why Redis refuses to connect, why Alpine needs libstdc++, and why environment variables have a mind of their own.</p>
+<p><strong>Objective for this post:</strong> </p>
+<ul>
+<li>Dockerize all StreamMetrics microservices,</li>
+<li>Deploy them to Kubernetes (minikube),</li>
+<li>Set up a 3-node KRaft Kafka cluster using Strimzi, and</li>
+<li>Validate the entire pipeline works end-to-end at scale.</li>
+</ul>
+<h2 id="the-journey-docker-first-kubernetes-later" class="relative group"><strong>The Journey: Docker First, Kubernetes Later</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-journey-docker-first-kubernetes-later" aria-label="Anchor">#</a></span></h2><h3 id="phase-1-dockerizing-everything" class="relative group"><strong>Phase 1: Dockerizing Everything</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#phase-1-dockerizing-everything" aria-label="Anchor">#</a></span></h3><p>We started with three Spring Boot applications that worked beautifully in development:</p>
+<ul>
+<li><strong>Producer</strong> (port 8085): REST API for sending metrics</li>
+<li><strong>Consumer</strong> (port 8081): Processes events with DLQ pattern</li>
+<li><strong>Streams</strong> (port 8082): Real-time aggregations with Kafka Streams</li>
+</ul>
+<p>The naive approach would be a multi-stage Docker build that compiles everything inside the container. But Maven + multi-module projects + missing modules = pain. We learned this the hard way.</p>
+<p><strong>The pragmatic approach:</strong> Build locally, then Dockerize the JAR.</p>
+<h4 id="producer-dockerfile" class="relative group">Producer Dockerfile <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#producer-dockerfile" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>FROM eclipse<span style="color:#f92672">-</span>temurin:21<span style="color:#f92672">-</span>jre<span style="color:#f92672">-</span>alpine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY streammetrics<span style="color:#f92672">-</span>producer<span style="color:#f92672">/</span>target<span style="color:#f92672">/</span>streammetrics<span style="color:#f92672">-</span>producer<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span> app.<span style="color:#a6e22e">jar</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN addgroup <span style="color:#f92672">-</span>S spring <span style="color:#f92672">&amp;&amp;</span> adduser <span style="color:#f92672">-</span>S spring <span style="color:#f92672">-</span>G spring
+</span></span><span style="display:flex;"><span>USER spring:spring
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>EXPOSE 8085
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HEALTHCHECK <span style="color:#f92672">--</span>interval<span style="color:#f92672">=</span>30s <span style="color:#f92672">--</span>timeout<span style="color:#f92672">=</span>3s <span style="color:#f92672">--</span>start<span style="color:#f92672">-</span>period<span style="color:#f92672">=</span>40s <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  CMD wget <span style="color:#f92672">--</span>quiet <span style="color:#f92672">--</span>tries<span style="color:#f92672">=</span>1 <span style="color:#f92672">--</span>spider http:<span style="color:#75715e">//localhost:8085/actuator/health || exit 1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ENTRYPOINT <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;java&#34;</span>, <span style="color:#e6db74">&#34;-jar&#34;</span>, <span style="color:#e6db74">&#34;app.jar&#34;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>Key decisions:</strong></p>
+<ul>
+<li><strong>JRE-only base image</strong>: We don&rsquo;t need JDK in production (250MB vs 400MB)</li>
+<li><strong>Non-root user</strong>: Security best practice</li>
+<li><strong>Health check</strong>: Kubernetes needs this for liveness/readiness probes</li>
+<li><strong>Alpine</strong>: Smallest possible image&hellip; or so we thought (spoiler: RocksDB had other plans)</li>
+</ul>
+<h5 id="build-process" class="relative group"><strong>Build process:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#build-process" aria-label="Anchor">#</a></span></h5><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Step 1: Build JARs locally
+</span></span><span style="display:flex;"><span>mvn clean <span style="color:#f92672">package</span> <span style="color:#960050;background-color:#1e0010">-</span>DskipTests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Step 2: Build Docker images
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>producer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>producer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>consumer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>consumer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>streams<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>streams:latest .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Step 3: Verify
+</span></span><span style="display:flex;"><span>docker images <span style="color:#f92672">|</span> grep streammetrics
+</span></span></code></pre></div><h5 id="testing-with-docker-compose" class="relative group"><strong>Testing with Docker Compose</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#testing-with-docker-compose" aria-label="Anchor">#</a></span></h5><p>Before Kubernetes, we validated everything with docker-compose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>version: <span style="color:#960050;background-color:#1e0010">&#39;</span>3.<span style="color:#a6e22e">8</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  producer:
+</span></span><span style="display:flex;"><span>    image: streammetrics<span style="color:#f92672">-</span>producer:latest
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#34;8085:8085&#34;</span>
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka1:19092,kafka2:19092,kafka3:19092
+</span></span><span style="display:flex;"><span>      SPRING_REDIS_HOST: redis
+</span></span><span style="display:flex;"><span>      SPRING_REDIS_PORT: 6379
+</span></span><span style="display:flex;"><span>      SPRING_DATA_REDIS_CLIENT_TYPE: lettuce
+</span></span><span style="display:flex;"><span>      MANAGEMENT_HEALTH_REDIS_ENABLED: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> kafka1
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> kafka2
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> kafka3
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> redis
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> streammetrics<span style="color:#f92672">-</span>network
+</span></span></code></pre></div><p><strong>Lesson learned:</strong> </p>
+<ul>
+<li>The <em>MANAGEMENT_HEALTH_REDIS_ENABLED</em>: false saved us hours. Spring Boot 4.x uses reactive Redis health checks by default, which failed spectacularly in our setup. Disabling it made everything work.</li>
+</ul>
+<h3 id="phase-2-kubernetes-deployment" class="relative group"><strong>Phase 2: Kubernetes Deployment</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#phase-2-kubernetes-deployment" aria-label="Anchor">#</a></span></h3><h4 id="setting-up-minikube" class="relative group"><strong>Setting Up Minikube</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#setting-up-minikube" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Install minikube
+</span></span><span style="display:flex;"><span>brew install minikube
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Start <span style="color:#66d9ef">with</span> plenty of <span style="color:#a6e22e">resources</span> (Kafka is hungry)
+</span></span><span style="display:flex;"><span>minikube start <span style="color:#f92672">--</span>cpus<span style="color:#f92672">=</span>4 <span style="color:#f92672">--</span>memory<span style="color:#f92672">=</span>8192 <span style="color:#f92672">--</span>disk<span style="color:#f92672">-</span>size<span style="color:#f92672">=</span>20g
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Point Docker CLI <span style="color:#66d9ef">to</span> minikube<span style="color:#960050;background-color:#1e0010">&#39;</span>s Docker daemon
+</span></span><span style="display:flex;"><span>eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Rebuild images INSIDE minikube
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>producer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>producer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>consumer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>consumer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>streams<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>streams:latest .
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">```</span>K8s Setup
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">**</span>Critical insight:<span style="color:#f92672">**</span> eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env) is magic. It makes your local Docker CLI talk <span style="color:#66d9ef">to</span> minikube<span style="color:#960050;background-color:#1e0010">&#39;</span>s Docker daemon. Without <span style="color:#66d9ef">this</span>, Kubernetes can<span style="color:#960050;background-color:#1e0010">&#39;</span>t find your images because they<span style="color:#960050;background-color:#1e0010">&#39;</span>re on your host machine, not in minikube.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">####</span> <span style="color:#f92672">**</span>Namespace Setup<span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">```</span>java
+</span></span><span style="display:flex;"><span>apiVersion: v1
+</span></span><span style="display:flex;"><span>kind: Namespace
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: streammetrics
+</span></span></code></pre></div><p>Create namespace</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>namespace.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>kubectl config set<span style="color:#f92672">-</span>context <span style="color:#f92672">--</span>current <span style="color:#f92672">--</span>namespace<span style="color:#f92672">=</span>streammetrics
+</span></span></code></pre></div><p>Setting the default namespace saves you from typing -n streammetrics 500 times.</p>
+<h3 id="phase-3-kraft-kafka-cluster-with-strimzi" class="relative group"><strong>Phase 3: KRaft Kafka Cluster with Strimzi</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#phase-3-kraft-kafka-cluster-with-strimzi" aria-label="Anchor">#</a></span></h3><p>This is where it gets interesting. We wanted KRaft mode (no Zookeeper) because:</p>
+<p>Simpler architecture</p>
+<p>Faster metadata operations</p>
+<p>Industry direction (Zookeeper is deprecated)</p>
+<h4 id="installing-strimzi-operator" class="relative group"><strong>Installing Strimzi Operator</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#installing-strimzi-operator" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Install Strimzi operator
+</span></span><span style="display:flex;"><span>kubectl create <span style="color:#f92672">-</span>f <span style="color:#960050;background-color:#1e0010">&#39;</span>https:<span style="color:#75715e">//strimzi.io/install/latest?namespace=streammetrics&#39; -n streammetrics</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Wait <span style="color:#66d9ef">for</span> operator
+</span></span><span style="display:flex;"><span>kubectl wait deployment<span style="color:#f92672">/</span>strimzi<span style="color:#f92672">-</span>cluster<span style="color:#f92672">-</span>operator <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span><span style="color:#66d9ef">for</span><span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Available <span style="color:#f92672">--</span>timeout<span style="color:#f92672">=</span>300s <span style="color:#f92672">-</span>n streammetrics
+</span></span></code></pre></div><p>Strimzi is Kubernetes-native Kafka. It uses <em>Custom Resource Definitions</em> (CRDs) to manage Kafka clusters declaratively.</p>
+<h4 id="kraft-kafka-cluster-with-kafkanodepools" class="relative group"><strong>KRaft Kafka Cluster with KafkaNodePools</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#kraft-kafka-cluster-with-kafkanodepools" aria-label="Anchor">#</a></span></h4><p>Modern Strimzi requires <strong>KafkaNodePools</strong>. This was a surprise.</p>
+<p><strong>KafkaNodePool manifest:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: kafka.<span style="color:#a6e22e">strimzi</span>.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>v1beta2
+</span></span><span style="display:flex;"><span>kind: KafkaNodePool
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: broker
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    strimzi.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>cluster: streammetrics<span style="color:#f92672">-</span>kafka
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  replicas: 3
+</span></span><span style="display:flex;"><span>  roles:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> broker
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> controller  <span style="color:#960050;background-color:#1e0010">#</span> KRaft mode: brokers ARE controllers
+</span></span><span style="display:flex;"><span>  storage:
+</span></span><span style="display:flex;"><span>    type: ephemeral
+</span></span><span style="display:flex;"><span>  resources:
+</span></span><span style="display:flex;"><span>    requests:
+</span></span><span style="display:flex;"><span>      memory: 1Gi
+</span></span><span style="display:flex;"><span>      cpu: 500m
+</span></span><span style="display:flex;"><span>    limits:
+</span></span><span style="display:flex;"><span>      memory: 2Gi
+</span></span><span style="display:flex;"><span>      cpu: 1000m
+</span></span></code></pre></div><p><strong>Kafka cluster manifest:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: kafka.<span style="color:#a6e22e">strimzi</span>.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>v1beta2
+</span></span><span style="display:flex;"><span>kind: Kafka
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: streammetrics<span style="color:#f92672">-</span>kafka
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  annotations:
+</span></span><span style="display:flex;"><span>    strimzi.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>kraft: <span style="color:#e6db74">&#34;enabled&#34;</span>
+</span></span><span style="display:flex;"><span>    strimzi.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>pools: <span style="color:#e6db74">&#34;enabled&#34;</span>
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  kafka:
+</span></span><span style="display:flex;"><span>    version: 4.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span>
+</span></span><span style="display:flex;"><span>    listeners:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: plain
+</span></span><span style="display:flex;"><span>        port: 9092
+</span></span><span style="display:flex;"><span>        type: internal
+</span></span><span style="display:flex;"><span>        tls: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    config:
+</span></span><span style="display:flex;"><span>      offsets.<span style="color:#a6e22e">topic</span>.<span style="color:#a6e22e">replication</span>.<span style="color:#a6e22e">factor</span>: 3
+</span></span><span style="display:flex;"><span>      transaction.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">replication</span>.<span style="color:#a6e22e">factor</span>: 3
+</span></span><span style="display:flex;"><span>      transaction.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">min</span>.<span style="color:#a6e22e">isr</span>: 2
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">default</span>.<span style="color:#a6e22e">replication</span>.<span style="color:#a6e22e">factor</span>: 3
+</span></span><span style="display:flex;"><span>      min.<span style="color:#a6e22e">insync</span>.<span style="color:#a6e22e">replicas</span>: 2
+</span></span><span style="display:flex;"><span>  entityOperator:
+</span></span><span style="display:flex;"><span>    topicOperator: {}
+</span></span><span style="display:flex;"><span>    userOperator: {}
+</span></span></code></pre></div><p><strong>Key points:</strong></p>
+<ul>
+<li><a href="http://strimzi.io/kraft" target="_blank" rel="noreferrer">strimzi.io/kraft</a>: &ldquo;enabled&rdquo; - No Zookeeper</li>
+<li><a href="http://strimzi.io/node-pools" target="_blank" rel="noreferrer">strimzi.io/node-pools</a>: &ldquo;enabled&rdquo; - Use new architecture</li>
+<li><strong>No replicas in Kafka spec</strong> - moved to KafkaNodePool</li>
+<li><strong>No storage in Kafka spec</strong> - moved to KafkaNodePool</li>
+</ul>
+<p>Deploy order matters:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> 1. NodePool first
+</span></span><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>kafka<span style="color:#f92672">-</span>nodepool.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> 2. Then Kafka cluster
+</span></span><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>kafka<span style="color:#f92672">-</span>cluster.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> 3. <span style="color:#a6e22e">Wait</span> (3<span style="color:#f92672">-</span>5 minutes)
+</span></span><span style="display:flex;"><span>kubectl wait kafka<span style="color:#f92672">/</span>streammetrics<span style="color:#f92672">-</span>kafka <span style="color:#f92672">--</span><span style="color:#66d9ef">for</span><span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Ready <span style="color:#f92672">--</span>timeout<span style="color:#f92672">=</span>600s
+</span></span></code></pre></div><h4 id="creating-topics" class="relative group"><strong>Creating Topics</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#creating-topics" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: kafka.<span style="color:#a6e22e">strimzi</span>.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>v1beta2
+</span></span><span style="display:flex;"><span>kind: KafkaTopic
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: metrics<span style="color:#f92672">-</span>events
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>  labels:
+</span></span><span style="display:flex;"><span>    strimzi.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span>cluster: streammetrics<span style="color:#f92672">-</span>kafka
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  partitions: 6
+</span></span><span style="display:flex;"><span>  replicas: 3
+</span></span><span style="display:flex;"><span>  config:
+</span></span><span style="display:flex;"><span>    retention.<span style="color:#a6e22e">ms</span>: 86400000  <span style="color:#960050;background-color:#1e0010">#</span> 24 hours
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>kafka<span style="color:#f92672">-</span>topics.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>kubectl get kafkatopics
+</span></span></code></pre></div><h3 id="phase-4-deploying-applications" class="relative group"><strong>Phase 4: Deploying Applications</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#phase-4-deploying-applications" aria-label="Anchor">#</a></span></h3><h4 id="the-redis-connection-saga" class="relative group"><strong>The Redis Connection Saga</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-redis-connection-saga" aria-label="Anchor">#</a></span></h4><p>This consumed hours. The error:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Unable <span style="color:#66d9ef">to</span> connect <span style="color:#66d9ef">to</span> localhost<span style="color:#f92672">/&lt;</span>unresolved<span style="color:#f92672">&gt;</span>:6379
+</span></span></code></pre></div><p>Despite setting:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>env:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> name: SPRING_REDIS_HOST
+</span></span><span style="display:flex;"><span>    value: <span style="color:#e6db74">&#34;redis&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> name: SPRING_REDIS_PORT
+</span></span><span style="display:flex;"><span>    value: <span style="color:#e6db74">&#34;6379&#34;</span>
+</span></span></code></pre></div><p><strong>The problem:</strong> Our RedisConfig class hardcoded <a href="http://localhost" target="_blank" rel="noreferrer">localhost</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> RedisConnectionFactory <span style="color:#a6e22e">redisConnectionFactory</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> LettuceConnectionFactory(<span style="color:#e6db74">&#34;localhost&#34;</span>, 6379); <span style="color:#75715e">// HARDCODED!</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>The solution:</strong> Inject properties:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisConfig</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;${spring.redis.host:localhost}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String redisHost;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;${spring.redis.port:6379}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> redisPort;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> RedisConnectionFactory <span style="color:#a6e22e">redisConnectionFactory</span>() {
+</span></span><span style="display:flex;"><span>        RedisStandaloneConfiguration config <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RedisStandaloneConfiguration();
+</span></span><span style="display:flex;"><span>        config.<span style="color:#a6e22e">setHostName</span>(redisHost);  <span style="color:#75715e">// Use injected value</span>
+</span></span><span style="display:flex;"><span>        config.<span style="color:#a6e22e">setPort</span>(redisPort);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> LettuceConnectionFactory(config);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Update application.yml:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  redis:
+</span></span><span style="display:flex;"><span>    host: ${SPRING_REDIS_HOST:localhost}
+</span></span><span style="display:flex;"><span>    port: ${SPRING_REDIS_PORT:6379}
+</span></span></code></pre></div><p>Rebuild, redeploy (believe me, we executed this a lot):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mvn clean <span style="color:#f92672">package</span> <span style="color:#960050;background-color:#1e0010">-</span>DskipTests
+</span></span><span style="display:flex;"><span>eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env)
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>consumer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>consumer:latest .
+</span></span><span style="display:flex;"><span>kubectl delete pod <span style="color:#f92672">-</span>l app<span style="color:#f92672">=</span>consumer
+</span></span></code></pre></div><blockquote>
+<p>**Finally worked! **🥳</p>
+</blockquote>
+<h4 id="producer-deployment" class="relative group">Producer Deployment <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#producer-deployment" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: apps<span style="color:#f92672">/</span>v1
+</span></span><span style="display:flex;"><span>kind: Deployment
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: producer
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  replicas: 1
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    matchLabels:
+</span></span><span style="display:flex;"><span>      app: producer
+</span></span><span style="display:flex;"><span>  template:
+</span></span><span style="display:flex;"><span>    metadata:
+</span></span><span style="display:flex;"><span>      labels:
+</span></span><span style="display:flex;"><span>        app: producer
+</span></span><span style="display:flex;"><span>    spec:
+</span></span><span style="display:flex;"><span>      containers:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> name: producer
+</span></span><span style="display:flex;"><span>        image: streammetrics<span style="color:#f92672">-</span>producer:latest
+</span></span><span style="display:flex;"><span>        imagePullPolicy: Never  <span style="color:#960050;background-color:#1e0010">#</span> Use local image
+</span></span><span style="display:flex;"><span>        ports:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> containerPort: 8085
+</span></span><span style="display:flex;"><span>        env:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+</span></span><span style="display:flex;"><span>          value: <span style="color:#e6db74">&#34;streammetrics-kafka-kafka-bootstrap:9092&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> name: SPRING_REDIS_HOST
+</span></span><span style="display:flex;"><span>          value: <span style="color:#e6db74">&#34;redis&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-</span> name: SPRING_REDIS_PORT
+</span></span><span style="display:flex;"><span>          value: <span style="color:#e6db74">&#34;6379&#34;</span>
+</span></span><span style="display:flex;"><span>        resources:
+</span></span><span style="display:flex;"><span>          requests:
+</span></span><span style="display:flex;"><span>            memory: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span></span><span style="display:flex;"><span>            cpu: <span style="color:#e6db74">&#34;250m&#34;</span>
+</span></span><span style="display:flex;"><span>          limits:
+</span></span><span style="display:flex;"><span>            memory: <span style="color:#e6db74">&#34;1Gi&#34;</span>
+</span></span><span style="display:flex;"><span>            cpu: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span>apiVersion: v1
+</span></span><span style="display:flex;"><span>kind: Service
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: producer
+</span></span><span style="display:flex;"><span>  namespace: streammetrics
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  type: NodePort
+</span></span><span style="display:flex;"><span>  ports:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span> port: 8085
+</span></span><span style="display:flex;"><span>      targetPort: 8085
+</span></span><span style="display:flex;"><span>      nodePort: 30085
+</span></span><span style="display:flex;"><span>  selector:
+</span></span><span style="display:flex;"><span>    app: producer
+</span></span></code></pre></div><p><strong>Note:</strong> <em>imagePullPolicy: Never</em>  tells Kubernetes to use the local image we built inside minikube.</p>
+<h4 id="the-rocksdb-alpine-issue" class="relative group"><strong>The RocksDB Alpine Issue</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-rocksdb-alpine-issue" aria-label="Anchor">#</a></span></h4><p>When deploying streams, we hit:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>java.<span style="color:#a6e22e">lang</span>.<span style="color:#a6e22e">UnsatisfiedLinkError</span>: <span style="color:#f92672">/</span>tmp<span style="color:#f92672">/</span>librocksdbjni.<span style="color:#a6e22e">so</span>: 
+</span></span><span style="display:flex;"><span>Error loading shared library libstdc<span style="color:#f92672">++</span>.<span style="color:#a6e22e">so</span>.<span style="color:#a6e22e">6</span>: No such file or directory
+</span></span></code></pre></div><p>Kafka Streams uses RocksDB for state storage.</p>
+<p>RocksDB is a native C++ library.</p>
+<p>Alpine doesn&rsquo;t include libstdc++.</p>
+<p><strong>Fix:</strong> Update Streams Dockerfile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>FROM eclipse<span style="color:#f92672">-</span>temurin:21<span style="color:#f92672">-</span>jre<span style="color:#f92672">-</span>alpine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR <span style="color:#f92672">/</span>app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Install required <span style="color:#66d9ef">native</span> libraries <span style="color:#66d9ef">for</span> RocksDB
+</span></span><span style="display:flex;"><span>RUN apk add <span style="color:#f92672">--</span>no<span style="color:#f92672">-</span>cache libstdc<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY streammetrics<span style="color:#f92672">-</span>streams<span style="color:#f92672">/</span>target<span style="color:#f92672">/</span>streammetrics<span style="color:#f92672">-</span>streams<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span> app.<span style="color:#a6e22e">jar</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> ... rest of Dockerfile
+</span></span></code></pre></div><p>Rebuild and redeploy. <strong>It worked!</strong></p>
+<h2 id="end-to-end-validation" class="relative group"><strong>End-to-End Validation</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#end-to-end-validation" aria-label="Anchor">#</a></span></h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Port<span style="color:#f92672">-</span>forward producer
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward svc<span style="color:#f92672">/</span>producer 8085:8085 <span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Send 100 events
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;http://localhost:8085/produce?events=100&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check consumer processed them
+</span></span><span style="display:flex;"><span>kubectl logs deployment<span style="color:#f92672">/</span>consumer <span style="color:#f92672">--</span>tail<span style="color:#f92672">=</span>50 <span style="color:#f92672">|</span> grep <span style="color:#e6db74">&#34;Successfully processed&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check streams aggregated
+</span></span><span style="display:flex;"><span>kubectl logs deployment<span style="color:#f92672">/</span>streams <span style="color:#f92672">--</span>tail<span style="color:#f92672">=</span>50 <span style="color:#f92672">|</span> grep <span style="color:#e6db74">&#34;aggregate&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Verify Redis has data
+</span></span><span style="display:flex;"><span>kubectl exec deployment<span style="color:#f92672">/</span>redis <span style="color:#f92672">--</span> redis<span style="color:#f92672">-</span>cli KEYS <span style="color:#e6db74">&#34;metrics:*&#34;</span>
+</span></span><span style="display:flex;"><span>kubectl exec deployment<span style="color:#f92672">/</span>redis <span style="color:#f92672">--</span> redis<span style="color:#f92672">-</span>cli KEYS <span style="color:#e6db74">&#34;agg:1m:*&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check Kafka topics
+</span></span><span style="display:flex;"><span>kubectl exec <span style="color:#f92672">-</span>it streammetrics<span style="color:#f92672">-</span>kafka<span style="color:#f92672">-</span>broker<span style="color:#f92672">-</span>0 <span style="color:#f92672">--</span> <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  bin<span style="color:#f92672">/</span>kafka<span style="color:#f92672">-</span>console<span style="color:#f92672">-</span>consumer.<span style="color:#a6e22e">sh</span> <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>bootstrap<span style="color:#f92672">-</span>server localhost:9092 <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>topic metrics<span style="color:#f92672">-</span>events <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>from<span style="color:#f92672">-</span>beginning <span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">--</span>max<span style="color:#f92672">-</span>messages 10
+</span></span></code></pre></div><h2 id="architecture-before-vs-after" class="relative group"><strong>Architecture: Before vs After</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#architecture-before-vs-after" aria-label="Anchor">#</a></span></h2><h3 id="before-docker-compose" class="relative group">Before (docker-compose): <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#before-docker-compose" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Host Machine
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">└─</span> Docker
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Kafka (3 brokers)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Redis
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Producer
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Consumer
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">└─</span> Streams
+</span></span></code></pre></div><h3 id="after-kubernetes" class="relative group">After (Kubernetes): <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#after-kubernetes" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Minikube Cluster
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">└─</span> Namespace: streammetrics
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> StatefulSet: Kafka (3 pods)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Deployment: Redis (1 pod)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Deployment: Producer (1 pod)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Deployment: Consumer (2 pods)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Deployment: Streams (1 pod)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Service: Kafka (ClusterIP)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">├─</span> Service: Redis (ClusterIP)
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">└─</span> Service: Producer (NodePort)
+</span></span></code></pre></div><h2 id="production-lessons-learned" class="relative group"><strong>Production Lessons Learned</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#production-lessons-learned" aria-label="Anchor">#</a></span></h2><h3 id="1-eval-minikube-docker-env-is-essential" class="relative group"><strong>1. eval $(minikube docker-env) is Essential</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-eval-minikube-docker-env-is-essential" aria-label="Anchor">#</a></span></h3><p>Without this, your images are on your host machine. Kubernetes in minikube can&rsquo;t see them. You&rsquo;ll get ImagePullBackOff errors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Always run <span style="color:#66d9ef">this</span> before building images
+</span></span><span style="display:flex;"><span>eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> To <span style="color:#a6e22e">undo</span> (<span style="color:#66d9ef">switch</span> back <span style="color:#66d9ef">to</span> host Docker)
+</span></span><span style="display:flex;"><span>eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env <span style="color:#f92672">-</span>u)
+</span></span></code></pre></div><h3 id="2-imagepullpolicy-matters" class="relative group"><strong>2. imagePullPolicy Matters</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-imagepullpolicy-matters" aria-label="Anchor">#</a></span></h3><p>For local development:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>imagePullPolicy: Never  <span style="color:#960050;background-color:#1e0010">#</span> Use local image only
+</span></span></code></pre></div><p>For production (with registry):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>imagePullPolicy: Always  <span style="color:#960050;background-color:#1e0010">#</span> Always pull from registry
+</span></span></code></pre></div><h3 id="3-configmaps-for-configuration" class="relative group"><strong>3. ConfigMaps for Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-configmaps-for-configuration" aria-label="Anchor">#</a></span></h3><p>Instead of hardcoding config in JARs, use <em><strong>ConfigMaps</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>apiVersion: v1
+</span></span><span style="display:flex;"><span>kind: ConfigMap
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: consumer<span style="color:#f92672">-</span>config
+</span></span><span style="display:flex;"><span>data:
+</span></span><span style="display:flex;"><span>  application.<span style="color:#a6e22e">yml</span>: <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    spring:
+</span></span><span style="display:flex;"><span>      kafka:
+</span></span><span style="display:flex;"><span>        bootstrap<span style="color:#f92672">-</span>servers: streammetrics<span style="color:#f92672">-</span>kafka<span style="color:#f92672">-</span>kafka<span style="color:#f92672">-</span>bootstrap:9092
+</span></span><span style="display:flex;"><span>      redis:
+</span></span><span style="display:flex;"><span>        host: redis
+</span></span></code></pre></div><p>Mount in deployment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>volumeMounts:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> name: config
+</span></span><span style="display:flex;"><span>  mountPath: <span style="color:#f92672">/</span>config
+</span></span><span style="display:flex;"><span>volumes:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> name: config
+</span></span><span style="display:flex;"><span>  configMap:
+</span></span><span style="display:flex;"><span>    name: consumer<span style="color:#f92672">-</span>config
+</span></span></code></pre></div><h3 id="4-resource-limits-prevent-noisy-neighbors" class="relative group"><strong>4. Resource Limits Prevent Noisy Neighbors</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-resource-limits-prevent-noisy-neighbors" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>resources:
+</span></span><span style="display:flex;"><span>  requests:  <span style="color:#960050;background-color:#1e0010">#</span> Guaranteed resources
+</span></span><span style="display:flex;"><span>    memory: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span></span><span style="display:flex;"><span>    cpu: <span style="color:#e6db74">&#34;250m&#34;</span>
+</span></span><span style="display:flex;"><span>  limits:    <span style="color:#960050;background-color:#1e0010">#</span> Maximum allowed
+</span></span><span style="display:flex;"><span>    memory: <span style="color:#e6db74">&#34;1Gi&#34;</span>
+</span></span><span style="display:flex;"><span>    cpu: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span></code></pre></div><h3 id="5-health-checks-are-critical" class="relative group"><strong>5. Health Checks are Critical</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-health-checks-are-critical" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>livenessProbe:  <span style="color:#960050;background-color:#1e0010">#</span> Restart <span style="color:#66d9ef">if</span> unhealthy
+</span></span><span style="display:flex;"><span>  httpGet:
+</span></span><span style="display:flex;"><span>    path: <span style="color:#f92672">/</span>actuator<span style="color:#f92672">/</span>health
+</span></span><span style="display:flex;"><span>    port: 8081
+</span></span><span style="display:flex;"><span>  initialDelaySeconds: 60
+</span></span><span style="display:flex;"><span>  periodSeconds: 10
+</span></span><span style="display:flex;"><span>readinessProbe:  <span style="color:#960050;background-color:#1e0010">#</span> Remove from service <span style="color:#66d9ef">if</span> not ready
+</span></span><span style="display:flex;"><span>  httpGet:
+</span></span><span style="display:flex;"><span>    path: <span style="color:#f92672">/</span>actuator<span style="color:#f92672">/</span>health
+</span></span><span style="display:flex;"><span>    port: 8081
+</span></span><span style="display:flex;"><span>  initialDelaySeconds: 30
+</span></span><span style="display:flex;"><span>  periodSeconds: 5
+</span></span></code></pre></div><h2 id="performance-comparison" class="relative group"><strong>Performance Comparison</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#performance-comparison" aria-label="Anchor">#</a></span></h2><table>
+	<thead>
+			<tr>
+					<th>Metric</th>
+					<th>docker-compose</th>
+					<th>Kubernetes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Startup time</strong></td>
+					<td>30 seconds</td>
+					<td>2-3 minutes</td>
+			</tr>
+			<tr>
+					<td><strong>Kafka broker startup</strong></td>
+					<td>15 seconds</td>
+					<td>45 seconds (with health checks)</td>
+			</tr>
+			<tr>
+					<td><strong>Throughput</strong></td>
+					<td>9999 events/sec</td>
+					<td>9999 events/sec</td>
+			</tr>
+			<tr>
+					<td><strong>Scalability</strong></td>
+					<td>Manual</td>
+					<td>kubectl scale deployment/consumer &ndash;replicas=5</td>
+			</tr>
+			<tr>
+					<td><strong>Self-healing</strong></td>
+					<td>None</td>
+					<td>Automatic pod restarts</td>
+			</tr>
+			<tr>
+					<td><strong>Resource isolation</strong></td>
+					<td>Shared</td>
+					<td>Per-pod limits</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="what" class="relative group"><strong>What&rsquo;s Next?</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what" aria-label="Anchor">#</a></span></h2><p>We now have:</p>
+<p>✅ Dockerized microservices</p>
+<p>✅ Kubernetes deployment on minikube</p>
+<p>✅ 3-broker KRaft Kafka cluster</p>
+<p>✅ Full pipeline working (producer → Kafka → streams → consumer → Redis)</p>
+<p>✅ Validated 10K events/sec throughput</p>
+<p><strong>Still missing for production:</strong></p>
+<ul>
+<li>⚠️ Persistent storage (PersistentVolumes)</li>
+<li>⚠️ Monitoring (Prometheus + Grafana)</li>
+<li>⚠️ Horizontal Pod Autoscaling</li>
+<li>⚠️ Helm chart for easier deployment</li>
+<li>⚠️ TLS/SSL for Kafka</li>
+<li>⚠️ Secrets management</li>
+<li>⚠️ CI/CD pipeline</li>
+</ul>
+<p><strong>Next post:</strong> We&rsquo;ll add Prometheus and Grafana for monitoring, set up Horizontal Pod Autoscaler to scale based on Kafka lag, and create a Helm chart to deploy the entire stack with one command.</p>
+<h2 id="useful-kubernetes-commands" class="relative group"><strong>Useful Kubernetes Commands</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#useful-kubernetes-commands" aria-label="Anchor">#</a></span></h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check everything
+</span></span><span style="display:flex;"><span>kubectl get all
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Watch pods
+</span></span><span style="display:flex;"><span>kubectl get pods <span style="color:#f92672">-</span>w
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Logs
+</span></span><span style="display:flex;"><span>kubectl logs deployment<span style="color:#f92672">/</span>consumer <span style="color:#f92672">-</span>f
+</span></span><span style="display:flex;"><span>kubectl logs <span style="color:#f92672">-</span>l app<span style="color:#f92672">=</span>consumer <span style="color:#f92672">--</span>tail<span style="color:#f92672">=</span>100
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Exec into pod
+</span></span><span style="display:flex;"><span>kubectl exec <span style="color:#f92672">-</span>it deployment<span style="color:#f92672">/</span>consumer <span style="color:#f92672">--</span> sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Port forwarding
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward svc<span style="color:#f92672">/</span>producer 8085:8085
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Scale deployment
+</span></span><span style="display:flex;"><span>kubectl scale deployment<span style="color:#f92672">/</span>consumer <span style="color:#f92672">--</span>replicas<span style="color:#f92672">=</span>3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Restart deployment
+</span></span><span style="display:flex;"><span>kubectl rollout restart deployment<span style="color:#f92672">/</span>consumer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Check resource usage
+</span></span><span style="display:flex;"><span>kubectl top nodes
+</span></span><span style="display:flex;"><span>kubectl top pods
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Describe <span style="color:#66d9ef">for</span> debugging
+</span></span><span style="display:flex;"><span>kubectl describe pod <span style="color:#f92672">&lt;</span>pod<span style="color:#f92672">-</span>name<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>kubectl describe deployment consumer
+</span></span></code></pre></div><h2 id="challenges-we-hit-and-fixed" class="relative group"><strong>Challenges We Hit (and Fixed)</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenges-we-hit-and-fixed" aria-label="Anchor">#</a></span></h2><h3 id="issue-1-unable-to-connect-to-redis" class="relative group">Issue 1: &ldquo;Unable to connect to Redis&rdquo; <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#issue-1-unable-to-connect-to-redis" aria-label="Anchor">#</a></span></h3><p><strong>Root cause:</strong> Hardcoded <a href="http://localhost" target="_blank" rel="noreferrer">localhost</a> in RedisConfig<strong>Fix:</strong> Use @Value to inject from properties</p>
+<h3 id="issue-2-unsatisfiedlinkerror-libstdcso6" class="relative group">Issue 2: &ldquo;UnsatisfiedLinkError: libstdc++.so.6&rdquo; <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#issue-2-unsatisfiedlinkerror-libstdcso6" aria-label="Anchor">#</a></span></h3><p><strong>Root cause:</strong> Alpine missing C++ runtime for RocksDB<strong>Fix:</strong> Add RUN apk add &ndash;no-cache libstdc++</p>
+<h3 id="issue-3-no-kafkanodepools-found" class="relative group">Issue 3: &ldquo;No KafkaNodePools found&rdquo; <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#issue-3-no-kafkanodepools-found" aria-label="Anchor">#</a></span></h3><p><strong>Root cause:</strong> Strimzi requires NodePools for KRaft<strong>Fix:</strong> Create KafkaNodePool with broker+controller roles</p>
+<h3 id="issue-4-imagepullbackoff" class="relative group">Issue 4: &ldquo;ImagePullBackOff&rdquo; <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#issue-4-imagepullbackoff" aria-label="Anchor">#</a></span></h3><p><strong>Root cause:</strong> Image built on host, not in minikube<strong>Fix:</strong> eval $(minikube docker-env) before building</p>
+<h3 id="issue-5-environment-variables-ignored" class="relative group">Issue 5: Environment variables ignored <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#issue-5-environment-variables-ignored" aria-label="Anchor">#</a></span></h3><p><strong>Root cause:</strong> Spring Boot config precedence issues<strong>Fix:</strong> Use ${VAR:default} syntax in application.yml</p>
+<h2 id="key-takeaways" class="relative group"><strong>Key Takeaways</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#key-takeaways" aria-label="Anchor">#</a></span></h2><p><strong>Minikube is amazing for learning</strong> - Full Kubernetes locally</p>
+<p><strong>Strimzi simplifies Kafka on K8s</strong> - Declarative, Kubernetes-native</p>
+<p><strong>KRaft is production-ready</strong> - Simpler than Zookeeper</p>
+<p><strong>Configuration is hard</strong> - ConfigMaps + env vars + @Value = tricky</p>
+<p><strong>Native dependencies matter</strong> - Alpine != everything just works</p>
+<p><strong>Kubernetes debugging is different</strong> - Learn kubectl, logs, describe</p>
+<p><strong>Resource limits prevent surprises</strong> - Always set requests/limits</p>
+<h2 id="try-it-yourself" class="relative group"><strong>Try It Yourself</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#try-it-yourself" aria-label="Anchor">#</a></span></h2><p>Full code available on GitHub: <a href="https://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/StreamAnalytics</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Clone the repo
+</span></span><span style="display:flex;"><span>git clone https:<span style="color:#75715e">//github.com/ankitagrahari/StreamAnalytics</span>
+</span></span><span style="display:flex;"><span>cd StreamAnalytics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Build JARs
+</span></span><span style="display:flex;"><span>mvn clean <span style="color:#f92672">package</span> <span style="color:#960050;background-color:#1e0010">-</span>DskipTests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Start minikube
+</span></span><span style="display:flex;"><span>minikube start <span style="color:#f92672">--</span>cpus<span style="color:#f92672">=</span>4 <span style="color:#f92672">--</span>memory<span style="color:#f92672">=</span>8192
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Point Docker <span style="color:#66d9ef">to</span> minikube
+</span></span><span style="display:flex;"><span>eval <span style="color:#a6e22e">$</span>(minikube docker<span style="color:#f92672">-</span>env)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Build images
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>producer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>producer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>consumer<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>consumer:latest .
+</span></span><span style="display:flex;"><span>docker build <span style="color:#f92672">-</span>f streammetrics<span style="color:#f92672">-</span>streams<span style="color:#f92672">/</span>Dockerfile <span style="color:#f92672">-</span>t streammetrics<span style="color:#f92672">-</span>streams:latest .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Deploy everything
+</span></span><span style="display:flex;"><span>kubectl apply <span style="color:#f92672">-</span>f k8s<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Test
+</span></span><span style="display:flex;"><span>kubectl port<span style="color:#f92672">-</span>forward svc<span style="color:#f92672">/</span>producer 8085:8085
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;http://localhost:8085/produce?events=100&#34;</span>
+</span></span></code></pre></div><p>Share your thoughts whether you liked or disliked it. Do let me know if you have any queries or suggestions.</p>
+<p><strong>Never forget, Learning is the primary goal.</strong></p>
+<p><strong>Tags:</strong> #Kubernetes #Docker #Kafka #SpringBoot #KRaft #Strimzi #Microservices #DevOps</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Production Monitoring: You Can't Fix What You Can't See</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:19 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/testing-in-microservices/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Testing in Microservices</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:20 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

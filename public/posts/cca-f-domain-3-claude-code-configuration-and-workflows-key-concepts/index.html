@@ -1,0 +1,655 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        As we discussed in the previous post on Domain 2: Tool Design and MCP Integration, this part of the post will cover the Domain 3 which holds 20% weightage in the exam. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts">
+	<meta property="og:description" content="As we discussed in the previous post on Domain 2: Tool Design and MCP Integration, this part of the post will cover the Domain 3 which holds 20% weightage in the exam. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts">
+	<meta name="twitter:description" content="As we discussed in the previous post on Domain 2: Tool Design and MCP Integration, this part of the post will cover the Domain 3 which holds 20% weightage in the exam. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts",
+    "headline": "CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts",
+    
+    "abstract": "\u003ch3 id=\u0022as-we-discussed-in-the-previous-post-on-domain-2-tool-design-and-mcp-integration-this-part-of-the-post-will-cover-the-domain-3-which-holds-20-weightage-in-the-exam\u0022 class=\u0022relative group\u0022\u003eAs we discussed in the previous post on \u003ca href=\u0022\/post\/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts\u0022\u003eDomain \u003c\/a\u003e\u003ca href=\u0022\/post\/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts\u0022\u003e2: Tool Design and MCP Integration\u003c\/a\u003e, this part of the post will cover the Domain 3 which holds 20% weightage in the exam. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#as-we-discussed-in-the-previous-post-on-domain-2-tool-design-and-mcp-integration-this-part-of-the-post-will-cover-the-domain-3-which-holds-20-weightage-in-the-exam\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003ch3 id=\u0022if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 class=\u0022relative group\u0022\u003eIf you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eWhere to Register: \u003ca href=\u0022https:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u003c\/a\u003e\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:21\u002b05:30",
+    "datePublished": "2026-10-27T08:14:21\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:21\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2437"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6a89342d6797a1f792f34566/",
+       "name": "[\"6a89342d6797a1f792f34566\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Cca F Domain 3 Claude Code Configuration and Workflows Key Concepts",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <h3 id="as-we-discussed-in-the-previous-post-on-domain-2-tool-design-and-mcp-integration-this-part-of-the-post-will-cover-the-domain-3-which-holds-20-weightage-in-the-exam" class="relative group">As we discussed in the previous post on <a href="/post/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts">Domain </a><a href="/post/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts">2: Tool Design and MCP Integration</a>, this part of the post will cover the Domain 3 which holds 20% weightage in the exam. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#as-we-discussed-in-the-previous-post-on-domain-2-tool-design-and-mcp-integration-this-part-of-the-post-will-cover-the-domain-3-which-holds-20-weightage-in-the-exam" aria-label="Anchor">#</a></span></h3><h3 id="if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" class="relative group">If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" aria-label="Anchor">#</a></span></h3><p>Where to Register: <a href="https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification" target="_blank" rel="noreferrer">https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification</a></p>
+<blockquote>
+<p>Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.</p>
+</blockquote>
+<h4 id="topics-covered" class="relative group"><em><strong>Topics Covered</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#topics-covered" aria-label="Anchor">#</a></span></h4><p>CLAUDE.md Hierarchy, Scoping &amp; Modularity</p>
+<p>Custom Slash Commands</p>
+<p>Claude Skills</p>
+<p>Path-Specific Rules (conditional loading)</p>
+<p>Plan Mode vs Direct Execution</p>
+<p>Iterative Refinement</p>
+<p>CI/CD Pipeline Integration (non-interactive mode)</p>
+<p>Team Project Setup / Shared Configuration</p>
+<h2 id="claudemd-hierarchy-scoping--modularity" class="relative group">CLAUDE.md Hierarchy, Scoping &amp; Modularity <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#claudemd-hierarchy-scoping--modularity" aria-label="Anchor">#</a></span></h2><p>CLAUDE.md is a <strong>memory file</strong> Claude Code automatically reads for persistent project context (coding standards, architecture notes, commands to run). It exists at multiple <strong>scopes</strong>:</p>
+<ul>
+<li><strong>User-level</strong> (~/.claude/CLAUDE.md) — personal preferences, applies across all your projects, not shared with the team</li>
+<li><strong>Project-level</strong> (.claude/CLAUDE.md or root CLAUDE.md, checked into git) — shared with the whole team via version control Files can also be <strong>modular</strong> — split into smaller imported files instead of one giant file, so only relevant sections load.</li>
+</ul>
+<p><strong>Q1.</strong> A team complains that a coding-standards rule works on the lead engineer&rsquo;s machine but not for the rest of the team, even though everyone pulled the latest repo. What&rsquo;s the most likely cause?</p>
+<p>A) Claude Code is broken</p>
+<p>B) The rule was placed in the lead&rsquo;s user-level ~/.claude/CLAUDE.md instead of the project-level, version-controlled CLAUDE.md</p>
+<p>C) The team needs a different model</p>
+<p>D) CLAUDE.md doesn&rsquo;t support rules</p>
+<p>Answer: B — a very commonly tested exam pattern: user-level config isn&rsquo;t shared; project-level config (in the repo) is.</p>
+<p><strong>Q2.</strong> Why would you split a large CLAUDE.md into multiple smaller, imported files rather than one monolithic file?</p>
+<p>A) Claude Code requires it</p>
+<p>B) It has no practical benefit</p>
+<p>C) Modularity keeps unrelated context out of every session, so only relevant sections load and consume tokens</p>
+<p>D) Single files are always better</p>
+<p>Answer: C.</p>
+<p><strong>Q3.</strong> A monorepo has a root CLAUDE.md with general conventions, and a backend/CLAUDE.md with backend-specific rules. What does this demonstrate?</p>
+<p>A) Hierarchical scoping — nested CLAUDE.md files let context be specific to the part of the codebase being worked on</p>
+<p>B) An error — only one CLAUDE.md is allowed per repo</p>
+<p>C) User-level configuration</p>
+<p>D) Plan Mode</p>
+<p>Answer: A.</p>
+<h2 id="custom-slash-commands" class="relative group">Custom Slash Commands <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#custom-slash-commands" aria-label="Anchor">#</a></span></h2><p><strong>Reusable, saved prompts</strong> invoked with /command-name, stored as files (e.g., .claude/commands/review.md), so a team doesn&rsquo;t retype a long instruction (&ldquo;run our code review checklist&rdquo;) every time. Can accept arguments.</p>
+<p><strong>Q4.</strong> A team runs the exact same 6-step manual code-review prompt in every PR review session. What&rsquo;s the appropriate fix?</p>
+<p>A) Nothing — retype it each time for accuracy</p>
+<p>B) Put it in Plan Mode</p>
+<p>C) Save it as a custom slash command (e.g., /review) so it&rsquo;s invoked consistently with one command</p>
+<p>D) Convert it into an MCP server</p>
+<p>Answer: C.</p>
+<p><strong>Q5.</strong> What&rsquo;s the main functional difference between a simple custom slash command and a Claude Skill?</p>
+<p>A) There is no difference</p>
+<p>B) Skills support additional capabilities — bundled supporting files, automatic invocation by Claude without the user typing the command, and more complex execution — while custom commands are simpler saved prompts</p>
+<p>C) Slash commands can only run once</p>
+<p>D) Skills cannot take arguments</p>
+<p>Answer: B.</p>
+<h2 id="3-claude-skills" class="relative group">3. Claude Skills <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-claude-skills" aria-label="Anchor">#</a></span></h2><p>An evolution of custom commands — a <strong>packaged capability</strong> that can include instructions plus supporting files (scripts, templates, reference docs), and critically, <strong>can be invoked automatically by Claude</strong> when it judges the skill is relevant, not only when a user explicitly types a slash command.</p>
+<p><strong>Q6.</strong> A team wants Claude to automatically apply their PDF-generation logic whenever a user asks for &ldquo;a report,&rdquo; without the user needing to remember a specific command. What fits best?</p>
+<p>A) A user-level CLAUDE.md note</p>
+<p>B) A Claude Skill, since it supports automatic invocation based on relevance, unlike a plain slash command that requires explicit typing</p>
+<p>C) Plan Mode</p>
+<p>D) A path-specific rule</p>
+<p>Answer: B.</p>
+<p><strong>Q7.</strong> True/False: Claude Skills can bundle supporting files (e.g., templates or scripts) alongside instructions, while a basic custom command is just saved prompt text.</p>
+<p>Answer: True.</p>
+<h2 id="4-path-specific-rules-conditional-loading" class="relative group">4. Path-Specific Rules (Conditional Loading) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-path-specific-rules-conditional-loading" aria-label="Anchor">#</a></span></h2><p>Rules or context that only <strong>load/apply when Claude is working within a specific directory/path</strong> (e.g., a rule that only applies inside frontend/), rather than being loaded globally for the whole project. Keeps irrelevant context out of sessions working elsewhere in the repo.</p>
+<p><strong>Q8.</strong> A monorepo has both a Java backend and a React frontend. Frontend-specific linting conventions keep getting suggested during backend work, cluttering responses. What&rsquo;s the fix?</p>
+<p>A) Delete the frontend conventions entirely</p>
+<p>B) Scope the frontend conventions as a path-specific rule tied to the frontend/ directory, so they only load when Claude is working there</p>
+<p>C) Merge everything into one CLAUDE.md with no structure</p>
+<p>D) Switch to user-level config</p>
+<p>Answer: B.</p>
+<p><strong>Q9.</strong> What&rsquo;s the main benefit of path-specific rules over one global CLAUDE.md?</p>
+<p>A) They reduce cost/noise by only injecting relevant context for the area of the codebase actually being touched</p>
+<p>B) They replace the need for CLAUDE.md entirely</p>
+<p>C) They only work with MCP servers</p>
+<p>D) They apply globally regardless of path, ignoring the name</p>
+<p>Answer: A.</p>
+<h2 id="5-plan-mode-vs-direct-execution" class="relative group">5. Plan Mode vs Direct Execution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-plan-mode-vs-direct-execution" aria-label="Anchor">#</a></span></h2><p><strong>Plan Mode</strong> restricts Claude to read-only actions (reading files, searching, analyzing) to build an implementation plan <strong>before</strong> any changes are made — no file edits, no commits, no state changes. Once approved, execution happens separately.</p>
+<p><strong>Direct execution</strong> skips this — Claude reads and acts in the same flow. Plan Mode is for higher-stakes/larger changes where you want a review checkpoint; direct execution suits small, low-risk tasks.</p>
+<p><strong>Q10.</strong> A developer asks Claude to refactor a critical payment module touching 15 files. What&rsquo;s the recommended approach?</p>
+<p>A) Direct execution immediately, no review</p>
+<p>B) Plan Mode first — let Claude research and propose a plan, review/approve it, then execute — since this is a large, higher-risk change</p>
+<p>C) Skip planning since Claude Code doesn&rsquo;t support it</p>
+<p>D) Use a slash command instead</p>
+<p>Answer: B.</p>
+<p><strong>Q11.</strong> While in Plan Mode, can Claude modify a file to test a hypothesis?</p>
+<p>A) Yes, freely</p>
+<p>B) No</p>
+<p>C) Only with sudo</p>
+<p>D) Only for non-code files</p>
+<p>Answer: B — Plan Mode is restricted to read-only actions (reading, searching, analyzing); it cannot create, modify, or delete files, or run state-changing commands</p>
+<p><strong>Q12.</strong> For a one-line typo fix in a README, is Plan Mode necessary?</p>
+<p>A) Yes, always required</p>
+<p>B) Plan Mode is required for any file edit</p>
+<p>C) Plan Mode and direct execution are the same thing</p>
+<p>D) No, direct execution is required</p>
+<p>Answer: D — direct execution is appropriate for small, low-risk, unambiguous changes; Plan Mode overhead isn&rsquo;t justified here</p>
+<p><strong>Q13.</strong> What&rsquo;s the recommended pattern for a mid-to-large feature: Plan → immediate execution, or Plan → written spec file → review → execute?</p>
+<p>A) Plan → immediate execution is always better</p>
+<p>B) Plan → spec file → review/iterate → execute</p>
+<p>C) Neither — always skip planning</p>
+<p>D) Spec files are not supported</p>
+<p>Answer: B — mirrors how senior engineers work: plan and get the design reviewed before writing code. Committing the spec gives a reviewable, version-controlled artifact before code changes happen</p>
+<h2 id="6-iterative-refinement" class="relative group">6. Iterative Refinement <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-iterative-refinement" aria-label="Anchor">#</a></span></h2><p>Treating Claude Code&rsquo;s output as a <strong>first draft to be reviewed and refined across multiple passes</strong>, rather than expecting a single perfect result — e.g., generate, review, give targeted feedback, regenerate, until it meets the bar.</p>
+<p><strong>Q14.</strong> Claude Code generates a first implementation that mostly works but misses two edge cases. What&rsquo;s the appropriate next step?</p>
+<p>A) Give targeted, specific feedback on the two missing edge cases and let Claude refine the existing implementation</p>
+<p>B) Discard everything and start over with a longer prompt</p>
+<p>C) Accept it as-is since first drafts are always final</p>
+<p>D) Switch to a different tool</p>
+<p>Answer: A — iterative refinement over one-shot perfection.</p>
+<p><strong>Q15.</strong> Why is iterative refinement often more reliable than trying to write one giant, perfectly detailed prompt upfront?</p>
+<p>A) It isn&rsquo;t — one-shot prompting is always superior</p>
+<p>B) Claude Code doesn&rsquo;t support multi-turn conversations</p>
+<p>C) Complex tasks often have details that only surface once you see a first attempt; refining against real output catches issues a spec alone might miss</p>
+<p>D) It uses fewer tokens overall in every case</p>
+<p>Answer: C.</p>
+<h2 id="7-cicd-pipeline-integration-non-interactive-mode" class="relative group">7. CI/CD Pipeline Integration (Non-Interactive Mode) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-cicd-pipeline-integration-non-interactive-mode" aria-label="Anchor">#</a></span></h2><p>Running Claude Code <strong>non-interactively</strong> inside automated pipelines (e.g., via the -p / print flag) — no back-and-forth chat, just a prompt in, structured result out, suitable for CI steps like automated PR review or test generation.</p>
+<p><strong>Q16.</strong> A team wants Claude Code to automatically review every pull request as a CI step and post structured comments, with no human sitting at a terminal. What execution mode fits?</p>
+<p>A) Interactive Plan Mode session</p>
+<p>B) Non-interactive mode (e.g., -p flag) invoked as a pipeline step, producing structured output the pipeline can parse</p>
+<p>C) A custom slash command run manually</p>
+<p>D) User-level CLAUDE.md configuration</p>
+<p>Answer: B.</p>
+<p><strong>Q17.</strong> Why is structured (not free-text) output particularly important when Claude Code runs inside a CI/CD pipeline?</p>
+<p>A) It looks nicer</p>
+<p>B) Structured output is required for Plan Mode only</p>
+<p>C) Downstream pipeline steps need to programmatically parse the result (e.g., pass/fail, list of issues) rather than a human reading prose</p>
+<p>D) It has no bearing on CI/CD</p>
+<p>Answer: C.</p>
+<p><strong>Q18.</strong> In a CI/CD context, why is an interactive session (waiting for user approval mid-task) unsuitable?</p>
+<p>A) It isn&rsquo;t unsuitable, it&rsquo;s preferred</p>
+<p>B) Pipelines run unattended; a step waiting on human input would hang/block the pipeline, so non-interactive/no-prompt execution is required</p>
+<p>C) CI/CD doesn&rsquo;t support Claude Code at all</p>
+<p>D) Interactive mode is faster in CI</p>
+<p>Answer: B.</p>
+<h2 id="8-team-project-setup--shared-configuration" class="relative group">8. Team Project Setup / Shared Configuration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-team-project-setup--shared-configuration" aria-label="Anchor">#</a></span></h2><p>Structuring a project so that <strong>Claude Code behaves consistently across every team member&rsquo;s machine</strong> — shared, version-controlled CLAUDE.md, commands, skills, and MCP config at the project level, vs. individual/personal preferences kept at the user level.</p>
+<p><strong>Q19.</strong> A new engineer joins the team and clones the repo. Without any manual setup on their</p>
+<p>part, they should immediately get the team&rsquo;s coding standards, custom commands, and project MCP servers. What must be true of the project&rsquo;s configuration?</p>
+<p>A) It&rsquo;s all stored in each individual&rsquo;s user-level config, so nothing to do</p>
+<p>B) Team configuration is not possible in Claude Code</p>
+<p>C) The relevant CLAUDE.md, .claude/commands/, skills, and .mcp.json are project-scoped and checked into the repository, so cloning the repo brings them along automatically</p>
+<p>D) Each engineer must manually retype all standards</p>
+<p>Answer: C.</p>
+<p><strong>Q20.</strong> What&rsquo;s a good reason to keep some configuration (e.g., a personal Slack MCP server, individual editor preferences) at the user level instead of project level?</p>
+<p>A) User-level config is always required</p>
+<p>B) It&rsquo;s specific to one person&rsquo;s workflow/tools and shouldn&rsquo;t be forced on the whole team via the shared repo config</p>
+<p>C) Project-level configuration doesn&rsquo;t support personalization at all</p>
+<p>D) There&rsquo;s no valid reason; everything should be project-level</p>
+<p>Answer: B.</p>
+<h1 id="realistic-scenario-based-question-cross-topic-exam-style" class="relative group">Realistic Scenario-Based Question (cross-topic, exam style) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#realistic-scenario-based-question-cross-topic-exam-style" aria-label="Anchor">#</a></span></h1><p><strong>Q21.</strong> A team&rsquo;s PR-review command works differently depending on which engineer runs it, despite everyone using the same slash command file from the repo. Investigation shows some engineers also have a personal ~/.claude/CLAUDE.md with conflicting review conventions. What&rsquo;s happening, and what&rsquo;s the fix?</p>
+<p>A) Slash commands are broken; nothing to do with CLAUDE.md</p>
+<p>B) User-level CLAUDE.md content is layering on top of project-level context, causing inconsistent behavior; align personal configs or move the conflicting rule to project level so it&rsquo;s authoritative for everyone</p>
+<p>C) This is expected and not fixable</p>
+<p>D) Restart Claude Code</p>
+<p>Answer: B — hierarchy/scoping conflict, a realistic diagnostic-style question.</p>
+<p><strong>Q22.</strong> For a large feature spanning both backend and frontend, an architect wants:</p>
+<p>(1) no code changes until a plan is reviewed,</p>
+<p>(2) the plan captured as a reviewable artifact,</p>
+<p>(3) backend and frontend conventions to apply only in their respective directories during execution.</p>
+<p>Which combination of Domain 3 features satisfies all three requirements?</p>
+<p>A) Direct execution + a single global CLAUDE.md</p>
+<p>B) CI/CD non-interactive mode only</p>
+<p>C) Claude Skills alone, with no Plan Mode</p>
+<p>D) Plan Mode → written spec file → review → execute, combined with path-specific rules for backend/ and frontend/</p>
+<p>Answer: D.</p>
+<p><strong>Q23.</strong> A CI pipeline step runs Claude Code non-interactively to auto-generate release notes from commit history, but the step keeps failing because Claude sometimes returns explanatory prose mixed with the release notes, which breaks the parser. What&rsquo;s the root cause and fix?</p>
+<p>A) Missing structured output enforcement</p>
+<p>B) Non-interactive mode isn&rsquo;t supported for this use case</p>
+<p>C) The fix is to switch to Plan Mode</p>
+<p>D) The fix is to make the CLAUDE.md file larger</p>
+<p>Answer: B — the prompt/config should require a strict output format so the pipeline can reliably parse it, consistent with CI/CD needing structured, parseable results</p>
+<p><strong>Q24.</strong> A monorepo team wants a skill that automatically kicks in whenever someone asks for &ldquo;test coverage&rdquo; analysis, without needing to remember a slash command name, and it needs to reference a bundled coverage-threshold config file. What Domain 3 feature is purpose-built for this, and why not a plain slash command?</p>
+<p>A) Plain slash command — identical capability</p>
+<p>B) A Claude Skill — it supports automatic invocation based on relevance and can bundle supporting files, which a basic slash command cannot do</p>
+<p>C) Path-specific rule — unrelated to this use case</p>
+<p>D) User-level CLAUDE.md</p>
+<p>Answer: B.</p>
+<h1 id="quick-reference-table" class="relative group">QUICK REFERENCE TABLE <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#quick-reference-table" aria-label="Anchor">#</a></span></h1><table>
+	<thead>
+			<tr>
+					<th>Concept</th>
+					<th>One-line definition</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>CLAUDE.md</td>
+					<td>Persistent memory file Claude Code reads automatically for project context</td>
+			</tr>
+			<tr>
+					<td>User-level config</td>
+					<td>~/.claude/ — personal, not shared with team</td>
+			</tr>
+			<tr>
+					<td>Project-level config</td>
+					<td>.claude/ in repo — shared via version control</td>
+			</tr>
+			<tr>
+					<td>Modular CLAUDE.md</td>
+					<td>Split into smaller imported files to reduce irrelevant context</td>
+			</tr>
+			<tr>
+					<td>Custom slash command</td>
+					<td>Saved, reusable prompt invoked via /name</td>
+			</tr>
+			<tr>
+					<td>Claude Skill</td>
+					<td>Packaged capability: instructions + files + can auto-invoke</td>
+			</tr>
+			<tr>
+					<td>Path-specific rule</td>
+					<td>Context that only loads for a specific directory</td>
+			</tr>
+			<tr>
+					<td>Plan Mode</td>
+					<td>Read-only research/planning phase before any changes</td>
+			</tr>
+			<tr>
+					<td>Direct execution</td>
+					<td>Read + act in the same flow, no planning checkpoint</td>
+			</tr>
+			<tr>
+					<td>Iterative refinement</td>
+					<td>Treating output as a draft to review and improve across passes</td>
+			</tr>
+			<tr>
+					<td>Non-interactive mode (-p)</td>
+					<td>Runs Claude Code unattended for CI/CD, no chat back-and-forth</td>
+			</tr>
+			<tr>
+					<td>Team project setup</td>
+					<td>Project-scoped, version-controlled shared configuration</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>Note: Domain 3 questions on the real exam tend to be diagnostic (&ldquo;why isn&rsquo;t X working across the team?&rdquo;) rather than pure definition recall.</em></p>
+<p>Referring to these questions just gives you an idea how the exam looks like, and can vary. Share if you have any answers or questions not correctly placed or explained.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/fork-join-framework-in-java/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Fork-Join Framework in Java</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building the Foundation: APIs, Prompts, and First Runs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

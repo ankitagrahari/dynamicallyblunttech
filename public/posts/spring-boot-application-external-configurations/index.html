@@ -1,0 +1,617 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Spring Boot Application External Configurations &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Spring Boot Application External Configurations &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Spring boot application provides a quick and elegant way to create REST API&rsquo;s with minimal boiler plate code and resolves any dependency that is present in the classpath.
+In this plethora of new technologies era, it is evident that your spring boot application can have multiple configuration files which is configured, to be used by different parts of your code.
+For example the database specific configuration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/spring-boot-application-external-configurations/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/spring-boot-application-external-configurations/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Spring Boot Application External Configurations">
+	<meta property="og:description" content="Spring boot application provides a quick and elegant way to create REST API’s with minimal boiler plate code and resolves any dependency that is present in the classpath.
+In this plethora of new technologies era, it is evident that your spring boot application can have multiple configuration files which is configured, to be used by different parts of your code.
+For example the database specific configuration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Spring Boot Application External Configurations">
+	<meta name="twitter:description" content="Spring boot application provides a quick and elegant way to create REST API’s with minimal boiler plate code and resolves any dependency that is present in the classpath.
+In this plethora of new technologies era, it is evident that your spring boot application can have multiple configuration files which is configured, to be used by different parts of your code.
+For example the database specific configuration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Spring Boot Application External Configurations",
+    "headline": "Spring Boot Application External Configurations",
+    
+    "abstract": "\u003cp\u003eSpring boot application provides a quick and elegant way to create REST API\u0026rsquo;s with minimal boiler plate code and resolves any dependency that is present in the \u003cem\u003eclasspath\u003c\/em\u003e.\u003c\/p\u003e\n\u003cp\u003eIn this plethora of new technologies era, it is evident that your spring boot application can have multiple configuration files which is configured, to be used by different parts of your code.\u003c\/p\u003e\n\u003cp\u003eFor example the database specific configuration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/spring-boot-application-external-configurations\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:21\u002b05:30",
+    "datePublished": "2026-10-27T08:14:21\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:21\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1199"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Spring Boot Application External Configurations",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Spring Boot Application External Configurations
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Spring boot application provides a quick and elegant way to create REST API&rsquo;s with minimal boiler plate code and resolves any dependency that is present in the <em>classpath</em>.</p>
+<p>In this plethora of new technologies era, it is evident that your spring boot application can have multiple configuration files which is configured, to be used by different parts of your code.</p>
+<p>For example the database specific configuration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.</p>
+<p>In this blog post, we will focus on <em><strong>different ways to read configuration files</strong></em> in a spring boot application. Lets start by creating a sample spring boot application using <a href="https://start.spring.io/" target="_blank" rel="noreferrer"><em>Spring initializer</em></a> with Spring Web and Lombok as dependencies. We will create a sample Rest controller which will read some configurable properties from the properties file.</p>
+<h3 id="default-configuration" class="relative group"><strong>Default Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#default-configuration" aria-label="Anchor">#</a></span></h3><p>Whenever we create a spring boot application, under the <em>/src/main/resources</em> directory, you can find an <em>application.properties</em> file, which is the default configuration file for your spring boot application. You would specify any number of parameters as key value pairs, which can be read by your code as per necessary.</p>
+<p>This is the ***default ***configuration file which spring boot automatically can finds it in the</p>
+<ul>
+<li>*classpath root *or</li>
+<li>under <em>classpath config package</em>.</li>
+</ul>
+<p>It can also look</p>
+<ul>
+<li>under current directory or</li>
+<li>child of current directory or</li>
+<li>child of child of current directory</li>
+</ul>
+<p>to find files of <em>application.properties</em> or the <em>application.yaml</em> type.</p>
+<p>We can guide spring boot to look for the default configuration file in some other directory as well using <em>@PropertySource</em> annotation, which we will look in some time.</p>
+<p>There are different ways to pass the configurable values to your project other than the default configuration file.</p>
+<h3 id="value-annotation" class="relative group"><strong>@Value annotation</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#value-annotation" aria-label="Anchor">#</a></span></h3><h5 id="how-to" class="relative group"><strong>How To</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-to" aria-label="Anchor">#</a></span></h5><p>This is more real world scenarios to extract key value pairs from the configuration file. It can be used with the parameters we want in the configuration file like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;${app.config.name}&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String appConfigName;
+</span></span></code></pre></div><p>Here the <em>app.config.name</em> parameter is injected in the *appConfigName *String variable.</p>
+<p>Also, this brings to one important thing is @Value annotation accepts only String value which further can be casted to other datatype by Spring.</p>
+<blockquote>
+<p><em>@Value</em> annotation can get environment variables or system variables or configurable variables defined in some configuration (**.properties or *.yaml or <em>yml</em>) files.</p>
+</blockquote>
+<h5 id="default-value" class="relative group"><strong>Default Value</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#default-value" aria-label="Anchor">#</a></span></h5><p>We can give a default value with @Value annotation like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;${app.config.name:DBTConfigReader}&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String appConfigName;
+</span></span></code></pre></div><p>This is to handle scenarios where the <a href="app.config.name"><em>app.config.name</em></a> is not found in the configuration files, then it will default it to &ldquo;DBTConfigReader&rdquo;.</p>
+<h5 id="spel" class="relative group"><strong>SpEL</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#spel" aria-label="Anchor">#</a></span></h5><p>We can use <em>spring expression language</em> to refer to a list of values or map and do some manipulations on it.</p>
+<p>Get the entire properties file using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;#{systemProperties}&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> properties;
+</span></span></code></pre></div><p>or can get any specific parameter:</p>
+<p>in case of Map, it is like doing a get on the map&rsquo;s key:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;#{systemProperties[&#39;app.config.group.map&#39;]}&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> appConfigGroupMap;
+</span></span></code></pre></div><p>in case of List, we could use something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;#{&#39;${app.config}&#39;.split(&#39;,&#39;)}&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> appConfigs;
+</span></span></code></pre></div><p>even with the case where we have to get Map<!-- raw HTML omitted -->, for entries where parameter has values separated by delimiter like comma, we can use following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;#{${app.config.entries}}&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>String, List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;</span> entries;
+</span></span></code></pre></div><h3 id="from-environment" class="relative group">From Environment <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#from-environment" aria-label="Anchor">#</a></span></h3><p>Spring core framework provides another way to read configuration values using Environment interface based on the profile which is selected.</p>
+<p>Here we are going to use the <em>@PropertySource</em> to explicitly tell Spring that when this configuration is loaded, the configuration parameters needs to be accessed from the given configuration files present in the <em>classpath</em>. We can <em>autowire</em> the Environment interface which will injected with the object during the runtime by Spring.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.dbt.appconfreader.entity.AppConfig;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Autowired;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.Configuration;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.PropertySource;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.core.env.Environment;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PropertySource</span>(<span style="color:#e6db74">&#34;classpath:env.properties&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EnvConfigReader</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Environment env;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> AppConfig <span style="color:#a6e22e">appConfig</span>(){
+</span></span><span style="display:flex;"><span>        AppConfig obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AppConfig();
+</span></span><span style="display:flex;"><span>        obj.<span style="color:#a6e22e">setKey</span>(<span style="color:#e6db74">&#34;system.name&#34;</span>);
+</span></span><span style="display:flex;"><span>        obj.<span style="color:#a6e22e">setValue</span>(env.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;system.name&#34;</span>));
+</span></span><span style="display:flex;"><span>        obj.<span style="color:#a6e22e">setMessage</span>(<span style="color:#e6db74">&#34;JavaHome:&#34;</span><span style="color:#f92672">+</span> env.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;java.home&#34;</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> obj;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You will notice if you run this class, that the value for *JavaHome *will be from the environment variable set and not from the configuration files.</p>
+<p><em><strong>NOTE</strong></em>*: Make sure that the property key is not duplicated from the default configuration properties file, else the default will take the precedence. *</p>
+<h3 id="from-beans" class="relative group"><strong>From Beans</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#from-beans" aria-label="Anchor">#</a></span></h3><blockquote>
+<p>Spring Boot provides an alternative method of working with properties that allows strongly typed beans to govern and validate the configuration of your application.</p>
+</blockquote>
+<p>For the specific properties file like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>server.<span style="color:#a6e22e">port</span><span style="color:#f92672">=</span>8798
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">profile</span><span style="color:#f92672">=</span>DEV
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>dev<span style="color:#f92672">-</span>DynamicallyBluntTech
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">type</span><span style="color:#f92672">=</span>dev<span style="color:#f92672">-</span>TechBlog
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">entry</span><span style="color:#f92672">=</span>DEV Application Configuration Reader
+</span></span></code></pre></div><p>create a bean out of it, which can be injected when necessary.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.Getter;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.Setter;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.boot.context.properties.ConfigurationProperties;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.PropertySource;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.stereotype.Component;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Getter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Setter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ConfigurationProperties</span>(prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;app.config&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PropertySource</span>(<span style="color:#e6db74">&#34;classpath:dev.properties&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DevProperties</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String profile;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String type;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String entry;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>For nested level values, we can create public static class that can be populated with the nested level of property name. For the following sample properties file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>server.<span style="color:#a6e22e">port</span><span style="color:#f92672">=</span>8798
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">profile</span><span style="color:#f92672">=</span>DEV
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>dev<span style="color:#f92672">-</span>DynamicallyBluntTech
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">type</span><span style="color:#f92672">=</span>dev<span style="color:#f92672">-</span>TechBlog
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">entry</span><span style="color:#f92672">=</span>DEV Application Configuration Reader
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">classA</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>A<span style="color:#f92672">-</span>DBT_Nested
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">classA</span>.<span style="color:#a6e22e">type</span><span style="color:#f92672">=</span>A<span style="color:#f92672">-</span>nested
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">classA</span>.<span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>A<span style="color:#f92672">-</span>IN<span style="color:#f92672">-</span>USE
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">classB</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>B<span style="color:#f92672">-</span>DBT_Nested
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">classB</span>.<span style="color:#a6e22e">type</span><span style="color:#f92672">=</span>B<span style="color:#f92672">-</span>nested
+</span></span><span style="display:flex;"><span>app.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">classB</span>.<span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>B<span style="color:#f92672">-</span>IN<span style="color:#f92672">-</span>USE
+</span></span></code></pre></div><p>We can observe that the nested level is there on the <em>app.config.classA</em> and <em>app.config.classB</em></p>
+<p>for which we can create the Bean as this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Getter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Setter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ConfigurationProperties</span>(prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;app.config&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PropertySource</span>(<span style="color:#e6db74">&#34;classpath:dev.properties&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DevProperties</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String profile;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String type;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String entry;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> ClassA classA;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> ClassB classB;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Getter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Setter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassA</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String type;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Getter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Setter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassB</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String type;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This will get the values injected under each nested level properly.</p>
+<p>We were mostly talking about reading property files till now, but lets see reading the *yaml *files instead if properties file.</p>
+<h3 id="from-yaml-configuration" class="relative group"><strong>From YAML configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#from-yaml-configuration" aria-label="Anchor">#</a></span></h3><p>When using the <em>@Value</em> annotation, we don&rsquo;t have to change anything here and can get the values present as part of the configuration files. Same is the case with *Environment *interface.</p>
+<p>The problem comes with <em>@PropertySource</em>, which cannot read *YAML *configuration files. So, in order to find something to make it work with, we can utilize the Spring *YamlPropertySourceLoader *which load the <em>.yml</em> or <em>.yaml</em> files into the *PropertySource *abstract class.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> YamlPropertySourceLoader <span style="color:#a6e22e">propertyYamlConfigInDev</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> YamlPropertySourceLoader();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We also have to define the *YAML *factory which will take the *<em>.yml</em> or *<em>.yaml</em> files and convert to the property files to read the configuration parameters.</p>
+<p>So, now we have the factory class, which takes the *yaml *and convert to *PropertySource *object like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YamlSourceFactory</span> <span style="color:#66d9ef">implements</span> PropertySourceFactory {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> PropertySource<span style="color:#f92672">&lt;?&gt;</span> <span style="color:#a6e22e">createPropertySource</span>(
+</span></span><span style="display:flex;"><span>        String name, EncodedResource resource) {
+</span></span><span style="display:flex;"><span>        YamlPropertiesFactoryBean factoryBean <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> YamlPropertiesFactoryBean();
+</span></span><span style="display:flex;"><span>        factoryBean.<span style="color:#a6e22e">setResources</span>(resource.<span style="color:#a6e22e">getResource</span>());
+</span></span><span style="display:flex;"><span>        Properties properties <span style="color:#f92672">=</span> factoryBean.<span style="color:#a6e22e">getObject</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> PropertiesPropertySource(
+</span></span><span style="display:flex;"><span>            resource.<span style="color:#a6e22e">getResource</span>().<span style="color:#a6e22e">getFilename</span>(), properties);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And the configuration class will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Getter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PropertySource</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classpath:diff.yaml&#34;</span>, factory <span style="color:#f92672">=</span> YamlSourceFactory.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YamlConfigReader</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;${app.config.name:DBTConfigReader}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String appConfigName;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Value</span>(<span style="color:#e6db74">&#34;${app.config.type}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String appConfigType;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> YamlPropertySourceLoader <span style="color:#a6e22e">propertyYamlConfigInDev</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> YamlPropertySourceLoader();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And this concludes all the ways to read the configuration files in Spring boot application. You can find all the code base on my <a href="https://github.com/ankitagrahari/AppConfReader" target="_blank" rel="noreferrer">*Github *</a>link.</p>
+<h3 id="references" class="relative group"><strong>References:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config" target="_blank" rel="noreferrer"><em>https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config</em></a></li>
+</ul>
+<p>Hope this will help you in your learning process. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/crud-operation-in-mongodb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CRUD operation in MongoDB</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:20 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/fork-join-framework-in-java/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Fork-Join Framework in Java</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

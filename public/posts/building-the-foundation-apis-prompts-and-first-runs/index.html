@@ -1,0 +1,654 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Building the Foundation: APIs, Prompts, and First Runs &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Building the Foundation: APIs, Prompts, and First Runs &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In Part 1 of this series, we introduced the Smart DevOps Assistant (SDA) — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
+Now it’s time to get our hands dirty. In this post, we’ll:
+
+Scaffold core APIs (/generate-summary, /analyze-pr)
+Wire up our first prompt templates
+Connect Spring AI to an LLM
+Run our very first end-to-end test
+
+By the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Building the Foundation: APIs, Prompts, and First Runs">
+	<meta property="og:description" content="In Part 1 of this series, we introduced the Smart DevOps Assistant (SDA) — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
+Now it’s time to get our hands dirty. In this post, we’ll:
+Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt templates Connect Spring AI to an LLM Run our very first end-to-end test By the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Building the Foundation: APIs, Prompts, and First Runs">
+	<meta name="twitter:description" content="In Part 1 of this series, we introduced the Smart DevOps Assistant (SDA) — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
+Now it’s time to get our hands dirty. In this post, we’ll:
+Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt templates Connect Spring AI to an LLM Run our very first end-to-end test By the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Building the Foundation: APIs, Prompts, and First Runs",
+    "headline": "Building the Foundation: APIs, Prompts, and First Runs",
+    
+    "abstract": "\u003cp\u003eIn \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/meet-smart-devops-assistant-vision-stack-and-journey-so-far\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 1\u003c\/a\u003e of this series, we introduced the \u003cstrong\u003eSmart DevOps Assistant (SDA)\u003c\/strong\u003e — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.\u003c\/p\u003e\n\u003cp\u003eNow it’s time to get our hands dirty. In this post, we’ll:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eScaffold core APIs (\/generate-summary, \/analyze-pr)\u003c\/li\u003e\n\u003cli\u003eWire up our first \u003cstrong\u003eprompt templates\u003c\/strong\u003e\u003c\/li\u003e\n\u003cli\u003eConnect Spring AI to an LLM\u003c\/li\u003e\n\u003cli\u003eRun our very first \u003cstrong\u003eend-to-end test\u003c\/strong\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eBy the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/building-the-foundation-apis-prompts-and-first-runs\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:21\u002b05:30",
+    "datePublished": "2026-10-27T08:14:21\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:21\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1016"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/681676055d80aaac0c9329be/",
+       "name": "[\"681676055d80aaac0c9329be\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Building the Foundation Apis, Prompts, and First Runs",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Building the Foundation: APIs, Prompts, and First Runs
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In <a href="https://www.dynamicallyblunttech.com/post/meet-smart-devops-assistant-vision-stack-and-journey-so-far" target="_blank" rel="noreferrer">Part 1</a> of this series, we introduced the <strong>Smart DevOps Assistant (SDA)</strong> — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.</p>
+<p>Now it’s time to get our hands dirty. In this post, we’ll:</p>
+<ul>
+<li>Scaffold core APIs (/generate-summary, /analyze-pr)</li>
+<li>Wire up our first <strong>prompt templates</strong></li>
+<li>Connect Spring AI to an LLM</li>
+<li>Run our very first <strong>end-to-end test</strong></li>
+</ul>
+<p>By the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀</p>
+<h2 id="step-1--project-setup" class="relative group"><strong>Step 1 — Project Setup</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-1--project-setup" aria-label="Anchor">#</a></span></h2><p>Our stack stays the same: <strong>Java 21, Spring Boot 3.x, Spring AI, ChromaDB</strong>.</p>
+<p>Add the related dependencies required for Spring AI starter (check <a href="http://spring.io" target="_blank" rel="noreferrer">spring.io</a><a href="https://docs.spring.io/spring-ai/reference/" target="_blank" rel="noreferrer"> docs</a> for the latest):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>advisors<span style="color:#f92672">-</span>vector<span style="color:#f92672">-</span>store<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>model<span style="color:#f92672">-</span>ollama<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>We’ll also add the Chroma dependency (not used fully yet, but needed later for context injection):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>vector<span style="color:#f92672">-</span>store<span style="color:#f92672">-</span>chroma<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Application config (application.yml):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Ollama <span style="color:#f92672">-</span> Chat
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">base</span><span style="color:#f92672">-</span>url<span style="color:#f92672">=</span>http:<span style="color:#75715e">//localhost:11434</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">model</span><span style="color:#f92672">=</span>llama3.<span style="color:#a6e22e">2</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">temperature</span><span style="color:#f92672">=</span>0.<span style="color:#a6e22e">7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> Ollama <span style="color:#f92672">-</span> Embeddings
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">embedding</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">model</span><span style="color:#f92672">=</span>hf.<span style="color:#a6e22e">co</span><span style="color:#f92672">/</span>mixedbread<span style="color:#f92672">-</span>ai<span style="color:#f92672">/</span>mxbai<span style="color:#f92672">-</span>embed<span style="color:#f92672">-</span>large<span style="color:#f92672">-</span>v1
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">embedding</span>.<span style="color:#a6e22e">base</span><span style="color:#f92672">-</span>url<span style="color:#f92672">=</span>http:<span style="color:#75715e">//localhost:11434</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">init</span>.<span style="color:#a6e22e">pull</span><span style="color:#f92672">-</span>model<span style="color:#f92672">-</span>strategy<span style="color:#f92672">=</span>when_missing
+</span></span></code></pre></div><p>If you are using OpenAI, then use the following</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> OpenAI
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">api</span><span style="color:#f92672">-</span>key<span style="color:#f92672">=</span>YOUR_OPENAI_API_KEY
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">base</span><span style="color:#f92672">-</span>url<span style="color:#f92672">=</span>http:<span style="color:#75715e">//localhost:12434/engines</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">model</span><span style="color:#f92672">=</span>ai<span style="color:#f92672">/</span>gemma3
+</span></span></code></pre></div><p>Configuration related to the chromaDB vector store</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Chroma Vector Store connection properties
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">vectorstore</span>.<span style="color:#a6e22e">chroma</span>.<span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">host</span><span style="color:#f92672">=</span>http:<span style="color:#75715e">//localhost</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">vectorstore</span>.<span style="color:#a6e22e">chroma</span>.<span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">port</span><span style="color:#f92672">=</span>8000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Chroma Vector Store collection properties
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">vectorstore</span>.<span style="color:#a6e22e">chroma</span>.<span style="color:#a6e22e">initialize</span><span style="color:#f92672">-</span>schema<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">vectorstore</span>.<span style="color:#a6e22e">chroma</span>.<span style="color:#a6e22e">collection</span><span style="color:#f92672">-</span>name<span style="color:#f92672">=</span>prCollection
+</span></span></code></pre></div><h2 id="step-2--define-core-apis" class="relative group"><strong>Step 2 — Define Core APIs</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-2--define-core-apis" aria-label="Anchor">#</a></span></h2><p>We’ll have following endpoints:</p>
+<ul>
+<li>POST /ai/pr-summary → short overview of a PR</li>
+<li>POST /ai/pr-analyze → deeper review with suggestions</li>
+<li>POST /ai/vectorstore → store changed files in a PR to vector store.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RequestMapping</span>(<span style="color:#e6db74">&#34;/ai&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span>  <span style="color:#a6e22e">AIController</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AIService aiService;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> SDAVectorStoreService sdaVectorStoreService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AIController</span>(
+</span></span><span style="display:flex;"><span>			AIService aiService,
+</span></span><span style="display:flex;"><span>            SDAVectorStoreService sdaVectorStoreService) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">aiService</span> <span style="color:#f92672">=</span> aiService;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sdaVectorStoreService</span> <span style="color:#f92672">=</span> sdaVectorStoreService;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostMapping</span>(<span style="color:#e6db74">&#34;/pr-summary&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>PRSummaryResponse<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">generateSummary</span>(
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">@RequestBody</span> PRSummaryRequest prSummaryRequest){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> aiService.<span style="color:#a6e22e">generateSummary</span>(
+</span></span><span style="display:flex;"><span>			prSummaryRequest);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostMapping</span>(<span style="color:#e6db74">&#34;/pr-analyze&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> PRSuggestionResponse <span style="color:#a6e22e">analyzePR</span>(
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">@RequestBody</span> AnalyzePRRequest request){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> aiService.<span style="color:#a6e22e">analyzePR</span>(
+</span></span><span style="display:flex;"><span>			request.<span style="color:#a6e22e">prDiff</span>(), 
+</span></span><span style="display:flex;"><span>			request.<span style="color:#a6e22e">fileNames</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostMapping</span>(<span style="color:#e6db74">&#34;/vectorstore&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">storeDataToVectorStore</span>(
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">@RequestBody</span> List<span style="color:#f92672">&lt;</span>GitChangedFile<span style="color:#f92672">&gt;</span> gitChangedFileList){
+</span></span><span style="display:flex;"><span>        sdaVectorStoreService.<span style="color:#a6e22e">populateVectorStore</span>(
+</span></span><span style="display:flex;"><span>				gitChangedFileList);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This keeps things API-first, and our endpoints are defined here.</p>
+<h2 id="step-3--prompt-templates" class="relative group"><strong>Step 3 — Prompt Templates</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-3--prompt-templates" aria-label="Anchor">#</a></span></h2><p>Spring AI’s PromptTemplate lets us define reusable, dynamic prompts.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PromptTemplate summaryTemplate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PromptTemplate(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    You are a senior software reviewer.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Summarize the following PR in 2-3 sentences.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Highlight potential risks if visible.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    PR Title: {title}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    PR Description: {description}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    PR Diff: {diff}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>);
+</span></span></code></pre></div><p>We can now inject title, description, and diff dynamically.</p>
+<p>For analysis:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>PromptTemplate analyzeTemplate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PromptTemplate(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    You are a senior software engineer.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Given this PR diff: {diff}, 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    provide:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    1. A short summary
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    2. Suggestions for improvements
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    3. Risks to watch for
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Respond in JSON:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;summary&#34;: &#34;...&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;suggestions&#34;: [&#34;...&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;risks&#34;: [&#34;...&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>);
+</span></span></code></pre></div><h2 id="step-4--connect-with-the-llm" class="relative group"><strong>Step 4 — Connect with the LLM</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-4--connect-with-the-llm" aria-label="Anchor">#</a></span></h2><p>Spring AI makes this easy using ChatClient.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> PRSummaryResponse <span style="color:#a6e22e">generateAISummary</span>(
+</span></span><span style="display:flex;"><span>		PRSummaryRequest prSummaryRequest){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   PromptTemplate summaryTemplate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PromptTemplate(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           You are a senior software reviewer.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               Summarize the following PR in 2-3 sentences.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               Highlight potential risks if visible.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               PR Title: {title}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               PR Description: {description}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               PR Diff: {diff}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           &#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> chatClient
+</span></span><span style="display:flex;"><span>           .<span style="color:#a6e22e">prompt</span>(summaryTemplate.<span style="color:#a6e22e">create</span>(Map.<span style="color:#a6e22e">of</span>(
+</span></span><span style="display:flex;"><span>                  <span style="color:#e6db74">&#34;title&#34;</span>, prSummaryRequest.<span style="color:#a6e22e">getTitle</span>(),
+</span></span><span style="display:flex;"><span>                  <span style="color:#e6db74">&#34;description&#34;</span>, prSummaryRequest.<span style="color:#a6e22e">getDescription</span>(),
+</span></span><span style="display:flex;"><span>                  <span style="color:#e6db74">&#34;diff&#34;</span>, prSummaryRequest.<span style="color:#a6e22e">getDiff</span>())))
+</span></span><span style="display:flex;"><span>              .<span style="color:#a6e22e">call</span>()
+</span></span><span style="display:flex;"><span>              .<span style="color:#a6e22e">entity</span>(PRSummaryResponse.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Notice how the response is mapped into a DTO (PRSummaryResponse) — no parsing headaches and dynamic substitution in the prompt.</p>
+<h2 id="step-5--a-taste-of-context-injection" class="relative group"><strong>Step 5 — A Taste of Context Injection</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-5--a-taste-of-context-injection" aria-label="Anchor">#</a></span></h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> PRSuggestionResponse <span style="color:#a6e22e">analyzePR</span>(String prDiff, List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> fileNames){
+</span></span><span style="display:flex;"><span>        PromptTemplate analyzePRTemplate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PromptTemplate(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                You are a senior software engineer.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    Given this PR diff: {diff},
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    provide:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    1. A short summary
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    2. Suggestions for improvements
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    3. Risks to watch for
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    Respond in JSON:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                      &#34;summary&#34;: &#34;...&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                      &#34;suggestions&#34;: [&#34;...&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                      &#34;risks&#34;: [&#34;...&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String files <span style="color:#f92672">=</span> String.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;&#39;,&#39;&#34;</span>, fileNames);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//This query will list down the file content from vector db, and inject it with the prompt to provide context-aware suggestion</span>
+</span></span><span style="display:flex;"><span>        QuestionAnswerAdvisor qaAdvisor <span style="color:#f92672">=</span> QuestionAnswerAdvisor
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">builder</span>(vectorStore)
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">searchRequest</span>(SearchRequest.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">similarityThreshold</span>(SIMILARITY_THRESHOLD)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">filterExpression</span>(<span style="color:#e6db74">&#34;path in [&#39;&#34;</span><span style="color:#f92672">+</span> String.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;&#39;,&#39;&#34;</span>, fileNames) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;]&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">topK</span>(5)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>())
+</span></span><span style="display:flex;"><span>             .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        PRSuggestionResponse response <span style="color:#f92672">=</span> chatClient
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">prompt</span>(analyzePRTemplate.<span style="color:#a6e22e">create</span>(
+</span></span><span style="display:flex;"><span>                     Map.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;diff&#34;</span>, prDiff)))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">advisors</span>(qaAdvisor)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">call</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">entity</span>(PRSuggestionResponse.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        logger.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;Response:{}&#34;</span>, response);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This ensures only <strong>relevant code snippets</strong> (like <a href="http://UserService.java" target="_blank" rel="noreferrer">UserService.java</a>) are injected into the model’s context.</p>
+<p>The Spring AI framework creates an ChatClientRequest from user’s Prompt along with an empty advisor context object.</p>
+<p>Each advisor in the chain processes the request, potentially modifying it. Alternatively, it can choose to block the request by not making the call to invoke the next entity. In the latter case, the advisor is responsible for filling out the response.</p>
+<p>The final advisor, provided by the framework, sends the request to the Chat Model.</p>
+<p>The Chat Model’s response is then passed back through the advisor chain and converted into ChatClientResponse. Later includes the shared advisor context instance.</p>
+<p>Each advisor can process or modify the response.</p>
+<p>The final ChatClientResponse is returned to the client by extracting the ChatCompletion.</p>
+<p>*source: <em><a href="https://docs.spring.io/spring-ai/reference/api/advisors.html" target="_blank" rel="noreferrer"><em>https://docs.spring.io/spring-ai/reference/api/advisors.html</em></a></em> *</p>
+<p>QuestionAnswerAdvisor provides capabilities to utilize a vector store to answer the queries implementing Retrieval Augment Generation (RAG) pattern.</p>
+<h2 id="step-6--first-end-to-end-run" class="relative group"><strong>Step 6 — First End-to-End Run</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-6--first-end-to-end-run" aria-label="Anchor">#</a></span></h2><p>Example request to /generate-summary:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Add new API generate-summary&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Adding new API to get PR summary connecting to LLM .&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;pr_Url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/ankitagrahari/smart-devops-assistant/pull/3&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Example response:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;summary&#34;</span>: <span style="color:#e6db74">&#34;This PR (#3) adds a new API `/generate-summary` to the Smart DevOps Assistant. It introduces DTOs (PRSummaryRequest/Response), a new GitService to fetch diffs via GitHub API, and extends AIService to generate PR summaries. The controller and webhook service are updated to orchestrate diff fetching and AI calls. Documentation is updated and test utilities are added.&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;risk&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;GitHub PAT may expose security risks if not scoped minimally&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Large PR diffs may exceed AI token/prompt limits, causing failures&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Blocking synchronous RestTemplate calls may slow webhook responses&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Error handling is inconsistent (null returns, generic 404s/500s)&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Appending .diff to PR URLs may break for enterprise/custom GitHub setups&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Lack of tests for the new /generate-summary endpoint and service logic&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;AI outputs may hallucinate or generate inaccurate summaries&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Boom 💥 — your assistant just summarized your PR.</p>
+<h2 id="step-7--gotchas" class="relative group"><strong>Step 7 — Gotchas</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-7--gotchas" aria-label="Anchor">#</a></span></h2><ul>
+<li><strong>Dependency drift</strong>: Spring AI evolves quickly — check docs for version bumps.</li>
+<li><strong>Prompt drift</strong>: Always enforce strict JSON output when expecting structured data.</li>
+<li><strong>Response failures</strong>: Add logging to catch when the model doesn’t respect schema.</li>
+</ul>
+<h2 id="step-8--whats-next" class="relative group"><strong>Step 8 — What’s Next</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-8--whats-next" aria-label="Anchor">#</a></span></h2><p>Now that we have a working API + prompt flow, in <strong>Blog 3</strong> we’ll:</p>
+<ul>
+<li>Embed our repo into ChromaDB</li>
+<li>Chunk &amp; index code/docs</li>
+<li>Run <strong>true RAG queries</strong> for context-rich reviews</li>
+</ul>
+<p>That’s where SDA starts feeling <em>intelligent</em>, not just chatty.</p>
+<p>Do share your thoughts about any improvements.</p>
+<p>Github repo: <a href="https://github.com/ankitagrahari/smart-devops-assistant/pull/3/files" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/smart-devops-assistant</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/lc746-minimum-cost-of-climbing-stairs/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC746 - Minimum Cost Of Climbing Stairs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

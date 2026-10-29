@@ -1,0 +1,858 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Devops Intelligence
+Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&rsquo;s just say it involved more debugging than coding.
+In this post, I&rsquo;ll walk you through:
+
+What we built (the DevOps Intelligence Platform)
+The tools we created (K8s, Prometheus, Logs, Deployments)
+Every challenge we faced (and how we solved them)
+Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)
+
+TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions">
+	<meta property="og:description" content="Devops Intelligence
+Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let’s just say it involved more debugging than coding.
+In this post, I’ll walk you through:
+What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prometheus, Logs, Deployments) Every challenge we faced (and how we solved them) Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2) TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:24+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:24+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions">
+	<meta name="twitter:description" content="Devops Intelligence
+Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let’s just say it involved more debugging than coding.
+In this post, I’ll walk you through:
+What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prometheus, Logs, Deployments) Every challenge we faced (and how we solved them) Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2) TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges \u0026 Solutions",
+    "headline": "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges \u0026 Solutions",
+    
+    "abstract": "\u003cp\u003eDevops Intelligence\u003c\/p\u003e\n\u003cp\u003eToday, I successfully built and deployed a \u003cstrong\u003eModel Context Protocol (MCP) server\u003c\/strong\u003e using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let\u0026rsquo;s just say it involved more debugging than coding.\u003c\/p\u003e\n\u003cp\u003eIn this post, I\u0026rsquo;ll walk you through:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eWhat we built (the DevOps Intelligence Platform)\u003c\/li\u003e\n\u003cli\u003eThe tools we created (K8s, Prometheus, Logs, Deployments)\u003c\/li\u003e\n\u003cli\u003eEvery challenge we faced (and how we solved them)\u003c\/li\u003e\n\u003cli\u003eWhy Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR:\u003c\/strong\u003e Built an MCP server with 5\u002b DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:24\u002b05:30",
+    "datePublished": "2026-10-27T08:14:24\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:24\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1846"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Building Dev Ops Intelligence Using MC P Server With Spring Ai Tools, Challenges \u0026 Solutions",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Devops Intelligence</p>
+<p>Today, I successfully built and deployed a <strong>Model Context Protocol (MCP) server</strong> using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&rsquo;s just say it involved more debugging than coding.</p>
+<p>In this post, I&rsquo;ll walk you through:</p>
+<ul>
+<li>What we built (the DevOps Intelligence Platform)</li>
+<li>The tools we created (K8s, Prometheus, Logs, Deployments)</li>
+<li>Every challenge we faced (and how we solved them)</li>
+<li>Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)</li>
+</ul>
+<p><strong>TL;DR:</strong> Built an MCP server with 5+ DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.</p>
+<h2 id="what-is-mcp" class="relative group">What is MCP? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-mcp" aria-label="Anchor">#</a></span></h2><p><strong>Model Context Protocol</strong> lets Claude (or any AI) directly access your tools through a standardized interface.</p>
+<p>Instead of:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Me <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#e6db74">&#34;Claude, what&#39;s my cluster health?&#34;</span>
+</span></span><span style="display:flex;"><span>Claude <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#e6db74">&#34;I don&#39;t know, you need to tell me&#34;</span>
+</span></span></code></pre></div><p>Now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Me <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#e6db74">&#34;Claude, what&#39;s my cluster health?&#34;</span>
+</span></span><span style="display:flex;"><span>Claude <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#f92672">*</span>calls k8s_cluster_health tool<span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">→</span> Returns real data
+</span></span></code></pre></div><p>That&rsquo;s the power of MCP. Your AI gets <strong>direct access</strong> to your infrastructure.</p>
+<h2 id="the-devops-intelligence-platform-what-we-built-" class="relative group">The DevOps Intelligence Platform: What We Built 🛠️ <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-devops-intelligence-platform-what-we-built-" aria-label="Anchor">#</a></span></h2><p>We created a Spring Boot application that exposes <strong>real DevOps infrastructure</strong> as MCP tools:</p>
+<h3 id="tools-implemented" class="relative group">Tools Implemented: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tools-implemented" aria-label="Anchor">#</a></span></h3><p><strong>K8s Tools</strong> (KubernetesTools)</p>
+<ul>
+<li>k8s_cluster_health - Overall cluster status</li>
+<li>k8s_list_pods - List all pods with filtering</li>
+<li>k8s_recent_events - Recent cluster events</li>
+</ul>
+<p><strong>Prometheus Tools</strong> (PrometheusTools)</p>
+<ul>
+<li>prometheus_query_cpu - Query CPU metrics</li>
+<li>prometheus_query_memory - Query memory metrics</li>
+<li>prometheus_alerts - Active alerts</li>
+</ul>
+<p><strong>Logs Tools</strong> (LogsTools)</p>
+<ul>
+<li>logs_search - Search application logs</li>
+<li>logs_errors - Get recent errors</li>
+<li>logs_by_service - Filter logs by service</li>
+</ul>
+<p><strong>Deployment Tools</strong> (DeploymentTools)</p>
+<ul>
+<li>deployment_history - Deployment history</li>
+<li>deployment_rollback - Rollback mechanism</li>
+<li>deployment_status - Current deployment status</li>
+</ul>
+<p>Here&rsquo;s what the MCP Inspector shows when fully connected:</p>
+<p><em>The DevOps Intelligence server with all tools discovered and ready to execute</em></p>
+<h2 id="architecture-how-it-all-fits-together" class="relative group">Architecture: How It All Fits Together <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#architecture-how-it-all-fits-together" aria-label="Anchor">#</a></span></h2><h2 id="challenge-1-tomcat-web-server-pollution" class="relative group">Challenge #1: Tomcat Web Server Pollution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-1-tomcat-web-server-pollution" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mvn spring<span style="color:#f92672">-</span>boot:run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>20:01:48.<span style="color:#a6e22e">612</span> <span style="color:#f92672">[</span>main<span style="color:#f92672">]</span> INFO o.<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">boot</span>.<span style="color:#a6e22e">tomcat</span>.<span style="color:#a6e22e">TomcatWebServer</span> <span style="color:#f92672">-</span> Tomcat initialized <span style="color:#66d9ef">with</span> port 8080
+</span></span><span style="display:flex;"><span>20:01:48.<span style="color:#a6e22e">616</span> <span style="color:#f92672">[</span>main<span style="color:#f92672">]</span> INFO o.<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">catalina</span>.<span style="color:#a6e22e">core</span>.<span style="color:#a6e22e">StandardService</span> <span style="color:#f92672">-</span> Starting service <span style="color:#f92672">[</span>Tomcat<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>When you add spring-boot-starter-web, Spring Boot starts <strong>Tomcat HTTP server automatically</strong>. But MCP STDIO protocol needs <strong>pure process I/O</strong>, not HTTP.</p>
+<p><strong>The Solution:</strong> Remove spring-boot-starter-web from pom.xml:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;!--</span> REMOVE THIS <span style="color:#f92672">--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>web<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Keep only:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>mcp<span style="color:#f92672">-</span>server<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span><span style="color:#f92672">-</span>M2<span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>Lesson:</strong> MCP STDIO doesn&rsquo;t need a web server. It communicates directly via stdin/stdout.</p>
+</blockquote>
+<h2 id="challenge-2-process-exits-immediately-" class="relative group">Challenge #2: Process Exits Immediately ⚡💀 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-2-process-exits-immediately-" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Started DevopsIntelligenceApplication in 0.<span style="color:#a6e22e">301</span> seconds
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> BUILD <span style="color:#a6e22e">SUCCESS</span>
+</span></span><span style="display:flex;"><span>(process exits)
+</span></span></code></pre></div><p>Without Tomcat (or WebFlux), Spring Boot has nothing to keep the process alive.</p>
+<p><strong>The Solution:</strong></p>
+<p><strong>Option A:</strong> Add spring-boot-starter-webflux (for light reactive server):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>webflux<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p><strong>Option B:</strong> Keep process alive manually:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    SpringApplication.<span style="color:#a6e22e">run</span>(
+</span></span><span style="display:flex;"><span>        DevopsIntelligenceApplication.<span style="color:#a6e22e">class</span>, args);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">interrupt</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I went with <strong>Option A (WebFlux)</strong> because it&rsquo;s the Spring Boot standard.</p>
+<blockquote>
+<p><strong>Lesson:</strong> Something must keep the Spring Boot process alive. Either a server component or explicit thread joining.</p>
+</blockquote>
+<h2 id="challenge-3-json-protocol-corruption" class="relative group">Challenge #3: JSON Protocol Corruption <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-3-json-protocol-corruption" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>STDIO transport: command<span style="color:#f92672">=</span>...<span style="color:#a6e22e">jar</span>
+</span></span><span style="display:flex;"><span>Error in <span style="color:#f92672">/</span>stdio route: SyntaxError: Unexpected non<span style="color:#f92672">-</span>whitespace character after JSON at position 2
+</span></span><span style="display:flex;"><span>Error from MCP server: SyntaxError: Unexpected token <span style="color:#e6db74">&#39;.&#39;</span>, <span style="color:#e6db74">&#34;  .   ____  &#34;</span>... is not valid JSON
+</span></span></code></pre></div><p><strong>What was happening:</strong> </p>
+<p>Spring Boot was printing startup banners and logs to STDOUT, which <strong>corrupted the MCP protocol messages</strong>. MCP STDIO uses stdin/stdout exclusively.</p>
+<p>ANY other output breaks the JSON-RPC protocol.</p>
+<p><strong>The Solution:</strong></p>
+<p>Configure application.yml to suppress all output:</p>
+<p>yaml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  main:
+</span></span><span style="display:flex;"><span>    banner<span style="color:#f92672">-</span>mode: <span style="color:#e6db74">&#34;off&#34;</span>           <span style="color:#960050;background-color:#1e0010">#</span> No ASCII art
+</span></span><span style="display:flex;"><span>    log<span style="color:#f92672">-</span>startup<span style="color:#f92672">-</span>info: <span style="color:#66d9ef">false</span>      <span style="color:#960050;background-color:#1e0010">#</span> No startup messages
+</span></span><span style="display:flex;"><span>  application:
+</span></span><span style="display:flex;"><span>    name: devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>mcp
+</span></span><span style="display:flex;"><span>  ai:
+</span></span><span style="display:flex;"><span>    mcp:
+</span></span><span style="display:flex;"><span>      server:
+</span></span><span style="display:flex;"><span>        name: devops<span style="color:#f92672">-</span>intelligence
+</span></span><span style="display:flex;"><span>        version: 1.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span>
+</span></span><span style="display:flex;"><span>        type: SYNC
+</span></span><span style="display:flex;"><span>        protocol: STDIO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logging:
+</span></span><span style="display:flex;"><span>  level:
+</span></span><span style="display:flex;"><span>    root: OFF                     <span style="color:#960050;background-color:#1e0010">#</span> Turn off ALL logging
+</span></span><span style="display:flex;"><span>  file:
+</span></span><span style="display:flex;"><span>    name: mcp<span style="color:#f92672">-</span>server.<span style="color:#a6e22e">log</span>         <span style="color:#960050;background-color:#1e0010">#</span> Send logs <span style="color:#66d9ef">to</span> file instead
+</span></span></code></pre></div><p><strong>Key Settings:</strong></p>
+<ul>
+<li>banner-mode: &ldquo;off&rdquo; - No Spring Boot ASCII art</li>
+<li>log-startup-info: false - No startup logs</li>
+<li>logging.level.root: OFF - Suppress all logs</li>
+<li><a href="http://file.name" target="_blank" rel="noreferrer">file.name</a>: mcp-server.log - Redirect logs to file</li>
+</ul>
+<blockquote>
+<p><strong>Lesson:</strong> For STDIO protocol, STDOUT must be <strong>completely clean</strong>. Even whitespace or warning messages break it.</p>
+</blockquote>
+<h2 id="challenge-4-permission-denied-eacces" class="relative group">Challenge #4: Permission Denied (EACCES) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-4-permission-denied-eacces" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Error: spawn <span style="color:#f92672">/</span>Users<span style="color:#f92672">/</span>...<span style="color:#f92672">/</span>target<span style="color:#f92672">/</span>devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span> EACCES
+</span></span><span style="display:flex;"><span>errno: <span style="color:#f92672">-</span>13
+</span></span><span style="display:flex;"><span>code: <span style="color:#960050;background-color:#1e0010">&#39;</span>EACCES<span style="color:#960050;background-color:#1e0010">&#39;</span> (permission denied)
+</span></span></code></pre></div><p><strong>The Solution:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>chmod <span style="color:#f92672">+</span>x target<span style="color:#f92672">/</span>devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span>
+</span></span></code></pre></div><p>BUT this still didn&rsquo;t work because <strong>JAR files aren&rsquo;t executable binaries</strong>.</p>
+<p><strong>Real Solution:</strong> Use java -jar instead in MCP Inspector UI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Command: java
+</span></span><span style="display:flex;"><span>Arguments: <span style="color:#f92672">-</span>jar <span style="color:#f92672">/</span>full<span style="color:#f92672">/</span>path<span style="color:#f92672">/</span><span style="color:#66d9ef">to</span><span style="color:#f92672">/</span>target<span style="color:#f92672">/</span>devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>Lesson:</strong> JAR files need java -jar to execute, not direct execution.</p>
+</blockquote>
+<h2 id="challenge-5-request-timeout-32001" class="relative group">Challenge #5: Request Timeout (32001) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-5-request-timeout-32001" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>MCPError: 32001: Request timed out
+</span></span><span style="display:flex;"><span>Connection Error <span style="color:#f92672">-</span> Check <span style="color:#66d9ef">if</span> your MCP server is running and proxy token is correct
+</span></span></code></pre></div><p><strong>Root Cause:</strong> The server was running, but the <strong>MCP Server bean wasn&rsquo;t being initialized</strong>. The annotation scanner found tools, but there was no actual server to respond to protocol messages.</p>
+<p><strong>The &ldquo;<strong><strong>Fix</strong></strong>&rdquo; I Tried (Didn&rsquo;t Work):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> McpSyncServer <span style="color:#a6e22e">mcpSyncServer</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> McpSyncServer.<span style="color:#a6e22e">builder</span>()  <span style="color:#75715e">// ← This doesn&#39;t exist in M2!</span>
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#34;devops-intelligence&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Error:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>There is no builder <span style="color:#66d9ef">with</span> io.<span style="color:#a6e22e">modelcontextprotocol</span>.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">McpSyncServer</span>
+</span></span></code></pre></div><p><strong>The Real Fix:</strong> Upgrade to <strong>Spring AI 2.0.0-M2</strong> (not M1 or M3)</p>
+<p>In M2, the annotation scanner + auto-configuration handles everything:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  ai:
+</span></span><span style="display:flex;"><span>    mcp:
+</span></span><span style="display:flex;"><span>      server:
+</span></span><span style="display:flex;"><span>        name: devops<span style="color:#f92672">-</span>intelligence
+</span></span><span style="display:flex;"><span>        version: 1.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span>
+</span></span><span style="display:flex;"><span>        type: SYNC
+</span></span><span style="display:flex;"><span>        protocol: STDIO
+</span></span></code></pre></div><p>That&rsquo;s it. No manual bean creation needed.</p>
+<blockquote>
+<p><strong>Lesson:</strong> Spring AI versions matter. M2 has the sweet spot. M1 is outdated, M3 has bugs.</p>
+</blockquote>
+<h2 id="challenge-6-tools-not-discovered" class="relative group">Challenge #6: Tools Not Discovered <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-6-tools-not-discovered" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong> Server connected but tools tab was greyed out. No tools were visible.</p>
+<p><strong>Diagnosis:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✗</span><span style="color:#f92672">]</span> MCP Server bean NOT found
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✓</span><span style="color:#f92672">]</span> Found: org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">mcp</span>.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">autoconfigure</span>.<span style="color:#a6e22e">annotations</span>.<span style="color:#a6e22e">McpServerAnnotationScannerAutoConfiguration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✓</span><span style="color:#f92672">]</span> Found tool bean: k8sTools
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✓</span><span style="color:#f92672">]</span> Found tool bean: prometheusTools
+</span></span></code></pre></div><p>Tools were registered as Spring beans, but the MCP Server wasn&rsquo;t being created.</p>
+<p><strong>The Root Cause:</strong> In Spring AI 2.0.0-M2, the auto-configuration for MCP server <strong>isn&rsquo;t fully automatic</strong>. The annotation scanner finds tools, but you need to ensure all components are properly wired.</p>
+<p><strong>Solution 1 (Tried First - Overcomplicated):</strong> Created a custom McpServerConfiguration with manual tool registration. Didn&rsquo;t work because the API wasn&rsquo;t right.</p>
+<p><strong>Solution 2 (What Actually Worked - SIMPLE):</strong> Just ensure:</p>
+<p>✅ @Component on tool classes</p>
+<p>✅ @McpTool on tool methods</p>
+<p>✅ Proper application.yml</p>
+<p>✅ Dependency: spring-ai-starter-mcp-server:2.0.0-M2</p>
+<p>Spring AI M2 handles the rest automatically.</p>
+<blockquote>
+<p><strong>Lesson:</strong> Less is more. Don&rsquo;t overthink it. Spring AI M2 is designed to auto-discover tools if configured correctly.</p>
+</blockquote>
+<h2 id="the-final-solution-applicationyml" class="relative group">The Final Solution: application.yml <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-final-solution-applicationyml" aria-label="Anchor">#</a></span></h2><p>Here&rsquo;s the <strong>complete, minimal configuration</strong> that works:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  main:
+</span></span><span style="display:flex;"><span>    web<span style="color:#f92672">-</span>application<span style="color:#f92672">-</span>type: none
+</span></span><span style="display:flex;"><span>    banner<span style="color:#f92672">-</span>mode: <span style="color:#e6db74">&#34;off&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>    log<span style="color:#f92672">-</span>startup<span style="color:#f92672">-</span>info: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>  application:
+</span></span><span style="display:flex;"><span>    name: devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>mcp
+</span></span><span style="display:flex;"><span>  ai:
+</span></span><span style="display:flex;"><span>    mcp:
+</span></span><span style="display:flex;"><span>      server:
+</span></span><span style="display:flex;"><span>        name: devops<span style="color:#f92672">-</span>intelligence
+</span></span><span style="display:flex;"><span>        version: 1.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>        type: SYNC
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>        protocol: STDIO
+</span></span><span style="display:flex;"><span>        stdio: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logging:
+</span></span><span style="display:flex;"><span>  level:
+</span></span><span style="display:flex;"><span>    root: INFO
+</span></span><span style="display:flex;"><span>  file:
+</span></span><span style="display:flex;"><span>    name: mcp<span style="color:#f92672">-</span>server.<span style="color:#a6e22e">log</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>server:
+</span></span><span style="display:flex;"><span>  port: 8080
+</span></span></code></pre></div><p><strong>That&rsquo;s it. Everything else is default.</strong></p>
+<h2 id="tool-implementation-example-k8stools" class="relative group">Tool Implementation Example: K8sTools <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tool-implementation-example-k8stools" aria-label="Anchor">#</a></span></h2><p>Here&rsquo;s how a tool class looks:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">K8sTools</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> K8sMockClient k8sClient;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">K8sTools</span>(K8sMockClient k8sClient) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">k8sClient</span> <span style="color:#f92672">=</span> k8sClient;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@McpTool</span>(
+</span></span><span style="display:flex;"><span>            name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;k8s_cluster_health&#34;</span>,
+</span></span><span style="display:flex;"><span>            description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Get overall Kubernetes cluster health including node and pod status&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">describeClusterHealth</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> pods <span style="color:#f92672">=</span> k8sClient.<span style="color:#a6e22e">listPods</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> nodes <span style="color:#f92672">=</span> k8sClient.<span style="color:#a6e22e">listNodes</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> healthyPods <span style="color:#f92672">=</span> pods.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">filter</span>(p <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Running&#34;</span>.<span style="color:#a6e22e">equals</span>(p.<span style="color:#a6e22e">status</span>()) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;1/1&#34;</span>.<span style="color:#a6e22e">equals</span>(p.<span style="color:#a6e22e">ready</span>()))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> readyNodes <span style="color:#f92672">=</span> nodes.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">filter</span>(n <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Ready&#34;</span>.<span style="color:#a6e22e">equals</span>(n.<span style="color:#a6e22e">status</span>()))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
+</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;Cluster Health Summary:\n&#34;</span>);
+</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(String.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Nodes: %d/%d Ready\n&#34;</span>, readyNodes, nodes.<span style="color:#a6e22e">size</span>()));
+</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(String.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Pods: %d/%d Running\n&#34;</span>, healthyPods, pods.<span style="color:#a6e22e">size</span>()));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sb.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@McpTool</span>(
+</span></span><span style="display:flex;"><span>            name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;k8s_list_pods&#34;</span>,
+</span></span><span style="display:flex;"><span>            description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;List all Kubernetes pods with their status&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">listPods</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@McpToolParam</span>(description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Filter by namespace (optional)&#34;</span>, required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>)
+</span></span><span style="display:flex;"><span>            String namespace) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> pods <span style="color:#f92672">=</span> k8sClient.<span style="color:#a6e22e">listPods</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (namespace <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>namespace.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>            pods <span style="color:#f92672">=</span> pods.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">filter</span>(p <span style="color:#f92672">-&gt;</span> p.<span style="color:#a6e22e">namespace</span>().<span style="color:#a6e22e">equals</span>(namespace))
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">toList</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder(<span style="color:#e6db74">&#34;Kubernetes Pods:\n&#34;</span>);
+</span></span><span style="display:flex;"><span>        pods.<span style="color:#a6e22e">forEach</span>(p <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>                sb.<span style="color:#a6e22e">append</span>(String.<span style="color:#a6e22e">format</span>(
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;  %s/%s - Status: %s, Ready: %s\n&#34;</span>,
+</span></span><span style="display:flex;"><span>                        p.<span style="color:#a6e22e">namespace</span>(), p.<span style="color:#a6e22e">name</span>(), p.<span style="color:#a6e22e">status</span>(), p.<span style="color:#a6e22e">ready</span>()
+</span></span><span style="display:flex;"><span>                ))
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sb.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Key Points:</strong></p>
+<ul>
+<li>@Component - Spring discovers this as a bean</li>
+<li>@McpTool - Spring AI discovers this as an MCP tool</li>
+<li>Tool methods return String (serialized to JSON-RPC)</li>
+<li>@McpToolParam - Optional parameters for tools</li>
+<li>Constructor injection for dependencies</li>
+</ul>
+<p>Since these are getting mock data, we can use the client libraries for Kuberentes, or ELK, or Github, to fetch data from the infrastructure you are going to connect this tool with.</p>
+<p>For example using the Kubernetes client libraries</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Ref Source: https://github.com/kubernetes-client/java/blob/master/examples/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">KubernetesClient</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Class<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> KubernetesObject<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getClassForKind</span>(String kind) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> (kind) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;pod&#34;</span>, <span style="color:#e6db74">&#34;pods&#34;</span> <span style="color:#f92672">-&gt;</span> V1Pod.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;deployment&#34;</span>, <span style="color:#e6db74">&#34;deployments&#34;</span> <span style="color:#f92672">-&gt;</span> V1Deployment.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;service&#34;</span>, <span style="color:#e6db74">&#34;services&#34;</span> <span style="color:#f92672">-&gt;</span> V1Service.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;node&#34;</span>, <span style="color:#e6db74">&#34;nodes&#34;</span> <span style="color:#f92672">-&gt;</span> V1Node.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;replicationcontroller&#34;</span>, <span style="color:#e6db74">&#34;replicationcontrollers&#34;</span> <span style="color:#f92672">-&gt;</span> V1ReplicationController.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String PADDING <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;                              &#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">pad</span>(String value) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (value.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">&lt;</span> PADDING.<span style="color:#a6e22e">length</span>()) {
+</span></span><span style="display:flex;"><span>            value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> value;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> KubernetesObject <span style="color:#a6e22e">delete</span>(String kind, String ns, String name) <span style="color:#66d9ef">throws</span> KubectlException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">delete</span>(getClassForKind(kind))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> KubernetesObject <span style="color:#a6e22e">drain</span>(ApiClient apiClient, String name) <span style="color:#66d9ef">throws</span> KubectlException, IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">drain</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">portForwarding</span>(ApiClient apiClient, String ns, String name, String port) <span style="color:#66d9ef">throws</span> KubectlException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//port: 8080:8080</span>
+</span></span><span style="display:flex;"><span>        KubectlPortForward forward <span style="color:#f92672">=</span> Kubectl.<span style="color:#a6e22e">portforward</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> ports <span style="color:#f92672">=</span> port.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;:&#34;</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Forwarding &#34;</span> <span style="color:#f92672">+</span> ns <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> ports<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&gt;&#34;</span> <span style="color:#f92672">+</span> ports<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>        forward.<span style="color:#a6e22e">ports</span>(Integer.<span style="color:#a6e22e">parseInt</span>(ports<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>), Integer.<span style="color:#a6e22e">parseInt</span>(ports<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>));
+</span></span><span style="display:flex;"><span>        forward.<span style="color:#a6e22e">execute</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scale</span>(ApiClient apiClient, String kind, String ns, String name, Integer replicas) <span style="color:#66d9ef">throws</span> KubectlException {
+</span></span><span style="display:flex;"><span>        Kubectl.<span style="color:#a6e22e">scale</span>(getClassForKind(kind))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">replicas</span>(replicas)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> String <span style="color:#a6e22e">getVersion</span>(ApiClient apiClient) <span style="color:#66d9ef">throws</span> KubectlException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">version</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Integer <span style="color:#a6e22e">execute</span>(ApiClient apiClient, String ns, String name, String container, String<span style="color:#f92672">[]</span> command) <span style="color:#66d9ef">throws</span> KubectlException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">exec</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">command</span>(command)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">container</span>(container)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Refer to the repo for the complete code base. Similarly ELK and Github should be using their client libraries.</p>
+<h2 id="testing-with-mcp-inspector" class="relative group">Testing with MCP Inspector <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#testing-with-mcp-inspector" aria-label="Anchor">#</a></span></h2><p>Once connected, you can:</p>
+<p><strong>See all tools</strong> in the Tools tab</p>
+<p><strong>Click a tool</strong> to view its parameters</p>
+<p><strong>Execute the tool</strong> and see results in real-time</p>
+<p><strong>Check History</strong> of all tool calls</p>
+<p>The Inspector shows exactly what Claude sees when using your tools.</p>
+<h2 id="github-repository" class="relative group">GitHub Repository <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#github-repository" aria-label="Anchor">#</a></span></h2><p>Full source code available: 🔗 <a href="https://github.com/ankitagrahari/devops-intelligence" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/devops-intelligence</a></p>
+<p>Key files:</p>
+<ul>
+<li><em>src/main/java/org/backendbrilliance/devopsintelligence/tools</em> - All tool implementations</li>
+<li><em>src/main/resources/application.yml</em> - Configuration</li>
+<li><em>src/main/java/org/backendbrilliance/devopsintelligence/clients/mocks</em> - Mock clients</li>
+<li><em>src/main/java/org/backendbrilliance/devopsintelligence/clients</em> - Actual client implementation.</li>
+</ul>
+<h2 id="lessons-learned-" class="relative group">Lessons Learned 📚 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lessons-learned-" aria-label="Anchor">#</a></span></h2><p><strong>Spring AI 2.0.0-M2 is the sweet spot</strong> - M1 is old, M3 is not completely ready as it is still under snapshot view.</p>
+<p><strong>MCP STDIO needs pure I/O</strong> - No logs, no web servers, no output to STDOUT</p>
+<p><strong>Auto-configuration &gt; Manual beans</strong> - Let Spring do the heavy lifting</p>
+<p><strong>Annotation scanner is powerful</strong> - @Component + @McpTool is all you need</p>
+<p><strong>Test with MCP Inspector first</strong> - Then integrate with Claude Desktop</p>
+<p><strong>Mock clients for development</strong> - Real infrastructure comes later</p>
+<h2 id="whats-next" class="relative group">What&rsquo;s Next? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#whats-next" aria-label="Anchor">#</a></span></h2><ul>
+<li>✅ MCP server running with 5+ tools</li>
+<li>✅ Inspector can discover and execute tools</li>
+<li>✅ Ready to integrate with Claude Desktop</li>
+<li>🔜 Real K8s/Prometheus integration</li>
+<li>🔜 Autonomous incident response</li>
+<li>🔜 Cost optimization analysis</li>
+</ul>
+<h2 id="final-thoughts" class="relative group">Final Thoughts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#final-thoughts" aria-label="Anchor">#</a></span></h2><p>Building an MCP server is <strong>surprisingly straightforward</strong> once you know the gotchas:</p>
+<ul>
+<li>Remove web servers (STDIO needs pure I/O)</li>
+<li>Suppress all logging (STDOUT is sacred)</li>
+<li>Use Spring AI 2.0.0-M2 (sweet spot version)</li>
+<li>Keep configuration minimal (auto-discovery works)</li>
+</ul>
+<p>The debugging journey was long, but the end result is clean, maintainable code that gives Claude <strong>direct access to your infrastructure</strong>. That&rsquo;s powerful.</p>
+<p>Next stop: Making Claude your autonomous DevOps sidekick. 🚀</p>
+<h2 id="stay-updated" class="relative group">Stay Updated <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stay-updated" aria-label="Anchor">#</a></span></h2><p>Follow me for more:</p>
+<ul>
+<li>📝 Blog: <a href="http://dynamicallyblunttech.com" target="_blank" rel="noreferrer">dynamicallyblunttech.com</a></li>
+<li>📷 Instagram: <a href="https://instagram.com/backendbrilliance" target="_blank" rel="noreferrer">@backendbrilliance</a></li>
+<li>💼 LinkedIn: <a href="https://linkedin.com/in/ankitagrahari" target="_blank" rel="noreferrer">ankitagrahari</a></li>
+<li>💻 Medium: <a href="https://medium.com/@ankitagrahari.rkgit" target="_blank" rel="noreferrer">ankitagrahari.rkgit</a></li>
+</ul>
+<h2 id="happy-building" class="relative group">Happy building! <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#happy-building" aria-label="Anchor">#</a></span></h2>
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/exploring-spring-thymeleaf/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Exploring Spring Thymeleaf</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:23 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/lc1481-find-least-number-of-unique-integers-after-k-removals/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC1481 - Find Least Number of Unique Integers After K Removals</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

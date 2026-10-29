@@ -1,0 +1,499 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>#LC746 - Minimum Cost Of Climbing Stairs &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="#LC746 - Minimum Cost Of Climbing Stairs &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will look into the the leetcode #746 problem to find the minimum cost of climbing stairs. This is also a good example to start your journey to learn dynamic programming.
+Problem Statement #You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/lc746-minimum-cost-of-climbing-stairs/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/lc746-minimum-cost-of-climbing-stairs/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="#LC746 - Minimum Cost Of Climbing Stairs">
+	<meta property="og:description" content="In this post we will look into the the leetcode #746 problem to find the minimum cost of climbing stairs. This is also a good example to start your journey to learn dynamic programming.
+Problem Statement #You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="#LC746 - Minimum Cost Of Climbing Stairs">
+	<meta name="twitter:description" content="In this post we will look into the the leetcode #746 problem to find the minimum cost of climbing stairs. This is also a good example to start your journey to learn dynamic programming.
+Problem Statement #You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "#LC746 - Minimum Cost Of Climbing Stairs",
+    "headline": "#LC746 - Minimum Cost Of Climbing Stairs",
+    
+    "abstract": "\u003cp\u003eIn this post we will look into the the \u003ca href=\u0022https:\/\/leetcode.com\/problems\/min-cost-climbing-stairs\/\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eleetcode #746\u003c\/em\u003e\u003c\/a\u003e problem to find the minimum cost of climbing stairs. This is also a good example to start your journey to learn dynamic programming.\u003c\/p\u003e\n\u003ch3 id=\u0022problem-statement\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eProblem Statement\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#problem-statement\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eYou are given an integer array cost where \u003cem\u003e\u003cstrong\u003ecost[i]\u003c\/strong\u003e\u003c\/em\u003e is the cost of \u003cem\u003e\u003cstrong\u003eith\u003c\/strong\u003e\u003c\/em\u003e step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/lc746-minimum-cost-of-climbing-stairs\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:21\u002b05:30",
+    "datePublished": "2026-10-27T08:14:21\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:21\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "422"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "# Lc746 Minimum Cost of Climbing Stairs",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        #LC746 - Minimum Cost Of Climbing Stairs
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will look into the the <a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank" rel="noreferrer"><em>leetcode #746</em></a> problem to find the minimum cost of climbing stairs. This is also a good example to start your journey to learn dynamic programming.</p>
+<h3 id="problem-statement" class="relative group"><strong>Problem Statement</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-statement" aria-label="Anchor">#</a></span></h3><p>You are given an integer array cost where <em><strong>cost[i]</strong></em> is the cost of <em><strong>ith</strong></em> step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1.</p>
+<p>Return the minimum cost to reach the top of the floor.</p>
+<p><strong>Example 1:</strong>
+<em>Input:</em> cost = [10,15,20]
+<em>Output:</em> 15
+<em>Explanation: You will start at index 1.</em></p>
+<ul>
+<li>
+<ul>
+<li>Pay 15 and climb two steps to reach the top.*</li>
+</ul>
+</li>
+<li>The total cost is 15.*</li>
+</ul>
+<p><strong>Example 2:</strong>
+<em>Input:</em> cost = [1,100,1,1,1,100,1,1,100,1]
+<em>Output:</em> 6
+<em>Explanation: You will start at index 0.</em></p>
+<ul>
+<li>
+<ul>
+<li>Pay 1 and climb two steps to reach index 2.*</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pay 1 and climb two steps to reach index 4.*</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pay 1 and climb two steps to reach index 6.*</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pay 1 and climb one step to reach index 7.*</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pay 1 and climb two steps to reach index 9.*</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pay 1 and climb one step to reach the top.*</li>
+</ul>
+</li>
+<li>The total cost is 6. *</li>
+</ul>
+<p><strong>Constraints:</strong>
+<em>2 &lt;= cost.length &lt;= 1000</em></p>
+<ul>
+<li>0 &lt;= cost[i] &lt;= 999*</li>
+</ul>
+<h3 id="algorithmlogic" class="relative group"><strong>Algorithm/Logic</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#algorithmlogic" aria-label="Anchor">#</a></span></h3><p>In this DP problem we will solve the subset of the problem, store the result and then solve next subset of the problem and combine all the result to get the final output. Here we should always start from the end of the given array.</p>
+<p>In order to calculate the minimum, we have to pick the minimum of the two steps at any given time and add the value at the given index. Once the minimum to get to that step is calculated, it will store it in the current step variable and then move backwards on that index.</p>
+<p>Once we have iterated all the indexes, then we only have to get the minimum of the two steps variable we have used before.</p>
+<p>The code will look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> steps <span style="color:#f92672">=</span> cost.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> step1 <span style="color:#f92672">=</span> 0, step2 <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>steps<span style="color:#f92672">-</span>1; i<span style="color:#f92672">&gt;=</span>0; i<span style="color:#f92672">--</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> curStep <span style="color:#f92672">=</span> cost<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> Math.<span style="color:#a6e22e">min</span>(step1, step2);
+</span></span><span style="display:flex;"><span>    step1 <span style="color:#f92672">=</span> step2;
+</span></span><span style="display:flex;"><span>    step2 <span style="color:#f92672">=</span> curStep;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">min</span>(step1, step2);
+</span></span></code></pre></div><p>The above solution takes 1ms and 40mb to execute.</p>
+<p>You can find the complete code here on my <a href="https://github.com/ankitagrahari/Tryouts/blob/master/src/main/java/com/leetcode/dp/MinCostClimbingStairs746.java" target="_blank" rel="noreferrer"><em>github repository</em></a>. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building the Foundation: APIs, Prompts, and First Runs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/using-twilio-for-sending-whatsapp-message-in-java/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Using Twilio for Sending WhatsApp Message in Java</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,510 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Multi-modal AI workflows are becoming essential for modern backend systems. They allow applications to process and generate different types of data—text, images, audio—within a unified framework. This capability opens new possibilities for richer user experiences and more intelligent automation. The MorphousAI project, built with Spring Boot, Vaadin, and Spring AI, offers a practical example of how to implement such workflows in a backend-first Java environment. This article explores MorphousAI’s architecture, technology choices, and key implementation details, providing insights for senior Java developers and architects interested in AI integration.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/morphous-ai-building-multi-modal-ai-workflows-with-spring-boot-and-vaadin/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/morphous-ai-building-multi-modal-ai-workflows-with-spring-boot-and-vaadin/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin">
+	<meta property="og:description" content="Multi-modal AI workflows are becoming essential for modern backend systems. They allow applications to process and generate different types of data—text, images, audio—within a unified framework. This capability opens new possibilities for richer user experiences and more intelligent automation. The MorphousAI project, built with Spring Boot, Vaadin, and Spring AI, offers a practical example of how to implement such workflows in a backend-first Java environment. This article explores MorphousAI’s architecture, technology choices, and key implementation details, providing insights for senior Java developers and architects interested in AI integration.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:23+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:23+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin">
+	<meta name="twitter:description" content="Multi-modal AI workflows are becoming essential for modern backend systems. They allow applications to process and generate different types of data—text, images, audio—within a unified framework. This capability opens new possibilities for richer user experiences and more intelligent automation. The MorphousAI project, built with Spring Boot, Vaadin, and Spring AI, offers a practical example of how to implement such workflows in a backend-first Java environment. This article explores MorphousAI’s architecture, technology choices, and key implementation details, providing insights for senior Java developers and architects interested in AI integration.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin",
+    "headline": "Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin",
+    
+    "abstract": "\u003cp\u003eMulti-modal AI workflows are becoming essential for modern backend systems. They allow applications to process and generate different types of data—text, images, audio—within a unified framework. This capability opens new possibilities for richer user experiences and more intelligent automation. The MorphousAI project, built with Spring Boot, Vaadin, and Spring AI, offers a practical example of how to implement such workflows in a backend-first Java environment. This article explores MorphousAI’s architecture, technology choices, and key implementation details, providing insights for senior Java developers and architects interested in AI integration.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/morphous-ai-building-multi-modal-ai-workflows-with-spring-boot-and-vaadin\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:23\u002b05:30",
+    "datePublished": "2026-10-27T08:14:23\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:23\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1310"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/681676055d80aaac0c9329be/",
+       "name": "[\"681676055d80aaac0c9329be\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Morphous Ai Building Multi Modal Ai Workflows With Spring Boot and Vaadin",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:23 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Multi-modal AI workflows are becoming essential for modern backend systems. They allow applications to process and generate different types of data—text, images, audio—within a unified framework. This capability opens new possibilities for richer user experiences and more intelligent automation. The MorphousAI project, built with Spring Boot, Vaadin, and Spring AI, offers a practical example of how to implement such workflows in a backend-first Java environment. This article explores MorphousAI’s architecture, technology choices, and key implementation details, providing insights for senior Java developers and architects interested in AI integration.</p>
+<h2 id="why-multi-modal-ai-matters-for-backend-systems" class="relative group">Why Multi-Modal AI Matters for Backend Systems <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-multi-modal-ai-matters-for-backend-systems" aria-label="Anchor">#</a></span></h2><p>AI models have traditionally focused on single data modalities, such as text or images. However, real-world applications often require handling multiple data types simultaneously. Multi-modal AI enables systems to understand and generate content across these modalities, such as converting text prompts into images or synthesizing speech from text.</p>
+<p>For backend systems, supporting multi-modal AI means managing diverse data pipelines, integrating with AI services, and ensuring smooth communication between components. This complexity demands a robust architecture that can handle binary data (like images and audio), maintain statelessness for scalability, and secure sensitive API keys.</p>
+<p>MorphousAI addresses these challenges by demonstrating a backend-first approach that integrates multi-modal AI workflows using Java and Spring technologies. This approach is particularly relevant for Java developers who want to build AI-powered applications without switching to other languages or frameworks.</p>
+<h2 id="spring-boot--vaadin---a-good-fit-for-ai-driven-applications" class="relative group">Spring Boot &amp; Vaadin - A Good Fit for AI-Driven Applications <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#spring-boot--vaadin---a-good-fit-for-ai-driven-applications" aria-label="Anchor">#</a></span></h2><p>Spring Boot is a natural choice for backend development in Java due to its simplicity, extensive ecosystem, and support for microservices and cloud-native architectures. It provides a solid foundation for building stateless services that can scale horizontally, which is crucial when dealing with AI workloads that may require significant compute resources.</p>
+<p>Vaadin complements Spring Boot by offering a server-driven UI framework that allows developers to build rich web interfaces entirely in Java. Unlike traditional frontend frameworks that require separate JavaScript codebases, Vaadin generates the frontend automatically from Java components. This integration reduces context switching and keeps the development experience consistent.</p>
+<p>In MorphousAI, Vaadin handles the user interface for interacting with AI features, such as submitting text prompts, uploading images, and playing audio. The frontend directory is fully generated by Vaadin, meaning developers focus on Java code without manually writing HTML, CSS, or JavaScript. This setup aligns well with the backend-first philosophy and leverages Spring Boot’s strengths.</p>
+<h2 id="the-overall-architecture-of-morphousai" class="relative group">The Overall Architecture of MorphousAI <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-overall-architecture-of-morphousai" aria-label="Anchor">#</a></span></h2><p>MorphousAI’s architecture centers around a Spring Boot backend that exposes AI services and a Vaadin-based UI layer. The backend integrates with OpenAI models through Spring AI, handling requests for text-to-image generation, text-to-speech synthesis, and image uploads.</p>
+<p>The system is designed to be stateless, with each request processed independently. This design supports scalability and simplifies deployment in cloud environments. Binary data such as images and audio files are handled efficiently, with appropriate streaming and encoding mechanisms.</p>
+<p>The UI components built with Vaadin communicate with backend services via Spring-managed beans. This tight integration allows the UI to remain reactive and server-driven, avoiding the complexity of client-side state management.</p>
+<p>Security is managed through environment-based configuration of API keys, ensuring sensitive credentials are not hardcoded. The architecture also supports extensibility, allowing new AI modalities or workflows to be added with minimal disruption.</p>
+<h2 id="using-spring-ai-to-integrate-with-openai-models" class="relative group">Using Spring AI to Integrate with OpenAI Models <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#using-spring-ai-to-integrate-with-openai-models" aria-label="Anchor">#</a></span></h2><p>Spring AI provides a convenient abstraction layer for interacting with AI APIs, including OpenAI’s models. In MorphousAI, Spring AI manages authentication, request formatting, and response parsing, enabling developers to focus on business logic.</p>
+<p>The integration involves defining service classes that invoke OpenAI endpoints for different AI tasks. For example, text-to-image generation uses the DALL·E model, while text-to-speech leverages OpenAI’s audio synthesis capabilities.</p>
+<p>Spring AI’s configuration supports environment variables for API keys, allowing secure and flexible deployment. The framework also handles error scenarios gracefully, providing fallback mechanisms or retries as needed.</p>
+<h3 id="ai-service-for-text-to-image-generation" class="relative group">AI Service for Text-to-Image Generation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ai-service-for-text-to-image-generation" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> OpenAiImageModel imageModel;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MorphousTextToImageService</span>(OpenAiImageModel imageModel) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">imageModel</span> <span style="color:#f92672">=</span> imageModel;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Image <span style="color:#a6e22e">textToImage</span>(String textPrompt){
+</span></span><span style="display:flex;"><span>    ImageOptions options <span style="color:#f92672">=</span> OpenAiImageOptions.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">model</span>(<span style="color:#e6db74">&#34;dall-e-3&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">width</span>(1024)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">height</span>(1024)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#34;vivid&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>    ImagePrompt prompt <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ImagePrompt(textPrompt, options);
+</span></span><span style="display:flex;"><span>    ImageResponse response <span style="color:#f92672">=</span> imageModel.<span style="color:#a6e22e">call</span>(prompt);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response.<span style="color:#a6e22e">getResult</span>().<span style="color:#a6e22e">getOutput</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This service uses the OpenAI client to request an image based on a text prompt and then downloads the resulting image bytes for further processing or delivery.</p>
+<h3 id="configuration-example-applicationyml" class="relative group">Configuration Example (application.yml) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#configuration-example-applicationyml" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
+</span></span><span style="display:flex;"><span>  application:
+</span></span><span style="display:flex;"><span>    name: MorphousAI
+</span></span><span style="display:flex;"><span>  ai:
+</span></span><span style="display:flex;"><span>    openai:
+</span></span><span style="display:flex;"><span>      api<span style="color:#f92672">-</span>key: ${OPENAI_API_KEY}
+</span></span><span style="display:flex;"><span>      chat:
+</span></span><span style="display:flex;"><span>        base<span style="color:#f92672">-</span>url: https:<span style="color:#75715e">//api.openai.com</span>
+</span></span><span style="display:flex;"><span>        model: mistral
+</span></span><span style="display:flex;"><span>vaadin:
+</span></span><span style="display:flex;"><span>  launch<span style="color:#f92672">-</span>browser: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  allowed<span style="color:#f92672">-</span>packages: com.<span style="color:#a6e22e">vaadin</span>,org.<span style="color:#a6e22e">vaadin</span>,com.<span style="color:#a6e22e">flowingcode</span>,org.<span style="color:#a6e22e">backendbrilliance</span>.<span style="color:#a6e22e">morphousai</span>
+</span></span></code></pre></div><p>Using environment variables for API keys ensures that sensitive information is not stored in source code or configuration files directly.</p>
+<h2 id="vaadin-ui-components-calling-spring-services" class="relative group">Vaadin UI Components Calling Spring Services <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#vaadin-ui-components-calling-spring-services" aria-label="Anchor">#</a></span></h2><p>Vaadin components in MorphousAI interact with backend services through Spring-managed beans. This approach keeps UI logic clean and leverages Spring’s dependency injection.</p>
+<p>Here is an example of a Vaadin view that allows users to enter a text prompt and display the generated image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> Component <span style="color:#a6e22e">createTextToImage</span>(){
+</span></span><span style="display:flex;"><span>        VerticalLayout ttiLayout <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> VerticalLayout();
+</span></span><span style="display:flex;"><span>        TextArea textPrompt <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TextArea();
+</span></span><span style="display:flex;"><span>        textPrompt.<span style="color:#a6e22e">setMinLength</span>(20);
+</span></span><span style="display:flex;"><span>        textPrompt.<span style="color:#a6e22e">setManualValidation</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        textPrompt.<span style="color:#a6e22e">setLabel</span>(<span style="color:#e6db74">&#34;Image generation prompt&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Button convert <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Button(<span style="color:#e6db74">&#34;Convert&#34;</span>);
+</span></span><span style="display:flex;"><span>        convert.<span style="color:#a6e22e">addClickListener</span>(click <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>            String prompt <span style="color:#f92672">=</span> textPrompt.<span style="color:#a6e22e">getValue</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>textPrompt.<span style="color:#a6e22e">isEmpty</span>()){
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//Call AI service to convert to image, and return the image.</span>
+</span></span><span style="display:flex;"><span>                org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">Image</span> image <span style="color:#f92672">=</span> textToImageService.<span style="color:#a6e22e">textToImage</span>(prompt);
+</span></span><span style="display:flex;"><span>                Image generatedImage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Image(DownloadHandler.<span style="color:#a6e22e">forFile</span>(<span style="color:#66d9ef">new</span> File(image.<span style="color:#a6e22e">getUrl</span>())), <span style="color:#e6db74">&#34;generated image&#34;</span>);
+</span></span><span style="display:flex;"><span>                ttiLayout.<span style="color:#a6e22e">add</span>(generatedImage);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                textPrompt.<span style="color:#a6e22e">setErrorMessage</span>(<span style="color:#e6db74">&#34;Image generation prompt cannot be empty!!&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ttiLayout.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>                textPrompt, convert
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ttiLayout;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>This component demonstrates how the UI remains simple and declarative while delegating AI logic to the backend service.</p>
+<h2 id="understanding-complex-concepts-in-morphousai" class="relative group">Understanding Complex Concepts in MorphousAI <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#understanding-complex-concepts-in-morphousai" aria-label="Anchor">#</a></span></h2><h3 id="multi-modal-ai" class="relative group">Multi-Modal AI <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#multi-modal-ai" aria-label="Anchor">#</a></span></h3><p>Multi-modal AI refers to systems that process and generate multiple types of data, such as text, images, and audio. MorphousAI supports workflows where a user can input text to generate images or audio, or upload images as inputs for further AI processing. This capability requires handling different data formats and integrating diverse AI models.</p>
+<h3 id="text-to-image-generation" class="relative group">Text-to-Image Generation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#text-to-image-generation" aria-label="Anchor">#</a></span></h3><p>Text-to-image generation converts descriptive text prompts into visual content. MorphousAI uses OpenAI’s DALL·E model for this task. The backend sends the prompt to the model, receives a URL to the generated image, and downloads the image bytes for display or further use.</p>
+<h3 id="text-to-speech-handling" class="relative group">Text-to-Speech Handling <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#text-to-speech-handling" aria-label="Anchor">#</a></span></h3><p>Text-to-speech (TTS) converts text into spoken audio. MorphousAI integrates TTS by requesting audio data from OpenAI’s models, which return binary audio streams. The backend manages these streams, encoding them as base64 for transmission to the frontend, where Vaadin components play the audio.</p>
+<h3 id="server-driven-ui-with-vaadin" class="relative group">Server-Driven UI with Vaadin <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#server-driven-ui-with-vaadin" aria-label="Anchor">#</a></span></h3><p>Vaadin’s server-driven UI model means that UI components are defined and managed on the server side in Java. The framework automatically generates the frontend code, handling client-server communication transparently. This approach simplifies development by keeping all logic in one language and environment.</p>
+<h2 id="backend-concerns-in-morphousai" class="relative group">Backend Concerns in MorphousAI <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#backend-concerns-in-morphousai" aria-label="Anchor">#</a></span></h2><h3 id="stateless-services" class="relative group">Stateless Services <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stateless-services" aria-label="Anchor">#</a></span></h3><p>MorphousAI’s services are stateless, meaning they do not store client-specific data between requests. This design supports scalability and fault tolerance, allowing multiple instances to handle requests independently.</p>
+<h3 id="handling-binary-data" class="relative group">Handling Binary Data <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#handling-binary-data" aria-label="Anchor">#</a></span></h3><p>The project handles binary data such as images and audio carefully. For example, image bytes are downloaded from URLs and encoded as base64 strings for embedding in the UI. Audio streams are similarly processed to enable playback in browsers.</p>
+<h3 id="security-and-api-key-management" class="relative group">Security and API Key Management <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#security-and-api-key-management" aria-label="Anchor">#</a></span></h3><p>API keys for OpenAI are managed through environment variables and injected into Spring configuration. This practice prevents accidental exposure of credentials and supports different environments (development, staging, production) without code changes.</p>
+<h3 id="extensibility-and-scaling" class="relative group">Extensibility and Scaling <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#extensibility-and-scaling" aria-label="Anchor">#</a></span></h3><p>MorphousAI’s modular design allows adding new AI modalities or workflows by creating new service classes and UI components. The stateless nature and Spring Boot’s support for containerization make scaling straightforward.</p>
+<p>This could be good starting point to leverage Spring AI integration and can work on enhancing more on it. This will require some credits on the OpenAI, because these are paid services for image and audio generation. If we use Ollama, we don&rsquo;t have a better model for image and audio generation, but explaining a image can be done using LLAVA model.</p>
+<p>For Github Project link: <a href="https://github.com/ankitagrahari/MorphousAI?tab=readme-ov-file" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/MorphousAI?tab=readme-ov-file</a></p>
+<p>Do suggest topics, suggestion or your experience using Spring AI, Vaadin and OpenAI models.</p>
+<p>Happy learning :)</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/find-all-anagrams-sliding-window-algorithm/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC438 - Find All Anagrams - Sliding Window Algorithm</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/log4j-vulnerability-saga-continues/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Log4j Vulnerability - Saga Continues </span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:23 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

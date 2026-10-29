@@ -1,0 +1,529 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>IV - Recognizing Parts Of Speech Using Apache OpenNLP &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="IV - Recognizing Parts Of Speech Using Apache OpenNLP &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will discuss on recognizing parts of speech in a given sentence using Apache OpenNLP library. This is part of the series on learning Natural Language Processing using Apache OpenNLP  library.
+Like other models where we detect sentence, or find names, or tokenize any give string, in this post also we will be using one of the trained models which is provided by Apache Open NLP library only.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/iv-recognizing-parts-of-speech-using-apache-opennlp/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/iv-recognizing-parts-of-speech-using-apache-opennlp/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="IV - Recognizing Parts Of Speech Using Apache OpenNLP">
+	<meta property="og:description" content="In this post we will discuss on recognizing parts of speech in a given sentence using Apache OpenNLP library. This is part of the series on learning Natural Language Processing using Apache OpenNLP library.
+Like other models where we detect sentence, or find names, or tokenize any give string, in this post also we will be using one of the trained models which is provided by Apache Open NLP library only.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:14+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:14+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="IV - Recognizing Parts Of Speech Using Apache OpenNLP">
+	<meta name="twitter:description" content="In this post we will discuss on recognizing parts of speech in a given sentence using Apache OpenNLP library. This is part of the series on learning Natural Language Processing using Apache OpenNLP library.
+Like other models where we detect sentence, or find names, or tokenize any give string, in this post also we will be using one of the trained models which is provided by Apache Open NLP library only.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "IV - Recognizing Parts Of Speech Using Apache OpenNLP",
+    "headline": "IV - Recognizing Parts Of Speech Using Apache OpenNLP",
+    
+    "abstract": "\u003cp\u003eIn this post we will discuss on recognizing parts of speech in a given sentence using \u003cem\u003e\u003cstrong\u003eApache OpenNLP\u003c\/strong\u003e\u003c\/em\u003e library. This is part of the series on \u003cem\u003elearning Natural Language Processing\u003c\/em\u003e using Apache OpenNLP  library.\u003c\/p\u003e\n\u003cp\u003eLike other models where we detect sentence, or find names, or tokenize any give string, in this post also we will be using one of the trained models which is provided by Apache Open NLP library only.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/iv-recognizing-parts-of-speech-using-apache-opennlp\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:14\u002b05:30",
+    "datePublished": "2026-10-27T08:14:14\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:14\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "538"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Iv Recognizing Parts of Speech Using Apache Open Nlp",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        IV - Recognizing Parts Of Speech Using Apache OpenNLP
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will discuss on recognizing parts of speech in a given sentence using <em><strong>Apache OpenNLP</strong></em> library. This is part of the series on <em>learning Natural Language Processing</em> using Apache OpenNLP  library.</p>
+<p>Like other models where we detect sentence, or find names, or tokenize any give string, in this post also we will be using one of the trained models which is provided by Apache Open NLP library only.</p>
+<p>You can find the other post discussing on detecting sentence, using named entity recognition to find names or tokenize a given string here in these posts <a href="https://dynamicallyblunttech.blogspot.com/2020/07/find-sentences-using-apache-open-nlp.html" target="_blank" rel="noreferrer"><em>Finding Sentences</em></a>, <a href="https://dynamicallyblunttech.blogspot.com/2020/07/find-names-location-or-time-in-given.html" target="_blank" rel="noreferrer"><em>Finding Names using NamedEntityRecognition</em></a> and <a href="https://dynamicallyblunttech.blogspot.com/2020/07/tokenization-using-apache-opennlp.html" target="_blank" rel="noreferrer">*Tokenization *</a><em>of the Strings.</em></p>
+<p>We will be using <em><strong>en-pos-maxent.bin</strong></em> models which detects the parts of speech and tag it based on the short names. In the below table, you can find the parts of speech and its short form name. Be sure to use the above model, else system will tag it with some other keywords.</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Parts of Speech</strong></th>
+					<th><strong>Meaning of parts of speech</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><em>NN</em>​</td>
+					<td><em>Noun, singular or mass</em></td>
+			</tr>
+			<tr>
+					<td>​<em>DT</em></td>
+					<td><em>Determiner</em></td>
+			</tr>
+			<tr>
+					<td><em>VB</em></td>
+					<td><em>Verb, base form</em></td>
+			</tr>
+			<tr>
+					<td><em>VBD</em></td>
+					<td><em>Verb, past tense</em></td>
+			</tr>
+			<tr>
+					<td><em>VBZ</em></td>
+					<td><em>Verb, third person singular present</em></td>
+			</tr>
+			<tr>
+					<td><em>IN</em></td>
+					<td><em>Preposition or subordinating conjunction</em></td>
+			</tr>
+			<tr>
+					<td><em>NNP</em></td>
+					<td><em>Proper noun, singular</em></td>
+			</tr>
+			<tr>
+					<td><em>TO</em></td>
+					<td><em>to</em></td>
+			</tr>
+			<tr>
+					<td><em>JJ</em></td>
+					<td><em>Adjective</em></td>
+			</tr>
+	</tbody>
+</table>
+<p>As we did while using the other models, here also we will perform the same steps, where we</p>
+<p>Load the models,</p>
+<p>Tokenize the given strings</p>
+<p>Tag the tokens with the relevant Parts of Speech short name.</p>
+<p>Lets go through the code for each steps:</p>
+<h3 id="load-the-model" class="relative group"><strong>Load the Model</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#load-the-model" aria-label="Anchor">#</a></span></h3><p>We will use the ***FileInputStream ***to load the relevant models. The model is loaded to create a ***POSModel ***object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> POSModel <span style="color:#a6e22e">loadModel</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        InputStream is <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream(<span style="color:#e6db74">&#34;src\\main\\resources\\models\\en-pos-maxent.bin&#34;</span>);
+</span></span><span style="display:flex;"><span>        POSModel model <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> POSModel(is);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> model;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (FileNotFoundException e) {
+</span></span><span style="display:flex;"><span>        e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>        e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="tokenize-given-string" class="relative group"><strong>Tokenize Given String</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tokenize-given-string" aria-label="Anchor">#</a></span></h3><p>Using the POSModel object created above, we have to create POSTaggerME object and then tokenize the given string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>POSModel model <span style="color:#f92672">=</span> loadModel();
+</span></span><span style="display:flex;"><span>POSTaggerME posObj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> POSTaggerME(model);
+</span></span><span style="display:flex;"><span>WhitespaceTokenizer whitespaceTokenizer <span style="color:#f92672">=</span> WhitespaceTokenizer.<span style="color:#a6e22e">INSTANCE</span>;
+</span></span><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> tokens <span style="color:#f92672">=</span> whitespaceTokenizer.<span style="color:#a6e22e">tokenize</span>(sentence);
+</span></span></code></pre></div><h3 id="tagging-tokens" class="relative group"><strong>Tagging Tokens</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tagging-tokens" aria-label="Anchor">#</a></span></h3><p>Now the above tokens will be tagged and POSSample object will be created. These POSSample will contain the tokens tagged with the short name of the parts of speech. For an input like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String input <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Welcome to DynamicallyBluntTech, for our class of natural language processing.&#34;</span>;
+</span></span></code></pre></div><p>We will get an output like this, where each word will tagged with the parts of speech short name.(Given in the above table)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Welcome_UH
+</span></span><span style="display:flex;"><span>to_TO
+</span></span><span style="display:flex;"><span>DynamicallyBluntTech,_NNP
+</span></span><span style="display:flex;"><span>for_IN 
+</span></span><span style="display:flex;"><span>our_PRP$ 
+</span></span><span style="display:flex;"><span>class_NN 
+</span></span><span style="display:flex;"><span>of_IN 
+</span></span><span style="display:flex;"><span>natural_JJ 
+</span></span><span style="display:flex;"><span>language_NN 
+</span></span><span style="display:flex;"><span>processing.<span style="color:#a6e22e">_NN</span>
+</span></span></code></pre></div><p>We can also monitor the performance using ***PerformanceMonitor ***class.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">performanceMonitor</span>(POSSample sample){
+</span></span><span style="display:flex;"><span>    PerformanceMonitor monitor <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PerformanceMonitor(System.<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;uploaded&#34;</span>);
+</span></span><span style="display:flex;"><span>    monitor.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    monitor.<span style="color:#a6e22e">incrementCounter</span>();
+</span></span><span style="display:flex;"><span>    monitor.<span style="color:#a6e22e">stopAndPrintFinalResult</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This will output the below performance metrics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Average: 0.<span style="color:#a6e22e">0</span> uploaded<span style="color:#f92672">/</span>s
+</span></span><span style="display:flex;"><span>Total: 1 uploaded
+</span></span><span style="display:flex;"><span>Runtime: 0.<span style="color:#a6e22e">0s</span>
+</span></span></code></pre></div><p>You can find the entire code for this post as well for others, in my <a href="https://github.com/ankitagrahari/chatbot/blob/master/src/main/java/com/agrahari/pos/RecognizePOS.java" target="_blank" rel="noreferrer">Github Repository</a> link.</p>
+<p>This concludes the series on <em><strong>Apache OpenNLP</strong></em> library. Also, it provides a command line interface to launch it directly from command prompt/terminal and run the specific commands, but we will be conclude our discussion on OpenNLP library now.</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Meet Smart Devops Assistant: Vision, Stack and Journey so far</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/ii-tokenization-using-apache-opennlp/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >II - Tokenization using Apache OpenNLP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

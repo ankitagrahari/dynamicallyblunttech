@@ -1,0 +1,665 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Real-Time Aggregations with Kafka Streams at 10K Events/Sec &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Part 3 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 4: From Localhost to Kubernetes
+
+Building production-grade streaming analytics: windows, state stores, and performance validation
+
+In Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:
+How do you extract insights from that fire hose of data?
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec">
+	<meta property="og:description" content="Part 3 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 4: From Localhost to Kubernetes
+Building production-grade streaming analytics: windows, state stores, and performance validation
+In Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:
+How do you extract insights from that fire hose of data?">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:20+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:20+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec">
+	<meta name="twitter:description" content="Part 3 of the StreamMetrics Series
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 4: From Localhost to Kubernetes
+Building production-grade streaming analytics: windows, state stores, and performance validation
+In Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:
+How do you extract insights from that fire hose of data?">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Real-Time Aggregations with Kafka Streams at 10K Events\/Sec",
+    "headline": "Real-Time Aggregations with Kafka Streams at 10K Events\/Sec",
+    
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 3 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-production-grade-kafka-consumer-patterns\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eBuilding production-grade streaming analytics: windows, state stores, and performance validation\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eIn Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:\u003c\/p\u003e\n\u003cp\u003e\u003cem\u003e\u003cstrong\u003eHow do you extract insights from that fire hose of data?\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:20\u002b05:30",
+    "datePublished": "2026-10-27T08:14:20\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:20\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1527"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Real Time Aggregations With Kafka Streams at 10 K Events Sec",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Real-Time Aggregations with Kafka Streams at 10K Events/Sec
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:20 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><strong>Part 3 of the StreamMetrics Series</strong></p>
+<p>*Previous parts: <em><a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer"><em>Part 1: Kafka Producer</em></a></em> | <em><a href="https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns" target="_blank" rel="noreferrer"><em>Part 2: Consumer + DLQ</em></a></em> | *<a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer"><em>Part 4: From Localhost to Kubernetes</em></a></p>
+<blockquote>
+<p>Building production-grade streaming analytics: windows, state stores, and performance validation</p>
+</blockquote>
+<p>In Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:</p>
+<p><em><strong>How do you extract insights from that fire hose of data?</strong></em></p>
+<p>Enter Kafka Streams - a library that lets you build real-time aggregations, transformations, and joins directly on top of Kafka. No external databases, no batch jobs, no delays. Events arrive, get aggregated in-memory, and results publish to output topics - all in milliseconds.</p>
+<p>This post covers the StreamMetrics aggregation layer:</p>
+<ul>
+<li>how we compute rolling averages,</li>
+<li>min/max values, and</li>
+<li>event counts every minute,</li>
+<li>store results in Redis for instant queries, and</li>
+<li>validate the entire pipeline handles 10K events/second with zero message loss.Overview of this blog post</li>
+</ul>
+<blockquote>
+<p><strong>Performance validated</strong>: 600,000 events processed in 60 seconds = 9,999 events/sec with zero failures.</p>
+</blockquote>
+<h2 id="architecture-from-raw-events-to-aggregates" class="relative group"><strong>Architecture: From Raw Events to Aggregates</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#architecture-from-raw-events-to-aggregates" aria-label="Anchor">#</a></span></h2><p><strong>Data reduction: 600,000 raw events per minute compressed to ~60 aggregates per minute = 10,000x reduction</strong></p>
+<h2 id="1-kafka-streams-the-30-second-explanation" class="relative group"><strong>1. Kafka Streams: The 30-Second Explanation</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-kafka-streams-the-30-second-explanation" aria-label="Anchor">#</a></span></h2><p>Kafka Streams is a Java library that treats Kafka topics as infinite streams you can transform. Unlike traditional consumers that just read-process-ack, Kafka Streams lets you:</p>
+<ul>
+<li>Filter and map (stateless)</li>
+<li>Aggregate and join (stateful - backed by RocksDB)</li>
+<li>Window data by time</li>
+<li>Maintain fault-tolerant state (backed up to Kafka changelog topics)</li>
+</ul>
+<p><strong>1.1 Why not just use a consumer + database?</strong></p>
+<p>You could. But then you need to:</p>
+<ul>
+<li>Query 600K events every minute from your database</li>
+<li>Calculate averages in application code</li>
+<li>Handle database failures, connection pools, indexes</li>
+<li>Scale your database to handle 10K writes/sec</li>
+</ul>
+<p>Kafka Streams does all of this for you, in-memory, with state backed up to Kafka. If your Streams app crashes, it restarts and rebuilds state from the changelog topic. No external database needed for the aggregation logic.</p>
+<h2 id="2-building-the-aggregation-topology" class="relative group"><strong>2. Building the Aggregation Topology</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-building-the-aggregation-topology" aria-label="Anchor">#</a></span></h2><h3 id="step-1-read-from-input-topic" class="relative group"><strong>Step 1: Read from Input Topic</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-1-read-from-input-topic" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KStream<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span> inputStream <span style="color:#f92672">=</span> builder
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">stream</span>(inputTopic, Consumed.<span style="color:#a6e22e">with</span>(Serdes.<span style="color:#a6e22e">String</span>(), metricEventSerde));
+</span></span></code></pre></div><p>This creates a stream that continuously reads from metrics-events topic. Every new event that arrives becomes an item in the stream.</p>
+<h3 id="step-2-group-by-service--metric" class="relative group"><strong>Step 2: Group by Service + Metric</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-2-group-by-service--metric" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KGroupedStream<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span> grouped <span style="color:#f92672">=</span> inputStream
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">groupBy</span>(
+</span></span><span style="display:flex;"><span>        (key, value) <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>              value.<span style="color:#a6e22e">getServiceId</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> value.<span style="color:#a6e22e">getMetricName</span>(),
+</span></span><span style="display:flex;"><span>        Grouped.<span style="color:#a6e22e">with</span>(Serdes.<span style="color:#a6e22e">String</span>(), metricEventSerde)
+</span></span><span style="display:flex;"><span>    );
+</span></span></code></pre></div><p>We repartition data so all events for the same service+metric go to the same partition. This is critical for correct aggregation. The new key looks like: <em>payment-service:api.request.duration</em></p>
+<p><strong>Warning:</strong> groupBy() triggers a repartition - data is shuffled across partitions. This is expensive but necessary.</p>
+<h3 id="step-3-define-time-windows" class="relative group"><strong>Step 3: Define Time Windows</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-3-define-time-windows" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>TimeWindows window <span style="color:#f92672">=</span> TimeWindows
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">ofSizeWithNoGrace</span>(Duration.<span style="color:#a6e22e">ofMinutes</span>(1));
+</span></span></code></pre></div><p><strong>Tumbling windows:</strong> non-overlapping, fixed-size time buckets.</p>
+<p>Events with timestamps 10:00:00-10:00:59 go in window 1, events 10:01:00-10:01:59 go in window 2, etc.</p>
+<p><strong>No grace period:</strong> Late events (arriving after the window closes) are dropped. In production, you&rsquo;d add a grace period: ofSizeAndGrace(Duration.ofMinutes(1), Duration.ofMinutes(5))</p>
+<h3 id="step-4-aggregate" class="relative group"><strong>Step 4: Aggregate</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-4-aggregate" aria-label="Anchor">#</a></span></h3><p>This is where statistics are computed in real-time:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KTable<span style="color:#f92672">&lt;</span>Windowed<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span>, AggregatedMetric<span style="color:#f92672">&gt;</span> aggregated <span style="color:#f92672">=</span> grouped
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">windowedBy</span>(window)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">aggregate</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Initializer: create empty aggregate for each new window</span>
+</span></span><span style="display:flex;"><span>        () <span style="color:#f92672">-&gt;</span> AggregatedMetric.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">count</span>(0L)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">sum</span>(0.<span style="color:#a6e22e">0</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">min</span>(Double.<span style="color:#a6e22e">MAX_VALUE</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">max</span>(Double.<span style="color:#a6e22e">MIN_VALUE</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">build</span>(),
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Aggregator: called for EVERY event in the window</span>
+</span></span><span style="display:flex;"><span>        (key, value, aggregate) <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>            aggregate.<span style="color:#a6e22e">setCount</span>(aggregate.<span style="color:#a6e22e">getCount</span>() <span style="color:#f92672">+</span> 1);
+</span></span><span style="display:flex;"><span>            aggregate.<span style="color:#a6e22e">setSum</span>(
+</span></span><span style="display:flex;"><span>                aggregate.<span style="color:#a6e22e">getSum</span>() <span style="color:#f92672">+</span> value.<span style="color:#a6e22e">getValue</span>());
+</span></span><span style="display:flex;"><span>            aggregate.<span style="color:#a6e22e">setMin</span>(
+</span></span><span style="display:flex;"><span>                Math.<span style="color:#a6e22e">min</span>(aggregate.<span style="color:#a6e22e">getMin</span>(), value.<span style="color:#a6e22e">getValue</span>()));
+</span></span><span style="display:flex;"><span>            aggregate.<span style="color:#a6e22e">setMax</span>(
+</span></span><span style="display:flex;"><span>                Math.<span style="color:#a6e22e">max</span>(aggregate.<span style="color:#a6e22e">getMax</span>(), value.<span style="color:#a6e22e">getValue</span>()));
+</span></span><span style="display:flex;"><span>            aggregate.<span style="color:#a6e22e">setAvg</span>(
+</span></span><span style="display:flex;"><span>                aggregate.<span style="color:#a6e22e">getSum</span>() <span style="color:#f92672">/</span> aggregate.<span style="color:#a6e22e">getCount</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> aggregate;
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// State store: persisted to RocksDB + Kafka changelog</span>
+</span></span><span style="display:flex;"><span>        Materialized.<span style="color:#a6e22e">with</span>(Serdes.<span style="color:#a6e22e">String</span>(), aggregatedMetricSerde)
+</span></span><span style="display:flex;"><span>    );
+</span></span></code></pre></div><h4 id="21-how-the-aggregator-works---example-execution" class="relative group"><strong>2.1 How the aggregator works - example execution:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#21-how-the-aggregator-works---example-execution" aria-label="Anchor">#</a></span></h4><p><strong>Window</strong>: 10:00:00 - 10:00:59</p>
+<p><strong>Key</strong>: payment-service:api.request.duration</p>
+<p>Event 1 arrives (value=50):</p>
+<p>  count: 0 + 1 = 1</p>
+<p>  sum: 0 + 50 = 50</p>
+<p>  min: min(MAX, 50) = 50</p>
+<p>  max: max(MIN, 50) = 50</p>
+<p>  avg: 50/1 = 50.0</p>
+<p>Event 2 arrives (value=60):</p>
+<p>  count: 1 + 1 = 2</p>
+<p>  sum: 50 + 60 = 110</p>
+<p>  min: min(50, 60) = 50</p>
+<p>  max: max(50, 60) = 60</p>
+<p>  avg: 110/2 = 55.0</p>
+<p>Event 3 arrives (value=45):</p>
+<p>  count: 2 + 1 = 3</p>
+<p>  sum: 110 + 45 = 155</p>
+<p>  min: min(50, 45) = 45</p>
+<p>  max: max(60, 45) = 60</p>
+<p>  avg: 155/3 = 51.67</p>
+<p>At 10:01:00 → Window closes → Aggregate sent to output topic</p>
+<h3 id="step-5-publish-to-output-topic" class="relative group"><strong>Step 5: Publish to Output Topic</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-5-publish-to-output-topic" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>outputStream.<span style="color:#a6e22e">to</span>(outputTopic,
+</span></span><span style="display:flex;"><span>    Produced.<span style="color:#a6e22e">with</span>(Serdes.<span style="color:#a6e22e">String</span>(), aggregatedMetricSerde));
+</span></span></code></pre></div><p>When each window closes (every 1 minute), the final aggregate is published to metrics-aggregated-1m topic. A separate consumer picks it up and stores it in Redis.</p>
+<h3 id="3-state-stores-how-kafka-streams-remembers" class="relative group"><strong>3. State Stores: How Kafka Streams Remembers</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-state-stores-how-kafka-streams-remembers" aria-label="Anchor">#</a></span></h3><p>Aggregations need memory. For each service+metric+window combination, Kafka Streams maintains running totals (count, sum, min, max). This state lives in two places:</p>
+<p><em>Local State</em>: <em>RocksDB</em></p>
+<p>Each Streams instance has a local embedded RocksDB database (default location: /tmp/kafka-streams). This is fast - microsecond lookups - because it&rsquo;s on the same machine.</p>
+<h4 id="31-remote-state-kafka-changelog-topics" class="relative group"><strong>3.1 Remote State: Kafka Changelog Topics</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#31-remote-state-kafka-changelog-topics" aria-label="Anchor">#</a></span></h4><p>Every state change is also written to a Kafka changelog topic (auto-created, named like applicationId-KSTREAM-AGGREGATE-STATE-STORE-0000000001-changelog). This is your backup.</p>
+<p>If your Streams app crashes, it can rebuild its entire local state by replaying the changelog topic. This makes Kafka Streams fault-tolerant without needing an external database.</p>
+<p><strong>Trade-off:</strong> Writes are slower (every state change writes to Kafka), but you get fault tolerance for free. In production, this is almost always worth it.</p>
+<h3 id="4-performance-testing-hitting-10k-eventssec" class="relative group"><strong>4. Performance Testing: Hitting 10K Events/Sec</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-performance-testing-hitting-10k-eventssec" aria-label="Anchor">#</a></span></h3><p>The original producer REST endpoint (POST /produce?events=100) was single-threaded and slow. To validate real throughput, we built a dedicated load test application.</p>
+<p><strong>4.1 Load Test Design</strong></p>
+<ul>
+<li>Target: 10,000 events/second</li>
+<li>Duration: 60 seconds (600,000 total events)</li>
+<li>Threads: 20 producer threads</li>
+<li>Rate limiting: Precise nanosecond timing to hit exact throughput</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExecutorService executor <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newFixedThreadPool</span>(20);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Each thread sends (targetRate / numThreads) events per second</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> eventsPerThreadPerSecond <span style="color:#f92672">=</span> 10000 <span style="color:#f92672">/</span> 20;  <span style="color:#75715e">// 500 events/sec/thread</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Precise rate limiting with nanosecond sleep</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> delayNanos <span style="color:#f92672">=</span> TimeUnit.<span style="color:#a6e22e">SECONDS</span>.<span style="color:#a6e22e">toNanos</span>(1) <span style="color:#f92672">/</span> eventsPerSecond;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> nextSendTime <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">nanoTime</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (running) {
+</span></span><span style="display:flex;"><span>    kafkaTemplate.<span style="color:#a6e22e">send</span>(topic, event).<span style="color:#a6e22e">whenComplete</span>((result, ex) <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (ex <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) successCount.<span style="color:#a6e22e">incrementAndGet</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> failureCount.<span style="color:#a6e22e">incrementAndGet</span>();
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    nextSendTime <span style="color:#f92672">+=</span> delayNanos;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> sleepNanos <span style="color:#f92672">=</span> nextSendTime <span style="color:#f92672">-</span> System.<span style="color:#a6e22e">nanoTime</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sleepNanos <span style="color:#f92672">&gt;</span> 0) TimeUnit.<span style="color:#a6e22e">NANOSECONDS</span>.<span style="color:#a6e22e">sleep</span>(sleepNanos);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="42-results" class="relative group"><strong>4.2 Results</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#42-results" aria-label="Anchor">#</a></span></h4><p>| <strong>Total sent: 600,000  |  Success: 600,000  |  Failures: 0  |  Duration: 60,004ms  |  Actual throughput: 9,999 events/sec</strong> |
+| &mdash; |</p>
+<h4 id="43-key-optimizations-for-high-throughput" class="relative group"><strong>4.3 Key optimizations for high throughput:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#43-key-optimizations-for-high-throughput" aria-label="Anchor">#</a></span></h4><ul>
+<li><em>acks=1</em> instead of acks=all (less safe, much faster)</li>
+<li>Larger batch size: <em>65KB</em> instead of 32KB</li>
+<li>More buffer memory: <em>128MB</em> instead of 64MB</li>
+<li><em>Async</em> sends with CompletableFuture (fire-and-forget)</li>
+<li>20 <em>concurrent</em> producer threads</li>
+</ul>
+<h3 id="5-querying-aggregated-data" class="relative group"><strong>5. Querying Aggregated Data</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-querying-aggregated-data" aria-label="Anchor">#</a></span></h3><p>Aggregates live in Redis with 24-hour TTL. We built a REST API to query them efficiently.</p>
+<p><strong>Example 1: Get Latest Aggregate</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GET <span style="color:#f92672">/</span>api<span style="color:#f92672">/</span>metrics<span style="color:#f92672">/</span>latest<span style="color:#f92672">?</span>service<span style="color:#f92672">=</span>payment<span style="color:#f92672">-</span>service<span style="color:#f92672">&amp;</span>metric<span style="color:#f92672">=</span>api.<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">duration</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;service&#34;</span>: <span style="color:#e6db74">&#34;payment-service&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;metric&#34;</span>: <span style="color:#e6db74">&#34;api.request.duration&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;count&#34;</span>: 100,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;avg&#34;</span>: 52.<span style="color:#a6e22e">3</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;min&#34;</span>: 45.<span style="color:#a6e22e">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;max&#34;</span>: 60.<span style="color:#a6e22e">8</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;windowStart&#34;</span>: <span style="color:#e6db74">&#34;2024-12-21T10:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Example 2: Time Series (Last 10 Minutes)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GET <span style="color:#f92672">/</span>api<span style="color:#f92672">/</span>metrics<span style="color:#f92672">/</span>timeseries<span style="color:#f92672">?</span>service<span style="color:#f92672">=</span>payment<span style="color:#f92672">-</span>service<span style="color:#f92672">&amp;</span>metric<span style="color:#f92672">=</span>api.<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">duration</span><span style="color:#f92672">&amp;</span>minutes<span style="color:#f92672">=</span>10
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;windows&#34;</span>: 10,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;data&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;timestamp&#34;</span>: 1771483200000, <span style="color:#e6db74">&#34;avg&#34;</span>: 52.<span style="color:#a6e22e">3</span>, <span style="color:#e6db74">&#34;count&#34;</span>: 100},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;timestamp&#34;</span>: 1771483140000, <span style="color:#e6db74">&#34;avg&#34;</span>: 51.<span style="color:#a6e22e">8</span>, <span style="color:#e6db74">&#34;count&#34;</span>: 98},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;timestamp&#34;</span>: 1771483080000, <span style="color:#e6db74">&#34;avg&#34;</span>: 53.<span style="color:#a6e22e">1</span>, <span style="color:#e6db74">&#34;count&#34;</span>: 102}
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Example 3: Compare All Services</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GET <span style="color:#f92672">/</span>api<span style="color:#f92672">/</span>metrics<span style="color:#f92672">/</span>compare<span style="color:#f92672">?</span>metric<span style="color:#f92672">=</span>api.<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">duration</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;services&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;payment-service&#34;</span>: {<span style="color:#e6db74">&#34;avg&#34;</span>: 52.<span style="color:#a6e22e">3</span>},
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;user-service&#34;</span>: {<span style="color:#e6db74">&#34;avg&#34;</span>: 48.<span style="color:#a6e22e">2</span>},
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;order-service&#34;</span>: {<span style="color:#e6db74">&#34;avg&#34;</span>: 55.<span style="color:#a6e22e">7</span>}
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Data reduction benefit: Instead of querying 600K raw events for 10 minutes of data, we query 10 pre-computed aggregates. 60,000x faster</p>
+<h3 id="6-production-lessons-learned" class="relative group"><strong>6. Production Lessons Learned</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-production-lessons-learned" aria-label="Anchor">#</a></span></h3><p><em><strong>Lesson 1</strong></em>***: Window Timing is Event-Time, Not Wall-Clock Time***</p>
+<p>Windows close based on the timestamp field in your events, not the current system time. If your events have timestamps from 2 hours ago, those windows close immediately. If events have future timestamps, windows stay open longer than expected.</p>
+<p>Always use Instant.now() for real-time metrics. For testing, you can inject old timestamps to force windows to close immediately.</p>
+<p><em><strong>Lesson 2</strong></em>***: State Directory Conflicts***</p>
+<p>Kafka Streams stores local state in /tmp/kafka-streams by default. If you restart your app and get &lsquo;State store already exists&rsquo; errors, delete this directory:</p>
+<p>rm -rf /tmp/kafka-streams</p>
+<p><em><strong>Lesson 3</strong></em>***: Rebalancing is Expensive***</p>
+<p>When a Streams instance starts or stops, Kafka rebalances partitions across all running instances. During rebalancing, no processing happens. In production, use static membership (<a href="http://group.instance.id" target="_blank" rel="noreferrer">group.instance.id</a>) to avoid rebalances on restarts.</p>
+<p><em><strong>Lesson 4</strong></em>***: Monitoring is Critical***</p>
+<p>Kafka Streams exposes important metrics via JMX:</p>
+<ul>
+<li><em>records-lag-max</em> - how far behind is your consumer?</li>
+<li><em>commit-latency-avg</em> - how long does state commit take?</li>
+<li><em>process-rate</em> - events processed per second</li>
+</ul>
+<p>Export these to Prometheus and alert if lag grows or process rate drops.</p>
+<h3 id="7-final-architecture-and-results" class="relative group"><strong>7. Final Architecture and Results</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-final-architecture-and-results" aria-label="Anchor">#</a></span></h3><p><strong>7.1 What we built:</strong></p>
+<ul>
+<li>Producer: REST API that can sustain 10K events/sec</li>
+<li>Kafka Streams: Real-time aggregation every 1 minute</li>
+<li>Redis: Pre-computed aggregates with 24-hour TTL</li>
+<li>Query API: Instant lookups (no scanning millions of raw events)</li>
+</ul>
+<p><strong>7.2 Performance validated:</strong></p>
+<ul>
+<li>600,000 events processed in 60 seconds</li>
+<li>Zero message loss</li>
+<li>Zero failures</li>
+<li>Actual throughput: 9,999 events/sec</li>
+<li>Data reduction: 10,000x (600K raw events → 60 aggregates/min)</li>
+</ul>
+<p><strong>7.3 Use cases enabled:</strong></p>
+<ul>
+<li>Real-time dashboards showing current avg latency per service</li>
+<li>Alerting on anomalies (avg latency &gt; threshold)</li>
+<li>Capacity planning (identify peak load times)</li>
+<li>SLA monitoring (track p99 latency trends)</li>
+</ul>
+<p>The full code is available at:** **<a href="http://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer"><strong>http://github.com/ankitagrahari/StreamAnalytics</strong></a></p>
+<p>This is the part of series where production grade application is the final result. We will add the integration test to gain more confidence in the code. And then will go with deploying the application using Kubernetes and docker. Much to come, lots to learn.</p>
+<p>Do provide your feedback, help me if the direction I am taking is relevant any more or not. Feel the motivation even though Claude is giving it :)</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/testing-in-microservices/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Testing in Microservices</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:20 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/crud-operation-in-mongodb/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CRUD operation in MongoDB</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:20 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

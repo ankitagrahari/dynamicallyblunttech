@@ -1,0 +1,494 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Spring AI with Ollama  &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Spring AI with Ollama  &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Objective #As part of this blog post, we will be creating a simple Rest API using Spring AI to send and receive responses from Ollama on your local machine.
+Why Ollama: #&ndash; Ollama is an open-source tool enabling you to run LLMs such as deepseek, llama, mistral, chatgpt, and others on your local machine. This ensures that your data remains within your home network.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/spring-ai-with-ollama/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/spring-ai-with-ollama/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Spring AI with Ollama ">
+	<meta property="og:description" content="Objective #As part of this blog post, we will be creating a simple Rest API using Spring AI to send and receive responses from Ollama on your local machine.
+Why Ollama: #– Ollama is an open-source tool enabling you to run LLMs such as deepseek, llama, mistral, chatgpt, and others on your local machine. This ensures that your data remains within your home network.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:22+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:22+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Spring AI with Ollama ">
+	<meta name="twitter:description" content="Objective #As part of this blog post, we will be creating a simple Rest API using Spring AI to send and receive responses from Ollama on your local machine.
+Why Ollama: #– Ollama is an open-source tool enabling you to run LLMs such as deepseek, llama, mistral, chatgpt, and others on your local machine. This ensures that your data remains within your home network.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Spring AI with Ollama ",
+    "headline": "Spring AI with Ollama ",
+    
+    "abstract": "\u003ch4 id=\u0022objective\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eObjective\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#objective\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003cp\u003eAs part of this blog post, we will be creating a simple Rest API using Spring AI to send and receive responses from Ollama on your local machine.\u003c\/p\u003e\n\u003ch4 id=\u0022why-ollama\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWhy Ollama:\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#why-ollama\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003cp\u003e\u0026ndash; Ollama is an open-source tool enabling you to run LLMs such as deepseek, llama, mistral, chatgpt, and others on your local machine. This ensures that your data remains within your home network.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/spring-ai-with-ollama\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:22\u002b05:30",
+    "datePublished": "2026-10-27T08:14:22\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:22\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "865"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Spring Ai With Ollama",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Spring AI with Ollama 
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <h4 id="objective" class="relative group"><strong>Objective</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#objective" aria-label="Anchor">#</a></span></h4><p>As part of this blog post, we will be creating a simple Rest API using Spring AI to send and receive responses from Ollama on your local machine.</p>
+<h4 id="why-ollama" class="relative group"><strong>Why Ollama:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-ollama" aria-label="Anchor">#</a></span></h4><p>&ndash; Ollama is an open-source tool enabling you to run LLMs such as deepseek, llama, mistral, chatgpt, and others on your local machine. This ensures that your data remains within your home network.</p>
+<p>&ndash; The best part? There&rsquo;s no need to generate multiple API keys and <em>no limit</em>.</p>
+<h4 id="installing--running-ollama-" class="relative group">**Installing &amp; Running Ollama ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#installing--running-ollama-" aria-label="Anchor">#</a></span></h4><p>The Ollama includes an executable that can be obtained from <a href="https://ollama.com/download" target="_blank" rel="noreferrer">https://ollama.com/download</a></p>
+<p>Once downloaded, simply double-click to install it, and within a minute, it will be ready to execute commands on your local machine. You can then download and run various versions of models, enabling you to test all the latest updates available. Keep in mind that this will require more storage space.</p>
+<p>You can also use docker to run Ollama. <a href="https://ollama.com/blog/ollama-is-now-available-as-an-official-docker-image" target="_blank" rel="noreferrer">https://ollama.com/blog/ollama-is-now-available-as-an-official-docker-image</a>. The mac users need to check if they want to run standalone or viai docker desktop, as Docker Desktop doesn&rsquo;t support GPU.</p>
+<p>On the Ollama terminal, you can use /? command or just write ollama to get the list of commands that can be executed.</p>
+<p>To run our project, we need the ollama server running. You can either run any model of your choice. I am running the llama 3 (while writing this, llama3.3 is also available)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ollama run llama3.<span style="color:#a6e22e">2</span>
+</span></span></code></pre></div><p>This will run the server where you can send any queries based on the prompt provided.</p>
+<p>URL to connect to your Ollama server running on your local is <a href="http://localhost:11434/api/generate" target="_blank" rel="noreferrer">http://localhost:11434/api/generate</a></p>
+<h4 id="project-setup" class="relative group"><strong>Project Setup</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#project-setup" aria-label="Anchor">#</a></span></h4><p>We will navigate to <a href="https://start.spring.io/" target="_blank" rel="noreferrer">spring intializer</a> to setup the project and add the required dependencies. It should look like this</p>
+<p>Notice the Ollama dependency added.</p>
+<p>Lets now look into the <a href="http://application.properties" target="_blank" rel="noreferrer">application.properties</a> file where you will define the Ollama specific parameters for your project to access the Ollama server and talk to it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">base</span><span style="color:#f92672">-</span>url<span style="color:#f92672">=</span>http:<span style="color:#75715e">//localhost:11434</span>
+</span></span></code></pre></div><p>It defines the url where the local server is hosted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">model</span><span style="color:#f92672">=</span>llama3.<span style="color:#a6e22e">2</span>
+</span></span></code></pre></div><p>It defines the model that shoulld be used.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">ollama</span>.<span style="color:#a6e22e">init</span>.<span style="color:#a6e22e">pull</span><span style="color:#f92672">-</span>model<span style="color:#f92672">=</span>when<span style="color:#f92672">-</span>missing
+</span></span></code></pre></div><p>Spring AI allows you to download the model as mentioned in this parameter. The possible values are</p>
+<ul>
+<li>always: It will always download the model, even if it is present. This ensures that you are working with the latest version of model</li>
+<li>when_missing: It will download the model when it is not present.</li>
+<li>never: It will never download the model, unless and until it is explicitly done.</li>
+</ul>
+<p>There are a bunch of parameters which can be configured before running the application. You can find the details here <a href="https://docs.spring.io/spring-ai/reference/api/chat/ollama-chat.html#_chat_properties" target="_blank" rel="noreferrer">Chat Properties</a></p>
+<p>Here is the sample of the application properties I used</p>
+<p>Lets now create a controller where we can define the API details to connect to ollama.</p>
+<p>Just before jumping to the controller, lets look into how the LLM model will understand what the user is asking. In order to do so, there are Prompt generated by user, which specifically tells the model about the details like what is expected as response, what could be the size of the response, what should be the main details in the response, etc.</p>
+<p>And Spring AI provides the ChatClient which offers a fluent API to communicate with AI models. It supports both asynchronous and synchronous programming model. It constructs the required part of the Prompt which is then fed to AI model.</p>
+<p>Now lets move to creating the Rest Controller, where we default ChatClient will be created which will process the user input to the AI model, and retrieve the response as per the request.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClientController</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ChatClient client;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String MESSAGE_FORMAT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;model&#34;: &#34;llama3.2&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;messages&#34;: [{\s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;role&#34;: &#34;user&#34;,\s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;content&#34;: &#34;$message$&#34;\s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              ]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           \s&#34;&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ClientController</span>(ChatClient.<span style="color:#a6e22e">Builder</span> builder) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/ai/{message}&#34;</span>)
+</span></span><span style="display:flex;"><span>    Flux<span style="color:#f92672">&lt;</span>ChatResponse<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">generateResponse</span>(<span style="color:#a6e22e">@PathVariable</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;message&#34;</span>) String userInput){
+</span></span><span style="display:flex;"><span>        userInput <span style="color:#f92672">=</span> MESSAGE_FORMAT.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;$message$&#34;</span>, userInput);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">prompt</span>(userInput)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">content</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To create the default ChatClient, we can use the builder. But if you want to create with a specific requirement, then you can refer to this <a href="https://docs.spring.io/spring-ai/reference/api/chatclient.html" target="_blank" rel="noreferrer">Spring AI documentation</a>.</p>
+<p>One thing to notice here is, we are using reactive web project and thats why the ChatClient is called with stream() rather than call() method.</p>
+<p>And you are all set to start your first Spring AI project which will connect to the Ollama server running locally.</p>
+<p>While starting the spring application, if the pull-model parameter is given as always, you will see that it will start downloading the specific model. This may take a lot of time depending on the size of the model and your internet speed. It is advisable if your are running locally to go with when_missing option instead of always.</p>
+<p>The response to the API will load the response character by character as the streams of string is loaded.</p>
+<p>This is just the basic to get the response from the Ollama server running locally. There are a bunch of updates which will comes on top of this in coming days. The way we are getting the input can also be improved. This is the github link for this project <a href="https://github.com/ankitagrahari/spring-ai-dbt" target="_blank" rel="noreferrer">Spring AI with Ollama</a>.</p>
+<p>This post is after a long time, and I hope it will help you learning Spring AI.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/system-design-with-agentic-ai-1/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >System Design with Agentic AI - 1</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/find-all-anagrams-sliding-window-algorithm/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC438 - Find All Anagrams - Sliding Window Algorithm</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

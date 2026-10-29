@@ -1,0 +1,478 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>#LC1481 - Find Least Number of Unique Integers After K Removals &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="#LC1481 - Find Least Number of Unique Integers After K Removals &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post, we will look into one of the Leetcode problem #1481, where we have to find the least number of unique integers after removing k elements.
+Problem Statement: #Given an array of integers arr and an integer k. Find the least number of unique integers after removing exactly k elements.
+So, the problem statements says to remove k elements from the given array in such a way that we get the least number of unique integers. Lets say we have following array:
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/lc1481-find-least-number-of-unique-integers-after-k-removals/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/lc1481-find-least-number-of-unique-integers-after-k-removals/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="#LC1481 - Find Least Number of Unique Integers After K Removals">
+	<meta property="og:description" content="In this post, we will look into one of the Leetcode problem #1481, where we have to find the least number of unique integers after removing k elements.
+Problem Statement: #Given an array of integers arr and an integer k. Find the least number of unique integers after removing exactly k elements. So, the problem statements says to remove k elements from the given array in such a way that we get the least number of unique integers. Lets say we have following array:">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:24+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:24+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="#LC1481 - Find Least Number of Unique Integers After K Removals">
+	<meta name="twitter:description" content="In this post, we will look into one of the Leetcode problem #1481, where we have to find the least number of unique integers after removing k elements.
+Problem Statement: #Given an array of integers arr and an integer k. Find the least number of unique integers after removing exactly k elements. So, the problem statements says to remove k elements from the given array in such a way that we get the least number of unique integers. Lets say we have following array:">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "#LC1481 - Find Least Number of Unique Integers After K Removals",
+    "headline": "#LC1481 - Find Least Number of Unique Integers After K Removals",
+    
+    "abstract": "\u003cp\u003eIn this post, we will look into one of the \u003ca href=\u0022https:\/\/leetcode.com\/problems\/least-number-of-unique-integers-after-k-removals\/\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eLeetcode problem #1481\u003c\/em\u003e\u003c\/a\u003e, where we have to find the least number of unique integers after removing k elements.\u003c\/p\u003e\n\u003ch3 id=\u0022problem-statement\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eProblem Statement:\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#problem-statement\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eGiven an array of integers \u003cem\u003e\u003cstrong\u003earr\u003c\/strong\u003e\u003c\/em\u003e and an integer \u003cem\u003e\u003cstrong\u003ek\u003c\/strong\u003e\u003c\/em\u003e. Find the \u003cem\u003eleast number of unique integers\u003c\/em\u003e after removing exactly k elements.\nSo, the problem statements says to remove k elements from the given array in such a way that we get the least number of unique integers. Lets say we have following array:\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/lc1481-find-least-number-of-unique-integers-after-k-removals\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:24\u002b05:30",
+    "datePublished": "2026-10-27T08:14:24\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:24\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "541"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "# Lc1481 Find Least Number of Unique Integers After K Removals",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        #LC1481 - Find Least Number of Unique Integers After K Removals
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post, we will look into one of the <a href="https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/" target="_blank" rel="noreferrer"><em>Leetcode problem #1481</em></a>, where we have to find the least number of unique integers after removing k elements.</p>
+<h3 id="problem-statement" class="relative group"><strong>Problem Statement:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-statement" aria-label="Anchor">#</a></span></h3><p>Given an array of integers <em><strong>arr</strong></em> and an integer <em><strong>k</strong></em>. Find the <em>least number of unique integers</em> after removing exactly k elements.
+So, the problem statements says to remove k elements from the given array in such a way that we get the least number of unique integers. Lets say we have following array:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>arr<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> {5, 5, 4};    k<span style="color:#f92672">=</span>1;
+</span></span></code></pre></div><p>In this case, we can remove only one element from the array. If we remove 5, we will get 4 remaining or if we remove 4, we will get two counts of 5 remaining. In either case, the count of unique integers is 1.</p>
+<p>Lets take another example, which is not given in the Leetcode #1481 problem statement:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>arr<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> {2, 1, 1, 3, 3, 3};    k<span style="color:#f92672">=</span>3;
+</span></span></code></pre></div><p>In the above example, we have to remove 3 elements from the array.</p>
+<p>Now, if we remove one count of each 2, 1, 3 we will get one counts of 1 and two counts of 3 remaining.
+Lets say, if we remove all three counts of 3, we will get one counts of 1 and two counts of 1 remaining.
+Lets say, if we remove all two counts of 1 and one counts of 2, we will get all three counts of 3 remaining.</p>
+<p>So, in any scenario, the output will be 2, and so is the answer.</p>
+<h3 id="logicalgorithm" class="relative group"><strong>Logic/Algorithm</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#logicalgorithm" aria-label="Anchor">#</a></span></h3><p>First and the foremost thing to do is to have the occurrence count of each elements in the array.</p>
+<p>After this, we have to remove the elements with the least occurrence count and gradually decrease the value of  k.</p>
+<p>In order to get the elements with the least count, we will prepare a map and sort it based on the values, which is the occurrence count.</p>
+<h3 id="code-snippet-" class="relative group">**Code Snippet ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#code-snippet-" aria-label="Anchor">#</a></span></h3><p>Let look into the code:</p>
+<h5 id="get-the-occurrence-count-of-each-elements-present-in-the-array" class="relative group"><strong>Get the occurrence count of each elements present in the array</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#get-the-occurrence-count-of-each-elements-present-in-the-array" aria-label="Anchor">#</a></span></h5><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>Integer, Integer<span style="color:#f92672">&gt;</span> countMap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i: arr){
+</span></span><span style="display:flex;"><span>    countMap.<span style="color:#a6e22e">put</span>(i, countMap.<span style="color:#a6e22e">getOrDefault</span>(i, 0)<span style="color:#f92672">+</span>1);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="sort-the-map-based-on-the-occurrence-count" class="relative group"><strong>Sort the map based on the occurrence count</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sort-the-map-based-on-the-occurrence-count" aria-label="Anchor">#</a></span></h5><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Comparator<span style="color:#f92672">&lt;</span>Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>Integer, Integer<span style="color:#f92672">&gt;&gt;</span> sortByCount <span style="color:#f92672">=</span> Comparator.<span style="color:#a6e22e">comparing</span>(Map.<span style="color:#a6e22e">Entry</span>::getValue);
+</span></span><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>Integer, Integer<span style="color:#f92672">&gt;</span> linkedCountMap <span style="color:#f92672">=</span> countMap.<span style="color:#a6e22e">entrySet</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">sorted</span>(sortByCount)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">toMap</span>(
+</span></span><span style="display:flex;"><span>                Map.<span style="color:#a6e22e">Entry</span>::getKey,
+</span></span><span style="display:flex;"><span>                Map.<span style="color:#a6e22e">Entry</span>::getValue,
+</span></span><span style="display:flex;"><span>                (e1, e2) <span style="color:#f92672">-&gt;</span> e1,
+</span></span><span style="display:flex;"><span>                LinkedHashMap::<span style="color:#66d9ef">new</span>)
+</span></span><span style="display:flex;"><span>        );
+</span></span></code></pre></div><p>The above code is using a <em><strong>Comparator</strong></em> to sort the ***Map ***based on its values. We will construct a ***LinkedHashMap ***which will contain the sorted ***Map ***based on value, which is the occurrence count.</p>
+<h5 id="iterate-and-remove-the-items-from-the-sorted-map-based-on-the-value-of--k-" class="relative group">**Iterate and remove the items from the Sorted map based on the value of  <strong><strong>k</strong></strong>. ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#iterate-and-remove-the-items-from-the-sorted-map-based-on-the-value-of--k-" aria-label="Anchor">#</a></span></h5><p>If the occurrence count of the elements is more than k, then we will deduct the occurrence count value by k</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Iterator<span style="color:#f92672">&lt;</span>Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>Integer, Integer<span style="color:#f92672">&gt;&gt;</span> itr <span style="color:#f92672">=</span> linkedCountMap
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">entrySet</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">iterator</span>();
+</span></span><span style="display:flex;"><span>Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>Integer, Integer<span style="color:#f92672">&gt;</span> nextEle;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(itr.<span style="color:#a6e22e">hasNext</span>() <span style="color:#f92672">&amp;&amp;</span> k<span style="color:#f92672">&gt;</span>0){
+</span></span><span style="display:flex;"><span>    nextEle <span style="color:#f92672">=</span> itr.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(nextEle.<span style="color:#a6e22e">getValue</span>()<span style="color:#f92672">&gt;</span>k){
+</span></span><span style="display:flex;"><span>        linkedCountMap.<span style="color:#a6e22e">put</span>(nextEle.<span style="color:#a6e22e">getKey</span>(), nextEle.<span style="color:#a6e22e">getValue</span>()<span style="color:#f92672">-</span>k);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    k <span style="color:#f92672">=</span> k <span style="color:#f92672">-</span> nextEle.<span style="color:#a6e22e">getValue</span>();
+</span></span><span style="display:flex;"><span>    itr.<span style="color:#a6e22e">remove</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Return the size of the <em><strong>LinkedHashMap</strong></em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">return</span> linkedCountMap.<span style="color:#a6e22e">size</span>();
+</span></span></code></pre></div><p>The entire code base can be found on <a href="https://github.com/ankitagrahari/Tryouts/blob/master/src/main/java/com/leetcode/FindLeastNumOfUniqueInts.java" target="_blank" rel="noreferrer"><em>Github repository</em></a>. Also, this code took <em><strong>81ms</strong></em> and it consumed <em><strong>55.7mb</strong></em> of memory to run all test cases on Leetcode.</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/multi-release-functionality/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Multi Release Functionality</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

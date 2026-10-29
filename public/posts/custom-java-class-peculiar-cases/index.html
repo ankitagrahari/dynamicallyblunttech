@@ -1,0 +1,581 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Custom Java Class : Peculiar Cases &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Custom Java Class : Peculiar Cases &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        This post is about understanding the type of interview questions which can come from a Custom Java class where we can override equals, hashcode, *toString *or implements the Interface to *sort *the list of this custom Java class.
+Lets go one by one, where you start your coding round and the first information provided is
+1. Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/custom-java-class-peculiar-cases/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/custom-java-class-peculiar-cases/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Custom Java Class : Peculiar Cases">
+	<meta property="og:description" content="This post is about understanding the type of interview questions which can come from a Custom Java class where we can override equals, hashcode, *toString *or implements the Interface to *sort *the list of this custom Java class.
+Lets go one by one, where you start your coding round and the first information provided is
+1. Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:16+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:16+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Custom Java Class : Peculiar Cases">
+	<meta name="twitter:description" content="This post is about understanding the type of interview questions which can come from a Custom Java class where we can override equals, hashcode, *toString *or implements the Interface to *sort *the list of this custom Java class.
+Lets go one by one, where you start your coding round and the first information provided is
+1. Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Custom Java Class : Peculiar Cases",
+    "headline": "Custom Java Class : Peculiar Cases",
+    
+    "abstract": "\u003cp\u003eThis post is about understanding the type of interview questions which can come from a Custom Java class where we can override \u003cem\u003eequals\u003c\/em\u003e, \u003cem\u003ehashcode\u003c\/em\u003e, *toString *or implements the Interface to *sort *the list of this custom Java class.\u003c\/p\u003e\n\u003cp\u003eLets go one by one, where you start your coding round and the first information provided is\u003c\/p\u003e\n\u003cp\u003e\u003cstrong\u003e1.\u003c\/strong\u003e Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/custom-java-class-peculiar-cases\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:16\u002b05:30",
+    "datePublished": "2026-10-27T08:14:16\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:16\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1038"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Custom Java Class Peculiar Cases",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Custom Java Class : Peculiar Cases
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This post is about understanding the type of interview questions which can come from a Custom Java class where we can override <em>equals</em>, <em>hashcode</em>, *toString *or implements the Interface to *sort *the list of this custom Java class.</p>
+<p>Lets go one by one, where you start your coding round and the first information provided is</p>
+<p><strong>1.</strong> Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>name: <span style="color:#e6db74">&#34;&#34;</span>, age: <span style="color:#e6db74">&#34;&#34;</span>, profession: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span></code></pre></div><p><strong>Customer.java</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Customer</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String profession;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Customer(String name, <span style="color:#66d9ef">int</span> age, String profession){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">profession</span> <span style="color:#f92672">=</span> profession;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span>() { <span style="color:#66d9ef">return</span> name;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span>(String name) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span>() { <span style="color:#66d9ef">return</span> age;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAge</span>(<span style="color:#66d9ef">int</span> age) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getProfession</span>() { <span style="color:#66d9ef">return</span> profession;}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setProfession</span>(String profession) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">profession</span> <span style="color:#f92672">=</span> profession;}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;name: &#34;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; age: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; profession:&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">profession</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>2.</strong> Create a service implementation which takes *Customer *class, create a Set and add the customer object by calling the <em>addCustomer()</em> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerServiceImpl</span> {
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>Customer<span style="color:#f92672">&gt;</span> customers <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addCustomer</span>(Customer newCust){
+</span></span><span style="display:flex;"><span>        customers.<span style="color:#a6e22e">add</span>(newCust);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>3.</strong> From the main method, call this <em>addCustomer()</em> and insert two records with same name, but different age and profession. After that call the <em>toString()</em> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CustomerServiceImpl impl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomerServiceImpl();
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;DynamicallyBlunt&#34;</span>, 10, <span style="color:#e6db74">&#34;Developer&#34;</span>));
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;DynamicallyBlunt&#34;</span>, 11, <span style="color:#e6db74">&#34;Data Scientist&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(impl.<span style="color:#a6e22e">customers</span>);
+</span></span></code></pre></div><p>Here questions could be:</p>
+<ul>
+<li><em>How many elements will be added to the Set ?</em>
+Answer: Since it is a set, it won&rsquo;t allow duplicate object in the set, but since the set elements are object and we have two different object (luckily having same name), there will be 2 elements in the customers set.</li>
+<li><em>If its not 1, then why is it happening so ? and Can we fix it ?</em>
+Answer: Since the default object&rsquo;s equals and hashCode is generated by including all the attributes of the custom class, it will create the hashCode of by combining all attributes and then does an equals on the entire object which will be different for both the records. Hence allowing to insert the second record with the same name.
+We can fix it, by overriding the *equals *and *hashcode *method as per business requirement.</li>
+</ul>
+<p><strong>4. Write the overridden methods which will not allow Customer object with same name to be inserted in the Set</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">hashCode</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span>(Object obj){
+</span></span><span style="display:flex;"><span>    Customer cObj <span style="color:#f92672">=</span> (Customer)obj;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getName</span>().<span style="color:#a6e22e">equalsIgnoreCase</span>(cObj.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, another questions could be</p>
+<ul>
+<li>What is the change from the previous output ?
+Answer: This will stop the insertion of the second record in the Set with the same name, which answers the previous question of fixing it.</li>
+<li>What if another Customer object is added with same name, but having lowercase characters (name: &lsquo;dynamicallyblunt&rsquo;, age:11, profession: &lsquo;Devops Engg&rsquo;) ?
+Answer: Here, even though we have used <em>equalsIgnoreCase()</em> in our <em>equals()</em> method, still it will add this new record into the Set. Because the *hashCode *which it gets will be different for strings with different cases. We can test this by printing the *hashCode *of same strings with different cases (It could be different if executed on your machine. depends on the JVM)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;dynamicallyblunttech&#34;</span>.<span style="color:#a6e22e">hashCode</span>());
+</span></span><span style="display:flex;"><span>1630329008
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;DynamicallyBluntTech&#34;</span>.<span style="color:#a6e22e">hashCode</span>());
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span>464150320
+</span></span></code></pre></div><pre><code>So, we have to either convert the name attribute used in hashCode() method to
+
+uppercase or to lowercase, such that if the strings is same, irrespective of the lowercase 
+
+or uppercase, it will not insert into the Set.
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">toLowerCase</span>(Locale.<span style="color:#a6e22e">ROOT</span>).<span style="color:#a6e22e">hashCode</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>5. Tell the output, if we use a sorted set instead of HashSet</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerServiceImpl</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    SortedSet<span style="color:#f92672">&lt;</span>Customer<span style="color:#f92672">&gt;</span> customers <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeSet<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addCustomers</span>(Customer newCust){
+</span></span><span style="display:flex;"><span>        customers.<span style="color:#a6e22e">add</span>(newCust);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, as asked, we are now using a *TreeSet *which is a sorted set implementation. And since the sorting behavior is not defined, it will throw an exception saying my custom Java class <em>Customer.java</em> is not implementing *Comparable *interface.</p>
+<p>This will be the exact error message</p>
+<p>Now to fix this, we have to implement the *Comparable *Interface and provide the logic for its <em>compareTo()</em> method which takes one argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Customer</span> <span style="color:#66d9ef">implements</span> Comparable<span style="color:#f92672">&lt;</span>Customer<span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span>(Customer o) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">toLowerCase</span>(Locale.<span style="color:#a6e22e">ROOT</span>).<span style="color:#a6e22e">compareTo</span>(o.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Using this, now my Sorted set will be sorted in ascending order by the ASCII code.</p>
+<p>For the following records inserted</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;dynamicallyBlunt&#34;</span>, 10, <span style="color:#e6db74">&#34;Developer&#34;</span>));
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;tech&#34;</span>, 11, <span style="color:#e6db74">&#34;Devops&#34;</span>));
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;com&#34;</span>, 11, <span style="color:#e6db74">&#34;Data Scientist&#34;</span>));
+</span></span></code></pre></div><p>We will get the following output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>name: com age: 11 profession:Data Scientist, 
+</span></span><span style="display:flex;"><span> name: dynamicallyBlunt age: 10 profession:Developer, 
+</span></span><span style="display:flex;"><span> name: tech age: 11 profession:Devops<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>6. Sort based on the customer age, If we are using List instead of Set.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerComparator</span> <span style="color:#66d9ef">implements</span> Comparator<span style="color:#f92672">&lt;</span>Customer<span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span>(Customer o1, Customer o2) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(o1.<span style="color:#a6e22e">getAge</span>() <span style="color:#f92672">&lt;</span> o2.<span style="color:#a6e22e">getAge</span>())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (o1.<span style="color:#a6e22e">getAge</span>() <span style="color:#f92672">&gt;</span> o2.<span style="color:#a6e22e">getAge</span>())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> 1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//Both scenario not matching then it is same age</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> 0;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, in this portion the interviewer is hinting to use *Comparator *interface instead of <em>Comparable</em>. Because you can sort based on any attribute using Comparator, and comparator can be implemented with <em>Collections.sort()</em>, or <em>Arrays.sort()</em> method.</p>
+<p>So, for the following records inserted</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;tech&#34;</span>, 11, <span style="color:#e6db74">&#34;Devops&#34;</span>));
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;com&#34;</span>, 11, <span style="color:#e6db74">&#34;Data Scientist&#34;</span>));
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;interview&#34;</span>, 9, <span style="color:#e6db74">&#34;Developer&#34;</span>));
+</span></span><span style="display:flex;"><span>impl.<span style="color:#a6e22e">addCustomers</span>(<span style="color:#66d9ef">new</span> Customer(<span style="color:#e6db74">&#34;dynamicallyBlunt&#34;</span>, 10, <span style="color:#e6db74">&#34;Developer&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Collections.<span style="color:#a6e22e">sort</span>(impl.<span style="color:#a6e22e">customers</span>, <span style="color:#66d9ef">new</span> CustomerComparator());
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(impl.<span style="color:#a6e22e">customers</span>);
+</span></span></code></pre></div><p>We will get the following output sorted based on the age in ascending order.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>name: interview age: 9 profession:Developer, 
+</span></span><span style="display:flex;"><span> name: dynamicallyBlunt age: 10 profession:Developer, 
+</span></span><span style="display:flex;"><span> name: tech age: 11 profession:Devops, 
+</span></span><span style="display:flex;"><span> name: com age: 11 profession:Data Scientist<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>This concludes the set of basic interview questions on custom Java class and its different implementation and sorting ways which gets tricky once the interviewer ask to implement it during the coding round. Its always advisable to practice before presenting.</p>
+<p>Hope this helps a bit in understanding the different techniques and the order of the questions that can come up. Do let me know if I am missing any other interview questions on Custom Java Class or if anything here can be enhanced.</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Web Socket Client - Receiving Stream of Messages</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/chatbot-using-spring-ai-and-openai/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Chatbot using Spring AI and OpenAI</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

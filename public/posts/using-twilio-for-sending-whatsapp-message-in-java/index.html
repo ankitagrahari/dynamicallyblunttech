@@ -1,0 +1,489 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Using Twilio for Sending WhatsApp Message in Java &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Using Twilio for Sending WhatsApp Message in Java &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this blog post, we will try to send WhatsApp message in Java using Twilio account.
+**Prerequisite: **
+Create a free account in Twilio.
+Once verified, you will have your own account SID and authorization token.
+Thereafter, you need to activate the Sandbox.
+Now add the number &#43;14155238886 in you mobile account and send a message &ldquo;join up-post&rdquo; (without quotes).
+This will register your mobile number with Twilio sandbox and now you are eligible to send WhatsApp messages. The sandbox will look like below:
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/using-twilio-for-sending-whatsapp-message-in-java/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/using-twilio-for-sending-whatsapp-message-in-java/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Using Twilio for Sending WhatsApp Message in Java">
+	<meta property="og:description" content="In this blog post, we will try to send WhatsApp message in Java using Twilio account.
+**Prerequisite: **
+Create a free account in Twilio.
+Once verified, you will have your own account SID and authorization token.
+Thereafter, you need to activate the Sandbox.
+Now add the number &#43;14155238886 in you mobile account and send a message “join up-post” (without quotes).
+This will register your mobile number with Twilio sandbox and now you are eligible to send WhatsApp messages. The sandbox will look like below:">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:22+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:22+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Using Twilio for Sending WhatsApp Message in Java">
+	<meta name="twitter:description" content="In this blog post, we will try to send WhatsApp message in Java using Twilio account.
+**Prerequisite: **
+Create a free account in Twilio.
+Once verified, you will have your own account SID and authorization token.
+Thereafter, you need to activate the Sandbox.
+Now add the number &#43;14155238886 in you mobile account and send a message “join up-post” (without quotes).
+This will register your mobile number with Twilio sandbox and now you are eligible to send WhatsApp messages. The sandbox will look like below:">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Using Twilio for Sending WhatsApp Message in Java",
+    "headline": "Using Twilio for Sending WhatsApp Message in Java",
+    
+    "abstract": "\u003cp\u003eIn this blog post, we will try to send WhatsApp message in Java using \u003ca href=\u0022https:\/\/www.twilio.com\/docs\/whatsapp\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eTwilio account\u003c\/em\u003e\u003c\/a\u003e.\u003c\/p\u003e\n\u003cp\u003e**Prerequisite: **\u003c\/p\u003e\n\u003cp\u003eCreate a free account in Twilio.\u003c\/p\u003e\n\u003cp\u003eOnce verified, you will have your own account SID and authorization token.\u003c\/p\u003e\n\u003cp\u003eThereafter, you need to activate the Sandbox.\u003c\/p\u003e\n\u003cp\u003eNow add the number \u002b14155238886 in you mobile account and send a message \u0026ldquo;\u003cem\u003e\u003cstrong\u003ejoin up-post\u003c\/strong\u003e\u003c\/em\u003e\u0026rdquo; (without quotes).\u003c\/p\u003e\n\u003cp\u003eThis will register your mobile number with Twilio sandbox and now you are eligible to send WhatsApp messages. The sandbox will look like below:\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/using-twilio-for-sending-whatsapp-message-in-java\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:22\u002b05:30",
+    "datePublished": "2026-10-27T08:14:22\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:22\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "330"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Using Twilio for Sending Whats App Message in Java",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Using Twilio for Sending WhatsApp Message in Java
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this blog post, we will try to send WhatsApp message in Java using <a href="https://www.twilio.com/docs/whatsapp" target="_blank" rel="noreferrer"><em>Twilio account</em></a>.</p>
+<p>**Prerequisite: **</p>
+<p>Create a free account in Twilio.</p>
+<p>Once verified, you will have your own account SID and authorization token.</p>
+<p>Thereafter, you need to activate the Sandbox.</p>
+<p>Now add the number +14155238886 in you mobile account and send a message &ldquo;<em><strong>join up-post</strong></em>&rdquo; (without quotes).</p>
+<p>This will register your mobile number with Twilio sandbox and now you are eligible to send WhatsApp messages. The sandbox will look like below:</p>
+<p>Now we will write simple java code to initiate the engine and send message using program to any registered number.</p>
+<h3 id="maven-dependency" class="relative group"><strong>Maven Dependency</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#maven-dependency" aria-label="Anchor">#</a></span></h3><p>Add maven dependency for Twilio java library</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>com.<span style="color:#a6e22e">twilio</span>.<span style="color:#a6e22e">sdk</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>twilio<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>7.<span style="color:#a6e22e">51</span>.<span style="color:#a6e22e">0</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>After adding the maven dependency, create a new program with the below method and global variables.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String ACCOUNT_SID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ABCDEFGHIJKLMNOPQRSTVWXYZ&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String AUTH_TOKEN<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;123abc456def789ghi&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendMessageUsingTwilio</span>(){
+</span></span><span style="display:flex;"><span>    Twilio.<span style="color:#a6e22e">init</span>(ACCOUNT_SID, AUTH_TOKEN);
+</span></span><span style="display:flex;"><span>    Message message <span style="color:#f92672">=</span> Message.<span style="color:#a6e22e">creator</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> com.<span style="color:#a6e22e">twilio</span>.<span style="color:#a6e22e">type</span>.<span style="color:#a6e22e">PhoneNumber</span>(<span style="color:#e6db74">&#34;whatsapp:+xxxxxxxxxxx&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> com.<span style="color:#a6e22e">twilio</span>.<span style="color:#a6e22e">type</span>.<span style="color:#a6e22e">PhoneNumber</span>(<span style="color:#e6db74">&#34;whatsapp:+14155238886&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Hello there!&#34;</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">create</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(message.<span style="color:#a6e22e">getSid</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <em>Message.creator</em> takes three arguments: <em><strong>to</strong></em>, <em><strong>from</strong></em> and ***message. ***You can get the account SID and Auth token from the Twilio dashboard.</p>
+<h3 id="custom-http-client" class="relative group"><strong>Custom HTTP Client</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#custom-http-client" aria-label="Anchor">#</a></span></h3><p>The Twilio Java helper library also provide custom ***HttpClient ***which can be created like this. Twilio used <em><strong>org.apache.http.client</strong></em> package for its custom <em><strong>HttpClient</strong></em>. Add the below lines before creating and sending the message like <em><strong>Message.creator()</strong></em> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ProxiedTwilioClientCreator clientCreator <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ProxiedTwilioClientCreator(
+</span></span><span style="display:flex;"><span>        ACCOUNT_SID, AUTH_TOKEN, PROXY_HOST, PROXY_PORT);
+</span></span><span style="display:flex;"><span>TwilioRestClient twilioRestClient <span style="color:#f92672">=</span> clientCreator.<span style="color:#a6e22e">getClient</span>();
+</span></span><span style="display:flex;"><span>Twilio.<span style="color:#a6e22e">setRestClient</span>(twilioRestClient);
+</span></span></code></pre></div><p>You can find the entire code here on my <a href="https://github.com/ankitagrahari/Tryouts/tree/master/src/main/java/com/watsapp" target="_blank" rel="noreferrer">Github </a>repository.</p>
+<h4 id="references" class="relative group"><strong>References</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h4><ul>
+<li><a href="https://www.twilio.com/blog/what-does-twilio-do" target="_blank" rel="noreferrer"><em>https://www.twilio.com/blog/what-does-twilio-do</em></a></li>
+<li><a href="https://www.twilio.com/docs/whatsapp/quickstart/java" target="_blank" rel="noreferrer"><em>https://www.twilio.com/docs/whatsapp/quickstart/java</em></a></li>
+<li><a href="https://www.twilio.com/docs/libraries/java" target="_blank" rel="noreferrer"><em>https://www.twilio.com/docs/libraries/java</em></a></li>
+<li><a href="https://www.twilio.com/docs/libraries/java/custom-http-clients-java" target="_blank" rel="noreferrer"><em>https://www.twilio.com/docs/libraries/java/custom-http-clients-java</em></a></li>
+</ul>
+<h4 id="note" class="relative group"><strong>NOTE</strong>: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#note" aria-label="Anchor">#</a></span></h4><ul>
+<li>This is a fun project but always remember not to share your SID or authorization token details. You should also verify that you don&rsquo;t mistakenly shared it with the code.</li>
+<li>Twilio is not free and is having a trial period of 14 days.</li>
+</ul>
+<p>Hope you will enjoy as much as I enjoyed trying it out. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/lc746-minimum-cost-of-climbing-stairs/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC746 - Minimum Cost Of Climbing Stairs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/system-design-with-agentic-ai-1/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >System Design with Agentic AI - 1</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,497 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Scraping Youtube Videos - Using Python&#39;s Requests & JSON Libraries &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Scraping Youtube Videos - Using Python&#39;s Requests & JSON Libraries &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will look into Scraping any Youtube video metadata to get the views, likes, dislikes, published date etc. information using Python. We will not be using any third party libraries which parse the HTML like Beautiful Soup.
+Problem Statement: #To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the Youtube API to fetch data.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Scraping Youtube Videos - Using Python&#39;s Requests & JSON Libraries">
+	<meta property="og:description" content="In this post we will look into Scraping any Youtube video metadata to get the views, likes, dislikes, published date etc. information using Python. We will not be using any third party libraries which parse the HTML like Beautiful Soup.
+Problem Statement: #To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the Youtube API to fetch data.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:17+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:17+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Scraping Youtube Videos - Using Python&#39;s Requests & JSON Libraries">
+	<meta name="twitter:description" content="In this post we will look into Scraping any Youtube video metadata to get the views, likes, dislikes, published date etc. information using Python. We will not be using any third party libraries which parse the HTML like Beautiful Soup.
+Problem Statement: #To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the Youtube API to fetch data.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Scraping Youtube Videos - Using Python\u0027s Requests \u0026 JSON Libraries",
+    "headline": "Scraping Youtube Videos - Using Python\u0027s Requests \u0026 JSON Libraries",
+    
+    "abstract": "\u003cp\u003eIn this post we will look into \u003cem\u003e\u003cstrong\u003eScraping any Youtube video\u003c\/strong\u003e\u003c\/em\u003e metadata to get the views, likes, dislikes, published date etc. information using \u003cem\u003e\u003cstrong\u003ePython\u003c\/strong\u003e\u003c\/em\u003e. We will not be using any third party libraries which parse the HTML like Beautiful Soup.\u003c\/p\u003e\n\u003ch3 id=\u0022problem-statement\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eProblem Statement:\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#problem-statement\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eTo fetch Youtube video metadata like its View count, Likes\/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the \u003cem\u003e\u003cstrong\u003eYoutube API\u003c\/strong\u003e\u003c\/em\u003e to fetch data.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:17\u002b05:30",
+    "datePublished": "2026-10-27T08:14:17\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:17\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "658"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Scraping Youtube Videos Using Python's Requests \u0026 JSON Libraries",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Scraping Youtube Videos - Using Python's Requests & JSON Libraries
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:17 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will look into <em><strong>Scraping any Youtube video</strong></em> metadata to get the views, likes, dislikes, published date etc. information using <em><strong>Python</strong></em>. We will not be using any third party libraries which parse the HTML like Beautiful Soup.</p>
+<h3 id="problem-statement" class="relative group"><strong>Problem Statement:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-statement" aria-label="Anchor">#</a></span></h3><p>To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the <em><strong>Youtube API</strong></em> to fetch data.</p>
+<h3 id="approach" class="relative group"><strong>Approach</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#approach" aria-label="Anchor">#</a></span></h3><p>There are multiple ways to fetch the data from youtube, or any other website. In order to parse the website, <em>Beautiful Soup</em> library can be used. But we will use even simpler way to get out required data-set.</p>
+<p>We will be using python <em><strong>requests</strong></em> library to get the page source of the youtube video link and ***json ***library to parse the text to Json object.</p>
+<p>There is a pattern to any Youtube video page source. When you open the page source, search for &lsquo;<em><strong>ytInitialData</strong></em>&rsquo; in the page source, and you will find that in the script tag, this variable is assigned with a Json. Only problem is that, we cannot use it as it is, and needs some manipulation. So basically, we will be manipulating strings in Python to get the data we want.</p>
+<p>To get the exact Json, I need to find the start and end Index of this Json from the page source. Lets try it out for any Youtube video you are watching.</p>
+<p><strong>F</strong>or getting the page source of any website, you can right click on the website and click on the *View Page Source *option</p>
+<p><strong>S</strong>earch for <em><strong>ytInitialData</strong></em> in the tab where the page source is open. Actual string will be like this:</p>
+<h3 id="code" class="relative group">Code <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#code" aria-label="Anchor">#</a></span></h3><p>Lets code it in Python step by step:</p>
+<p>You need to import ***json ***and ***requests ***libraries as the prerequisite step.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span></code></pre></div><p><strong>F</strong>rom the given video link, get the page source using request library and save the text format to some variable</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>def <span style="color:#a6e22e">import_video_data</span>(URL):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#960050;background-color:#1e0010">&#39;</span>Fetching Video page source using URL <span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">+</span> URL)
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> window<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;ytInitialData&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    page_source <span style="color:#f92672">=</span> requests.<span style="color:#a6e22e">get</span>(URL)
+</span></span><span style="display:flex;"><span>    page_source <span style="color:#f92672">=</span> page_source.<span style="color:#a6e22e">text</span>
+</span></span></code></pre></div><p><strong>E</strong>xtract the json data from the page source of the given video link.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>start_index <span style="color:#f92672">=</span> page_source.<span style="color:#a6e22e">find</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>ytInitialData<span style="color:#960050;background-color:#1e0010">&#39;</span>)
+</span></span><span style="display:flex;"><span>    tmp <span style="color:#f92672">=</span> page_source<span style="color:#f92672">[</span> start_index<span style="color:#f92672">+</span>17:<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    end_index <span style="color:#f92672">=</span> tmp.<span style="color:#a6e22e">find</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>}};<span style="color:#960050;background-color:#1e0010">&#39;</span>)
+</span></span><span style="display:flex;"><span>    tmp <span style="color:#f92672">=</span> tmp<span style="color:#f92672">[</span>:end_index<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>}}<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> tmp
+</span></span></code></pre></div><p><strong>N</strong>ow, parse the string returned as ***Json ***object using <em><strong>Json</strong></em> library. Here we are using <em><strong>loads()</strong></em> method to convert the <em><strong>Json</strong></em> string into a dictionary.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>def <span style="color:#a6e22e">parse_json</span>(json_data):
+</span></span><span style="display:flex;"><span>    json_dict <span style="color:#f92672">=</span> json.<span style="color:#a6e22e">loads</span>(json_data)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> json_dict
+</span></span></code></pre></div><p>The Json we fetched in the last step will look something like this:</p>
+<p><strong>F</strong>rom the Json, we can now extract any information we want.</p>
+<p>The basic manual way to get the title, video Id, View Count, Likes, Dislikes, their short form and its published date are displayed here:</p>
+<p><em><strong>For Video Id</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>video_id <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>currentVideoEndpoint<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>watchEndpoint<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoId<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#960050;background-color:#1e0010">&#39;</span>VideoId:<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">+</span> video_id)
+</span></span></code></pre></div><p><em><strong>For Title</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>title <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>title<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>runs<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>text<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#960050;background-color:#1e0010">&#39;</span>Title:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> title)
+</span></span></code></pre></div><p><em><strong>For View count and its short form</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>views <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>viewCount<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoViewCountRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>viewCount<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>simpleText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>short_views <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>viewCount<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoViewCountRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>shortViewCount<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>simpleText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#960050;background-color:#1e0010">&#39;</span>Views:<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">+</span> views <span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">&#39;</span> in <span style="color:#66d9ef">short</span>:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> short_views)
+</span></span></code></pre></div><p><em><strong>For Likes and its short form</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>likes <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoActions<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>menuRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>topLevelButtons<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>toggleButtonRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>defaultText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>accessibility<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>accessibilityData<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>label<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>likes_inshort <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoActions<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>menuRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>topLevelButtons<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>toggleButtonRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>defaultText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>simpleText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#960050;background-color:#1e0010">&#39;</span>Likes:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> likes<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">&#39;</span> in <span style="color:#66d9ef">short</span>:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> likes_inshort)
+</span></span></code></pre></div><p><em><strong>For Dislikes and its short form</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>dislikes <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoActions<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>menuRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>topLevelButtons<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>1<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>toggleButtonRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>defaultText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>accessibility<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>accessibilityData<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>label<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dislikes_inshort <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoActions<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>menuRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>topLevelButtons<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>1<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>toggleButtonRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>defaultText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>simpleText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#960050;background-color:#1e0010">&#39;</span>Dis<span style="color:#f92672">-</span>Likes:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> dislikes<span style="color:#f92672">+</span><span style="color:#960050;background-color:#1e0010">&#39;</span> in <span style="color:#66d9ef">short</span>:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> dislikes_inshort)
+</span></span></code></pre></div><p><em><strong>For Published Date</strong></em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>published_date <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>twoColumnWatchNextResults<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>results<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>contents<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span>0<span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoPrimaryInfoRenderer<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>dateText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>simpleText<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#960050;background-color:#1e0010">&#39;</span>Published Date:<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">+</span> published_date)
+</span></span></code></pre></div><p>The output of the above code will be look like this:</p>
+<h4 id="fetching-video-stats-as-per-date-3rd-august-2020" class="relative group"><strong>Fetching Video stats (as per date 3rd August, 2020)</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#fetching-video-stats-as-per-date-3rd-august-2020" aria-label="Anchor">#</a></span></h4><p>**URL: **<a href="https://www.youtube.com/watch?v=JRtgXN-bwGE" target="_blank" rel="noreferrer"><em>https://www.youtube.com/watch?v=JRtgXN-bwGE</em></a>
+**VideoId: **<em>JRtgXN-bwGE</em>
+**Title: **<em>Honest Review | Raat Akeli Hai, Shakuntala Devi &amp; Lootcase | MensXP</em>
+**Views: **<em>282,420 views in short:282K views</em>
+**Likes: **<em>21,343 likes <strong><strong>in short</strong></strong>: 21K</em>
+**Dis-Likes: **<em>413 dislikes <strong><strong>in short</strong></strong>:413</em>
+**Published Date: **<em>1 Aug 2020</em></p>
+<p>Using the above technique, you will have the Json and can extract any data which is required. You can find this entire code on my <a href="https://github.com/ankitagrahari/pyprojects/blob/master/com/agrahari/YTScraping.py" target="_blank" rel="noreferrer"><em>Github Repository</em></a>.</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/spring-data-jpa-with-mongodb/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Spring Data JPA with MongoDB</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:17 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/log4j-vulnerability-continued/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Log4j Vulnerability - Continued</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:17 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

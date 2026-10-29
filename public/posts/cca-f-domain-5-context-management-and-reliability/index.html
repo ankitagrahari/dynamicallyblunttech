@@ -1,0 +1,678 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>CCA-F Domain 5: Context Management and Reliability &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="CCA-F Domain 5: Context Management and Reliability &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        As we discussed in the previous post on Domain 4: Claude Code Configuration and Workflow, this part of the post will cover the Domain 5 which holds 15% weightage in the exam. This is also the last domain in this CCFA series. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/cca-f-domain-5-context-management-and-reliability/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/cca-f-domain-5-context-management-and-reliability/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="CCA-F Domain 5: Context Management and Reliability">
+	<meta property="og:description" content="As we discussed in the previous post on Domain 4: Claude Code Configuration and Workflow, this part of the post will cover the Domain 5 which holds 15% weightage in the exam. This is also the last domain in this CCFA series. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:27+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:27+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CCA-F Domain 5: Context Management and Reliability">
+	<meta name="twitter:description" content="As we discussed in the previous post on Domain 4: Claude Code Configuration and Workflow, this part of the post will cover the Domain 5 which holds 15% weightage in the exam. This is also the last domain in this CCFA series. #If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "CCA-F Domain 5: Context Management and Reliability",
+    "headline": "CCA-F Domain 5: Context Management and Reliability",
+    
+    "abstract": "\u003ch3 id=\u0022as-we-discussed-in-the-previous-post-on-domain-4-claude-code-configuration-and-workflow-this-part-of-the-post-will-cover-the-domain-5-which-holds-15-weightage-in-the-exam-this-is-also-the-last-domain-in-this-ccfa-series\u0022 class=\u0022relative group\u0022\u003eAs we discussed in the previous post on \u003ca href=\u0022\/post\/cca-f-domain-4-prompt-engineering-and-structured-output\u0022\u003eDomain 4: Claude Code Configuration and Workflow\u003c\/a\u003e, this part of the post will cover the Domain 5 which holds 15% weightage in the exam. This is also the \u003cem\u003e\u003cstrong\u003elast domain\u003c\/strong\u003e\u003c\/em\u003e in this CCFA series. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#as-we-discussed-in-the-previous-post-on-domain-4-claude-code-configuration-and-workflow-this-part-of-the-post-will-cover-the-domain-5-which-holds-15-weightage-in-the-exam-this-is-also-the-last-domain-in-this-ccfa-series\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003ch3 id=\u0022if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 class=\u0022relative group\u0022\u003eIf you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eWhere to Register: \u003ca href=\u0022https:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u003c\/a\u003e\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/cca-f-domain-5-context-management-and-reliability\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:27\u002b05:30",
+    "datePublished": "2026-10-27T08:14:27\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:27\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3137"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6a89342d6797a1f792f34566/",
+       "name": "[\"6a89342d6797a1f792f34566\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Cca F Domain 5 Context Management and Reliability",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        CCA-F Domain 5: Context Management and Reliability
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <h3 id="as-we-discussed-in-the-previous-post-on-domain-4-claude-code-configuration-and-workflow-this-part-of-the-post-will-cover-the-domain-5-which-holds-15-weightage-in-the-exam-this-is-also-the-last-domain-in-this-ccfa-series" class="relative group">As we discussed in the previous post on <a href="/post/cca-f-domain-4-prompt-engineering-and-structured-output">Domain 4: Claude Code Configuration and Workflow</a>, this part of the post will cover the Domain 5 which holds 15% weightage in the exam. This is also the <em><strong>last domain</strong></em> in this CCFA series. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#as-we-discussed-in-the-previous-post-on-domain-4-claude-code-configuration-and-workflow-this-part-of-the-post-will-cover-the-domain-5-which-holds-15-weightage-in-the-exam-this-is-also-the-last-domain-in-this-ccfa-series" aria-label="Anchor">#</a></span></h3><h3 id="if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" class="relative group">If you have directly stumbled upon this page, I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#if-you-have-directly-stumbled-upon-this-page-i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" aria-label="Anchor">#</a></span></h3><p>Where to Register: <a href="https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification" target="_blank" rel="noreferrer">https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification</a></p>
+<blockquote>
+<p>Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.</p>
+</blockquote>
+<h4 id="topics-covered" class="relative group"><em><strong>Topics Covered</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#topics-covered" aria-label="Anchor">#</a></span></h4><p>Prompt Caching &amp; <em>cache_control</em> Breakpoints</p>
+<p>Lost-in-the-Middle Effects</p>
+<p>Progressive Summarization Risks</p>
+<p>Conversation Compaction</p>
+<p>Verbose Tool Output Trimming</p>
+<p>Token Estimation &amp; Budget Management</p>
+<p>Multi-Turn Conversation Design</p>
+<p>Escalation Decision-Making (explicit criteria + few-shot)</p>
+<p>Structured Error Propagation Across Multi-Agent Systems</p>
+<p>Context Management in Large Codebase Exploration (scratchpad files, subagent delegation)</p>
+<h2 id="1-prompt-caching--cache_breakpoints" class="relative group">1. Prompt Caching &amp; <em>cache_control</em> Breakpoints <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-prompt-caching--cache_breakpoints" aria-label="Anchor">#</a></span></h2><p>Anthropic&rsquo;s API can <strong>reuse the already-computed representation (KV cache)</strong> of a prompt prefix instead of reprocessing it from scratch on every call — cutting cost and latency. You mark cache breakpoints using cache_control. <strong>Critical rule: caching works on prefixes</strong> — the cached portion must be identical and must come <em>before</em> the dynamic parts. <strong>Stable content goes first (system prompt, project context), volatile content goes last (current message).</strong> Any change to the stable prefix (e.g., injecting today&rsquo;s date at the top) invalidates the cache for everything after it.</p>
+<p><strong>Q1.</strong> A system prompt starts every request with &ldquo;Today is {current_date}&hellip;&rdquo; before the rest of the fixed instructions. Cache hit rates are near zero. Why?</p>
+<p>A) cache_control isn&rsquo;t supported for system prompts</p>
+<p>B) The changing date sits at the very start of the prefix, so it invalidates the cache for every token that follows it on every single call</p>
+<p>C) The prompt is too short to cache</p>
+<p>D) Dates cannot be included in prompts</p>
+<p>Answer: B — the &ldquo;don&rsquo;t put volatile content at the top&rdquo; rule, tested directly.</p>
+<p><strong>Q2.</strong> Where should a per-user, per-session variable (like a username injected into context) be placed to preserve cache efficiency?</p>
+<p>A) As late as possible — near the dynamic/current-turn content, not mixed into the stable, cached prefix</p>
+<p>B) At the very beginning of the system prompt</p>
+<p>C) It doesn&rsquo;t matter where it goes</p>
+<p>D) It should never be included at all</p>
+<p>Answer: A.</p>
+<p><strong>Q3.</strong> What does a <em>cache_control</em> breakpoint mark in a request?</p>
+<p>A) A point where the conversation ends</p>
+<p>B) A rate-limit threshold</p>
+<p>C) A point in the prompt up to which content should be cached for reuse in future requests with the same prefix</p>
+<p>D) A required field in every JSON schema</p>
+<p>Answer: C.</p>
+<p><strong>Q4.</strong> A team structures their prompt as:</p>
+<p>[current message] → [session history] → [CLAUDE.md project context] → [core system instructions].</p>
+<p>Cache hits are poor. What&rsquo;s wrong with this ordering?</p>
+<p>A) Nothing, order doesn&rsquo;t matter</p>
+<p>B) It&rsquo;s backwards — stable content (core instructions, project context) should come first, with the most volatile content (current message) last, so the maximum stable prefix can be cached</p>
+<p>C) CLAUDE.md cannot be cached</p>
+<p>D) Session history should never be included</p>
+<p>Answer: B.</p>
+<h2 id="2-lost-in-the-middle-effects" class="relative group">2. Lost-in-the-Middle Effects <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-lost-in-the-middle-effects" aria-label="Anchor">#</a></span></h2><p>LLMs tend to <strong>pay less attention to information placed in the middle of a long context</strong>, compared to information near the beginning or end.</p>
+<p><em>Practical implication:</em> critical facts buried in the middle of a huge context (long documents, long conversation histories) are more likely to be missed or under-weighted than facts placed at the start or end.</p>
+<p><strong>Q5.</strong> A 50-page contract is passed to Claude with the single most important clause sitting on page 25 (dead center). Extraction quality for that clause is worse than for clauses on page 1 or page 50. What effect explains this?</p>
+<p>A) Token limit exceeded</p>
+<p>B) Lost-in-the-middle — information in the middle of long context tends to be attended to less reliably than content at the start or end</p>
+<p>C) The model wasn&rsquo;t given the whole document</p>
+<p>D) This is a JSON Schema issue</p>
+<p>Answer: B.</p>
+<p><strong>Q6.</strong> What&rsquo;s a practical mitigation for lost-in-the-middle effects when a specific fact absolutely must be captured accurately from a long document?</p>
+<p>A) Nothing can be done, it&rsquo;s an inherent limitation</p>
+<p>B) Always increase temperature</p>
+<p>C) Reposition or explicitly re-surface the critical information near the start or end of the context, or break the document into smaller chunks processed separately</p>
+<p>D) Use the Batch API</p>
+<p>Answer: C.</p>
+<h2 id="3-progressive-summarization-risks" class="relative group">3. Progressive Summarization Risks <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-progressive-summarization-risks" aria-label="Anchor">#</a></span></h2><p>As a long conversation grows, older parts are often <strong>summarized to save space</strong>. Repeating this (summarizing an already-summarized summary) compounds <strong>information loss</strong> — details get progressively vaguer or dropped entirely across each round, and by several rounds in, specific facts from early in the conversation may be irrecoverably gone.</p>
+<p><strong>Q7.</strong> A long-running agent session repeatedly summarizes its own summaries every time context fills up. After many rounds, the agent has lost track of a specific requirement stated at the very beginning. What&rsquo;s the cause?</p>
+<p>A) The model has a bug</p>
+<p>B) This is a lost-in-the-middle effect, unrelated to summarization</p>
+<p>C) The requirement was never actually processed</p>
+<p>D) Progressive summarization compounds information loss each time a summary is re-summarized; specific early details erode over repeated rounds  <!-- raw HTML omitted --></p>
+<p>Answer: D.</p>
+<p><strong>Q8.</strong> What&rsquo;s a safer alternative to repeatedly re-summarizing an already-summarized history?</p>
+<p>A) Summarize even more aggressively each round</p>
+<p>B) Preserve critical facts/decisions verbatim in a durable store (e.g., a scratchpad file or structured state) instead of relying purely on compounding text summaries</p>
+<p>C) Never summarize under any circumstances</p>
+<p>D) Increase the model&rsquo;s context window instead</p>
+<p>Answer: B.</p>
+<h2 id="4-conversation-compaction" class="relative group">4. Conversation Compaction <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-conversation-compaction" aria-label="Anchor">#</a></span></h2><p>A <strong>built-in mechanism</strong> (e.g., in Claude Code) that condenses accumulated session state into a brief summary once context usage gets too high, reclaiming window space so the session can continue — trading some historical detail for continued operability. Distinct from progressive summarization risk in that it&rsquo;s usually a single compaction pass reacting to actual pressure, not a repeated/compounding pattern — but it still loses detail and can strip specifics if triggered carelessly or repeatedly.</p>
+<p><strong>Q9.</strong> A Claude Code session hits high context usage on a long feature-build task. What happens under conversation compaction, and what&rsquo;s the trade-off?</p>
+<p>A) The session simply stops working</p>
+<p>B) Accumulated session state gets summarized down to reclaim space so work can continue, at the cost of losing some fine-grained historical detail</p>
+<p>C) Compaction deletes the current task entirely</p>
+<p>D) Compaction only affects tool outputs, never conversation text</p>
+<p>Answer: B.</p>
+<p><strong>Q10.</strong> Why might an architect want to proactively manage context (e.g., via scratchpad files) rather than relying purely on automatic compaction?</p>
+<p>A) Proactive management preserves specific critical facts intact instead of leaving all information subject to lossy automatic summarization when the window fills up</p>
+<p>B) Automatic compaction is always sufficient and needs no supplementing</p>
+<p>C) Compaction is a manual-only feature</p>
+<p>D) There&rsquo;s no reason to; automatic compaction is strictly better</p>
+<p>Answer: A.</p>
+<h2 id="5-verbose-tool-output-trimming" class="relative group">5. Verbose Tool Output Trimming <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-verbose-tool-output-trimming" aria-label="Anchor">#</a></span></h2><p>Raw tool outputs (large API responses, full file contents, long logs) can consume large amounts of context for little benefit if returned in full every time. <strong>Trimming</strong> means stripping unnecessary bulk (mechanical bloat like raw dumps, base64 data, redundant metadata) while preserving the actually useful signal — keeping context lean without losing substance.</p>
+<p><strong>Q11.</strong> A tool call returns a 50KB raw API response, but the agent only ever needs 3 specific fields from it. What&rsquo;s the architectural fix?</p>
+<p>A) Pass the full 50KB into context every time, &ldquo;just in case&rdquo;</p>
+<p>B) Trim the tool output to the relevant fields before it enters context, discarding the unnecessary bulk</p>
+<p>C) Switch to the Batch API</p>
+<p>D) Increase the context window instead of trimming</p>
+<p>Answer: B.</p>
+<p><strong>Q12.</strong> Why is verbose tool output trimming particularly important in long agentic sessions with many tool calls?</p>
+<p>A) Untrimmed verbose outputs accumulate turn after turn, consuming context budget fast and increasing the risk of hitting limits or triggering lossy compaction sooner</p>
+<p>B) It has no cumulative effect</p>
+<p>C) It only matters for the first tool call</p>
+<p>D) Trimming reduces the model&rsquo;s accuracy</p>
+<p>Answer: A.</p>
+<h2 id="6-token-estimation--budget-management" class="relative group">6. Token Estimation &amp; Budget Management <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-token-estimation--budget-management" aria-label="Anchor">#</a></span></h2><p>Proactively <strong>estimating how many tokens a task will consume</strong> (system prompt + context + expected output) and <strong>planning within a budget</strong>, rather than discovering you&rsquo;ve hit limits mid-task. Includes accounting for tool schemas (which consume tokens just by being defined, whether called or not) and reserving headroom for output.</p>
+<p><strong>Q13.</strong> A system has 15 tools defined, each with a lengthy schema, but a typical task only ever uses 2 of them. What&rsquo;s a token-budget consideration here?</p>
+<p>A) Tool schemas cost nothing unless called</p>
+<p>B) Only called tools count against budget</p>
+<p>C) All defined tool schemas consume context tokens on every request regardless of whether they&rsquo;re actually called, so unused tools still count against the budget</p>
+<p>D) This has no effect on token usage</p>
+<p>Answer: C — ties back to Domain 2&rsquo;s &ldquo;tool sprawl&rdquo; from a token-budget angle.</p>
+<p><strong>Q14.</strong> Why should token budgeting reserve explicit headroom for the model&rsquo;s output, not just the input context?</p>
+<p>A) Output tokens are free</p>
+<p>B) If input consumes nearly the entire context window, there may be insufficient room left for the response the task actually requires, causing truncation</p>
+<p>C) Output never counts against context limits</p>
+<p>D) This only matters for structured output tasks</p>
+<p>Answer: B.</p>
+<h2 id="7-multi-turn-conversation-design" class="relative group">7. Multi-Turn Conversation Design <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-multi-turn-conversation-design" aria-label="Anchor">#</a></span></h2><p>Designing how a <strong>conversation accumulates and is structured over many turns</strong> — deciding what persists, what gets pruned, when to summarize vs. preserve verbatim, and how earlier decisions/context stay accessible without bloating every subsequent call.</p>
+<p><strong>Q15.</strong> A multi-turn support conversation needs the customer&rsquo;s original complaint (turn 1) to remain accurately known even by turn 40. What design choice best preserves this reliably?</p>
+<p>A) Trust that lost-in-the-middle and summarization won&rsquo;t affect it</p>
+<p>B) Ignore the risk since 40 turns isn&rsquo;t very long</p>
+<p>C) Re-ask the customer to repeat it every 10 turns</p>
+<p>D) Explicitly preserve the original complaint as a persistent, structured fact (e.g., in a fixed context slot or state object) rather than letting it become buried and possibly summarized away deep in conversation history</p>
+<p>Answer: D.</p>
+<p><strong>Q16.</strong> What&rsquo;s a key multi-turn design trade-off between keeping full verbatim history vs. aggressive summarization?</p>
+<p>A) There is no trade-off</p>
+<p>B) Full verbatim history preserves accuracy but grows context/cost over time; aggressive summarization saves space but risks losing specific details (progressive summarization risk) — the design must balance both per what&rsquo;s actually critical to retain</p>
+<p>C) Summarization always improves accuracy</p>
+<p>D) Verbatim history is always infeasible</p>
+<p>Answer: B.</p>
+<h2 id="8-escalation-decision-making-explicit-criteria--few-shot" class="relative group">8. Escalation Decision-Making (Explicit Criteria + Few-Shot) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-escalation-decision-making-explicit-criteria--few-shot" aria-label="Anchor">#</a></span></h2><p>Designing <strong>when an agent should hand off to a human</strong> (or a different system) rather than continue autonomously — built the same way as Domain 4&rsquo;s explicit-criteria and few-shot principles: concrete, checkable escalation thresholds, reinforced with few-shot examples covering ambiguous boundary cases, not vague judgment calls.</p>
+<p><strong>Q17.</strong> An agent&rsquo;s escalation rule says &ldquo;escalate if the situation seems complicated.&rdquo; Escalation behavior is wildly inconsistent across sessions. What&rsquo;s the fix, (consistent with Domain 4 principles applied here) ?</p>
+<p>A) Remove escalation entirely</p>
+<p>B) Replace the vague rule with explicit, checkable criteria (e.g., specific conditions/thresholds) and reinforce with few-shot examples of ambiguous cases and the correct escalation decision</p>
+<p>C) Escalate on every single turn to be safe</p>
+<p>D) Increase the model&rsquo;s temperature</p>
+<p>Answer: B.</p>
+<p><strong>Q18.</strong> Why are boundary/ambiguous-case examples more valuable than clear-cut examples when teaching an agent escalation behavior?</p>
+<p>A) They aren&rsquo;t more valuable</p>
+<p>B) Boundary cases are easier to write</p>
+<p>C) Clear-cut cases are already handled correctly by default; ambiguous cases are where inconsistent behavior actually happens, so that&rsquo;s where examples add the most signal</p>
+<p>D) Only clear-cut examples should ever be used</p>
+<p>Answer: C — same principle as Domain 4&rsquo;s few-shot targeting, applied specifically to escalation design.</p>
+<h2 id="9-structured-error-propagation-across-multi-agent-systems" class="relative group">9. Structured Error Propagation Across Multi-Agent Systems <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-structured-error-propagation-across-multi-agent-systems" aria-label="Anchor">#</a></span></h2><p>When a subagent fails, the failure needs to be reported <strong>upward in a structured, informative way</strong> (what failed, why, what was attempted) so the coordinator or calling system can make an informed decision — rather than a raw crash, a silent failure, or an ambiguous &ldquo;something went wrong&rdquo; bubbling up.</p>
+<p><strong>Q19.</strong> In a hub-and-spoke system, a subagent silently fails and the coordinator receives no signal at all, proceeding as if the subtask succeeded. What&rsquo;s missing?</p>
+<p>A) A larger context window</p>
+<p>B) Structured error propagation — the subagent&rsquo;s failure needs to surface to the coordinator with enough detail to act on, instead of failing silently</p>
+<p>C) A cache_control breakpoint</p>
+<p>D) Conversation compaction</p>
+<p>Answer: B.</p>
+<p><strong>Q20.</strong> What should a well-designed error propagated from a subagent to a coordinator include?</p>
+<p>A) Nothing — the coordinator should just retry blindly</p>
+<p>B) Only a generic &ldquo;error&rdquo; flag with no detail</p>
+<p>C) What failed, why it failed, and what was attempted — similar to Domain 2&rsquo;s structured tool-error design, but at the agent-to-agent level</p>
+<p>D) The subagent&rsquo;s entire raw context dump</p>
+<p>Answer: C — mirrors Domain 2&rsquo;s structured tool error handling, now at the multi-agent coordination level.</p>
+<h2 id="10-context-management-in-large-codebase-exploration-scratchpad-files--subagent-delegation" class="relative group">10. Context Management in Large Codebase Exploration (Scratchpad Files &amp; Subagent Delegation) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-context-management-in-large-codebase-exploration-scratchpad-files--subagent-delegation" aria-label="Anchor">#</a></span></h2><p>For large codebases, <strong>dumping the whole repo into context doesn&rsquo;t scale</strong>. Two key patterns:</p>
+<ul>
+<li><strong>Scratchpad files</strong> — Claude writes findings/notes to a file on disk as it explores, instead of holding everything in the context window; the file becomes durable, offloaded memory.</li>
+<li><strong>Subagent delegation</strong> — hand off exploration of a specific module/directory to a subagent with its own scoped, smaller context, reporting back a summary rather than dumping everything into the main session.</li>
+</ul>
+<p><strong>Q21.</strong> An agent exploring a 500-file repository tries to read every file into a single session&rsquo;s context to &ldquo;understand everything first.&rdquo; What&rsquo;s the architectural problem, and the better pattern?</p>
+<p>A) No problem — more context is always better</p>
+<p>B) This will exhaust context budget fast and hit lost-in-the-middle/compaction issues; better to use scratchpad files to persist findings incrementally and/or delegate module-level exploration to subagents that report back summaries</p>
+<p>C) The fix is to switch to the Batch API</p>
+<p>D) The fix is a longer system prompt</p>
+<p>Answer: B.</p>
+<p><strong>Q22.</strong> Why write exploration findings to a scratchpad file instead of just keeping them in the conversation context?</p>
+<p>A) A scratchpad file persists findings durably and outside the token budget, avoiding the risk that important discoveries get lost to summarization or lost-in-the-middle effects as the session grows</p>
+<p>B) Files are faster to read than context</p>
+<p>C) Scratchpad files replace the need for tools entirely</p>
+<p>D) This has no advantage over keeping everything in context</p>
+<p>Answer: A.</p>
+<p><strong>Q23.</strong> When exploring an unfamiliar large codebase, why delegate to subagents scoped by module rather than one agent reading the whole codebase sequentially?</p>
+<p>A) It&rsquo;s slower and offers no benefit</p>
+<p>B) Each subagent gets a focused, smaller context relevant to just its module, avoiding context pollution in the main session, and can work in parallel, reporting back a condensed summary</p>
+<p>C) Subagents cannot read code</p>
+<p>D) This violates MCP rules</p>
+<p>Answer: B.</p>
+<h1 id="realistic-scenario-questions-cross-topic" class="relative group">Realistic Scenario Questions (cross-topic) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#realistic-scenario-questions-cross-topic" aria-label="Anchor">#</a></span></h1><p><strong>Q24.</strong> A long-running coding session in Claude Code shows degrading recall of a requirement stated 80 turns ago, coinciding with several rounds of automatic compaction. Separately, cache hit rates have also dropped because the team recently started injecting a live &ldquo;current context window %&rdquo; stat at the very top of the system prompt. Diagnose both issues.</p>
+<p>A) Both issues are actually the same root cause</p>
+<p>B)
+Issue 1: progressive/compounding summarization loss from repeated compaction eroding early details — mitigate with a scratchpad or persisted state for critical facts.
+Issue 2: the dynamic stat at the top of the prefix invalidates the cache for everything after it — move volatile content to the end</p>
+<p>C) Both are caused by lost-in-the-middle only</p>
+<p>D) Neither issue is fixable</p>
+<p>Answer: B — combines compaction/summarization risk with cache_control ordering rules.</p>
+<p><strong>Q25.</strong> A multi-agent research system has a coordinator dispatching 6 subagents across a large codebase. One subagent times out. The coordinator has no idea why and just reports &ldquo;task failed&rdquo; to the user. What two Domain 5 principles were violated, and what&rsquo;s the fix for each?</p>
+<p>A) Only one principle was violated</p>
+<p>B) This is purely a token-budget issue</p>
+<p>C) This is unrelated to any Domain 5 concept</p>
+<p>D) Structured error propagation was missing (the subagent&rsquo;s failure detail never reached the coordinator) and the coordinator&rsquo;s own error reporting to the user should also be structured/specific rather than generic — fix both by defining clear error schemas at each hop</p>
+<p>Answer: D.</p>
+<p><strong>Q26.</strong> An agent&rsquo;s escalation logic is vague (&ldquo;escalate when unsure&rdquo;), and separately, its raw tool outputs (full API JSON dumps) are never trimmed, causing it to hit context limits mid-task on complex cases — which are exactly the cases most likely to need escalation. How do these two problems compound each other, and what&rsquo;s the combined fix?</p>
+<p>A) Untrimmed verbose tool output eats the token budget fastest precisely on complex, high-tool-use cases — the same cases the vague escalation rule fails to catch — so context pressure and escalation failures compound on the hardest cases; fix by adding explicit escalation criteria (with boundary-case few-shot examples) AND trimming tool output to preserve budget for exactly those harder cases</p>
+<p>B) They&rsquo;re unrelated; fix independently and in either order</p>
+<p>C) The only fix needed is a bigger context window</p>
+<p>D) Only the escalation rule needs fixing</p>
+<p>Answer: A — deliberately compounding two topics the way exam scenarios reportedly do.</p>
+<h1 id="quick-references" class="relative group">Quick References <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#quick-references" aria-label="Anchor">#</a></span></h1><table>
+	<thead>
+			<tr>
+					<th>Concept</th>
+					<th>One-line definition</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Prompt caching</td>
+					<td>Reuses computed prefix representation to cut cost/latency</td>
+			</tr>
+			<tr>
+					<td>cache_control breakpoint</td>
+					<td>Marks how much of the prompt prefix should be cached</td>
+			</tr>
+			<tr>
+					<td>Stable-first ordering</td>
+					<td>Put unchanging content first, volatile content last, to preserve cache hits</td>
+			</tr>
+			<tr>
+					<td>Lost-in-the-middle</td>
+					<td>Content in the middle of long context gets less reliable attention</td>
+			</tr>
+			<tr>
+					<td>Progressive summarization risk</td>
+					<td>Re-summarizing summaries compounds information loss over rounds</td>
+			</tr>
+			<tr>
+					<td>Conversation compaction</td>
+					<td>Built-in mechanism condensing session state to reclaim context space</td>
+			</tr>
+			<tr>
+					<td>Tool output trimming</td>
+					<td>Stripping unneeded bulk from verbose tool responses before they enter context</td>
+			</tr>
+			<tr>
+					<td>Token budget management</td>
+					<td>Proactively planning token usage across input, tools, and output headroom</td>
+			</tr>
+			<tr>
+					<td>Multi-turn conversation design</td>
+					<td>Deciding what persists, prunes, or summarizes across many turns</td>
+			</tr>
+			<tr>
+					<td>Escalation criteria</td>
+					<td>Explicit, checkable thresholds (not vague judgment) for handing off to a human</td>
+			</tr>
+			<tr>
+					<td>Structured error propagation</td>
+					<td>Failures reported upward with what/why/attempted detail, not silently or vaguely</td>
+			</tr>
+			<tr>
+					<td>Scratchpad file</td>
+					<td>Durable, on-disk notes offloading findings outside the context window</td>
+			</tr>
+			<tr>
+					<td>Subagent delegation (codebase)</td>
+					<td>Scoping exploration of a module to a subagent with focused context</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>Recurring exam pattern in this domain: problems that look like &ldquo;context ran out&rdquo; or &ldquo;agent forgot something&rdquo; usually trace back to one of a small set of root causes — cache-breaking prefix ordering, compounding summarization, untrimmed tool output, or missing structured state. Practice diagnosing which one before jumping to a fix.</em></p>
+<p>Referring to these questions just gives you an idea how the exam looks like, and can vary. Share if you have any answers or questions not correctly placed or explained.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Built a Webhook Inspector from Scratch and Shipped It — Here's Everything That Went Wrong</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:26 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building an AI Tutor with Spring AI, Ollama, and Vaadin</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

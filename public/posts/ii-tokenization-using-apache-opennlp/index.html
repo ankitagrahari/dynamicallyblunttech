@@ -1,0 +1,569 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>II - Tokenization using Apache OpenNLP &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="II - Tokenization using Apache OpenNLP &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will create tokens of the given string using Apache OpenNLP library.
+This post is a continuation of the previous post Find Sentences using Apache Open NLP**. **Refer to this post first for the setting up your project with Apache OpenNLP library. In the previous post we used SentenceDetecterME, SentenceModel, and ***Span ***class of the openNLP library.
+Apache OpenNLP library provides the SimpleTokenizer, ***WhitespaceTokenizer ***and ***TokenizerME ***which will use the normal process to tokenize by splitting the string either on whitespace or using some already trained models. These classes doesn&rsquo;t expose their constructors, so we have to use ***INSTANCE ***to get the instance of these classes.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/ii-tokenization-using-apache-opennlp/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/ii-tokenization-using-apache-opennlp/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="II - Tokenization using Apache OpenNLP">
+	<meta property="og:description" content="In this post we will create tokens of the given string using Apache OpenNLP library.
+This post is a continuation of the previous post Find Sentences using Apache Open NLP**. **Refer to this post first for the setting up your project with Apache OpenNLP library. In the previous post we used SentenceDetecterME, SentenceModel, and ***Span ***class of the openNLP library.
+Apache OpenNLP library provides the SimpleTokenizer, ***WhitespaceTokenizer ***and ***TokenizerME ***which will use the normal process to tokenize by splitting the string either on whitespace or using some already trained models. These classes doesn’t expose their constructors, so we have to use ***INSTANCE ***to get the instance of these classes.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:14+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:14+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="II - Tokenization using Apache OpenNLP">
+	<meta name="twitter:description" content="In this post we will create tokens of the given string using Apache OpenNLP library.
+This post is a continuation of the previous post Find Sentences using Apache Open NLP**. **Refer to this post first for the setting up your project with Apache OpenNLP library. In the previous post we used SentenceDetecterME, SentenceModel, and ***Span ***class of the openNLP library.
+Apache OpenNLP library provides the SimpleTokenizer, ***WhitespaceTokenizer ***and ***TokenizerME ***which will use the normal process to tokenize by splitting the string either on whitespace or using some already trained models. These classes doesn’t expose their constructors, so we have to use ***INSTANCE ***to get the instance of these classes.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "II - Tokenization using Apache OpenNLP",
+    "headline": "II - Tokenization using Apache OpenNLP",
+    
+    "abstract": "\u003cp\u003eIn this post we will create tokens of the given string using \u003cstrong\u003eApache OpenNLP\u003c\/strong\u003e library.\u003c\/p\u003e\n\u003cp\u003eThis post is a continuation of the previous post \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/i-sentence-segmentation-using-apache-opennlp\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cstrong\u003eFind Sentences using Apache Open NLP\u003c\/strong\u003e\u003c\/a\u003e**. **Refer to this post first for the setting up your project with Apache OpenNLP library. In the previous post we used \u003cem\u003e\u003cstrong\u003eSentenceDetecterME\u003c\/strong\u003e\u003c\/em\u003e, \u003cem\u003e\u003cstrong\u003eSentenceModel\u003c\/strong\u003e\u003c\/em\u003e, and ***Span ***class of the openNLP library.\u003c\/p\u003e\n\u003cp\u003eApache OpenNLP library provides the \u003cem\u003e\u003cstrong\u003eSimpleTokenizer\u003c\/strong\u003e\u003c\/em\u003e, ***WhitespaceTokenizer ***and ***TokenizerME ***which will use the normal process to tokenize by splitting the string either on whitespace or using some already trained models. These classes doesn\u0026rsquo;t expose their constructors, so we have to use ***INSTANCE ***to get the instance of these classes.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/ii-tokenization-using-apache-opennlp\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:14\u002b05:30",
+    "datePublished": "2026-10-27T08:14:14\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:14\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "645"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Ii Tokenization Using Apache Open Nlp",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        II - Tokenization using Apache OpenNLP
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will create tokens of the given string using <strong>Apache OpenNLP</strong> library.</p>
+<p>This post is a continuation of the previous post <a href="https://www.dynamicallyblunttech.com/post/i-sentence-segmentation-using-apache-opennlp" target="_blank" rel="noreferrer"><strong>Find Sentences using Apache Open NLP</strong></a>**. **Refer to this post first for the setting up your project with Apache OpenNLP library. In the previous post we used <em><strong>SentenceDetecterME</strong></em>, <em><strong>SentenceModel</strong></em>, and ***Span ***class of the openNLP library.</p>
+<p>Apache OpenNLP library provides the <em><strong>SimpleTokenizer</strong></em>, ***WhitespaceTokenizer ***and ***TokenizerME ***which will use the normal process to tokenize by splitting the string either on whitespace or using some already trained models. These classes doesn&rsquo;t expose their constructors, so we have to use ***INSTANCE ***to get the instance of these classes.</p>
+<h2 id="simpletokenizer" class="relative group"><strong>SimpleTokenizer</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#simpletokenizer" aria-label="Anchor">#</a></span></h2><p>This will use split the sentences into each word or any exclamation, dot, comma etc used. It provides two methods to tokenize a given string. We will try both the methods.</p>
+<ul>
+<li>First step is to get the instance of the SimpleTokenizer</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Get the Simple Tokenizer Instance</span>
+</span></span><span style="display:flex;"><span>SimpleTokenizer tokenizer <span style="color:#f92672">=</span> SimpleTokenizer.<span style="color:#a6e22e">INSTANCE</span>;
+</span></span></code></pre></div><ul>
+<li>Use this object to get the tokenize() method which will take the string as input.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Call the tokenize method</span>
+</span></span><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> tokens <span style="color:#f92672">=</span> tokenizer.<span style="color:#a6e22e">tokenize</span>(text);
+</span></span></code></pre></div><ul>
+<li>Print the tokens and the output will be</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Print the tokens</span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">toString</span>(tokens));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Hi              .               How
+</span></span><span style="display:flex;"><span>are             you             <span style="color:#f92672">?</span>
+</span></span><span style="display:flex;"><span>Hope            everything      is
+</span></span><span style="display:flex;"><span>going           well            .
+</span></span><span style="display:flex;"><span>Welcome         <span style="color:#66d9ef">to</span>              ChatBot
+</span></span><span style="display:flex;"><span>Lesson1         .               We
+</span></span><span style="display:flex;"><span>will            <span style="color:#66d9ef">try</span>             <span style="color:#66d9ef">to</span>
+</span></span><span style="display:flex;"><span>understand      Open            Apache
+</span></span><span style="display:flex;"><span>NLP             <span style="color:#66d9ef">for</span>             sentence
+</span></span><span style="display:flex;"><span>detection
+</span></span></code></pre></div><ul>
+<li>There is another <em><strong>tokenizePos</strong></em>() method which will print the position of the tokens. Its return type is an array of <em><strong>Span</strong></em> object.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Span<span style="color:#f92672">[]</span> spans <span style="color:#f92672">=</span> tokenizer.<span style="color:#a6e22e">tokenizePos</span>(text);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(Span s: spans){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><pre><code>The output of the above statement will be like this:
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span>0..<span style="color:#a6e22e">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2..<span style="color:#a6e22e">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>4..<span style="color:#a6e22e">7</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>8..<span style="color:#a6e22e">11</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>12..<span style="color:#a6e22e">15</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>15..<span style="color:#a6e22e">16</span>)
+</span></span></code></pre></div><h2 id="whitespace-tokenizer" class="relative group"><strong>Whitespace Tokenizer</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#whitespace-tokenizer" aria-label="Anchor">#</a></span></h2><p>This tokenizer will split the sentence based on white space. It also has two methods to returns tokens as string array and another <em><strong>tokenizePos()</strong></em> method which return an array of <em><strong>Span</strong></em> objects.</p>
+<p>Here is the code to get the ***WhiteSpaceTokenizer ***instance and printing the tokens and their position.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Get the Simple Tokenizer Instance</span>
+</span></span><span style="display:flex;"><span>WhitespaceTokenizer tokenizer <span style="color:#f92672">=</span> WhitespaceTokenizer.<span style="color:#a6e22e">INSTANCE</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Call the tokenize method, this will split based on spaces</span>
+</span></span><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> tokens <span style="color:#f92672">=</span> tokenizer.<span style="color:#a6e22e">tokenize</span>(text);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Print the tokens</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(String s: tokens){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Span<span style="color:#f92672">[]</span> spans <span style="color:#f92672">=</span> tokenizer.<span style="color:#a6e22e">tokenizePos</span>(text);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(Span s: spans){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The output will be like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Hi.            How               are
+</span></span><span style="display:flex;"><span>you<span style="color:#f92672">?</span>           Hope              everything
+</span></span><span style="display:flex;"><span>is             going             well.
+</span></span><span style="display:flex;"><span>Welcome        <span style="color:#66d9ef">to</span>                ChatBot
+</span></span><span style="display:flex;"><span>Lesson1.       We                will
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>            <span style="color:#66d9ef">to</span>                understand
+</span></span><span style="display:flex;"><span>Open           Apache            NLP
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>            sentence          detection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0..<span style="color:#a6e22e">3</span>)           <span style="color:#f92672">[</span>4..<span style="color:#a6e22e">7</span>)              <span style="color:#f92672">[</span>8..<span style="color:#a6e22e">11</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>12..<span style="color:#a6e22e">16</span>)         <span style="color:#f92672">[</span>17..<span style="color:#a6e22e">21</span>)            <span style="color:#f92672">[</span>22..<span style="color:#a6e22e">32</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>33..<span style="color:#a6e22e">35</span>)         <span style="color:#f92672">[</span>36..<span style="color:#a6e22e">41</span>)            <span style="color:#f92672">[</span>42..<span style="color:#a6e22e">47</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>48..<span style="color:#a6e22e">55</span>)         <span style="color:#f92672">[</span>56..<span style="color:#a6e22e">58</span>)            <span style="color:#f92672">[</span>59..<span style="color:#a6e22e">66</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>67..<span style="color:#a6e22e">75</span>)         <span style="color:#f92672">[</span>76..<span style="color:#a6e22e">78</span>)            <span style="color:#f92672">[</span>79..<span style="color:#a6e22e">83</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>84..<span style="color:#a6e22e">87</span>)         <span style="color:#f92672">[</span>88..<span style="color:#a6e22e">90</span>)            <span style="color:#f92672">[</span>91..<span style="color:#a6e22e">101</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>102..<span style="color:#a6e22e">106</span>)       <span style="color:#f92672">[</span>107..<span style="color:#a6e22e">113</span>)          <span style="color:#f92672">[</span>114..<span style="color:#a6e22e">117</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>118..<span style="color:#a6e22e">121</span>)       <span style="color:#f92672">[</span>122..<span style="color:#a6e22e">130</span>)          <span style="color:#f92672">[</span>131..<span style="color:#a6e22e">140</span>)
+</span></span></code></pre></div><p>The implementation is similar to the <em><strong>SimpleTokenizer</strong></em>.</p>
+<h2 id="tokenizerme" class="relative group"><strong>TokenizerME</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tokenizerme" aria-label="Anchor">#</a></span></h2><p>This class will create tokens based on the trained model it is using. It loads a particular model to TokenizerModel and then loads it to this class.</p>
+<ul>
+<li>Load the trained model into <em><strong>TokenizerModel</strong></em> object. I have used an existing model which comes with <em><strong>Apache OpenNLP</strong></em> library.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Load the token models</span>
+</span></span><span style="display:flex;"><span>InputStream is <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream(<span style="color:#e6db74">&#34;src\\main\\resources\\models\\en-token.bin&#34;</span>);
+</span></span><span style="display:flex;"><span>TokenizerModel model <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TokenizerModel(is);
+</span></span></code></pre></div><ul>
+<li>This class has three methods <em><strong>tokenize()</strong></em>, <em><strong>tokenizePos()</strong></em> and <em><strong>getTokenProbablities()</strong></em> methods. It can used like this:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//Print the tokens</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(String tokens: tokenizerME.<span style="color:#a6e22e">tokenize</span>(text)){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(tokens);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Get the position of the tokens</span>
+</span></span><span style="display:flex;"><span>Span<span style="color:#f92672">[]</span> spans <span style="color:#f92672">=</span> tokenizerME.<span style="color:#a6e22e">tokenizePos</span>(text);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(Span span: spans){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(span);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Get the token probabilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span><span style="color:#f92672">[]</span> prob <span style="color:#f92672">=</span> tokenizerME.<span style="color:#a6e22e">getTokenProbabilities</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">double</span> s: prob){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The output of the above code will be like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Hi              .               How 
+</span></span><span style="display:flex;"><span>are             you             <span style="color:#f92672">?</span>
+</span></span><span style="display:flex;"><span>Hope            everything      is
+</span></span><span style="display:flex;"><span>going           well            .
+</span></span><span style="display:flex;"><span>Welcome         <span style="color:#66d9ef">to</span>              ChatBot
+</span></span><span style="display:flex;"><span>Lesson1         .               We
+</span></span><span style="display:flex;"><span>will            <span style="color:#66d9ef">try</span>             <span style="color:#66d9ef">to</span>
+</span></span><span style="display:flex;"><span>understand      Open            Apache 
+</span></span><span style="display:flex;"><span>NLP             <span style="color:#66d9ef">for</span>             sentence
+</span></span><span style="display:flex;"><span>detection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0..<span style="color:#a6e22e">2</span>)      <span style="color:#f92672">[</span>2..<span style="color:#a6e22e">3</span>)      <span style="color:#f92672">[</span>4..<span style="color:#a6e22e">7</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>8..<span style="color:#a6e22e">11</span>)     <span style="color:#f92672">[</span>12..<span style="color:#a6e22e">15</span>)    <span style="color:#f92672">[</span>15..<span style="color:#a6e22e">16</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>17..<span style="color:#a6e22e">21</span>)    <span style="color:#f92672">[</span>22..<span style="color:#a6e22e">32</span>)    <span style="color:#f92672">[</span>33..<span style="color:#a6e22e">35</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>36..<span style="color:#a6e22e">41</span>)    <span style="color:#f92672">[</span>42..<span style="color:#a6e22e">46</span>)    <span style="color:#f92672">[</span>46..<span style="color:#a6e22e">47</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>48..<span style="color:#a6e22e">55</span>)    <span style="color:#f92672">[</span>56..<span style="color:#a6e22e">58</span>)    <span style="color:#f92672">[</span>59..<span style="color:#a6e22e">66</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>67..<span style="color:#a6e22e">74</span>)    <span style="color:#f92672">[</span>74..<span style="color:#a6e22e">75</span>)    <span style="color:#f92672">[</span>76..<span style="color:#a6e22e">78</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>79..<span style="color:#a6e22e">83</span>)    <span style="color:#f92672">[</span>84..<span style="color:#a6e22e">87</span>)    <span style="color:#f92672">[</span>88..<span style="color:#a6e22e">90</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>91..<span style="color:#a6e22e">101</span>)   <span style="color:#f92672">[</span>102..<span style="color:#a6e22e">106</span>)  <span style="color:#f92672">[</span>107..<span style="color:#a6e22e">113</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>114..<span style="color:#a6e22e">117</span>)  <span style="color:#f92672">[</span>118..<span style="color:#a6e22e">121</span>)  <span style="color:#f92672">[</span>122..<span style="color:#a6e22e">130</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>131..<span style="color:#a6e22e">140</span>)
+</span></span><span style="display:flex;"><span>You can find the code here in the Github repository.
+</span></span></code></pre></div><h3 id="references" class="relative group">References <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
+<li><a href="https://opennlp.apache.org/docs/1.9.2/manual/opennlp.html" target="_blank" rel="noreferrer">https://opennlp.apache.org/docs/1.9.2/manual/opennlp.html</a></li>
+<li><a href="https://opennlp.apache.org/docs/1.9.2/apidocs/opennlp-tools/index.html" target="_blank" rel="noreferrer">https://opennlp.apache.org/docs/1.9.2/apidocs/opennlp-tools/index.html</a></li>
+<li><a href="https://www.tutorialspoint.com/opennlp/index.htm" target="_blank" rel="noreferrer">https://www.tutorialspoint.com/opennlp/index.htm</a></li>
+<li><a href="http://opennlp.sourceforge.net/models-1.5/" target="_blank" rel="noreferrer">http://opennlp.sourceforge.net/models-1.5/</a></li>
+</ul>
+<p>This concludes the tokenization using <em><strong>Open ApacheNLP</strong></em> library in Java. This will be another step in using natural language processing.</p>
+<p>Also, please comment down with your feedback or any suggestions.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/iv-recognizing-parts-of-speech-using-apache-opennlp/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >IV - Recognizing Parts Of Speech Using Apache OpenNLP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/exploring-government-s-cowin-apis/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Exploring Government's Cowin APIs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:14 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

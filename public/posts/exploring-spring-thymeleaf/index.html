@@ -1,0 +1,590 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Exploring Spring Thymeleaf &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Exploring Spring Thymeleaf &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.
+Thymeleaf #As stated in official Thymeleaf website,
+
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/exploring-spring-thymeleaf/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/exploring-spring-thymeleaf/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Exploring Spring Thymeleaf">
+	<meta property="og:description" content="In this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.
+Thymeleaf #As stated in official Thymeleaf website,
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:23+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:23+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Exploring Spring Thymeleaf">
+	<meta name="twitter:description" content="In this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.
+Thymeleaf #As stated in official Thymeleaf website,
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Exploring Spring Thymeleaf",
+    "headline": "Exploring Spring Thymeleaf",
+    
+    "abstract": "\u003cp\u003eIn this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.\u003c\/p\u003e\n\u003ch2 id=\u0022thymeleaf\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eThymeleaf\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#thymeleaf\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eAs stated in official \u003ca href=\u0022https:\/\/www.thymeleaf.org\/\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eThymeleaf website\u003c\/em\u003e\u003c\/a\u003e,\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eThymeleaf\u003c\/strong\u003e is a modern server-side Java template engine for both web and standalone environments.\u003c\/p\u003e\n\u003c\/blockquote\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/exploring-spring-thymeleaf\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:23\u002b05:30",
+    "datePublished": "2026-10-27T08:14:23\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:23\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1489"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Exploring Spring Thymeleaf",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Exploring Spring Thymeleaf
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:23 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.</p>
+<h2 id="thymeleaf" class="relative group"><strong>Thymeleaf</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#thymeleaf" aria-label="Anchor">#</a></span></h2><p>As stated in official <a href="https://www.thymeleaf.org/" target="_blank" rel="noreferrer"><em>Thymeleaf website</em></a>,</p>
+<blockquote>
+<p><strong>Thymeleaf</strong> is a modern server-side Java template engine for both web and standalone environments.</p>
+</blockquote>
+<p>Spring can be integrated with Thymeleaf to process or parse HTML, CSS, JS, XML, code. It becomes very simple to create an UI for your application in very little time. Thymeleaf can be used for modern day HTML5 web development as well.</p>
+<p>Based on the requirement of dependencies, if you want to start a project with Spring and Thymeleaf, thymeleaf can be selected as dependency with others to give the basic template to start with from <a href="https://start.spring.io/" target="_blank" rel="noreferrer">https://start.spring.io/</a>.</p>
+<h2 id="registration-form" class="relative group"><strong>Registration Form</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#registration-form" aria-label="Anchor">#</a></span></h2><p>The form would look something like this:</p>
+<p>The elements are random textboxes to store either name, version, descriptions, return type or platform type etc.</p>
+<p>We will be checking following:</p>
+<p>The description section which is storing a nested class, where the default, detailed, audit, remediate description variables are part of nested class,</p>
+<p>The Supported platform is a list of variables displayed as drop down where user can select multiple values.</p>
+<p>Similarly Scripts, Evaluate and Remediate Arguments will be a dynamic table where user can add or remove row.</p>
+<p>Adding multiple file chooser support in the same form.</p>
+<h2 id="create-spring-project-from-spring-initializer" class="relative group"><strong>Create Spring Project from Spring Initializer</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-spring-project-from-spring-initializer" aria-label="Anchor">#</a></span></h2><h3 id="dependencies" class="relative group"><strong>Dependencies</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dependencies" aria-label="Anchor">#</a></span></h3><p>We will using lombok to have clean code without any of the boilerplate code and thymeleaf support.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>thymeleaf<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>web<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">projectlombok</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>lombok<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>optional<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">true</span><span style="color:#f92672">&lt;/</span>optional<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h3 id="create-java-object-for-registration-form-" class="relative group">**Create Java Object for Registration Form ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-java-object-for-registration-form-" aria-label="Anchor">#</a></span></h3><p>The POJO will have the elements that we want as part of the form like the ones displayed in the form. This POJO class will be binded with the form and the elements or attributes of the POJO can be referenced in the HTML form by their name, either by *<em><strong>{}</strong></em> or <em><strong>${}.</strong></em></p>
+<p>The registration form will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Controls</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String version;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String guid;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Description description;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String returnType;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String platformType;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> SupportedPlatforms<span style="color:#f92672">[]</span> platformSupported;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String<span style="color:#f92672">[]</span> imports;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Script<span style="color:#f92672">&gt;</span> scripts;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> MultipartFile ePyFile;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> MultipartFile rPyFile;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>EArgument<span style="color:#f92672">&gt;</span> eArguments;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>RArgument<span style="color:#f92672">&gt;</span> rArguments
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You will notice that using lombok eliminates developer to write all the getter, setter and the constructors. The annotation <em><strong>@Data</strong></em> takes care of these elements in the POJO.</p>
+<h3 id="create-form" class="relative group"><strong>Create Form</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-form" aria-label="Anchor">#</a></span></h3><p>We will start by creating a form which will be calling the REST API to save controls.</p>
+<p>Lets say the URL to save the registration form is /saveControls, then code to add the form will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>form action<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#&#34;</span> th:action<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;@{/saveControls}&#34;</span> th:object<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;${controls}&#34;</span> method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> enctype<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span> <span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Here the ***action ***attribute will letting us know that the REST API can be called from this URL, which will be mapped to some method is some controller.</p>
+<p>Similarly, <em><strong>object</strong></em> attribute of form is mapped to the Form object in java. In our case it is the POJO which we created above <em>Controls.java.</em></p>
+<p>The form will use the <em><strong>post method</strong></em> and pass this form as the payload and since the form is having files to be attached to the payload we will be using multipart/form-data as our <em><strong>encode type</strong></em>.</p>
+<h3 id="create-textbox-with-label" class="relative group"><strong>Create Textbox with Label</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-textbox-with-label" aria-label="Anchor">#</a></span></h3><p>Lets take an example of the name field,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>div <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">form</span><span style="color:#f92672">-</span>group<span style="color:#e6db74">&#34; th:align=&#34;</span>left<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;label style=&#34;</span>font<span style="color:#f92672">-</span>weight: bolder<span style="color:#e6db74">&#34; for=&#34;</span>name<span style="color:#e6db74">&#34;&gt;Name:&lt;/label&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;input type=&#34;</span>text<span style="color:#e6db74">&#34; class=&#34;</span>form<span style="color:#f92672">-</span>control<span style="color:#e6db74">&#34; id=&#34;</span>name<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{name}<span style="color:#e6db74">&#34; required&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;p class=&#34;</span>alert alert<span style="color:#f92672">-</span>danger<span style="color:#e6db74">&#34; th:if=&#34;</span>${<span style="color:#960050;background-color:#1e0010">#</span>fields.<span style="color:#a6e22e">hasErrors</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>name<span style="color:#960050;background-color:#1e0010">&#39;</span>)}<span style="color:#e6db74">&#34; th:errors=&#34;</span><span style="color:#f92672">*</span>{name}<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
+</span></span></span></code></pre></div><p>The input label can be added using <!-- raw HTML omitted --> html tag and the textbox can be added using input tag where type is defined as text. In the input tag, notice that the field tag is added which has name variable used. This name variable is mapped to the POJO Controls.java attribute name.</p>
+<p>Similarly, we can add other textbox and its label.</p>
+<h3 id="using-nested-class-to-display-field-variable" class="relative group"><strong>Using Nested Class to display field variable</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#using-nested-class-to-display-field-variable" aria-label="Anchor">#</a></span></h3><p>There is a very high chance you will encounter this scenario where the Parent class is using child class which might be using another child class. Like in this example where Controls is using Description class which is mapped in the form using attribute defined in the Parent and accessing the attributes in the child by calling dot on the child attribute like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>label style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-weight: bold&#34;</span> <span style="color:#66d9ef">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;description.defaultDescription&#34;</span><span style="color:#f92672">&gt;</span>Default Description:<span style="color:#f92672">&lt;/</span>label<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>input type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">form</span><span style="color:#f92672">-</span>control<span style="color:#e6db74">&#34; id=&#34;</span>defaultDescription<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{description.<span style="color:#a6e22e">defaultDescription</span>}<span style="color:#e6db74">&#34;&gt;
+</span></span></span></code></pre></div><p>If you check the field attribute, it is calling the attribute defined in the parent class ***description ***and accessing the child attributes by calling <em><strong>description.defaullDescription</strong></em>.</p>
+<h3 id="create-drop-down-" class="relative group">**Create Drop Down ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-drop-down-" aria-label="Anchor">#</a></span></h3><p>The drop down requires a list of records which can be viewed in the drop down. The list can be dynamic or can be static which remains same. Like the <em><strong>Choose Platform Type</strong></em> variable, the number of records remains same and will be updated if RHEL introduce a new version or Windows comes up with a new version of it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>div <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">form</span><span style="color:#f92672">-</span>group<span style="color:#e6db74">&#34; th:align=&#34;</span>left<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;label style=&#34;</span>font<span style="color:#f92672">-</span>weight: bolder<span style="color:#e6db74">&#34; for=&#34;</span>platformSupported<span style="color:#e6db74">&#34;&gt;Choose Supported Platform&lt;/label&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;select class=&#34;</span>custom<span style="color:#f92672">-</span>select <span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{platformSupported}<span style="color:#e6db74">&#34; id=&#34;</span>platformSupported<span style="color:#e6db74">&#34; multiple required&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;option value=&#34;&#34;&gt;Nothing selected&lt;/option&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;option th:each=&#34;</span>platformSupported : ${T(com.<span style="color:#a6e22e">dynamicallyblunt</span>.<span style="color:#a6e22e">tech</span>.<span style="color:#a6e22e">thymeleafform</span>.<span style="color:#a6e22e">beans</span>.<span style="color:#a6e22e">SupportedPlatforms</span>).<span style="color:#a6e22e">values</span>()}<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                th:value=&#34;</span>${platformSupported}<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                th:text=&#34;</span>${platformSupported}<span style="color:#e6db74">&#34;&gt;platformSupported
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;/option&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;/select&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
+</span></span></span></code></pre></div><p>The select and option tag is used for the drop down. In this example we have used an ENUM to store the list of platforms. Also notice the multiple keyword used, which will allow the user to select multiple values. For storing multiple values, we are using an array of SupportedPlatforms POJO.</p>
+<p>The enum can be defined like this for different platforms:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> SupportedPlatforms {
+</span></span><span style="display:flex;"><span>    Unix,
+</span></span><span style="display:flex;"><span>    RHEL5,
+</span></span><span style="display:flex;"><span>    RHEL6,
+</span></span><span style="display:flex;"><span>    RHEL7,
+</span></span><span style="display:flex;"><span>    Centos6,
+</span></span><span style="display:flex;"><span>    Centos7,
+</span></span><span style="display:flex;"><span>    Centos8,
+</span></span><span style="display:flex;"><span>    Windows,
+</span></span><span style="display:flex;"><span>    Win2008,
+</span></span><span style="display:flex;"><span>    Win2k2008,
+</span></span><span style="display:flex;"><span>    Win2012,
+</span></span><span style="display:flex;"><span>    Win2k2012
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="create-file-picker" class="relative group"><strong>Create File Picker</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-file-picker" aria-label="Anchor">#</a></span></h3><p>The HTML tag to choose file is same as text, which is input tag. The input tag will use the type as file. In our example we are using bootstrap 4 which will make the button looks fancier. You can refer to the bootstrap v4 examples <a href="https://getbootstrap.com/docs/4.0/components/forms/" target="_blank" rel="noreferrer">here</a>.</p>
+<p>It will look like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>div <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">custom</span><span style="color:#f92672">-</span>file<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;label style=&#34;</span>font<span style="color:#f92672">-</span>weight: bold<span style="color:#e6db74">&#34; for=&#34;</span>chooseFile<span style="color:#e6db74">&#34; class=&#34;</span>custom<span style="color:#f92672">-</span>file<span style="color:#f92672">-</span>label<span style="color:#e6db74">&#34;&gt;Choose Code file&lt;/label&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;input type=&#34;</span>file<span style="color:#e6db74">&#34; name=&#34;</span>file<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{epyFile}<span style="color:#e6db74">&#34; class=&#34;</span>custom<span style="color:#f92672">-</span>file<span style="color:#f92672">-</span>input<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
+</span></span></span></code></pre></div><h3 id="create-dynamic-table" class="relative group"><strong>Create Dynamic Table</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-dynamic-table" aria-label="Anchor">#</a></span></h3><p>In this case, we will be creating a table in which once the user clicks on Add Row, we will be adding a new row for user to type in new records. Also we will provide one remove button which will delete that entry when it is clicked by user.</p>
+<p>On click of the <em><strong>AddRow</strong></em>, we will submit the form with the parameter add row, which will call a different method in the controller. The purpose of this method will be to add a new object to the Control&rsquo;s Arguments attribute.</p>
+<p>The html code will be like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>div <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">form</span><span style="color:#f92672">-</span>group<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;label style=&#34;</span>font<span style="color:#f92672">-</span>weight: bolder<span style="color:#e6db74">&#34; for=&#34;</span>eArguments<span style="color:#e6db74">&#34;&gt;EArguments&lt;/label&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;button class=&#34;</span>btn btn<span style="color:#f92672">-</span>info<span style="color:#e6db74">&#34; th:nowrap=&#34;</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">&#34; th:align=&#34;</span>right<span style="color:#e6db74">&#34; type=&#34;</span>submit<span style="color:#e6db74">&#34; name=&#34;</span>addEArgs<span style="color:#e6db74">&#34; id=&#34;</span>addEArgs<span style="color:#e6db74">&#34;&gt;Add EArguments&lt;/button&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;div th:if=&#34;</span><span style="color:#f92672">*</span>{eArguments}<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;table cellpadding=&#34;</span>5px 15px;<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;thead&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;tr&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;th&gt;Index&lt;/th&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;th&gt;Type&lt;/th&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;th&gt;Default Label&lt;/th&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;th&gt;Default Description&lt;/th&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;th&gt;Default Value&lt;/th&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;th&gt;&lt;/th&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/tr&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/thead&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;tbody&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;tr th:each=&#34;</span>eval, stat: <span style="color:#f92672">*</span>{eArguments}<span style="color:#e6db74">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;td th:text=&#34;</span>${stat.<span style="color:#a6e22e">count</span>}<span style="color:#e6db74">&#34;&gt;1&lt;/td&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;td&gt;&lt;input type=&#34;</span>text<span style="color:#e6db74">&#34; class=&#34;</span>form<span style="color:#f92672">-</span>control<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{eArguments<span style="color:#f92672">[</span>__${stat.<span style="color:#a6e22e">index</span>}__<span style="color:#f92672">]</span>.<span style="color:#a6e22e">type</span>}<span style="color:#e6db74">&#34;&gt;&lt;/td&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;td&gt;&lt;input type=&#34;</span>text<span style="color:#e6db74">&#34; class=&#34;</span>form<span style="color:#f92672">-</span>control<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{eArguments<span style="color:#f92672">[</span>__${stat.<span style="color:#a6e22e">index</span>}__<span style="color:#f92672">]</span>.<span style="color:#a6e22e">defaultLabel</span>}<span style="color:#e6db74">&#34;&gt;&lt;/td&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;td&gt;&lt;input type=&#34;</span>text<span style="color:#e6db74">&#34; class=&#34;</span>form<span style="color:#f92672">-</span>control<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{eArguments<span style="color:#f92672">[</span>__${stat.<span style="color:#a6e22e">index</span>}__<span style="color:#f92672">]</span>.<span style="color:#a6e22e">defaultDescription</span>}<span style="color:#e6db74">&#34;&gt;&lt;/td&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;td&gt;&lt;input type=&#34;</span>text<span style="color:#e6db74">&#34; class=&#34;</span>form<span style="color:#f92672">-</span>control<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{eArguments<span style="color:#f92672">[</span>__${stat.<span style="color:#a6e22e">index</span>}__<span style="color:#f92672">]</span>.<span style="color:#a6e22e">defaultValue</span>}<span style="color:#e6db74">&#34;&gt;&lt;/td&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;td&gt;&lt;button class=&#34;</span>btn btn<span style="color:#f92672">-</span>info<span style="color:#e6db74">&#34; type=&#34;</span>submit<span style="color:#e6db74">&#34; name=&#34;</span>removeEArgs<span style="color:#e6db74">&#34; id=&#34;</span>removeEArgs<span style="color:#e6db74">&#34; th:value=&#34;</span>${stat.<span style="color:#a6e22e">index</span>}<span style="color:#e6db74">&#34;&gt;Remove&lt;/button&gt;&lt;/td&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/tr&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/tbody&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;/table&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
+</span></span></span></code></pre></div><p>Here in the html tag, we are iterating over the list of eArguments objects and also keeping the index of every element in the list. It will help us in the remove section.</p>
+<p>In the above section you can see the elements are iterated like *{eArguments[<strong>${stat.index}</strong>].type} where the <em><strong>${}</strong></em> is used instead of directly using <em>${}</em>. This is because in thymeleaf, the template will pre process the variable <em><strong>${}</strong></em>, so that the outer variable will get the index instead of getting the variable. So something like first the <em><strong>${}</strong></em> is calculated and the value is kept into the outer variable, which will look like this *{eArguments[0}__].type}</p>
+<p>We will create a new method in the controller which will get triggered when the Add Row is triggered and it will add a new empty row for user to key in their inputs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@PostMapping</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/saveControls&#34;</span>, params <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;addEArgs&#34;</span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">addEArgument</span>(Controls controls, BindingResult bindingResult){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">null</span><span style="color:#f92672">!=</span>controls){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">null</span><span style="color:#f92672">==</span>controls.<span style="color:#a6e22e">getEArguments</span>()){
+</span></span><span style="display:flex;"><span>            List<span style="color:#f92672">&lt;</span>EArgument<span style="color:#f92672">&gt;</span> evArgList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>            evArgList.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">new</span> EArgument());
+</span></span><span style="display:flex;"><span>            controls.<span style="color:#a6e22e">setEArguments</span>(evArgList);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            controls.<span style="color:#a6e22e">getEArguments</span>().<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">new</span> EArgument());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;registration&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Similarly for remove method, it will call the same API but with removeEArgs parameters like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@PostMapping</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/saveControls&#34;</span>, params <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;removeEArgs&#34;</span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">removeEArgument</span>(Controls controls, BindingResult bindingResult, HttpServletRequest request){
+</span></span><span style="display:flex;"><span>    controls.<span style="color:#a6e22e">getEArguments</span>().<span style="color:#a6e22e">remove</span>(Integer.<span style="color:#a6e22e">parseInt</span>(request.<span style="color:#a6e22e">getParameter</span>(<span style="color:#e6db74">&#34;removeEArgs&#34;</span>)));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;registration&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We are getting the index by calling the <em><strong>request.getParameter(String s)</strong></em> method. Since the entire eArgs is a list, on removal it will remove that index element from the list using <em><strong>remove()</strong></em> method</p>
+<p>Using the same approach we can add any number of dynamic table where user can add and edit the rows or remove rows from the list.</p>
+<p>We will conclude now on the thymeleaf, but from here, we can create any form and do the binding with the POJO for any number of elements. You can find the complete codebase of this tutorials in this <a href="https://github.com/ankitagrahari/thymeleafForm" target="_blank" rel="noreferrer">Github </a>reporsitory..</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+<h3 id="references" class="relative group">References <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><p><a href="https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.pdf" target="_blank" rel="noreferrer">https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.pdf</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/log4j-vulnerability-saga-continues/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Log4j Vulnerability - Saga Continues </span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:23 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

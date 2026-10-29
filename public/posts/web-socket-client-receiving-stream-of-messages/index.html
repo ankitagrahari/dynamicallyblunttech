@@ -1,0 +1,516 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Web Socket Client - Receiving Stream of Messages &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Web Socket Client - Receiving Stream of Messages &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.
+Web Sockets #The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are bi-directional, full duplex communication protocol. This means that the data can be flown in either directions, client to server or server to client.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Web Socket Client - Receiving Stream of Messages">
+	<meta property="og:description" content="In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.
+Web Sockets #The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are bi-directional, full duplex communication protocol. This means that the data can be flown in either directions, client to server or server to client.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:16+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:16+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Web Socket Client - Receiving Stream of Messages">
+	<meta name="twitter:description" content="In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.
+Web Sockets #The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are bi-directional, full duplex communication protocol. This means that the data can be flown in either directions, client to server or server to client.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Web Socket Client - Receiving Stream of Messages",
+    "headline": "Web Socket Client - Receiving Stream of Messages",
+    
+    "abstract": "\u003cp\u003eIn this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.\u003c\/p\u003e\n\u003ch3 id=\u0022web-sockets\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWeb Sockets\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#web-sockets\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eThe web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are \u003cem\u003e\u003cstrong\u003ebi-directional, full duplex\u003c\/strong\u003e\u003c\/em\u003e communication protocol. This means that the data can be flown in either directions, client to server or server to client.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/web-socket-client-receiving-stream-of-messages\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:16\u002b05:30",
+    "datePublished": "2026-10-27T08:14:16\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:16\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "789"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Web Socket Client Receiving Stream of Messages",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Web Socket Client - Receiving Stream of Messages
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.</p>
+<h3 id="web-sockets" class="relative group"><strong>Web Sockets</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#web-sockets" aria-label="Anchor">#</a></span></h3><p>The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are <em><strong>bi-directional, full duplex</strong></em> communication protocol. This means that the data can be flown in either directions, client to server or server to client.</p>
+<p>Web Sockets starts with either <em><strong>ws://</strong></em> or <em><strong>wss://</strong></em></p>
+<p>It is <em><strong>state-ful</strong></em> protocol, which means the communication between client and server is kept alive for the entire duration until it is closed by either client or server.</p>
+<h3 id="web-socket-server" class="relative group"><strong>Web Socket Server</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#web-socket-server" aria-label="Anchor">#</a></span></h3><p>I received a task to capture stream of messages send from Server and we have to read each message and do some post validations on those messages and may be store the data in database or in-memory. This post will be about receiving the messages from server and printing it on the console by the client.</p>
+<p>I have the server which is running on the port 8032. This is some jar file which cannot be changed. It send data in JSON format which describes the product id (isin), a little description about it and the event type(type) whether to add it to our list or delete it. It looks something like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;data&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;impetus tellus appareat movet&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;isin&#34;</span>: <span style="color:#e6db74">&#34;OV5407757082&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;ADD&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="web-socket-client" class="relative group"><strong>Web Socket Client</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#web-socket-client" aria-label="Anchor">#</a></span></h3><p>We will be using <strong>javax.websocket</strong> package for creating the client. Also, we will annotate the client class with ***@***<em>ClientEndpoint</em> which will denotes that this class is my Web Socket client and will have the web socket lifecycle events.</p>
+<p>In order to create a Web Socket client, we need to create a Web Socket container which will provide helpful methods to connect to the server. To connect to the server, like any rest API, here also we will have URLs which will be called by the client class.</p>
+<p>To create the container, we have <em>ContainerProvider <em>abstract</em></em>* ***class provided by the javax.websocket package. It has <em>getWebSocketContainer()</em> method which creates a *WebSocketContainer *instance using the <em><strong>org.apache.tomcat.websocket.WsWebSocketContainer</strong></em> class.</p>
+<p>Refer to the code for *ContainerProvider.getWebSocketContainer() *method from the abstract class from Java 8.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> WebSocketContainer <span style="color:#a6e22e">getWebSocketContainer</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WebSocketContainer result <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    ServiceLoader<span style="color:#f92672">&lt;</span>ContainerProvider<span style="color:#f92672">&gt;</span> serviceLoader <span style="color:#f92672">=</span> ServiceLoader.<span style="color:#a6e22e">load</span>(
+</span></span><span style="display:flex;"><span>            ContainerProvider.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(
+</span></span><span style="display:flex;"><span>        Iterator iter <span style="color:#f92672">=</span> serviceLoader.<span style="color:#a6e22e">iterator</span>(); 
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> iter.<span style="color:#a6e22e">hasNext</span>(); 
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> ((ContainerProvider)iter.<span style="color:#a6e22e">next</span>()).<span style="color:#a6e22e">getContainer</span>()
+</span></span><span style="display:flex;"><span>    ) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (result <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            Class<span style="color:#f92672">&lt;</span>WebSocketContainer<span style="color:#f92672">&gt;</span> clazz <span style="color:#f92672">=</span> Class.<span style="color:#a6e22e">forName</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;org.apache.tomcat.websocket.WsWebSocketContainer&#34;</span>);
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> (WebSocketContainer)clazz
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">getConstructor</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">newInstance</span>();
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IllegalArgumentException 
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">|</span> SecurityException 
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">|</span> ReflectiveOperationException var4) {
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Once you have the container instance, we can call the <em>connectToServer()</em> method with two arguments, one is the instance <em>this</em> and other is the server URL exposed.</p>
+<p>You need to handle the *DeploymentException *and *IOException *here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyWebSocketClientEndpoint</span>(URI uri){
+</span></span><span style="display:flex;"><span>    WebSocketContainer container <span style="color:#f92672">=</span> ContainerProvider
+</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">getWebSocketContainer</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        container.<span style="color:#a6e22e">connectToServer</span>(<span style="color:#66d9ef">this</span>, uri);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (DeploymentException e) {
+</span></span><span style="display:flex;"><span>        e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>        e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="lifecycle-methods" class="relative group"><strong>Lifecycle Methods</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lifecycle-methods" aria-label="Anchor">#</a></span></h3><p>Now as part of the client, there are three phases for every connection</p>
+<ul>
+<li><em><strong>onOpen</strong></em> - what needs to be done, when we open the connection</li>
+<li><em><strong>onClose</strong></em> - what needs to be done, when we close the connection</li>
+<li><em><strong>onMessage</strong></em> - what needs to be done, when we receive the messages from the server during the session.</li>
+</ul>
+<p>So, as part of the every Web Socket Client lifecycle methods, we will implement these three phases.</p>
+<p><em><strong>NOTE</strong></em>: You might have noticed, that I have written phases and not methods, because we can provide any method name here. To recognize the phase we need to annotate the respective methods with ***@***<em>onOpen</em>, or ***@***<em>onClose</em>, or ***@***<em>onMessage</em> annotation.</p>
+<p>You can have any implementation in these methods, but I will just print the name and messages on the console as part of this post.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@OnOpen</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Method Name can be anything</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onOpen</span>(Session session){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;On Open&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">session</span> <span style="color:#f92672">=</span> session;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@OnClose</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Method Name can be anything</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClose</span>(){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;On Close&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">session</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@OnMessage</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Method Name can be anything</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onMessage</span>(String message){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;On Message:&#34;</span><span style="color:#f92672">+</span> message);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To test this, we can call out *MyWebSocketClientEndpoint *class and provide the correct URL, which will start the connection to the server. If you want to keep on receiving the messages from the server and keep the connection open, use <em>Thread.sleep()</em> to keep the connection alive. Else it will close the socket connection with the server after few messages only. Providing the thread to sleep, allows the message stream to be printed on the console.</p>
+<p>You can refer to my github projects <a href="https://github.com/ankitagrahari?tab=repositories" target="_blank" rel="noreferrer"><em>here</em></a> and refer to this class <a href="https://github.com/ankitagrahari/trStocks/blob/main/src/main/java/com/tr/trstocks/websocket/client/MyWebSocketClientEndpoint.java" target="_blank" rel="noreferrer"><em>MyWebSocketClientEndpoint.java</em></a> for the entire code.</p>
+<p>Hope this helps others also. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building Production-Grade Apache Kafka Consumer Patterns</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:15 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/custom-java-class-peculiar-cases/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Custom Java Class : Peculiar Cases</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

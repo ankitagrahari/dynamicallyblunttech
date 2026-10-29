@@ -1,0 +1,575 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Transfer Files with Executor Service  &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Transfer Files with Executor Service  &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will move all files from one directory to another using Java&rsquo;s Executor Service and will also discuss on how we can enhance the entire process.
+To move files from one directory to another:
+
+List all files in the source directory
+Create a main class which will call the threads to process all the files in given directory.
+
+So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/transfer-files-with-executor-service/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/transfer-files-with-executor-service/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Transfer Files with Executor Service ">
+	<meta property="og:description" content="In this post we will move all files from one directory to another using Java’s Executor Service and will also discuss on how we can enhance the entire process.
+To move files from one directory to another:
+List all files in the source directory Create a main class which will call the threads to process all the files in given directory. So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:29+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:29+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Transfer Files with Executor Service ">
+	<meta name="twitter:description" content="In this post we will move all files from one directory to another using Java’s Executor Service and will also discuss on how we can enhance the entire process.
+To move files from one directory to another:
+List all files in the source directory Create a main class which will call the threads to process all the files in given directory. So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Transfer Files with Executor Service ",
+    "headline": "Transfer Files with Executor Service ",
+    
+    "abstract": "\u003cp\u003eIn this post we will move all files from one directory to another using Java\u0026rsquo;s Executor Service and will also discuss on how we can enhance the entire process.\u003c\/p\u003e\n\u003cp\u003eTo move files from one directory to another:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eList all files in the source directory\u003c\/li\u003e\n\u003cli\u003eCreate a main class which will call the threads to process all the files in given directory.\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eSo lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/transfer-files-with-executor-service\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:29\u002b05:30",
+    "datePublished": "2026-10-27T08:14:29\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:29\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "981"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Transfer Files With Executor Service",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Transfer Files with Executor Service 
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:29 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will move all files from one directory to another using Java&rsquo;s Executor Service and will also discuss on how we can enhance the entire process.</p>
+<p>To move files from one directory to another:</p>
+<ul>
+<li>List all files in the source directory</li>
+<li>Create a main class which will call the threads to process all the files in given directory.</li>
+</ul>
+<p>So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.</p>
+<h3 id="main-" class="relative group">**Main ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main-" aria-label="Anchor">#</a></span></h3><ul>
+<li>Checks if the source and target directory exists</li>
+<li>Get the stream of Path using <em>Files.walk()</em> on the source directory.</li>
+<li>For each file in the Stream of paths, it puts an entry into the *ConcurrentHashMap *declared globally.</li>
+<li>Calls the method which will in-turn call the thread using Executor Service.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Integer THREADS <span style="color:#f92672">=</span> 10;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ConcurrentHashMap<span style="color:#f92672">&lt;</span>String, Integer<span style="color:#f92672">&gt;</span> filesMap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    File workDir <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;src\\main\\resources\\source&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(workDir.<span style="color:#a6e22e">exists</span>() <span style="color:#f92672">&amp;&amp;</span> workDir.<span style="color:#a6e22e">isDirectory</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            Stream<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> paths <span style="color:#f92672">=</span> Files.<span style="color:#a6e22e">walk</span>(Paths.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;src\\main\\resources\\source&#34;</span>), 1);
+</span></span><span style="display:flex;"><span>            paths.<span style="color:#a6e22e">forEach</span>(path <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>path.<span style="color:#a6e22e">toFile</span>().<span style="color:#a6e22e">getName</span>().<span style="color:#a6e22e">equalsIgnoreCase</span>(<span style="color:#e6db74">&#34;source&#34;</span>))
+</span></span><span style="display:flex;"><span>                    filesMap.<span style="color:#a6e22e">put</span>(path.<span style="color:#a6e22e">toFile</span>().<span style="color:#a6e22e">getName</span>(), 0);
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        File collectDir <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;src\\main\\resources\\target&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (collectDir.<span style="color:#a6e22e">exists</span>() <span style="color:#f92672">&amp;&amp;</span> collectDir.<span style="color:#a6e22e">isDirectory</span>()) {
+</span></span><span style="display:flex;"><span>            MainClass.<span style="color:#a6e22e">moveUsingMultiThread</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="executor-method" class="relative group"><strong>Executor Method</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#executor-method" aria-label="Anchor">#</a></span></h3><ul>
+<li>Set a fixed thread pool using <em>newFixedThreadPool()</em> method of the <em>Executors</em> class.</li>
+<li>It creates five <em>ProcessFiles</em> threads and executes it using <em>ExecutorService</em> object.</li>
+<li>It calls <em>shutdown()</em> of *ExecutorService *once all the thread execution is done. It will wait using the while loop, until all the threads are completed and then print the message &ldquo;Finished all threads&rdquo;.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">moveUsingMultiThread</span>(){
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Running MultiThreaded Application to Move files         
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          from source to target&#34;</span>);
+</span></span><span style="display:flex;"><span>    ExecutorService executorService <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newFixedThreadPool</span>(
+</span></span><span style="display:flex;"><span>          THREADS);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0; i<span style="color:#f92672">&lt;</span>5; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        Runnable worker <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ProcessFiles();
+</span></span><span style="display:flex;"><span>        executorService.<span style="color:#a6e22e">execute</span>(worker);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    executorService.<span style="color:#a6e22e">shutdown</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>executorService.<span style="color:#a6e22e">isTerminated</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Wait until all threads are finished</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Finished all threads&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="executor-thread" class="relative group"><strong>Executor Thread</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#executor-thread" aria-label="Anchor">#</a></span></h3><p>This is my Runnable thread which</p>
+<ul>
+<li>Iterate over the <em>ConcurrentHashMap</em>,</li>
+<li>Move the files from source to target using <em>Files.move()</em>, and</li>
+<li>Remove the entry from <em>ConcurrentHashMap</em>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">null</span><span style="color:#f92672">!=</span> MainClass.<span style="color:#a6e22e">filesMap</span> <span style="color:#f92672">&amp;&amp;</span> MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">size</span>()<span style="color:#f92672">&gt;</span>0){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>String, Integer<span style="color:#f92672">&gt;</span> entry :MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">entrySet</span>()){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">synchronized</span> (<span style="color:#66d9ef">this</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getName</span>()
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;---&#34;</span> <span style="color:#f92672">+</span> entry.<span style="color:#a6e22e">getKey</span>()
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;---&#34;</span> <span style="color:#f92672">+</span> MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">get</span>(entry.<span style="color:#a6e22e">getKey</span>()));
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//Multiple checks for multi threads</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">null</span> <span style="color:#f92672">!=</span> MainClass.<span style="color:#a6e22e">filesMap</span> 
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">!=</span>MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">get</span>(entry.<span style="color:#a6e22e">getKey</span>()) 
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&amp;&amp;</span> MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">get</span>(entry.<span style="color:#a6e22e">getKey</span>()) <span style="color:#f92672">==</span> 0) {                        
+</span></span><span style="display:flex;"><span>                    Files.<span style="color:#a6e22e">move</span>(
+</span></span><span style="display:flex;"><span>                        Paths.<span style="color:#a6e22e">get</span>(
+</span></span><span style="display:flex;"><span>                            <span style="color:#e6db74">&#34;src\\main\\resources\\source&#34;</span> 
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> entry.<span style="color:#a6e22e">getKey</span>()
+</span></span><span style="display:flex;"><span>                        ),
+</span></span><span style="display:flex;"><span>                        Paths.<span style="color:#a6e22e">get</span>(
+</span></span><span style="display:flex;"><span>                            <span style="color:#e6db74">&#34;src\\main\\resources\\target&#34;</span> 
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> entry.<span style="color:#a6e22e">getKey</span>()
+</span></span><span style="display:flex;"><span>                        )
+</span></span><span style="display:flex;"><span>                    );
+</span></span><span style="display:flex;"><span>                    MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">remove</span>(entry.<span style="color:#a6e22e">getKey</span>());
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (NoSuchFileException nsfe) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;src\\main\\resources\\target&#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                    File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> entry.<span style="color:#a6e22e">getKey</span>()).<span style="color:#a6e22e">exists</span>()) {
+</span></span><span style="display:flex;"><span>                    nsfe.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (NullPointerException npe){
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//There might be a case when some threads will </span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// try to access get on fileMap,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// which will be empty at that time. </span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Hence, on NPE if the map is not empty, then</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// throw error, else skip</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">null</span><span style="color:#f92672">!=</span>MainClass.<span style="color:#a6e22e">filesMap</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">&amp;&amp;</span> MainClass.<span style="color:#a6e22e">filesMap</span>.<span style="color:#a6e22e">size</span>()<span style="color:#f92672">&gt;</span>0){
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;FileName:&#34;</span><span style="color:#f92672">+</span>entry.<span style="color:#a6e22e">getKey</span>()
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">+</span><span style="color:#e6db74">&#34; Value:&#34;</span><span style="color:#f92672">+</span>entry.<span style="color:#a6e22e">getValue</span>());
+</span></span><span style="display:flex;"><span>                    npe.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span></code></pre></div><p>The *NoSuchFileException *mentioned above is handled in the catch block.</p>
+<p>This will move all the files from source to target directory using 5 *ProcessFiles *threads and a <em>thread pool size</em> of 10 threads.</p>
+<p>While trying this out, we came to a interesting aspect, where the entire list of files can be divided into multiple list (equal to the number of threads) and then passing the sub-list to each thread. By using this logic, you can avoid all the collision because each thread will work on different set of files.</p>
+<h5 id="limitations" class="relative group"><strong>Limitations</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#limitations" aria-label="Anchor">#</a></span></h5><ul>
+<li>While using the above logic, there are chances that one thread is accessing one file while other thread has already moved it. So, we will get <em>NoSuchFileException</em>.</li>
+<li>While moving the files, there could be a case where one thread accessed one file from the directory, but another thread moved the same file in the target directory. In these cases, we can encounter <em>NullPointerException</em>.</li>
+</ul>
+<h5 id="resolutions" class="relative group"><strong>Resolutions</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#resolutions" aria-label="Anchor">#</a></span></h5><ul>
+<li>For <em>NoSuchFileException</em>, we can check if the same file exists in the target directory, and if not then throw the error.</li>
+<li>For <em>NullPointerException</em>, we will keep a Map (in this case a <em>ConcurrentHashMap</em>) to keep the records of the files existing in the directory. And as the threads move the files to target directory, we will remove the entry from the Map.</li>
+</ul>
+<h3 id="fixing-the-limitations" class="relative group"><strong>Fixing the Limitations</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#fixing-the-limitations" aria-label="Anchor">#</a></span></h3><p>So in order to fix the limitations, the *ProcessFiles *runnable thread need to work on a limited number of files. And when I say limited number of files, each thread will work on a segment of the list of files collected from the source directory.</p>
+<p>This is where the List partition comes into picture. As part of Main class, now we will partition the file list into multiple list (in our case, 3 sub-list will be created from the main list of files).</p>
+<p>The *ProcessFiles *is now changed to accept a list of file as input parameter and we are using <em>submit()</em> of the *ExcecutorService *which can return a <em>Future</em> object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>File<span style="color:#f92672">&gt;&gt;</span> partitionedLists <span style="color:#f92672">=</span> partitionListOfFiles(fileList, 3);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(List<span style="color:#f92672">&lt;</span>File<span style="color:#f92672">&gt;</span> files : partitionedLists) {
+</span></span><span style="display:flex;"><span>    Runnable worker <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ProcessFilesUsingListPartition(files);
+</span></span><span style="display:flex;"><span>    executorService.<span style="color:#a6e22e">submit</span>(worker);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The partition of list is done using the *subList *method of the List interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>File<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">partitionListOfFiles</span>(List<span style="color:#f92672">&lt;</span>File<span style="color:#f92672">&gt;</span> files, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> breakInto) {
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>File<span style="color:#f92672">&gt;&gt;</span> fileParts <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> totalFiles <span style="color:#f92672">=</span> files.<span style="color:#a6e22e">size</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> files.<span style="color:#a6e22e">size</span>(); i <span style="color:#f92672">+=</span> breakInto) {
+</span></span><span style="display:flex;"><span>        fileParts.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(files.<span style="color:#a6e22e">subList</span>(
+</span></span><span style="display:flex;"><span>                    i, 
+</span></span><span style="display:flex;"><span>                    Math.<span style="color:#a6e22e">min</span>(totalFiles, i <span style="color:#f92672">+</span> breakInto))
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> fileParts;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, lets say you have 10 files and you are partitioning the list into 2 parts, then *breakInto *parameter will be 5.</p>
+<p>This will actually speed up the task of moving the files from one directory to another. You can vary the size of sub-list of files, based on the number of files you have. So that the program will use same amount of threads as the number of partitioned list of files.</p>
+<p>You can find the whole code base here in my Github repo <a href="https://github.com/ankitagrahari/Tryouts/tree/master/src/main/java/com/threads/moveFiles" target="_blank" rel="noreferrer"><em>ExecutorServiceExample</em></a><em>.</em></p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/cca-f-domain1-agentic-architecture-orchestration-key-concepts/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/iii-named-entity-recognition-apache-opennlp/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >III - Named Entity Recognition - Apache OpenNLP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:29 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

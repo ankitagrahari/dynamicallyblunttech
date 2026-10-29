@@ -1,0 +1,682 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        
+Live at: https://hookspy.inHookSpy - Walk Through
+
+Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and&hellip; nothing. The endpoint didn&rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.
+Tools like RequestBin and Webhook.site exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That&rsquo;s HookSpy.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong">
+	<meta property="og:description" content="Live at: https://hookspy.inHookSpy - Walk Through
+Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and… nothing. The endpoint didn’t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.
+Tools like RequestBin and Webhook.site exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That’s HookSpy.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:26+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:26+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong">
+	<meta name="twitter:description" content="Live at: https://hookspy.inHookSpy - Walk Through
+Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and… nothing. The endpoint didn’t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.
+Tools like RequestBin and Webhook.site exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That’s HookSpy.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Built a Webhook Inspector from Scratch and Shipped It — Here\u0027s Everything That Went Wrong",
+    "headline": "Built a Webhook Inspector from Scratch and Shipped It — Here\u0027s Everything That Went Wrong",
+    
+    "abstract": "\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eLive at:\u003c\/strong\u003e \u003ca href=\u0022https:\/\/hookspy.in\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/hookspy.in\u003c\/a\u003eHookSpy - Walk Through\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eEvery developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and\u0026hellip; nothing. The endpoint didn\u0026rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.\u003c\/p\u003e\n\u003cp\u003eTools like \u003cem\u003eRequestBin\u003c\/em\u003e and \u003cem\u003eWebhook.site\u003c\/em\u003e exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That\u0026rsquo;s \u003cem\u003e\u003cstrong\u003eHookSpy\u003c\/strong\u003e\u003c\/em\u003e.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:26\u002b05:30",
+    "datePublished": "2026-10-27T08:14:26\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:26\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1653"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6249579158f0bd10b2a57273/",
+       "name": "[\"6249579158f0bd10b2a57273\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Built a Webhook Inspector From Scratch and Shipped It — Here's Everything That Went Wrong",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Built a Webhook Inspector from Scratch and Shipped It — Here's Everything That Went Wrong
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:26 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <blockquote>
+<p><strong>Live at:</strong> <a href="https://hookspy.in" target="_blank" rel="noreferrer">https://hookspy.in</a>HookSpy - Walk Through</p>
+</blockquote>
+<p>Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and&hellip; nothing. The endpoint didn&rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.</p>
+<p>Tools like <em>RequestBin</em> and <em>Webhook.site</em> exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That&rsquo;s <em><strong>HookSpy</strong></em>.</p>
+<p>This is the full story — architecture decisions, a painful Vaadin mistake, 18 production bugs, and what I&rsquo;d do differently.</p>
+<h2 id="what-hookspy-does" class="relative group"><strong>What HookSpy Does</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-hookspy-does" aria-label="Anchor">#</a></span></h2><p>You register, get a unique webhook URL like <a href="https://hookspy.in/h/%7bslug%7d" target="_blank" rel="noreferrer"><em>https://hookspy.in/h/{slug}</em></a>, and point any service at it. Every incoming request appears in your dashboard in real time. You can inspect headers, body, query params — replay the request to any target URL — and export it as a ready-to-run cURL command.</p>
+<p>Three tiers:</p>
+<ul>
+<li><em><strong>Free</strong></em> (1 endpoint, 100 requests/day),</li>
+<li><em><strong>Pro</strong></em> (₹299/month, 10 endpoints, 30-day retention),</li>
+<li><em><strong>Team</strong></em> (₹799/month, 50 endpoints, 90-day retention).</li>
+</ul>
+<h2 id="the-architecture" class="relative group"><strong>The Architecture</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-architecture" aria-label="Anchor">#</a></span></h2><p>Three Spring Boot microservices connected via Kafka.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>External <span style="color:#a6e22e">Service</span> (Stripe, Razorpay etc.)
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">│</span>  POST https:<span style="color:#75715e">//hookspy.in/h/{slug}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">▼</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">┌─────────────────────────────────────┐</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  capture<span style="color:#f92672">-</span>service :8080              <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Spring Boot WebFlux <span style="color:#f92672">+</span> Kafka Binder <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Returns 200 immediately            <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Publishes <span style="color:#66d9ef">to</span> Kafka topic           <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─────────────────────────────────────┘</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">│</span> Kafka <span style="color:#a6e22e">KRaft</span> (no Zookeeper)
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">▼</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">┌─────────────────────────────────────┐</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  processor<span style="color:#f92672">-</span>service :8081            <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#a6e22e">@KafkaListener</span>                     <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Validates tier limits              <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Saves <span style="color:#66d9ef">to</span> PostgreSQL                <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  RetryableTopic (3 retries <span style="color:#f92672">+</span> DLT)   <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─────────────────────────────────────┘</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">│</span> PostgreSQL 16
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">▼</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">┌─────────────────────────────────────┐</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  ui<span style="color:#f92672">-</span>service :8082                   <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Spring Boot REST <span style="color:#f92672">+</span> React 18        <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  SSE live updates                   <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>  Auth, replay, Razorpay payments    <span style="color:#960050;background-color:#1e0010">│</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">└─────────────────────────────────────┘</span>
+</span></span></code></pre></div><h4 id="why-three-services" class="relative group"><strong>Why three services?</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-three-services" aria-label="Anchor">#</a></span></h4><p>The most critical constraint: Stripe and Razorpay expect a 200 response within 5 seconds. If processing is slow, they retry — duplicate events. capture-service returns 200 immediately and hands off to Kafka. The caller never waits.</p>
+<p><strong>Why Kafka and not write directly to DB?</strong></p>
+<p>I wanted to learn Kafka in a real context. But it&rsquo;s also architecturally sound — capture can scale independently from the processor. Flash sale burst of webhooks? Kafka absorbs the spike. The processor works through the backlog at its own pace.</p>
+<p><strong>Kafka KRaft — no Zookeeper</strong></p>
+<p>Kafka&rsquo;s KRaft mode removes the Zookeeper dependency entirely. One less service, one less thing to fail. The docker-compose setup is clean:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kafka:
+</span></span><span style="display:flex;"><span>  image: confluentinc<span style="color:#f92672">/</span>cp<span style="color:#f92672">-</span>kafka:7.<span style="color:#a6e22e">7</span>.<span style="color:#a6e22e">0</span>
+</span></span><span style="display:flex;"><span>  environment:
+</span></span><span style="display:flex;"><span>    KAFKA_NODE_ID: 1
+</span></span><span style="display:flex;"><span>    KAFKA_PROCESS_ROLES: broker,controller
+</span></span><span style="display:flex;"><span>    KAFKA_CONTROLLER_QUORUM_VOTERS: 1<span style="color:#a6e22e">@kafka</span>:9093
+</span></span></code></pre></div><p><strong>Two different Kafka client styles — intentionally</strong></p>
+<ul>
+<li><em>capture-service</em> uses Spring Cloud Stream Kafka Binder — a reactive <em>Supplier&lt;Flux<!-- raw HTML omitted -->&gt;</em> backed by <em>Sinks.Many</em>. The Binder wires it to the topic automatically.</li>
+<li><em>processor-service</em> uses Spring Kafka directly — <em>@KafkaListener</em> with manual acknowledgement and <em>@RetryableTopic</em> for fine-grained reliability. Three retries with exponential backoff, then dead letter topic.</li>
+</ul>
+<p>Mixing both taught me where each approach shines — Binder for reactive fire-and-forget producers, plain Spring Kafka for consumers that need reliability control.</p>
+<h2 id="the-vaadin-mistake" class="relative group"><strong>The Vaadin Mistake</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-vaadin-mistake" aria-label="Anchor">#</a></span></h2><p>I vibe coded the UI in Vaadin 24 first. Java all the way down, no context switching, built-in push support for live updates. Seemed reasonable.</p>
+<blockquote>
+<p>It was a mistake.</p>
+</blockquote>
+<ul>
+<li>Vaadin&rsquo;s shadow DOM makes CSS control nearly impossible.</li>
+<li>Every rule needs !important.</li>
+<li>Dark mode is unreliable.</li>
+<li>Heavy JS bundle.</li>
+<li>The UI fought the framework constantly.</li>
+</ul>
+<p>After shipping the backend, I ripped out Vaadin entirely and rebuilt in React 18 + Vite + TailwindCSS. The frontend is a separate Vite project that builds into <em>ui-service/src/main/resources/static/</em>. Spring Boot serves React at / and the REST API at /api/*. One process in production, clean separation in development.</p>
+<p>The migration took a week. The backend didn&rsquo;t change at all — same entities, same services, same Kafka pipeline. Only ui-service changed.</p>
+<blockquote>
+<p><strong>Lesson:</strong> For any developer-facing product with design ambition, Vaadin will fight you the whole way. Start with React.</p>
+</blockquote>
+<h2 id="sse-instead-of-polling" class="relative group"><strong>SSE Instead of Polling</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sse-instead-of-polling" aria-label="Anchor">#</a></span></h2><p>The Vaadin UI polled the database every 3 seconds. The React version uses Server-Sent Events.</p>
+<p>The SSE endpoint holds a long-lived connection per slug. When processor-service saves a new webhook, a second Kafka consumer in ui-service receives the same event and pushes it to all open SSE emitters for that slug. New requests appear instantly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@GetMapping</span>(value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/endpoints/{slug}/requests/stream&#34;</span>,
+</span></span><span style="display:flex;"><span>            produces <span style="color:#f92672">=</span> MediaType.<span style="color:#a6e22e">TEXT_EVENT_STREAM_VALUE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> SseEmitter <span style="color:#a6e22e">stream</span>(<span style="color:#a6e22e">@PathVariable</span> String slug) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> emitter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SseEmitter(Long.<span style="color:#a6e22e">MAX_VALUE</span>);
+</span></span><span style="display:flex;"><span>    emitterRegistry.<span style="color:#a6e22e">register</span>(slug, emitter);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Send a keep-alive comment every 15s — prevents idle disconnect</span>
+</span></span><span style="display:flex;"><span>    ScheduledFuture<span style="color:#f92672">&lt;?&gt;</span> ping <span style="color:#f92672">=</span> scheduler.<span style="color:#a6e22e">scheduleAtFixedRate</span>(() <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            emitter.<span style="color:#a6e22e">send</span>(SseEmitter.<span style="color:#a6e22e">event</span>().<span style="color:#a6e22e">comment</span>(<span style="color:#e6db74">&#34;ping&#34;</span>));
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            emitter.<span style="color:#a6e22e">completeWithError</span>(e);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }, Instant.<span style="color:#a6e22e">now</span>(), Duration.<span style="color:#a6e22e">ofSeconds</span>(15));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    emitter.<span style="color:#a6e22e">onCompletion</span>(() <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        emitterRegistry.<span style="color:#a6e22e">remove</span>(slug, emitter);
+</span></span><span style="display:flex;"><span>        ping.<span style="color:#a6e22e">cancel</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    emitter.<span style="color:#a6e22e">onTimeout</span>(() <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        emitterRegistry.<span style="color:#a6e22e">remove</span>(slug, emitter);
+</span></span><span style="display:flex;"><span>        ping.<span style="color:#a6e22e">cancel</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    emitter.<span style="color:#a6e22e">onError</span>((e) <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>        emitterRegistry.<span style="color:#a6e22e">remove</span>(slug, emitter);
+</span></span><span style="display:flex;"><span>        ping.<span style="color:#a6e22e">cancel</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> emitter;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>On the React side:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>useEffect(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> source <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> EventSource(
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#f92672">/</span>api<span style="color:#f92672">/</span>endpoints<span style="color:#f92672">/</span>${slug}<span style="color:#f92672">/</span>requests<span style="color:#f92672">/</span>stream<span style="color:#960050;background-color:#1e0010">`</span>,
+</span></span><span style="display:flex;"><span>        { withCredentials: <span style="color:#66d9ef">true</span> }
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    source.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (e) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> newReq <span style="color:#f92672">=</span> JSON.<span style="color:#a6e22e">parse</span>(e.<span style="color:#a6e22e">data</span>)
+</span></span><span style="display:flex;"><span>        queryClient.<span style="color:#a6e22e">setQueryData</span>(<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>requests<span style="color:#960050;background-color:#1e0010">&#39;</span>, slug<span style="color:#f92672">]</span>, (old <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">[</span>newReq, ...<span style="color:#a6e22e">old</span><span style="color:#f92672">]</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> () <span style="color:#f92672">=&gt;</span> source.<span style="color:#a6e22e">close</span>()
+</span></span><span style="display:flex;"><span>}, <span style="color:#f92672">[</span>slug<span style="color:#f92672">]</span>)
+</span></span></code></pre></div><p><strong>SSE is underrated for developer tools.</strong> Simpler than WebSockets, perfect for one-directional live data. The only gotcha is nginx buffering — solved with proxy_buffering off.</p>
+<h2 id="18-bugs-that-cost-me-time" class="relative group"><strong>18 Bugs That Cost Me Time</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#18-bugs-that-cost-me-time" aria-label="Anchor">#</a></span></h2><h3 id="1-csrf-blocking-every-post-request" class="relative group"><strong>1. CSRF Blocking Every POST Request</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-csrf-blocking-every-post-request" aria-label="Anchor">#</a></span></h3><p>Every POST to /api/** returned 403.</p>
+<p>No logs, no error. Spring Security&rsquo;s default CSRF protection. One line fix:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">csrf</span>(csrf <span style="color:#f92672">-&gt;</span> csrf.<span style="color:#a6e22e">ignoringRequestMatchers</span>(<span style="color:#e6db74">&#34;/api/**&#34;</span>))
+</span></span></code></pre></div><h3 id="2-sse-leaking-content-type-into-exception-handler" class="relative group"><strong>2. SSE Leaking Content-Type Into Exception Handler</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-sse-leaking-content-type-into-exception-handler" aria-label="Anchor">#</a></span></h3><p>The SSE endpoint produces text/event-stream. Spring MVC cached this and applied it to error handler responses. GlobalExceptionHandler crashed with HttpMessageNotWritableException: No converter for ApiError with preset Content-Type &rsquo;text/event-stream'.</p>
+<p><strong>Fix:</strong> write directly to HttpServletResponse, skip SSE requests entirely. Move SSE to its own controller class so the produces type doesn&rsquo;t leak.</p>
+<h3 id="3-vite-proxy-hanging-on-sse" class="relative group"><strong>3. Vite Proxy Hanging on SSE</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-vite-proxy-hanging-on-sse" aria-label="Anchor">#</a></span></h3><p>Socket hang up errors on the SSE stream.</p>
+<p>Vite&rsquo;s HTTP proxy buffers responses — SSE frames were never flushed.</p>
+<p><strong>Fix:</strong> separate proxy rule for SSE endpoints with x-accel-buffering: no header, plus spring.mvc.async.request-timeout: -1 in application.yml.</p>
+<h3 id="4-razorpay-authentication-failed--three-causes-same-error" class="relative group"><strong>4. Razorpay Authentication Failed — Three Causes, Same Error</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-razorpay-authentication-failed--three-causes-same-error" aria-label="Anchor">#</a></span></h3><p>This one took the longest. Curl worked, SDK didn&rsquo;t.</p>
+<ul>
+<li>Cause 1: <em>RazorpayClient</em> instantiated at bean creation time before @Value injected.
+<strong>Fix:</strong> constructor parameters.</li>
+<li>Cause 2: <em>application.yml</em> had <em>${RAZORPAY_KEY_ID:placeholder}</em> — the default value was overriding the actual env var.
+<strong>Fix:</strong> remove all defaults for production secrets.</li>
+<li>Cause 3: Invisible trailing whitespace in copy-pasted keys.
+<strong>Fix:</strong> .trim() on both values.</li>
+</ul>
+<h3 id="5-razorpay-js-sdk-undefined" class="relative group"><strong>5. Razorpay JS SDK Undefined</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-razorpay-js-sdk-undefined" aria-label="Anchor">#</a></span></h3><p><em><!-- raw HTML omitted --></em> tags inside React JSX don&rsquo;t execute. <em>window.Razorpay</em> was always undefined.</p>
+<p><strong>Fix:</strong> load in index.html before React mounts.</p>
+<h3 id="6-razorpay-order-response-shape-wrong" class="relative group"><strong>6. Razorpay Order Response Shape Wrong</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-razorpay-order-response-shape-wrong" aria-label="Anchor">#</a></span></h3><p>Order created successfully but <em>&ldquo;could not initiate payment&rdquo;</em>. Backend was returning the raw Razorpay Order object — Jackson serialised it as the full Razorpay payload.</p>
+<p>Frontend expected <em>{ orderId, keyId }</em> but got <em>{ id, amount, currency, &hellip; }</em>.</p>
+<p><strong>Fix:</strong> explicit Map.of(&ldquo;orderId&rdquo;, &hellip;, &ldquo;keyId&rdquo;, &hellip;) in the controller.</p>
+<h3 id="7-value-null-in-component" class="relative group"><strong>7. @Value Null in Component</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-value-null-in-component" aria-label="Anchor">#</a></span></h3><p><em>captureBaseUrl</em> was null. The mapper was being instantiated with new <em>MapperFromEntityToDTO()</em> — Spring never touched it. @Value only works on Spring-managed beans. Always inject via constructor.</p>
+<h3 id="8-tier-lowercase-mismatch" class="relative group"><strong>8. Tier Lowercase Mismatch</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-tier-lowercase-mismatch" aria-label="Anchor">#</a></span></h3><p>Upgrade button not showing for FREE users. Backend returned &ldquo;free&rdquo;, frontend compared against &ldquo;TEAM&rdquo;.</p>
+<p><strong>Fix:</strong> <em>user?.tier?.toUpperCase()</em> everywhere.</p>
+<h3 id="9-docker-services-connecting-to-localhost" class="relative group"><strong>9. Docker Services Connecting to localhost</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-docker-services-connecting-to-localhost" aria-label="Anchor">#</a></span></h3><p>Inside a Docker network, services must use container service names, not localhost. application.yml had hardcoded localhost for DB and Kafka.</p>
+<p><strong>Fix:</strong> environment variable overrides in <a href="http://docker-compose.prod" target="_blank" rel="noreferrer">docker-compose.prod</a>.yml:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SPRING_DATASOURCE_URL: jdbc:postgresql:<span style="color:#75715e">//postgres:5432/${DB_NAME}</span>
+</span></span><span style="display:flex;"><span>SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+</span></span></code></pre></div><h3 id="10-razorpay-env-vars-not-reaching-container" class="relative group"><strong>10. Razorpay Env Vars Not Reaching Container</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-razorpay-env-vars-not-reaching-container" aria-label="Anchor">#</a></span></h3><p>Could not resolve placeholder &lsquo;<em>RAZORPAY_KEY_ID</em>&rsquo;.</p>
+<p>Docker Compose environment: does variable substitution at compose level but doesn&rsquo;t inject into the container.</p>
+<p><strong>Fix:</strong> add <em>env_file: - .env</em> to every service that needs secrets.</p>
+<h3 id="11-nginx-certificate-not-found" class="relative group"><strong>11. nginx Certificate Not Found</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#11-nginx-certificate-not-found" aria-label="Anchor">#</a></span></h3><p>nginx crash-looping. <a href="http://docker-compose.prod" target="_blank" rel="noreferrer">docker-compose.prod</a>.yml had ./nginx/certs as cert path — certs were at /etc/letsencrypt.</p>
+<p><strong>Fix:</strong> mount the actual letsencrypt directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>volumes:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> <span style="color:#f92672">/</span>etc<span style="color:#f92672">/</span>letsencrypt:<span style="color:#f92672">/</span>etc<span style="color:#f92672">/</span>letsencrypt:ro
+</span></span></code></pre></div><h3 id="12-wrong-jar-running-in-container" class="relative group"><strong>12. Wrong JAR Running in Container</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#12-wrong-jar-running-in-container" aria-label="Anchor">#</a></span></h3><p><em>ui-service</em> logs showed Started <em>CaptureServiceApplication</em>.</p>
+<p>Dockerfile used COPY target/*.jar app.jar — wildcard picked up the wrong JAR.</p>
+<p><strong>Fix:</strong> specific artifact name in each Dockerfile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>COPY target<span style="color:#f92672">/</span>ui<span style="color:#f92672">-</span>service<span style="color:#f92672">-*</span>.<span style="color:#a6e22e">jar</span> app.<span style="color:#a6e22e">jar</span>
+</span></span></code></pre></div><h3 id="13-maven-not-found" class="relative group"><strong>13. Maven Not Found</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#13-maven-not-found" aria-label="Anchor">#</a></span></h3><p>mvn: command not found.</p>
+<p>IntelliJ uses a bundled Maven — system terminal doesn&rsquo;t have it.</p>
+<p><strong>Fix:</strong> brew install maven.</p>
+<h3 id="14-maven-compiler-plugin-3141-bug-with-java-21--lombok" class="relative group"><strong>14. Maven Compiler Plugin 3.14.1 Bug With Java 21 + Lombok</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#14-maven-compiler-plugin-3141-bug-with-java-21--lombok" aria-label="Anchor">#</a></span></h3><p><em>ExceptionInInitializerError: TypeTag :: UNKNOWN</em>. Known bug.</p>
+<p><strong>Fix:</strong> pin to 3.13.0, upgrade Lombok to 1.18.34.</p>
+<h3 id="15-scp-copying-node_" class="relative group"><strong>15. SCP Copying node_modules</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#15-scp-copying-node_" aria-label="Anchor">#</a></span></h3><p>File transfer taking 20+ minutes. scp -r copies everything.</p>
+<p><strong>Fix:</strong> use rsync with excludes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>rsync <span style="color:#f92672">-</span>av <span style="color:#f92672">--</span>exclude<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>node_modules<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">--</span>exclude<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>target<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">--</span>exclude<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>.<span style="color:#a6e22e">git</span><span style="color:#960050;background-color:#1e0010">&#39;</span> ...
+</span></span></code></pre></div><h3 id="16-docker-images-not-found-on-server" class="relative group"><strong>16. Docker Images Not Found on Server</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#16-docker-images-not-found-on-server" aria-label="Anchor">#</a></span></h3><p><em>hookspy/ui-service</em> image not found. <a href="http://docker-compose.prod" target="_blank" rel="noreferrer">docker-compose.prod</a>.yml used image: references — images were never pushed to a registry.</p>
+<p><strong>Fix:</strong> switch to build: with context pointing to each service directory.</p>
+<h3 id="17-authenticateduser-broke-after-vaadin-removed" class="relative group"><strong>17. AuthenticatedUser Broke After Vaadin Removed</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#17-authenticateduser-broke-after-vaadin-removed" aria-label="Anchor">#</a></span></h3><p>AuthenticationContext not found after removing Vaadin.</p>
+<p><strong>Fix:</strong> rewrite to use SecurityContextHolder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> auth <span style="color:#f92672">=</span> SecurityContextHolder.<span style="color:#a6e22e">getContext</span>().<span style="color:#a6e22e">getAuthentication</span>();
+</span></span></code></pre></div><h3 id="18-registration-failing-in-browser-working-via-curl" class="relative group"><strong>18. Registration Failing in Browser, Working via curl</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#18-registration-failing-in-browser-working-via-curl" aria-label="Anchor">#</a></span></h3><p>No backend errors. Browser was serving a cached old JS bundle. Hard refresh (Cmd+Shift+R) resolved it.</p>
+<p>Production deployment lesson: always hard refresh after deploying new frontend.</p>
+<h2 id="production-stack" class="relative group"><strong>Production Stack</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#production-stack" aria-label="Anchor">#</a></span></h2><table>
+	<thead>
+			<tr>
+					<th>Layer</th>
+					<th>Technology</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Language</td>
+					<td>Java 21</td>
+			</tr>
+			<tr>
+					<td>Framework</td>
+					<td>Spring Boot 4.0.5</td>
+			</tr>
+			<tr>
+					<td>Reactive producer</td>
+					<td>Spring Cloud Stream Kafka Binder</td>
+			</tr>
+			<tr>
+					<td>Reliable consumer</td>
+					<td>Spring Kafka + @RetryableTopic</td>
+			</tr>
+			<tr>
+					<td>Message broker</td>
+					<td>Kafka KRaft (no Zookeeper)</td>
+			</tr>
+			<tr>
+					<td>Database</td>
+					<td>PostgreSQL 16 + Flyway</td>
+			</tr>
+			<tr>
+					<td>ORM</td>
+					<td>Spring Data JPA</td>
+			</tr>
+			<tr>
+					<td>Auth</td>
+					<td>Spring Security + BCrypt + HTTP Sessions</td>
+			</tr>
+			<tr>
+					<td>Frontend</td>
+					<td>React 18 + Vite + TailwindCSS</td>
+			</tr>
+			<tr>
+					<td>Live updates</td>
+					<td>Server-Sent Events (SSE)</td>
+			</tr>
+			<tr>
+					<td>Payments</td>
+					<td>Razorpay (HMAC-SHA256 verification)</td>
+			</tr>
+			<tr>
+					<td>Reverse proxy</td>
+					<td>nginx</td>
+			</tr>
+			<tr>
+					<td>Hosting</td>
+					<td>Hetzner CX23, Helsinki (~₹465/month)</td>
+			</tr>
+			<tr>
+					<td>SSL</td>
+					<td>Let&rsquo;s Encrypt (auto-renewing)</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="what-i" class="relative group"><strong>What I&rsquo;d Do Differently</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-i" aria-label="Anchor">#</a></span></h2><p><strong>Start with React.</strong> The Vaadin migration week was completely avoidable.</p>
+<p><strong>Use a proper internal event bus.</strong> ui-service has a second Kafka consumer just for SSE notifications. That&rsquo;s processor-service&rsquo;s concern leaking into ui-service. Better design: Spring ApplicationEvent for internal communication, Kafka as transport only.</p>
+<p><strong>One service, one responsibility — strictly.</strong> When a service grows a second Kafka consumer for a UI concern, that&rsquo;s a smell worth stopping.</p>
+<p><strong>Remove YAML default values for all secrets.</strong> ${SECRET:default} seems safe but the default silently wins when the env var isn&rsquo;t loaded. Fail fast on missing secrets instead.</p>
+<h2 id="try-it" class="relative group"><strong>Try It</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#try-it" aria-label="Anchor">#</a></span></h2><blockquote>
+<p>HookSpy is live at <a href="https://hookspy.in" target="_blank" rel="noreferrer">https://hookspy.in</a> — free tier, free forever.</p>
+</blockquote>
+<p>Follow along at <a href="https://www.instagram.com/backendbrilliance" target="_blank" rel="noreferrer">@backendbrilliance</a>.</p>
+<p>Technical blog: <a href="http://dynamicallyblunttech.com" target="_blank" rel="noreferrer">dynamicallyblunttech.com</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/i-sentence-segmentation-using-apache-opennlp/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >I - Sentence Segmentation Using Apache  OpenNLP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:26 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/cca-f-domain-5-context-management-and-reliability/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CCA-F Domain 5: Context Management and Reliability</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

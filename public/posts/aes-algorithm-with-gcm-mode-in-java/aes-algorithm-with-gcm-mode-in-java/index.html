@@ -1,0 +1,561 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>AES Algorithm with GCM Mode in Java &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="AES Algorithm with GCM Mode in Java &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In this post we will encrypt and decrypt a given phrase using AES algorithm in GCM mode. This will be more on how to do it. I am not an expert on ciphers, but a basic way of how would you achieve the encryption/decryption will help in securing your applications.
+AES Algorithm #
+Advanced Encryption Standard(AES) is a symmetric, block cipher encryption/decryption algorithm.
+
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/aes-algorithm-with-gcm-mode-in-java/aes-algorithm-with-gcm-mode-in-java/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/aes-algorithm-with-gcm-mode-in-java/aes-algorithm-with-gcm-mode-in-java/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="AES Algorithm with GCM Mode in Java">
+	<meta property="og:description" content="In this post we will encrypt and decrypt a given phrase using AES algorithm in GCM mode. This will be more on how to do it. I am not an expert on ciphers, but a basic way of how would you achieve the encryption/decryption will help in securing your applications.
+AES Algorithm # Advanced Encryption Standard(AES) is a symmetric, block cipher encryption/decryption algorithm.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:25+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:25+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="AES Algorithm with GCM Mode in Java">
+	<meta name="twitter:description" content="In this post we will encrypt and decrypt a given phrase using AES algorithm in GCM mode. This will be more on how to do it. I am not an expert on ciphers, but a basic way of how would you achieve the encryption/decryption will help in securing your applications.
+AES Algorithm # Advanced Encryption Standard(AES) is a symmetric, block cipher encryption/decryption algorithm.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "AES Algorithm with GCM Mode in Java",
+    "headline": "AES Algorithm with GCM Mode in Java",
+    
+    "abstract": "\u003cp\u003eIn this post we will encrypt and decrypt a given phrase using AES algorithm in GCM mode. This will be more on how to do it. I am not an expert on ciphers, but a basic way of how would you achieve the encryption\/decryption will help in securing your applications.\u003c\/p\u003e\n\u003ch3 id=\u0022aes-algorithm\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eAES Algorithm\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#aes-algorithm\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cblockquote\u003e\n\u003cp\u003eAdvanced Encryption Standard(AES) is a symmetric, block cipher encryption\/decryption algorithm.\u003c\/p\u003e\n\u003c\/blockquote\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/aes-algorithm-with-gcm-mode-in-java\/aes-algorithm-with-gcm-mode-in-java\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:25\u002b05:30",
+    "datePublished": "2026-10-27T08:14:25\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:25\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1510"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6249579158f0bd10b2a57273/",
+       "name": "[\"6249579158f0bd10b2a57273\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "AES Algorithm With Gcm Mode in Java",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        AES Algorithm with GCM Mode in Java
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In this post we will encrypt and decrypt a given phrase using AES algorithm in GCM mode. This will be more on how to do it. I am not an expert on ciphers, but a basic way of how would you achieve the encryption/decryption will help in securing your applications.</p>
+<h3 id="aes-algorithm" class="relative group"><strong>AES Algorithm</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#aes-algorithm" aria-label="Anchor">#</a></span></h3><blockquote>
+<p>Advanced Encryption Standard(AES) is a symmetric, block cipher encryption/decryption algorithm.</p>
+</blockquote>
+<p>By *symmetric *here, it means that the algorithm uses a secret key, which is used for encryption and decryption. So without the secret key entire encryption/decryption will fail.</p>
+<p>By <em>block cipher</em>, it means that the algorithm converts the plain text data into blocks which is then encrypted/decrypted.</p>
+<p>AES algorithm is based on <a href="https://en.wikipedia.org/wiki/Substitution%E2%80%93permutation_network" target="_blank" rel="noreferrer"><em>substitution-permutation</em></a> principle, which takes the blocks of plain text and key as input and apply multiple **rounds **of <em>Substitution</em> and then *Permutation *on it, to produce the encrypted text.</p>
+<p>The key size specifies the number of **transformation **rounds that convert the plaint text to cipher text. The reverse rounds are applied to transform the cipher text to plain text (decryption).</p>
+<p>The number of rounds for each key size is as follows:</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Rounds</strong></th>
+					<th><strong>Key Size</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>10</td>
+					<td>128 bits</td>
+			</tr>
+			<tr>
+					<td>12</td>
+					<td>192 bits</td>
+			</tr>
+			<tr>
+					<td>14</td>
+					<td>256 bits</td>
+			</tr>
+	</tbody>
+</table>
+<p>A *transformation *is a string that defines the set of operations performed to convert the plain text to cipher text. A transformation string will always include the <em>name of the algorithm</em> (like AES) and may be followed by a <em>feedback mode</em> and <em>padding scheme</em>.</p>
+<p>e.g. <em>AES/CBC/PKCS5Padding</em></p>
+<h3 id="feedback-modes" class="relative group"><strong>Feedback Modes</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#feedback-modes" aria-label="Anchor">#</a></span></h3><p>Most commonly used modes is CBC with PKCS5Padding. And since CBC doesn&rsquo;t use the streams of cipher, GCM (Galois/Counter Mode) is preferred.</p>
+<p>These below information is from the Cipher class documentation in Java.</p>
+<p>Using modes such as CFB(Cipher Feedback) and OFB(Output feedback), block ciphers can encrypt data in units smaller than the cipher&rsquo;s actual block size. When requesting such a mode, you may optionally specify the number of bits to be processed at a time by appending this number to the mode name as shown in the &ldquo;AES/CFB8/NoPadding&rdquo; and &ldquo;AES/OFB32/PKCS5Padding&rdquo; transformations. If no such number is specified, a provider-specific default is used. Thus, block ciphers can be turned into byte-oriented stream ciphers by using an 8 bit mode such as CFB8 or OFB8.</p>
+<p>Modes such as <em><strong>Authenticated Encryption with Associated Data (AEAD)</strong></em> provide authenticity assurances for both confidential data and Additional Associated Data (AAD) that is not encrypted. Both confidential and AAD data can be used when calculating the authentication tag (similar to a <a href="https://docs.oracle.com/javase/8/docs/api/javax/crypto/Mac.html" target="_blank" rel="noreferrer">Mac</a>). This tag is appended to the ciphertext during encryption, and is verified on decryption.</p>
+<p>AEAD modes such as <em>GCM/CCM</em> perform all AAD authenticity calculations before starting the ciphertext authenticity calculations. To avoid implementations having to internally buffer ciphertext, all AAD data must be supplied to GCM/CCM implementations (via the <em>updateAAD</em> methods) <strong>before</strong> the ciphertext is processed (via the update and <em>doFinal</em> methods).</p>
+<p>Note that GCM mode has a uniqueness requirement on IVs used in encryption with a given key. When IVs are repeated for GCM encryption, such usages are subject to forgery attacks. Thus, after each encryption operation using GCM mode, callers should re-initialize the cipher objects with GCM parameters which has a different IV value.</p>
+<h3 id="implementation" class="relative group"><strong>Implementation</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#implementation" aria-label="Anchor">#</a></span></h3><p>Let&rsquo;s look into the implementation of the AES algorithm with GCM mode.</p>
+<p>You can download the cipher zip supported by Java from <a href="https://www.oracle.com/java/technologies/javase-jce8-downloads.html" target="_blank" rel="noreferrer"><em>JCE Unlimited Strength Policy</em></a><em>.</em></p>
+<h3 id="encryption" class="relative group"><strong>Encryption</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#encryption" aria-label="Anchor">#</a></span></h3><p>The <em>Initialization vector(IV)</em> size we will use is 16 bytes, which is equivalent to 16 * 8 = 128 bits. We will use *SecureRandom *class to initialize random bytes to <em>Initialization Vector(IV).</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">byte</span> IV<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>IV_SIZE<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>SecureRandom secRandom <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SecureRandom() ;
+</span></span><span style="display:flex;"><span>secRandom.<span style="color:#a6e22e">nextBytes</span>(IV);
+</span></span></code></pre></div><p>We have to get the cipher instance of the transformations we want, here we will use AES/GCM/NoPadding. This should be same for encryption and decryption.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Cipher cipher <span style="color:#f92672">=</span> Cipher.<span style="color:#a6e22e">getInstance</span>(<span style="color:#e6db74">&#34;AES/GCM/NoPadding&#34;</span>);
+</span></span></code></pre></div><p>This cipher class will be used to add the authentication tag data. For authentication tag data, use a byte array. We have used this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> aadTagData <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dynamicallyblunttech&#34;</span>.<span style="color:#a6e22e">getBytes</span>() ;
+</span></span></code></pre></div><p>We will then need the *GCMParameterSpec *object which sets the necessary parameters required for GCM mode.</p>
+<p>In CBC mode, it only requires an Initialization Vector(IV) such as *IvParameterSpec, *but in GCM mode, it requires the IV and the tLen which is the length of authentication tag(in bits).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> GCM_TAG_LENGTH <span style="color:#f92672">=</span> 128;
+</span></span><span style="display:flex;"><span>GCMParameterSpec gcmParameterSpec <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GCMParameterSpec(
+</span></span><span style="display:flex;"><span>                             GCM_TAG_LENGTH, IV);
+</span></span></code></pre></div><p>We have to create the SecretKey which will be used in encryption and decryption of our passwords. It will take String as an input and uses SHA-256 as Message Digest instance.</p>
+<blockquote>
+<p>Message Digest is a secure one way hash function which takes arbitrary length data and generates fixed sized hash value. It uses Message Digest algorithm such as MD5 or SHA-1 or SHA-256</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>key <span style="color:#f92672">=</span> secretKey.<span style="color:#a6e22e">getBytes</span>(<span style="color:#e6db74">&#34;UTF-8&#34;</span>);
+</span></span><span style="display:flex;"><span>MessageDigest sha <span style="color:#f92672">=</span> MessageDigest.<span style="color:#a6e22e">getInstance</span>(<span style="color:#e6db74">&#34;SHA-256&#34;</span>);
+</span></span><span style="display:flex;"><span>key <span style="color:#f92672">=</span> sha.<span style="color:#a6e22e">digest</span>(key);
+</span></span><span style="display:flex;"><span>key <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">copyOf</span>(key, 16);
+</span></span><span style="display:flex;"><span>sks <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SecretKeySpec(key, <span style="color:#e6db74">&#34;AES&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> sks;
+</span></span></code></pre></div><p>Now that we have all the things required to initialize my Cipher instance. And the Cipher.init() method takes the</p>
+<ul>
+<li>mode (1-Encrypt, 2-Decrypt)</li>
+<li>Key (Secret Key)</li>
+<li>Parameter Set (GCMParameterSpec)</li>
+<li>SecureRandom (instance)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>cipher.<span style="color:#a6e22e">init</span>(Cipher.<span style="color:#a6e22e">ENCRYPT_MODE</span>, secretKey, gcmParameterSpec, secRandom);
+</span></span></code></pre></div><p>Once the cipher is initialized with above values, we have to update the plain text as byte[] into the Cipher instance. But before updating the plain text, we need to update Authentication Tag using updateAAD() method of Cipher instance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>cipher.<span style="color:#a6e22e">updateAAD</span>(aadTagData);
+</span></span><span style="display:flex;"><span>cipher.<span style="color:#a6e22e">update</span>(bytePassword);
+</span></span></code></pre></div><p>After this, call the <em>doFinal()</em> method of Cipher instance, which will return a byte array of encrypted string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> encryptedBytes <span style="color:#f92672">=</span> cipher.<span style="color:#a6e22e">doFinal</span>();
+</span></span></code></pre></div><p>Now majorly two important points here:</p>
+<ul>
+<li>In most of the working code, you will be dealing with character array and not Strings. Since String pose security risk as its an immutable object and cannot be changed, rather a change will create a new String. But if we use the character array, we can initialize the value to empty to some random value after the sensitive data is not required. So, how to convert the character array to byte array without missing any bytes ?</li>
+<li>Another point is, now we have the secret key, IV which will be required to decrypt the message. Where do we store them ? Storing it in disk space pose another security risk of the key to be damaged or lost or used by attackers to identify the message.</li>
+</ul>
+<p>We can convert the character array to byte array by using ByteBuffer class.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ByteBuffer byteBuffer <span style="color:#f92672">=</span> Charset.<span style="color:#a6e22e">defaultCharset</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">encode</span>(CharBuffer.<span style="color:#a6e22e">wrap</span>(toEncrypt));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytePassword <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>byteBuffer.<span style="color:#a6e22e">remaining</span>()<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>byteBuffer.<span style="color:#a6e22e">get</span>(bytePassword);
+</span></span></code></pre></div><p>And to store the encrypted message and IV so that we can use it during decryption, we can append the IV to the encrypted message and encode the string using Base64 again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> ivCTAndTag <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>IV.<span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> encryptedBytes.<span style="color:#a6e22e">length</span><span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">arraycopy</span>(IV, 0, ivCTAndTag, 0, IV.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">arraycopy</span>(encryptedBytes, 0, ivCTAndTag, IV.<span style="color:#a6e22e">length</span>, encryptedBytes.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Base64.<span style="color:#a6e22e">getEncoder</span>().<span style="color:#a6e22e">encodeToString</span>(ivCTAndTag);
+</span></span></code></pre></div><p>Above code is to create a byte array of combined size of IV and the encrypted String. And then copy the IV and encrypted bytes to the new array. To even add more complexity, you can do some other operations (like introducing extra bytes in some order etc) here for more security.</p>
+<p>Since the way we used to create the secret key will provide the same key, we can create a random text given as input. Thus, for every deployment of you application, it will generate a different input key for the <em>generateSecretKey()</em> method and thus different secret key.</p>
+<h3 id="decryption" class="relative group"><strong>Decryption</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#decryption" aria-label="Anchor">#</a></span></h3><p>We will use the same algorithm transformations to create a new Cipher instance. Decode our message and then extract the IV bytes and encrypted message from the encrypted bytes.</p>
+<p>We will follow the same way, where we create the *GCMParameterSpec *instance using the extracted <em>IV</em>, initialize the Cipher instance with *Decrypt *mode, the secret key, *GCMParameterSpec *instance and the *SecureRandom *instance.</p>
+<p>Then will update the authentication tag for the Cipher instance and update the encrypted bytes. Finally, use the <em>doFinal()</em> to get the decrypted bytes, which can be converted to String.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Cipher cipher <span style="color:#f92672">=</span> Cipher.<span style="color:#a6e22e">getInstance</span>(<span style="color:#e6db74">&#34;AES/GCM/NoPadding&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> decodedToDecrypt <span style="color:#f92672">=</span> Base64.<span style="color:#a6e22e">getDecoder</span>().<span style="color:#a6e22e">decode</span>(toDecrypt);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> IV <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>IV_SIZE<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">arraycopy</span>(decodedToDecrypt, 0, IV, 0, IV.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GCMParameterSpec gcmParameterSpec <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GCMParameterSpec(GCM_TAG_LENGTH, IV);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> encryptedBytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>decodedToDecrypt.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> IV.<span style="color:#a6e22e">length</span><span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">arraycopy</span>(decodedToDecrypt, IV.<span style="color:#a6e22e">length</span>, encryptedBytes, 0, encryptedBytes.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cipher.<span style="color:#a6e22e">init</span>(Cipher.<span style="color:#a6e22e">DECRYPT_MODE</span>, secretKey, gcmParameterSpec, <span style="color:#66d9ef">new</span> SecureRandom());
+</span></span><span style="display:flex;"><span>cipher.<span style="color:#a6e22e">updateAAD</span>(aadTagData);
+</span></span><span style="display:flex;"><span>cipher.<span style="color:#a6e22e">update</span>(encryptedBytes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> decryptedBytes <span style="color:#f92672">=</span> cipher.<span style="color:#a6e22e">doFinal</span>();
+</span></span></code></pre></div><p>If you have any comments or more information, kindly comment down in this post. You can refer to the entire code on my <a href="https://github.com/ankitagrahari/Tryouts/blob/master/src/main/java/com/dmtryouts/EncryptDecrypt/AESGCMDMCrypt.java" target="_blank" rel="noreferrer"><em>Github</em></a>.</p>
+<h2 id="heading" class="relative group"><strong>[UPDATE]</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#heading" aria-label="Anchor">#</a></span></h2><p>&ldquo;images/df024c_3cfcbb1f5c1447f98adedda2ff38bbdc1.jpg&rdquo;
+While testing some of the passwords, I found that the above code would give an *AEADTagException *for the password&rsquo;s with length greater than the block size.</p>
+<p>This is because of the <em>Cipher.update(bytes[])</em> method.</p>
+<p>Referring to the documentation, you would find that</p>
+<blockquote>
+<p>**Returns:**the new buffer with the result, or null if the underlying cipher is a block cipher and <em><strong>the input data is too short to result in a new block.</strong></em></p>
+</blockquote>
+<p>So, the fix would be to directly pass the bytes[] in <em>cipher.doFinal()</em> method of Cipher. And avoid the <em>cipher.update()</em> method.*** ***</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> encryptedBytes <span style="color:#f92672">=</span> cipher.<span style="color:#a6e22e">doFinal</span>(bytePassword);
+</span></span></code></pre></div><h3 id="references" class="relative group">References <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html" target="_blank" rel="noreferrer"><em>https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html</em></a>* *</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/javax/crypto/spec/GCMParameterSpec.html" target="_blank" rel="noreferrer"><em>https://docs.oracle.com/javase/8/docs/api/javax/crypto/spec/GCMParameterSpec.html</em></a>* *</li>
+<li><a href="https://www.javacodegeeks.com/2017/12/choosing-java-cryptographic-algorithms-part-2-single-key-symmetric-encryption.html" target="_blank" rel="noreferrer"><em>https://www.javacodegeeks.com/2017/12/choosing-java-cryptographic-algorithms-part-2-single-key-symmetric-encryption.html</em></a>* *</li>
+<li><a href="https://en.wikipedia.org/wiki/Galois/Counter_Mode" target="_blank" rel="noreferrer"><em>https://en.wikipedia.org/wiki/Galois/Counter_Mode</em></a>* *</li>
+<li>***[UPDATE] ***<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/javax/crypto/Cipher.html#update%28byte%5B%5D%29" target="_blank" rel="noreferrer"><em>Cipher.update(byte[]) Documentation Link</em></a></li>
+</ul>
+<p>Hope you like the content of the blog. Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/multi-release-functionality/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Multi Release Functionality</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/lc983-find-the-minimum-cost-for-tickets-dp/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >#LC983 - Find The Minimum Cost For Tickets (DP)</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:25 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

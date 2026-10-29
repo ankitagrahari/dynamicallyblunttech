@@ -1,0 +1,514 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Fork-Join Framework in Java &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Fork-Join Framework in Java &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.
+How it Works #Lets understand some key points in this framework
+Fork means spawning a new task.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/fork-join-framework-in-java/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/fork-join-framework-in-java/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Fork-Join Framework in Java">
+	<meta property="og:description" content="This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.
+How it Works #Lets understand some key points in this framework
+Fork means spawning a new task.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:21+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Fork-Join Framework in Java">
+	<meta name="twitter:description" content="This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.
+How it Works #Lets understand some key points in this framework
+Fork means spawning a new task.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Fork-Join Framework in Java",
+    "headline": "Fork-Join Framework in Java",
+    
+    "abstract": "\u003cp\u003eThis post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.\u003c\/p\u003e\n\u003ch2 id=\u0022how-it-works\u0022 class=\u0022relative group\u0022\u003eHow it Works \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#how-it-works\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eLets understand some key points in this framework\u003c\/p\u003e\n\u003cp\u003eFork means spawning a new task.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/fork-join-framework-in-java\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:21\u002b05:30",
+    "datePublished": "2026-10-27T08:14:21\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:21\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "972"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Fork Join Framework in Java",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Fork-Join Framework in Java
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.</p>
+<h2 id="how-it-works" class="relative group">How it Works <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-it-works" aria-label="Anchor">#</a></span></h2><p>Lets understand some key points in this framework</p>
+<p>Fork means spawning a new task.</p>
+<p>Join means to join the pending task output.</p>
+<p>Fork/Join uses the <em><strong>Divide and Conquer</strong></em> which divides the entire dataset into small chunks for computation or applying any specific logic. Once each task is computed independently, it will merge the output of the computation to get the final result.</p>
+<p>It runs all the forked tasks in parallel using the available capacity of your machine on which it is running.</p>
+<p>To run the tasks in parallel, it uses the number of processors available to JVM which is <em>Runtime.getRuntime().availableProcessors()</em> number of threads.</p>
+<p>Each of these threads have <em><strong>double ended Queue (De-queue)</strong></em>. In a de-queue you can add or remove an elements from the head or tail.</p>
+<p>Using de-queue, it applies the <em><strong>work-stealing algorithm</strong></em>, where if there are no tasks for  a thread to execute, it will steal the tasks from other threads.</p>
+<p>This approach ensures efficient execution of a big task, utilizing the available processors of your machine.</p>
+<h2 id="classes" class="relative group">Classes <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#classes" aria-label="Anchor">#</a></span></h2><p>*ForkJoinPool <em>class</em> *is a common shared thread pool which can be accessed using <em>commonPool()</em> static method. This will invoke classes which extends *RecursiveAction *or <em>RecursiveTask</em>. These Recursive classes implements *ForkJoinTask *interface.</p>
+<p>We can return a specific value (like *Future *in <em>Executor framework</em>) from class extending *RecursiveTask *(<del><em>Callable</em>) and class extending *RecursiveAction *(</del>*Runnable *) will not return any values. These classes have <em>compute()</em> method, which holds the logic for your tasks.</p>
+<p>With fork/join, there will be a way to solve any problem for certain size threshold. But if the threshold is crossed it follows this order</p>
+<ul>
+<li>Create two tasks,</li>
+<li>Fork the first task</li>
+<li>Call compute() on the second task</li>
+<li>Call join() on the first task.</li>
+</ul>
+<p>This order is mandatory to follow. Here first the task is forked and we compute the task and then join it using the join() method. We will go through two examples to understand this better.</p>
+<ul>
+<li>Finding the frequency of duplicate element in an Array</li>
+<li>Finding the Fibonacci number at a given index.</li>
+</ul>
+<h2 id="problem-i---frequency-of-duplicate-element-in-an-array" class="relative group">Problem I - Frequency of Duplicate Element in an Array <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-i---frequency-of-duplicate-element-in-an-array" aria-label="Anchor">#</a></span></h2><p>The problem statement is to find an element in an array and how many times it is duplicated.</p>
+<p>Now here the array size can be anything, ranging from 1 to millions.</p>
+<p>Here the logic will be to maintain the start and end index of the array.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> THRESHOLD <span style="color:#f92672">=</span> 47;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> start, end, toFind;
+</span></span></code></pre></div><p>There will be one part where we put the logic to get the duplicate element frequency like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> start; i <span style="color:#f92672">&lt;=</span> end; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (toFind <span style="color:#f92672">==</span> arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>) {
+</span></span><span style="display:flex;"><span>        count<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;count:&#34;</span><span style="color:#f92672">+</span> count 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; from start:&#34;</span><span style="color:#f92672">+</span> start 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span><span style="color:#e6db74">&#34; and end:&#34;</span><span style="color:#f92672">+</span> end);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> count;
+</span></span></code></pre></div><p>And other part will be when the size of the Array is crossing the Threshold limit.</p>
+<p>I have put 47 as threshold, because it is something used in the Sort method of Arrays class.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CountDuplicate task1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CountDuplicate(arr, 0, end<span style="color:#f92672">/</span>2, toFind);
+</span></span><span style="display:flex;"><span>CountDuplicate task2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CountDuplicate(arr, (end<span style="color:#f92672">/</span>2)<span style="color:#f92672">+</span>1, arr.<span style="color:#a6e22e">length</span><span style="color:#f92672">-</span>1, toFind);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>task1.<span style="color:#a6e22e">fork</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> task2.<span style="color:#a6e22e">compute</span>() <span style="color:#f92672">+</span> task1.<span style="color:#a6e22e">join</span>();
+</span></span></code></pre></div><p>*CountDuplicate *is the class which computes the frequency of the duplicate elements in a specific index range of the given array.</p>
+<p>And in the main method, we will initiate the *ForkJoinPool *and the invoke the *CountDuplicate *task. The invoke method will return an Object. It can return an Integer if while specifying it is given as the <em>RecursiveTask<!-- raw HTML omitted --></em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ForkJoinPool pool <span style="color:#f92672">=</span> ForkJoinPool.<span style="color:#a6e22e">commonPool</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> {1, 4, 2, 1, 2, 1, 23, 1, 5, 5, 2, 4, 9, 2, 8, 3, 5, 1, 0, 6, 3, 1};
+</span></span><span style="display:flex;"><span>CountDuplicate task <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CountDuplicate(arr, 0, arr.<span style="color:#a6e22e">length</span><span style="color:#f92672">-</span>1, 1);
+</span></span><span style="display:flex;"><span>Integer count <span style="color:#f92672">=</span> pool.<span style="color:#a6e22e">invoke</span>(task);
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(count);
+</span></span></code></pre></div><p>The above print method will print the count of element 1 which is repeated 6 times in the given array.</p>
+<h2 id="problem-ii---fibonacci-number-at-an-index" class="relative group">Problem II - Fibonacci Number at an Index <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-ii---fibonacci-number-at-an-index" aria-label="Anchor">#</a></span></h2><p>Here the problem statement is to find the Fibonacci number at a given index starting from 0. The way we calculate the Fibonacci number is to add the previous two number from the list. Now every element can be computed in subtasks.</p>
+<p>The first part is to calculate the Fibonacci number if the number is below the Threshold level</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Integer <span style="color:#a6e22e">computeDirectly</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>2;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span>0, b<span style="color:#f92672">=</span>1, curr;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">to</span><span style="color:#f92672">&lt;=</span>1)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> 1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(i<span style="color:#f92672">&lt;=</span><span style="color:#66d9ef">to</span>){
+</span></span><span style="display:flex;"><span>        curr <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> b;
+</span></span><span style="display:flex;"><span>        b <span style="color:#f92672">=</span> curr;
+</span></span><span style="display:flex;"><span>        i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then the other part will be to get the recursive logic working if the index is more than the Threshold level.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Fibonacci task1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Fibonacci(<span style="color:#66d9ef">to</span><span style="color:#f92672">-</span>1);
+</span></span><span style="display:flex;"><span>Fibonacci task2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Fibonacci(<span style="color:#66d9ef">to</span><span style="color:#f92672">-</span>2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>task1.<span style="color:#a6e22e">fork</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> task2.<span style="color:#a6e22e">compute</span>() <span style="color:#f92672">+</span> task1.<span style="color:#a6e22e">join</span>();
+</span></span></code></pre></div><p>Here task1 calculates the Fibonacci at <em>n-1</em> index and task2 will calculate the fibonacci at <em>n-2</em> index. The final result will be the summation of both the values.</p>
+<p><em><strong>NOTE:</strong></em> You can notice in both the example above that the fork() is called on the first task to create the subtask, then the compute() is called on the second subtask to recursively process it and then the join() on the first task again. The join() method should be called at last because it will block the next task from being processed until the result is returned.</p>
+<p>The <em>Arrays.parallelSort()</em> method also using this Fork/Join framework to sort the arrays. You can find the parallel sort example <a href="https://github.com/ankitagrahari/Tryouts/blob/master/src/main/java/com/array/sort/ArraySort.java" target="_blank" rel="noreferrer"><em>here</em></a>.</p>
+<p>You can also find the entire code base in my <a href="https://github.com/ankitagrahari/Tryouts/" target="_blank" rel="noreferrer"><em>github repository</em></a>. You can refer to the solution of problem1 <a href="https://github.com/ankitagrahari/Tryouts/blob/aecfa1c9737eb70a4dabb48bc342a50fa915ef56/src/main/java/com/array/ForkJoinT.java#L63" target="_blank" rel="noreferrer">*here *</a>and for problem 2 <a href="https://github.com/ankitagrahari/Tryouts/blob/aecfa1c9737eb70a4dabb48bc342a50fa915ef56/src/main/java/com/array/ForkJoinT.java#L23" target="_blank" rel="noreferrer"><em>here</em></a>.</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/spring-boot-application-external-configurations/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Spring Boot Application External Configurations</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:21 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

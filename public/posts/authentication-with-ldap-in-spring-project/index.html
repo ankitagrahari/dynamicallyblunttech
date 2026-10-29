@@ -1,0 +1,497 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Authentication With LDAP in Spring &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Authentication With LDAP in Spring &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Referring to the Spring Guide to Spring security for authenticating a user with LDAP, this blog is to create the working example for someone to try it out.
+The example present as part of the guide is having some configuration missing, without which the example won&rsquo;t work. I got to know from some Stackoverflow pages about the missing configurations and added the correct form to this post.
+Dependencies #I am using Maven for my project and it requires following external libraries for enabling the LDAP authentication in our spring project.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/authentication-with-ldap-in-spring-project/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/authentication-with-ldap-in-spring-project/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Authentication With LDAP in Spring">
+	<meta property="og:description" content="Referring to the Spring Guide to Spring security for authenticating a user with LDAP, this blog is to create the working example for someone to try it out.
+The example present as part of the guide is having some configuration missing, without which the example won’t work. I got to know from some Stackoverflow pages about the missing configurations and added the correct form to this post.
+Dependencies #I am using Maven for my project and it requires following external libraries for enabling the LDAP authentication in our spring project.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:29+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:29+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Authentication With LDAP in Spring">
+	<meta name="twitter:description" content="Referring to the Spring Guide to Spring security for authenticating a user with LDAP, this blog is to create the working example for someone to try it out.
+The example present as part of the guide is having some configuration missing, without which the example won’t work. I got to know from some Stackoverflow pages about the missing configurations and added the correct form to this post.
+Dependencies #I am using Maven for my project and it requires following external libraries for enabling the LDAP authentication in our spring project.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Authentication With LDAP in Spring",
+    "headline": "Authentication With LDAP in Spring",
+    
+    "abstract": "\u003cp\u003eReferring to the \u003ca href=\u0022https:\/\/spring.io\/guides\/gs\/authenticating-ldap\/\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eSpring Guide\u003c\/em\u003e\u003c\/a\u003e to Spring security for authenticating a user with LDAP, this blog is to create the working example for someone to try it out.\u003c\/p\u003e\n\u003cp\u003eThe example present as part of the guide is having some configuration missing, without which the example won\u0026rsquo;t work. I got to know from some Stackoverflow pages about the missing configurations and added the correct form to this post.\u003c\/p\u003e\n\u003ch2 id=\u0022dependencies\u0022 class=\u0022relative group\u0022\u003eDependencies \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#dependencies\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eI am using Maven for my project and it requires following external libraries for enabling the LDAP authentication in our spring project.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/authentication-with-ldap-in-spring-project\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:29\u002b05:30",
+    "datePublished": "2026-10-27T08:14:29\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:29\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "541"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
+       "name": "[\"619c9d9d8da2c200166cb558\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Authentication With Ldap in Spring",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Authentication With LDAP in Spring
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:29 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Referring to the <a href="https://spring.io/guides/gs/authenticating-ldap/" target="_blank" rel="noreferrer"><em>Spring Guide</em></a> to Spring security for authenticating a user with LDAP, this blog is to create the working example for someone to try it out.</p>
+<p>The example present as part of the guide is having some configuration missing, without which the example won&rsquo;t work. I got to know from some Stackoverflow pages about the missing configurations and added the correct form to this post.</p>
+<h2 id="dependencies" class="relative group">Dependencies <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dependencies" aria-label="Anchor">#</a></span></h2><p>I am using Maven for my project and it requires following external libraries for enabling the LDAP authentication in our spring project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>security<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ldap</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>ldap<span style="color:#f92672">-</span>core<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">security</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>security<span style="color:#f92672">-</span>ldap<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>com.<span style="color:#a6e22e">unboundid</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>unboundid<span style="color:#f92672">-</span>ldapsdk<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h2 id="web-security-configurer-adapter" class="relative group">Web Security Configurer Adapter <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#web-security-configurer-adapter" aria-label="Anchor">#</a></span></h2><p>In order to get the LDAP authentication working, we have to add another configuration which will extend <em>WebSecurityConfigurerAdapter <em>class. The <em>configure()</em></em></em>* ***method will be overridden to manually add some additional configuration for the login works in your spring project. The *WebSecurityConfigurerAdapter *class implements *WebSecurityConfigurer *interface.</p>
+<p>It also provides an embedded LDAP server with default configuration. We will use <em>ldapauthentication()</em> method which will configure things so that the username in the login form is plugged into <em>{0}</em> such that it searches below pattern in the LDAP server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>uid<span style="color:#f92672">=</span>{0},ou<span style="color:#f92672">=</span>people,dc<span style="color:#f92672">=</span>springframework,dc<span style="color:#f92672">=</span>org
+</span></span></code></pre></div><p>In the flow, the configure method with *AuthenticationManagerBuilder *class as argument will be called first and after that it will call the other configure method with *HttpSecurity *method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span>(AuthenticationManagerBuilder auth) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        auth.<span style="color:#a6e22e">ldapAuthentication</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">userDnPatterns</span>(<span style="color:#e6db74">&#34;uid={0},ou=people&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">groupSearchBase</span>(<span style="color:#e6db74">&#34;ou=groups&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">contextSource</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">url</span>(<span style="color:#e6db74">&#34;ldap://localhost:8389/dc=springframework,dc=org&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">and</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">passwordCompare</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                .passwordEncoder(new BCryptPasswordEncoder())</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">passwordAttribute</span>(<span style="color:#e6db74">&#34;userPassword&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>NOTE:</strong> In the above configure method, keep the *passwordEncoder *line commented, else the user authentication will not work. It was throwing user authentication failed when we enable the *BCryptPasswordEncoder *class.</p>
+<p>After the above configure method the below configure method will be called</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span>(HttpSecurity http) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        http.<span style="color:#a6e22e">authorizeRequests</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">anyRequest</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">fullyAuthenticated</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">and</span>()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">formLogin</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="ldap-data-interchange-format-file" class="relative group">LDAP Data Interchange Format file <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#ldap-data-interchange-format-file" aria-label="Anchor">#</a></span></h2><p>The <em>ldif</em> file contains the user repository for the users which are allowed to access the application with respective users details, groups and other permissions.</p>
+<p>Refer to the file here: <a href="https://github.com/ankitagrahari/CowinCo/blob/main/src/main/resources/test-server.ldif" target="_blank" rel="noreferrer"><em>test-server.ldif</em></a></p>
+<h2 id="configurations-in-applicationproperties" class="relative group">Configurations in application.properties <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#configurations-in-applicationproperties" aria-label="Anchor">#</a></span></h2><p>If you run the spring guide example as is, you will get an application error on the runtime that the root 389 connection refused error.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>2021<span style="color:#f92672">-</span>11<span style="color:#f92672">-</span>09 22:52:41.<span style="color:#a6e22e">170</span>  INFO 5760 <span style="color:#f92672">---</span> <span style="color:#f92672">[-</span>192.<span style="color:#a6e22e">168</span>.<span style="color:#a6e22e">225</span>.<span style="color:#a6e22e">52</span><span style="color:#f92672">]</span> o.<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">web</span>.<span style="color:#a6e22e">servlet</span>.<span style="color:#a6e22e">DispatcherServlet</span>        : Initializing Servlet <span style="color:#960050;background-color:#1e0010">&#39;</span>dispatcherServlet<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>2021<span style="color:#f92672">-</span>11<span style="color:#f92672">-</span>09 22:52:41.<span style="color:#a6e22e">182</span>  INFO 5760 <span style="color:#f92672">---</span> <span style="color:#f92672">[-</span>192.<span style="color:#a6e22e">168</span>.<span style="color:#a6e22e">225</span>.<span style="color:#a6e22e">52</span><span style="color:#f92672">]</span> o.<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">web</span>.<span style="color:#a6e22e">servlet</span>.<span style="color:#a6e22e">DispatcherServlet</span>        : Completed initialization in 12 ms
+</span></span><span style="display:flex;"><span>2021<span style="color:#f92672">-</span>11<span style="color:#f92672">-</span>09 22:52:41.<span style="color:#a6e22e">865</span>  WARN 5760 <span style="color:#f92672">---</span> <span style="color:#f92672">[-</span>192.<span style="color:#a6e22e">168</span>.<span style="color:#a6e22e">225</span>.<span style="color:#a6e22e">52</span><span style="color:#f92672">]</span> o.<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">actuate</span>.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">LdapHealthIndicator</span>   : LDAP health check failed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">CommunicationException</span>: localhost:389; nested exception is javax.<span style="color:#a6e22e">naming</span>.<span style="color:#a6e22e">CommunicationException</span>: localhost:389 <span style="color:#f92672">[</span>Root exception is java.<span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">ConnectException</span>: Connection refused: connect<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    at org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">support</span>.<span style="color:#a6e22e">LdapUtils</span>.<span style="color:#a6e22e">convertLdapException</span>(LdapUtils.<span style="color:#a6e22e">java</span>:108) <span style="color:#f92672">~[</span>spring<span style="color:#f92672">-</span>ldap<span style="color:#f92672">-</span>core<span style="color:#f92672">-</span>2.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">RELEASE</span>.<span style="color:#a6e22e">jar</span>:2.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">RELEASE</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    at org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">core</span>.<span style="color:#a6e22e">support</span>.<span style="color:#a6e22e">AbstractContextSource</span>.<span style="color:#a6e22e">createContext</span>(AbstractContextSource.<span style="color:#a6e22e">java</span>:355) <span style="color:#f92672">~[</span>spring<span style="color:#f92672">-</span>ldap<span style="color:#f92672">-</span>core<span style="color:#f92672">-</span>2.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">RELEASE</span>.<span style="color:#a6e22e">jar</span>:2.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">RELEASE</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    at org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">core</span>.<span style="color:#a6e22e">support</span>.<span style="color:#a6e22e">AbstractContextSource</span>.<span style="color:#a6e22e">getReadOnlyContext</span>(AbstractContextSource.<span style="color:#a6e22e">java</span>:164) <span style="color:#f92672">~[</span>spring<span style="color:#f92672">-</span>ldap<span style="color:#f92672">-</span>core<span style="color:#f92672">-</span>2.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">RELEASE</span>.<span style="color:#a6e22e">jar</span>:2.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">3</span>.<span style="color:#a6e22e">RELEASE</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>In order to resolve these errors we need to add the following configurations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">embedded</span>.<span style="color:#a6e22e">port</span><span style="color:#f92672">=</span>8389
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">embedded</span>.<span style="color:#a6e22e">ldif</span><span style="color:#f92672">=</span>classpath:test<span style="color:#f92672">-</span>server.<span style="color:#a6e22e">ldif</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ldap</span>.<span style="color:#a6e22e">embedded</span>.<span style="color:#a6e22e">base</span><span style="color:#f92672">-</span>dn<span style="color:#f92672">=</span>dc<span style="color:#f92672">=</span>springframework,dc<span style="color:#f92672">=</span>org
+</span></span></code></pre></div><p>The port for ldap server is mentioned with the <em>spring.ldap.emebedded.port</em> key and</p>
+<p>the ldif file location is in classpath is given with <em>spring.ldap.embedded.ldif</em> key and</p>
+<p>the root DN is given by the last key <em>spring.ldap.embedded.base-dn</em></p>
+<p>Once the above configuration is added, then on application startup, the browser will show a login page with /login URL and it will only accept users given as part of the test-server.ldif file.</p>
+<p>You can find the complete code base in <a href="https://github.com/ankitagrahari/CowinCo/tree/main/src/main/java/ank/cowin/ldap" target="_blank" rel="noreferrer"><em>Github here</em></a><em>.</em></p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://www.dynamicallyblunttech.com/#:~:text=3-,Subscribe%20Form,-Stay%20up%20to" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/iii-named-entity-recognition-apache-opennlp/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >III - Named Entity Recognition - Apache OpenNLP</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:29 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/target-machine-actively-refused-it-mongodb-issue/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Target Machine Actively Refused it - MongoDB Issue</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:30 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

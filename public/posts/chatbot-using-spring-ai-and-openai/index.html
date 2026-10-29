@@ -1,0 +1,476 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Chatbot using Spring AI and OpenAI &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Chatbot using Spring AI and OpenAI &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        In the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.
+In this post, we will use the Docker Model Runner to run Google&rsquo;s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/chatbot-using-spring-ai-and-openai/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/chatbot-using-spring-ai-and-openai/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Chatbot using Spring AI and OpenAI">
+	<meta property="og:description" content="In the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.
+In this post, we will use the Docker Model Runner to run Google’s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:16+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:16+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Chatbot using Spring AI and OpenAI">
+	<meta name="twitter:description" content="In the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.
+In this post, we will use the Docker Model Runner to run Google’s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Chatbot using Spring AI and OpenAI",
+    "headline": "Chatbot using Spring AI and OpenAI",
+    
+    "abstract": "\u003cp\u003eIn the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.\u003c\/p\u003e\n\u003cp\u003eIn this post, we will use the Docker Model Runner to run Google\u0026rsquo;s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/chatbot-using-spring-ai-and-openai\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:16\u002b05:30",
+    "datePublished": "2026-10-27T08:14:16\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:16\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "682"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/681676055d80aaac0c9329be/",
+       "name": "[\"681676055d80aaac0c9329be\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Chatbot Using Spring Ai and Open Ai",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Chatbot using Spring AI and OpenAI
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>In the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.</p>
+<p>In this post, we will use the Docker Model Runner to run Google&rsquo;s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.</p>
+<p>Let&rsquo;s first setup our Docker, and run the Google AI model gemma in our local.</p>
+<h3 id="running-ai-model-gemma-locally" class="relative group"><strong>Running AI model Gemma locally</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#running-ai-model-gemma-locally" aria-label="Anchor">#</a></span></h3><p>So, first step will be to open terminal and run command</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>docker model list
+</span></span></code></pre></div><p>which will list down existing AI model present in your local. We have already downloaded and ran ai/gemma3 in the last post. Here, we will only look into the connection parameters that will be required in the spring boot project.</p>
+<p>When we enabled the docker model runner, there is a enable host-side TCP support check-box, which enabled the TCP port, using which we will connect to the already running AI model.</p>
+<p>So, we will be using this port, and the base-url for the open-ai parameter will be <a href="http://localhost:12434/engines" target="_blank" rel="noreferrer">http://localhost:12434/engines</a></p>
+<h3 id="setup-spring-ai-project" class="relative group"><strong>Setup Spring AI Project</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#setup-spring-ai-project" aria-label="Anchor">#</a></span></h3><p>Lets navigate to <a href="http://start.spring.io" target="_blank" rel="noreferrer">start.spring.io</a> to initialise a spring boot project which will have OpenAI and Spring Web as the dependencies.</p>
+<p>We will have the following <a href="http://application.properties" target="_blank" rel="noreferrer">application.properties</a> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring.<span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>chatbot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">base</span><span style="color:#f92672">-</span>url<span style="color:#f92672">=</span>http:<span style="color:#75715e">//localhost:12434/engines</span>
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">model</span><span style="color:#f92672">=</span>ai<span style="color:#f92672">/</span>gemma3
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">api</span><span style="color:#f92672">-</span>key<span style="color:#f92672">=</span>test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Docker Model Runner doesn<span style="color:#960050;background-color:#1e0010">&#39;</span>t support embeddings, so we need <span style="color:#66d9ef">to</span> disable them.
+</span></span><span style="display:flex;"><span>spring.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">embedding</span>.<span style="color:#a6e22e">enabled</span><span style="color:#f92672">=</span><span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><p><em><strong>NOTE:</strong></em> The api-key is given as test, and not a specific API key. This is only possible when you have the AI model running locally, else it is mandatory to create an API key from OpenAI.</p>
+<h3 id="creating-chat-client-configuration" class="relative group"><strong>Creating Chat Client Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#creating-chat-client-configuration" aria-label="Anchor">#</a></span></h3><p>We need to create ChatClient object to communicate to any AI model in Spring AI. In the previous post we have created a ChatClient object which took a default system prompt, that was configurable. This time, when we are trying to store the chat history in memory, we will be using Advisors.</p>
+<p>Advisor is a powerful tool which helps in intercepting and modifying the AI request and response. It also helps in adding more context to the interaction, by adding functionalities like logging, memory management, data transformation without changing applications core logic.</p>
+<p>Types of Spring AI Advisors:</p>
+<ul>
+<li>Call Around Advisors</li>
+<li>Chat Memory Advisors,</li>
+<li>Retrievers Advisors</li>
+<li>Logging Advisors</li>
+</ul>
+<p>So, in order to create a Chat memory advisor for our project, we will use the ChatClient builder to set the default advisor for our application.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>ChatMemory chatMemory;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>ChatClient <span style="color:#a6e22e">client</span>(ChatClient.<span style="color:#a6e22e">Builder</span> builder){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> builder.<span style="color:#a6e22e">defaultAdvisors</span>(
+</span></span><span style="display:flex;"><span>           MessageChatMemoryAdvisor.<span style="color:#a6e22e">builder</span>(chatMemory).<span style="color:#a6e22e">build</span>())
+</span></span><span style="display:flex;"><span>           .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the new upgrade from Spring, <em>InMemoryChatMemory</em> was deprecated, and now Spring auto-configures <em>ChatMemory</em> bean when any AI model starters is used. By default it comes with <em>MessageWindowChatMemory</em> implementation which stores the conversation history in memory based on the default window maximum size. To manage the conversational history, the storage mechanism is decoupled from <em>ChatMemory</em> interface, and is now handled by <em>ChatMemoryRepository</em> interface.</p>
+<p>After creating the ChatClient bean, we can use it by auto-wiring it or by constructor injection in our Controller, where we will create a Get API, that will send the AI model with the message coming as request param.</p>
+<p>Lets try to test this application, where we will ask the AI model with two separate GET request,  which is supposed to be stateless, but in our use case the AI model, will be having a history of the conversation, therefore will be able to answer the next question. AI communication which remembers my name!</p>
+<p>This can be extended to a nicer UI which will be much easier to work with, instead of sending multiple API request. Also, this is a very simple usage of how we can create a chat bot, which can have the context of the conversation history.</p>
+<h3 id="references" class="relative group"><strong>References</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
+<li><a href="https://docs.spring.io/spring-ai/reference/1.0/upgrade-notes.html" target="_blank" rel="noreferrer">https://docs.spring.io/spring-ai/reference/1.0/upgrade-notes.html</a></li>
+<li><a href="https://docs.spring.io/spring-ai/reference/api/advisors.html" target="_blank" rel="noreferrer">https://docs.spring.io/spring-ai/reference/api/advisors.html</a></li>
+<li><a href="https://docs.spring.io/spring-ai/reference/api/chat/dmr-chat.html" target="_blank" rel="noreferrer">https://docs.spring.io/spring-ai/reference/api/chat/dmr-chat.html</a></li>
+</ul>
+<p>The project is added to my <a href="https://github.com/ankitagrahari/chatbot-ai" target="_blank" rel="noreferrer">Github repo</a>, if you want to explore more. Hoping this will be helpful in learning Spring AI and using different AI models. Please comment down your thoughts or suggestions to improve.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/custom-java-class-peculiar-cases/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Custom Java Class : Peculiar Cases</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/cca-f-domain-4-prompt-engineering-and-structured-output/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CCA-F Domain 4: Prompt Engineering and Structured Output</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:16 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

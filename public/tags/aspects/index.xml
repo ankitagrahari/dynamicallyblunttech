@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Aspects on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/tags/aspects/</link>
+		<description>Recent content in Aspects on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:14 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/aspects/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Aspect Programming in Spring - Logging</title>
+				<link>http://localhost:1313/posts/aspect-programming-in-spring-logging/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
+				<guid>http://localhost:1313/posts/aspect-programming-in-spring-logging/</guid>
+				<description>&lt;p&gt;Spring provides a simple and powerful way of writing custom wrappers function which can be executed around a range of methods. Aspect-oriented programming complements Object-oriented programming by providing another way of thinking about program structure.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;The key unit of modularity in Aspects oriented programming (AOP) is the  Aspects. Aspects enables modularization of concerns that cut across multiple types and objects. Such concerns are termed as &amp;ldquo;cross-cutting&amp;rdquo; concerns.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;AOP is used in Spring framework to:&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

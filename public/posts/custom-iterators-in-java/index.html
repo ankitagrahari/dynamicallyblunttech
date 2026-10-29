@@ -1,0 +1,531 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Custom Iterators in Java &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Custom Iterators in Java &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        This is a bit embarrassing to start with, but lets say I got this question and was quite dumb stuck on how to write a custom iterator. Seems simple at that point, but couldn&rsquo;t exactly curate the process of developing a custom iterator which would return the second element instead of the next element.
+So this post will be about Embarrassment.
+Lets start with Iterators.
+**Iterator ** #Iterators are something, using which we iterate over a given collection of elements given in Java. So, lets says the list of Strings objects can be iterated over by list.iterator().
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/custom-iterators-in-java/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/custom-iterators-in-java/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Custom Iterators in Java">
+	<meta property="og:description" content="This is a bit embarrassing to start with, but lets say I got this question and was quite dumb stuck on how to write a custom iterator. Seems simple at that point, but couldn’t exactly curate the process of developing a custom iterator which would return the second element instead of the next element.
+So this post will be about Embarrassment.
+Lets start with Iterators.
+**Iterator ** #Iterators are something, using which we iterate over a given collection of elements given in Java. So, lets says the list of Strings objects can be iterated over by list.iterator().">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:30+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:30+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Custom Iterators in Java">
+	<meta name="twitter:description" content="This is a bit embarrassing to start with, but lets say I got this question and was quite dumb stuck on how to write a custom iterator. Seems simple at that point, but couldn’t exactly curate the process of developing a custom iterator which would return the second element instead of the next element.
+So this post will be about Embarrassment.
+Lets start with Iterators.
+**Iterator ** #Iterators are something, using which we iterate over a given collection of elements given in Java. So, lets says the list of Strings objects can be iterated over by list.iterator().">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Custom Iterators in Java",
+    "headline": "Custom Iterators in Java",
+    
+    "abstract": "\u003cp\u003eThis is a bit embarrassing to start with, but lets say I got this question and was quite dumb stuck on how to write a custom iterator. Seems simple at that point, but couldn\u0026rsquo;t exactly curate the process of developing a custom iterator which would return the second element instead of the next element.\u003c\/p\u003e\n\u003cp\u003eSo this post will be about \u003cem\u003e\u003cstrong\u003eEmbarrassment\u003c\/strong\u003e\u003c\/em\u003e.\u003c\/p\u003e\n\u003cp\u003eLets start with Iterators.\u003c\/p\u003e\n\u003ch3 id=\u0022iterator-\u0022 class=\u0022relative group\u0022\u003e**Iterator ** \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#iterator-\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eIterators are something, using which we iterate over a given collection of elements given in Java. So, lets says the list of Strings objects can be iterated over by \u003cem\u003elist.iterator()\u003c\/em\u003e.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/custom-iterators-in-java\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:30\u002b05:30",
+    "datePublished": "2026-10-27T08:14:30\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:30\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "961"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6249579158f0bd10b2a57273/",
+       "name": "[\"6249579158f0bd10b2a57273\"]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Custom Iterators in Java",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Custom Iterators in Java
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:30 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This is a bit embarrassing to start with, but lets say I got this question and was quite dumb stuck on how to write a custom iterator. Seems simple at that point, but couldn&rsquo;t exactly curate the process of developing a custom iterator which would return the second element instead of the next element.</p>
+<p>So this post will be about <em><strong>Embarrassment</strong></em>.</p>
+<p>Lets start with Iterators.</p>
+<h3 id="iterator-" class="relative group">**Iterator ** <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#iterator-" aria-label="Anchor">#</a></span></h3><p>Iterators are something, using which we iterate over a given collection of elements given in Java. So, lets says the list of Strings objects can be iterated over by <em>list.iterator()</em>.</p>
+<p>Now we know what an *iterator *is, we should be aware of what *Iterable *interface is.</p>
+<h3 id="iterable-interface" class="relative group"><strong>Iterable Interface</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#iterable-interface" aria-label="Anchor">#</a></span></h3><p>This was introduced in Java 1.5. It makes custom data structure works with the enhanced for-each loop. It has only one method *iterator() *to be implemented.</p>
+<p>So, we know a bit on Iterable and more on <em>Iterator</em>. These scenarios or questions are more common when you start creating a custom data structure, and think about how to make this easily iterate-able.</p>
+<p>We will just do the same and without any <em><strong>embarrassment</strong></em>.</p>
+<h3 id="create-our-own-data-structure" class="relative group"><strong>Create Our Own Data Structure</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-our-own-data-structure" aria-label="Anchor">#</a></span></h3><p>In this part, we will create a new data structure which is called <em>CustomList</em>. It works like List class, but the iterator implemented in *CustomList *will return me <em>second element</em> on every call.</p>
+<p>This *CustomList *will implement <em>Iterable of Type T</em>, which will allows us to implement the iterator that goes with this custom data structure. It will work on a List, and utilize the List methods to return the first and last element. And implementation for <em>add()</em> method to insert new element to the list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomList</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Iterable<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list;
+</span></span><span style="display:flex;"><span>    CustomList(List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> list;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(T s) {
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(s);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getFirst</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> list.<span style="color:#a6e22e">get</span>(0);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getLast</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> list.<span style="color:#a6e22e">get</span>(list.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">-</span> 1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Iterator<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">iterator</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SecondIterator();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Inner Class</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondIterator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Iterator<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    .
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As you noticed, the <em>iterator()</em> method is returning a custom iterator called <em>SecondIterator</em>.</p>
+<p>Now here, we have to implement the <em>SecondIterator</em>, such that it returns the second element. And this *SecondIterator *will be the inner class of my *CustomList *data structure.</p>
+<p>So the next piece of code is for *SecondIterator *which implements the *Iterator *Interface, thus making sure that the custom iterator should have *next() *and <em>hasNext()</em> methods implemented.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondIterator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Iterator<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> current <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> size <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">size</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Return true if the second element exists</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasNext</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> size <span style="color:#f92672">-</span> current <span style="color:#f92672">&gt;</span> 1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Return Second element from the list</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">next</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>hasNext())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NoSuchElementException();
+</span></span><span style="display:flex;"><span>        T t <span style="color:#f92672">=</span> (T) list.<span style="color:#a6e22e">get</span>(current);
+</span></span><span style="display:flex;"><span>        current<span style="color:#f92672">+=</span>2;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> t;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, we need to work on the index, in order to be specific about where the current pointer is.</p>
+<p>So lets say, I am at the 4th index of my custom data structure, and now if I call <em>next()</em>, it should always give me the 6th index element (because we are implementing *SecondIterator *and not a normal Iterator). And that&rsquo;s why, we will have a variable to refer the correct element, when we call <em>next()</em> on it.</p>
+<p>Also this makes my job easier for <em>hasNext()</em>, because it doesn&rsquo;t have to check if it is at 2nd index, or 4th index or 6th index etc&hellip;.At any moment, I will check the difference of the actual size of the list and the current index, which should be greater than 1, in that case the <em>hasNext()</em> should always be true, because it will always have the at-least 2 elements pending.</p>
+<p>Similarly, my <em>next()</em> method will return <em>NoSuchElementException()</em>, if there are no elements present. Else, it will get the value at that current index from the list and increment the current index pointer by 2, to always get the second element from the current index.</p>
+<p>Here, I can create Nth-Iterator also, which will be give me elements on the Nth index from the current index, by just incrementing the value by N (Also, the same changes need to go to the <em>hasNext()</em> method.)</p>
+<p>Now, after all these explanations on this tricky question, which I couldn&rsquo;t do when asked, lets try our new Custom Iterator and find out if it is working or not.</p>
+<h3 id="main" class="relative group"><strong>Main</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main" aria-label="Anchor">#</a></span></h3><p>Here is the Main class which will create a List of Strings, and pass it to the custom data structure. And then iterate using the for-each on the *CustomList *to see if we are getting the second element always from the current index or not.</p>
+<p>See, here the Iterable interface will come to work.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;a&#34;</span>); <span style="color:#75715e">//1st Element</span>
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;b&#34;</span>); 
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;c&#34;</span>); <span style="color:#75715e">//Second from 1st Element</span>
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;d&#34;</span>); 
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;e&#34;</span>); <span style="color:#75715e">//Second from 3rd Element</span>
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;f&#34;</span>); 
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;g&#34;</span>); <span style="color:#75715e">//Second from 5th Element</span>
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;h&#34;</span>); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        CustomList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> customList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CustomList(list);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(String s: customList){
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now, when we executed the enhanced <em>for-each</em> loop, it didn&rsquo;t threw any error and was able to print the second element as was implemented in the custom iterator.</p>
+<p>This is such a good question to learn how the iteration over the collection works. Also, I would recommend to try it out yourself, somewhere we all will get stuck, but then that&rsquo;s how you will find how good this question is. Also, it will help in avoiding the <em><strong>embarrassment</strong></em> phase and a curious night over a blog post.</p>
+<p>Hope this post will bring a smile and lots of learning. You can refer to my <a href="https://github.com/ankitagrahari/Tryouts/tree/master/src/main/java/com/custom/iterator" target="_blank" rel="noreferrer"><em>Github Repository</em></a> for the full code base of this example.</p>
+<p>Please do suggest more content topics of your choice and share your feedback. Also <a href="https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&amp;utm_medium=button&amp;utm_campaign=payment_button" target="_blank" rel="noreferrer"><em>subscribe and appreciate</em></a> the blog if you like it.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/externalize-spring-boot-configuration/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Externalize Spring Boot Configuration</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:30 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/binary-tree-traversal/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Binary Tree Traversal</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:30 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

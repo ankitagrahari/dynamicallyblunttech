@@ -1,0 +1,516 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Stop Guessing, Find Perfect Local LLM with OllamaAdvisor &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="Stop Guessing, Find Perfect Local LLM with OllamaAdvisor &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Ollama Advisor Walkthrough
+Have you ever excitedly run ollama run llama3:70b on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.
+The biggest bottleneck in local AI isn&rsquo;t the models themselves—it&rsquo;s hardware-model mismatch.
+Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="Stop Guessing, Find Perfect Local LLM with OllamaAdvisor">
+	<meta property="og:description" content="Ollama Advisor Walkthrough
+Have you ever excitedly run ollama run llama3:70b on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.
+The biggest bottleneck in local AI isn’t the models themselves—it’s hardware-model mismatch.
+Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:28+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:28+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Stop Guessing, Find Perfect Local LLM with OllamaAdvisor">
+	<meta name="twitter:description" content="Ollama Advisor Walkthrough
+Have you ever excitedly run ollama run llama3:70b on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.
+The biggest bottleneck in local AI isn’t the models themselves—it’s hardware-model mismatch.
+Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Stop Guessing, Find Perfect Local LLM with OllamaAdvisor",
+    "headline": "Stop Guessing, Find Perfect Local LLM with OllamaAdvisor",
+    
+    "abstract": "\u003cp\u003eOllama Advisor Walkthrough\u003c\/p\u003e\n\u003cp\u003eHave you ever excitedly run \u003cem\u003eollama run llama3:70b\u003c\/em\u003e on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.\u003c\/p\u003e\n\u003cp\u003eThe biggest bottleneck in local AI isn\u0026rsquo;t the models themselves—it\u0026rsquo;s \u003cstrong\u003ehardware-model mismatch\u003c\/strong\u003e.\u003c\/p\u003e\n\u003cp\u003eEngineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM\/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens\/second to a painful 1 token\/second.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/stop-guessing-find-perfect-local-llm-with-ollamaadvisor\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:28\u002b05:30",
+    "datePublished": "2026-10-27T08:14:28\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:28\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "863"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Stop Guessing, Find Perfect Local Llm With Ollama Advisor",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Stop Guessing, Find Perfect Local LLM with OllamaAdvisor
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Ollama Advisor Walkthrough</p>
+<p>Have you ever excitedly run <em>ollama run llama3:70b</em> on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.</p>
+<p>The biggest bottleneck in local AI isn&rsquo;t the models themselves—it&rsquo;s <strong>hardware-model mismatch</strong>.</p>
+<p>Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.</p>
+<p>We got tired of guessing. To solve this, we built <strong>OllamaAdvisor</strong>: an intelligent, zero-backend React web application that profiles your hardware, mathematically predicts Out-of-Memory (OOM) errors before you download a model, and dynamically generates the exact configurations required to run it smoothly.</p>
+<p>Here’s a deep dive into how we engineered it.</p>
+<h2 id="architecture--repo-map" class="relative group"><strong>Architecture &amp; Repo Map</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#architecture--repo-map" aria-label="Anchor">#</a></span></h2><p>OllamaAdvisor is built as a pure client-side Single Page Application (SPA). Because we are just crunching hardware numbers against a static model registry, there was no need to introduce the latency, complexity, or cost of a Node.js backend.</p>
+<p><strong>Core Stack:</strong></p>
+<ul>
+<li><strong>React 18 &amp; TypeScript:</strong> For strict type safety on hardware profiles and predictable UI state manipulation.</li>
+<li><strong>Vite:</strong> Chosen for its lightning-fast HMR and highly optimized production builds (npm run build).</li>
+<li><strong>Tailwind CSS:</strong> For building a premium, dynamic, and responsive UI without fighting massive stylesheet bundles.</li>
+</ul>
+<p>If you look under the hood, the structural data-flow is extremely focused:</p>
+<p>📦 ollama-advisor</p>
+<p>┣ 📂 src</p>
+<p>┃ ┣ 📂 components</p>
+<p>┃ ┃ ┣ 📜 HardwareForm.tsx   # Captures user hardware constraints &amp; use case</p>
+<p>┃ ┃ ┣ 📜 MemoryBar.tsx      # Real-time visualizer for RAM pressure</p>
+<p>┃ ┃ ┣ 📜 ModelCard.tsx      # Renders the final recommendation &amp; configs</p>
+<p>┃ ┃ ┗ 📜 CodeBlock.tsx      # Displays copyable Modelfile/Env configs</p>
+<p>┃ ┣ 📂 data</p>
+<p>┃ ┃ ┗ 📜 models.ts          # Static registry of LLMs, sizes, and default contexts</p>
+<p>┃ ┣ 📂 utils</p>
+<p>┃ ┃ ┗ 📜 advisor.ts         # THE BRAIN: Hardware profiling &amp; scoring engine</p>
+<p>┃ ┣ 📜 App.tsx              # Main orchestrator linking state to UI</p>
+<p>┃ ┣ 📜 index.css            # Tailwind tokens and base styles</p>
+<p>┃ ┗ 📜 main.tsx             # Application bootstrap</p>
+<p>┣ 📜 package.json           # Dependencies (lucide-react, tailwindcss, vite)</p>
+<p>┗ 📜 docker-compose.yml     # Containerized dev/prod deployment</p>
+<p>Data enters through the <em>HardwareForm</em>, gets funneled directly into our pure-function utility <em>getRecommendations()</em>, and exits via an array of ranked <em>ModelCards</em>.</p>
+<h2 id="core-features--technical-capabilities" class="relative group"><strong>Core Features &amp; Technical Capabilities</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#core-features--technical-capabilities" aria-label="Anchor">#</a></span></h2><ul>
+<li><strong>Predictive Memory Splitting:</strong> It doesn&rsquo;t just look at total RAM. It subtracts OS overhead (e.g., hardcoded 1.5GB for macOS, 0.8GB for Linux, 2.2GB for Windows) and active application usage to find the <em>True Available Memory</em>.</li>
+<li><strong>Dynamic Context Window Scaling:</strong> Large context windows eat massive amounts of memory via the KV cache. If a model fits but the KV cache doesn&rsquo;t, the engine automatically steps down the recommended context (e.g., from 32k to 8k or 4k) to prevent OOM crashes.</li>
+<li><strong>Intelligent Scoring Matrix:</strong> Recommendations aren&rsquo;t just based on memory. Models are scored based on the user&rsquo;s declared use-case (e.g., +18 points if the user wants coding and the model has a coding tag) and speed priority (sacrificing quality for fast generation).</li>
+<li><strong>Auto-Generated Fine-Tuning Artifacts:</strong> It programmatically generates customized <em>Modelfile</em> parameters (like <em>num_thread</em> calculated based on CPU cores) and critical environment variables (like <em>OLLAMA_FLASH_ATTENTION=1</em> and <em>OLLAMA_KV_CACHE_TYPE=q8_0</em> for low-RAM machines).Ollama Advisor Explanation</li>
+</ul>
+<h2 id="code-snippet-deep-dive-the-recommendation-engine" class="relative group"><strong>Code Snippet Deep-Dive: The Recommendation Engine</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#code-snippet-deep-dive-the-recommendation-engine" aria-label="Anchor">#</a></span></h2><p>The magic happens in <em>src/utils/advisor.ts</em>. Let&rsquo;s look at a critical section of the <em>getRecommendations</em> loop where we determine if a model actually fits and how we penalize it if the memory budget is too tight.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>typescript
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Effective pool limits based on unified memory vs discrete VRAM</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> effectivePool <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>  hw.<span style="color:#a6e22e">gpuType</span> <span style="color:#f92672">===</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>apple<span style="color:#f92672">-</span>silicon<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> totalAvailable
+</span></span><span style="display:flex;"><span>    : hw.<span style="color:#a6e22e">gpuType</span> <span style="color:#f92672">===</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>none<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> totalAvailable
+</span></span><span style="display:flex;"><span>    : Math.<span style="color:#a6e22e">min</span>(totalAvailable, hw.<span style="color:#a6e22e">gpuVRAMGB</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Inside the model evaluation loop:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> remainingAfterModel <span style="color:#f92672">=</span> effectivePool <span style="color:#f92672">-</span> model.<span style="color:#a6e22e">sizeGB</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Hard skip: can&#39;t even hold model weights</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (remainingAfterModel <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span>1) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> fits <span style="color:#f92672">=</span> remainingAfterModel <span style="color:#f92672">&gt;=</span> model.<span style="color:#a6e22e">kvCacheGB8k</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> tight <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>fits <span style="color:#f92672">||</span> (model.<span style="color:#a6e22e">sizeGB</span> <span style="color:#f92672">/</span> effectivePool) <span style="color:#f92672">&gt;</span> 0.<span style="color:#a6e22e">72</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Dynamically scale context window based on remaining budget</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> recommendedCtx <span style="color:#f92672">=</span> fits
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">?</span> recommendedCtxForBudget(model, remainingAfterModel)
+</span></span><span style="display:flex;"><span>  : 4096;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> kvCacheActual <span style="color:#f92672">=</span> model.<span style="color:#a6e22e">kvCacheGB8k</span> <span style="color:#f92672">*</span> (recommendedCtx <span style="color:#f92672">/</span> 8192);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> freeBuffer <span style="color:#f92672">=</span> hw.<span style="color:#a6e22e">totalRAMGB</span> <span style="color:#f92672">-</span> osOverhead <span style="color:#f92672">-</span> hw.<span style="color:#a6e22e">activeAppsGB</span> <span style="color:#f92672">-</span> model.<span style="color:#a6e22e">sizeGB</span> <span style="color:#f92672">-</span> kvCacheActual;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ── Scoring ──────────────────────────────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>let score <span style="color:#f92672">=</span> model.<span style="color:#a6e22e">qualityScore</span> <span style="color:#f92672">*</span> 10
+</span></span></code></pre></div><h2 id="dynamic-roi--resource-calculator" class="relative group"><strong>Dynamic ROI / Resource Calculator</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dynamic-roi--resource-calculator" aria-label="Anchor">#</a></span></h2><p>Wondering how much memory you&rsquo;re actually wasting?</p>
+<p>Use this mental model when setting up your next local LLM:</p>
+<p><strong>The Ollama Memory Formula:</strong> Total RAM - (OS Overhead + App Usage) = Your True AI Budget</p>
+<p><em>Example Scenario:</em></p>
+<ul>
+<li><strong>System:</strong> 16GB M4 Mac</li>
+<li><strong>OS + Chrome + IDE:</strong> ~5.5GB</li>
+<li><strong>True AI Budget:</strong> ~10.5GB</li>
+<li><strong>Actionable Advice:</strong> Skip 13B/14B models. Stick to highly quantized 7B or 8B models (like Llama 3 8B) at an 8k context window to maintain &gt;20 tokens/second without thermal throttling.</li>
+</ul>
+<p>By mathematically verifying your hardware constraints beforehand with OllamaAdvisor, you stop thrashing your swap disk and get back to actually building AI features.</p>
+<p>You can refer to the codebase on my github account</p>
+<p>Github: <a href="https://github.com/ankitagrahari/OllamAdvisor" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/OllamAdvisor</a></p>
+<p>If you like the post, kindly give a like, comment and share.</p>
+<p>Follow <a href="https://www.instagram.com/backendbrilliance/" target="_blank" rel="noreferrer">@backendbrilliance</a> on instagram.</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Building an AI Tutor with Spring AI, Ollama, and Vaadin</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/log4jshell-vulnerability/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Log4JShell Vulnerability</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

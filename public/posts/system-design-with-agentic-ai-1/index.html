@@ -1,0 +1,903 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>System Design with Agentic AI - 1 &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="System Design with Agentic AI - 1 &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Agentic AI fails less often because of the model and more often because the system around the model was vague. The agent was given too much freedom, too little context, weak tools, no memory strategy, and no clear way to recover when things went wrong.
+A good agent is not a chatbot with extra prompts. It is a system that can plan, call tools, inspect results, revise its path, and stop at the right time. That means system design matters. The planner, tools, skills, hooks, memory, retrieval, guardrails, and evaluation loop all shape whether the agent behaves like a careful assistant or a noisy automation script.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/system-design-with-agentic-ai-1/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/system-design-with-agentic-ai-1/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="System Design with Agentic AI - 1">
+	<meta property="og:description" content="Agentic AI fails less often because of the model and more often because the system around the model was vague. The agent was given too much freedom, too little context, weak tools, no memory strategy, and no clear way to recover when things went wrong.
+A good agent is not a chatbot with extra prompts. It is a system that can plan, call tools, inspect results, revise its path, and stop at the right time. That means system design matters. The planner, tools, skills, hooks, memory, retrieval, guardrails, and evaluation loop all shape whether the agent behaves like a careful assistant or a noisy automation script.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:22+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:22+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="System Design with Agentic AI - 1">
+	<meta name="twitter:description" content="Agentic AI fails less often because of the model and more often because the system around the model was vague. The agent was given too much freedom, too little context, weak tools, no memory strategy, and no clear way to recover when things went wrong.
+A good agent is not a chatbot with extra prompts. It is a system that can plan, call tools, inspect results, revise its path, and stop at the right time. That means system design matters. The planner, tools, skills, hooks, memory, retrieval, guardrails, and evaluation loop all shape whether the agent behaves like a careful assistant or a noisy automation script.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "System Design with Agentic AI - 1",
+    "headline": "System Design with Agentic AI - 1",
+    
+    "abstract": "\u003cp\u003eAgentic AI fails less often because of the model and more often because the system around the model was vague. The agent was given too much freedom, too little context, weak tools, no memory strategy, and no clear way to recover when things went wrong.\u003c\/p\u003e\n\u003cp\u003eA good agent is not a chatbot with extra prompts. It is a system that can plan, call tools, inspect results, revise its path, and stop at the right time. That means \u003cstrong\u003esystem design\u003c\/strong\u003e matters. The planner, tools, skills, hooks, memory, retrieval, guardrails, and evaluation loop all shape whether the agent behaves like a careful assistant or a noisy automation script.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/system-design-with-agentic-ai-1\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:22\u002b05:30",
+    "datePublished": "2026-10-27T08:14:22\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:22\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3673"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/",
+       "name": "[]",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "System Design With Agentic Ai 1",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        System Design with Agentic AI - 1
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Agentic AI fails less often because of the model and more often because the system around the model was vague. The agent was given too much freedom, too little context, weak tools, no memory strategy, and no clear way to recover when things went wrong.</p>
+<p>A good agent is not a chatbot with extra prompts. It is a system that can plan, call tools, inspect results, revise its path, and stop at the right time. That means <strong>system design</strong> matters. The planner, tools, skills, hooks, memory, retrieval, guardrails, and evaluation loop all shape whether the agent behaves like a careful assistant or a noisy automation script.</p>
+<p>This article looks at the design choices that matter most when building agentic AI systems. It also explains when Retrieval-Augmented Generation, or RAG, helps and when it adds cost or confusion without improving the outcome.</p>
+<h2 id="agentic-system-design-starts-with-the-work-not-the-model" class="relative group">Agentic system design starts with the work, not the model <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#agentic-system-design-starts-with-the-work-not-the-model" aria-label="Anchor">#</a></span></h2><p>The first design question is not “<em><strong>Which model should we use?</strong></em>”
+It is “<em><strong>What work must the system complete, and how much judgement does each step require?</strong></em>”</p>
+<p>Agentic AI fits tasks where the path is not fixed in advance. If every step is known, a normal workflow engine or deterministic service may be safer and cheaper. Agents earn their place when the system must interpret a goal, choose among tools, react to feedback, and handle variation.</p>
+<p>Good use cases include:</p>
+<ul>
+<li>Investigating customer support issues across logs, tickets, and policies</li>
+<li>Drafting technical migration plans from codebase signals and internal standards</li>
+<li>Analysing procurement documents and asking for missing information</li>
+<li>Monitoring data quality issues and proposing fixes</li>
+<li>Assisting developers by reading files, running tests, and editing code under review</li>
+</ul>
+<p>Weak use cases include:</p>
+<ul>
+<li>Simple form filling</li>
+<li>Fixed approval routing</li>
+<li>Tasks that need exact arithmetic without a verified calculation tool</li>
+<li>High-risk decisions with no human review</li>
+<li>Workflows where latency and cost must be tightly bounded</li>
+</ul>
+<p>The core pattern is simple. Give the agent judgement where judgement is useful. Use deterministic systems where precision, speed, and repeatability matter more than flexibility.</p>
+<p>A useful planning exercise is to split the work into four zones.</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Zone</strong></th>
+					<th><strong>Best handled by</strong></th>
+					<th><strong>Example</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Fixed logic</td>
+					<td>Code or workflow engine</td>
+					<td>Validate a GSTIN format before submission</td>
+			</tr>
+			<tr>
+					<td>Knowledge lookup</td>
+					<td>Search, RAG, or database query</td>
+					<td>Find the latest internal leave policy</td>
+			</tr>
+			<tr>
+					<td>Judgement</td>
+					<td>LLM reasoning with constraints</td>
+					<td>Decide whether a customer complaint is urgent</td>
+			</tr>
+			<tr>
+					<td>Action</td>
+					<td>Tool call with confirmation rules</td>
+					<td>Create a ticket or send a draft response</td>
+			</tr>
+	</tbody>
+</table>
+<p>This split prevents a common mistake: asking the language model to do everything.</p>
+<p>The model should reason and communicate.</p>
+<p>Tools should calculate, fetch, write, verify, and execute.</p>
+<h2 id="define-the-agents-operating-contract-harness" class="relative group">Define the agent’s operating contract (Harness) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#define-the-agents-operating-contract-harness" aria-label="Anchor">#</a></span></h2><p>An agent needs a contract before it needs more tools. The contract states what the agent is allowed to do, what success looks like, and how it should behave when it is uncertain.</p>
+<p>A strong operating contract includes:</p>
+<ul>
+<li>The agent’s goal</li>
+<li>The expected inputs and outputs</li>
+<li>Allowed tools and data sources</li>
+<li>Actions that need approval</li>
+<li>Stopping rules</li>
+<li>Error handling rules</li>
+<li>Privacy and security limits</li>
+<li>Evaluation criteria</li>
+</ul>
+<p>For example, a support triage agent might have this contract:</p>
+<blockquote>
+<p>Classify incoming support tickets, identify likely cause, attach relevant policy or product references, suggest the next best action, and escalate tickets that involve payments, security, legal risk, or unclear customer intent.</p>
+</blockquote>
+<p>This contract does not just describe the task. It sets limits. The agent can classify and suggest. It cannot issue refunds or make legal interpretations. It knows which cases need escalation.</p>
+<h3 id="use-roles-as-design-boundaries-not-theatrical-prompts" class="relative group">Use roles as design boundaries, not theatrical prompts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#use-roles-as-design-boundaries-not-theatrical-prompts" aria-label="Anchor">#</a></span></h3><p>Many agent prompts start with “You are an expert…” That can help tone, but it does not create safe behaviour by itself. The role should map to actual system boundaries.</p>
+<p>A useful role definition says:</p>
+<ul>
+<li>What the agent owns</li>
+<li>What the agent must not own</li>
+<li>Which tools it can call</li>
+<li>Which evidence it must cite</li>
+<li>Which cases it must hand off</li>
+</ul>
+<p>For example, a finance document agent can extract fields, compare invoice terms to purchase orders, and flag differences. It should not approve payment unless the approval system has explicit business rules and human sign-off.</p>
+<h3 id="keep-the-plan-visible" class="relative group">Keep the plan visible <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#keep-the-plan-visible" aria-label="Anchor">#</a></span></h3><p>If the agent creates a plan, save it. If it changes the plan, save the reason. This makes failures easier to debug and improves user trust.</p>
+<p>A plan record might include:</p>
+<ul>
+<li>Goal</li>
+<li>Assumptions</li>
+<li>Chosen steps</li>
+<li>Tool calls</li>
+<li>Observations</li>
+<li>Decision points</li>
+<li>Final result</li>
+<li>Confidence or uncertainty notes</li>
+</ul>
+<p>This record is useful for audit, testing, and product improvement. It also helps identify whether the agent made a poor plan, used the wrong tool, received bad data, or misunderstood the request.</p>
+<h2 id="skills-turn-broad-agents-into-reliable-specialists" class="relative group">Skills turn broad agents into reliable specialists <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#skills-turn-broad-agents-into-reliable-specialists" aria-label="Anchor">#</a></span></h2><p>A skill is a reusable capability with a clear purpose, inputs, outputs, and constraints. Instead of asking one agent to “handle procurement,” define smaller skills such as vendor comparison, contract clause extraction, compliance checklist generation, and exception detection.</p>
+<p>Skills make agentic systems easier to test. They also reduce prompt sprawl because each skill can carry its own instructions and examples.</p>
+<p>A good skill has five parts.</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Skill element</strong></th>
+					<th><strong>What it means</strong></th>
+					<th><strong>Example</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Trigger</td>
+					<td>When the skill should be used</td>
+					<td>Use when a document contains vendor payment terms</td>
+			</tr>
+			<tr>
+					<td>Inputs</td>
+					<td>The required data</td>
+					<td>Contract text, vendor name, policy version</td>
+			</tr>
+			<tr>
+					<td>Process</td>
+					<td>The reasoning or tool steps</td>
+					<td>Extract clause, compare with policy, flag mismatch</td>
+			</tr>
+			<tr>
+					<td>Output</td>
+					<td>The structured result</td>
+					<td>Clause summary, risk level, evidence</td>
+			</tr>
+			<tr>
+					<td>Guardrails</td>
+					<td>Limits and escalation rules</td>
+					<td>Escalate if clause is missing or ambiguous</td>
+			</tr>
+	</tbody>
+</table>
+<blockquote>
+<p>Design skills around frequent decisions</p>
+</blockquote>
+<p>Do not create skills for every tiny action. Create them around decisions that repeat and need consistency.</p>
+<p>For example, a software maintenance agent may need these skills:</p>
+<ul>
+<li>
+<p><strong>Repository scan</strong></p>
+<p>Read project structure, package files, and test commands.</p>
+</li>
+<li>
+<p><strong>Issue reproduction</strong></p>
+<p>Run relevant tests or scripts in a controlled environment.</p>
+</li>
+<li>
+<p><strong>Patch proposal</strong></p>
+<p>Suggest a minimal code change and explain the trade-offs.</p>
+</li>
+<li>
+<p><strong>Regression check</strong></p>
+<p>Run the test suite and summarise failures.</p>
+</li>
+<li>
+<p><strong>Pull request draft</strong></p>
+<p>Prepare a human-readable change summary with affected files.</p>
+</li>
+</ul>
+<p>Each skill can be tested with sample repositories. Each can fail safely. The patch proposal skill should not merge code. The regression check skill should not hide failed tests. The pull request draft skill should not claim success if tests were skipped.</p>
+<h3 id="use-structured-outputs-where-possible" class="relative group">Use structured outputs where possible <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#use-structured-outputs-where-possible" aria-label="Anchor">#</a></span></h3><p>Free-form text is pleasant for users, but structured outputs are better for systems. If another component needs the agent’s result, ask for JSON or a typed schema.</p>
+<p>For a triage agent, a structured output could include:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;billing&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;urgency&#34;</span>: <span style="color:#e6db74">&#34;high&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;needs_human_review&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidence&#34;</span>: [
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Customer reports duplicate debit&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Transaction reference included&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;suggested_next_step&#34;</span>: <span style="color:#e6db74">&#34;Route to payments support queue&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This does three things. It makes downstream routing easier. It makes testing easier. It reduces the risk that a useful detail gets buried in a paragraph.</p>
+<h2 id="hooks-let-the-system-guide-the-agent-at-the-right-moments" class="relative group">Hooks let the system guide the agent at the right moments <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#hooks-let-the-system-guide-the-agent-at-the-right-moments" aria-label="Anchor">#</a></span></h2><p>Hooks are event-driven interventions in the agent loop. They run before or after key actions, such as a tool call, retrieval step, plan update, or final response. They help enforce policy, add context, check quality, and route control.</p>
+<p>Think of hooks as system-level checkpoints. The model can reason, but hooks keep the process safe and consistent.</p>
+<p>Common hook points include:</p>
+<ul>
+<li>Before planning</li>
+<li>After planning</li>
+<li>Before a tool call</li>
+<li>After a tool result</li>
+<li>Before retrieval</li>
+<li>After retrieval</li>
+<li>Before user-facing output</li>
+<li>After task completion</li>
+</ul>
+<h3 id="pre-planning-hooks-set-the-ground-rules" class="relative group">Pre-planning hooks set the ground rules <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#pre-planning-hooks-set-the-ground-rules" aria-label="Anchor">#</a></span></h3><p>A pre-planning hook can enrich the task with user permissions, tenant settings, feature flags, locale, and risk category. It can also reject tasks that should not reach the agent.</p>
+<p>For example, a loan support assistant in India may receive a customer query about repayment charges. A pre-planning hook can attach the customer’s product type, language preference, and current policy version. It can also block the agent from giving personalised financial advice beyond approved support content.</p>
+<h3 id="tool-hooks-prevent-costly-or-unsafe-actions" class="relative group">Tool hooks prevent costly or unsafe actions <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tool-hooks-prevent-costly-or-unsafe-actions" aria-label="Anchor">#</a></span></h3><p>A before-tool hook can check whether a proposed tool call is allowed. An after-tool hook can validate the result.</p>
+<p>For example, before a ticketing agent creates a Jira issue, a hook can check:</p>
+<ul>
+<li>Does the user have permission?</li>
+<li>Is the project key valid?</li>
+<li>Is the title too vague?</li>
+<li>Does a similar issue already exist?</li>
+<li>Does this action need user confirmation?</li>
+</ul>
+<p>After the tool call, another hook can verify the issue ID and store the event.</p>
+<p>This pattern matters because agents may call tools based on partial understanding. Hooks give the system a second layer of control.</p>
+<h3 id="output-hooks-improve-final-quality" class="relative group">Output hooks improve final quality <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#output-hooks-improve-final-quality" aria-label="Anchor">#</a></span></h3><p>Before sending a final answer, an output hook can check whether the response:</p>
+<ul>
+<li>Cites required evidence</li>
+<li>Avoids restricted claims</li>
+<li>Includes uncertainty where needed</li>
+<li>Uses the right language and format</li>
+<li>Matches the requested schema</li>
+<li>Does not expose sensitive data</li>
+</ul>
+<p>This is especially useful when agents combine internal data, retrieved documents, and generated reasoning. The final answer is the point where errors become user-visible.</p>
+<h2 id="memory-needs-design-not-accumulation" class="relative group">Memory needs design, not accumulation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#memory-needs-design-not-accumulation" aria-label="Anchor">#</a></span></h2><p>Many agent projects treat memory as a bin where everything gets stored. That creates noise, privacy risk, and strange future behaviour.</p>
+<p>Memory should answer a design question: What should the agent remember to do future work better?</p>
+<p>There are several memory types.</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Memory type</strong></th>
+					<th><strong>Purpose</strong></th>
+					<th><strong>Example</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Session memory</td>
+					<td>Keep context during one task</td>
+					<td>User already said the invoice period is April 2025</td>
+			</tr>
+			<tr>
+					<td>User preference memory</td>
+					<td>Carry stable preferences</td>
+					<td>User wants summaries in bullet points</td>
+			</tr>
+			<tr>
+					<td>Task memory</td>
+					<td>Track progress</td>
+					<td>Three files were already checked</td>
+			</tr>
+			<tr>
+					<td>Domain memory</td>
+					<td>Store reusable knowledge</td>
+					<td>Internal escalation policy</td>
+			</tr>
+			<tr>
+					<td>Episodic memory</td>
+					<td>Learn from past cases</td>
+					<td>Similar error appeared after package upgrade</td>
+			</tr>
+	</tbody>
+</table>
+<p>Each type needs different retention rules. Session memory can expire quickly. Domain memory needs governance and versioning. User preference memory should be editable. Episodic memory should be curated because bad memories can pollute future work.</p>
+<h3 id="do-not-confuse-memory-with-truth" class="relative group">Do not confuse memory with truth <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#do-not-confuse-memory-with-truth" aria-label="Anchor">#</a></span></h3><p>Stored memory is not automatically correct. A user may state something wrong. A past task may have reached a poor result. An old policy may no longer apply.</p>
+<p>Design memory with freshness and evidence. Attach dates, source references, and confidence where needed. Give the agent rules for when to trust memory and when to verify.</p>
+<p>For example, a travel policy assistant should not rely on a remembered meal allowance from last year. It should check the current policy source before answering.</p>
+<h2 id="rag-helps-when-the-agent-needs-external-knowledge" class="relative group">RAG helps when the agent needs external knowledge <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#rag-helps-when-the-agent-needs-external-knowledge" aria-label="Anchor">#</a></span></h2><p>Retrieval-Augmented Generation connects a model to external documents or data. The system retrieves relevant content, gives it to the model, and asks the model to answer using that context.</p>
+<p>RAG is valuable when the answer depends on knowledge that is too large, too private, too new, or too changeable to live in the model’s training data.</p>
+<p>Good RAG scenarios include:</p>
+<ul>
+<li>Internal policy question answering</li>
+<li>Product support over changing documentation</li>
+<li>Legal or compliance research with citation needs</li>
+<li>Technical support using logs, tickets, and runbooks</li>
+<li>Knowledge assistants for large document repositories</li>
+<li>Agents that need evidence before taking action</li>
+</ul>
+<p>For example, an HR assistant for a nationwide Indian company may need to answer questions about leave, probation, reimbursements, and regional holidays. The model should not guess. It should retrieve the current HR policy, cite the relevant section, and respond in plain language.</p>
+<p>RAG also helps when the agent must show evidence. A generated answer without sources may sound confident but be hard to trust. Retrieved passages give users and reviewers something to inspect.</p>
+<h3 id="use-rag-as-part-of-the-agent-loop" class="relative group">Use RAG as part of the agent loop <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#use-rag-as-part-of-the-agent-loop" aria-label="Anchor">#</a></span></h3><p>In agentic systems, retrieval should not be a one-time step before generation. The agent may need to search, inspect, refine the query, and search again.</p>
+<p>A common pattern is:</p>
+<p>Interpret the user’s goal.</p>
+<p>Decide what knowledge is needed.</p>
+<p>Retrieve documents.</p>
+<p>Inspect whether the documents are sufficient.</p>
+<p>Ask a narrower follow-up query if needed.</p>
+<p>Answer with citations or take the next tool action.</p>
+<p>A procurement agent reviewing a vendor agreement may first retrieve the contract policy. Then it may retrieve approved clause examples. Then it may retrieve past exception decisions. Each retrieval has a purpose.</p>
+<h2 id="rag-is-not-useful-for-every-agent" class="relative group">RAG is not useful for every agent <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#rag-is-not-useful-for-every-agent" aria-label="Anchor">#</a></span></h2><p>RAG can make a system slower, more expensive, and harder to debug. It can also introduce irrelevant context that distracts the model.</p>
+<p>Use RAG when the task needs grounded knowledge. Skip it when the task mainly needs reasoning over information already in the prompt, a direct database lookup, or tool execution.</p>
+<p>RAG may not be beneficial in these cases.</p>
+<h3 id="the-answer-should-come-from-a-structured-system" class="relative group">The answer should come from a structured system <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-answer-should-come-from-a-structured-system" aria-label="Anchor">#</a></span></h3><p>If the agent needs an order status, account balance, inventory count, or booking state, use an API or database query. Do not retrieve a document that describes where the data might be.</p>
+<p>A customer asking “Where is my order?” needs live order data. RAG over shipping policy pages may explain delivery timelines, but it cannot replace the order management system.</p>
+<h3 id="the-knowledge-is-small-and-stable" class="relative group">The knowledge is small and stable <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-knowledge-is-small-and-stable" aria-label="Anchor">#</a></span></h3><p>If the task needs a short, stable rule set, place it directly in the system prompt or configuration. RAG adds needless retrieval risk.</p>
+<p>For example, if an internal bot must always format dates as <code>DD MMM YYYY</code> and amounts in Indian numbering style, this rule can live in the prompt or output formatter.</p>
+<h3 id="the-task-needs-exact-computation" class="relative group">The task needs exact computation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-task-needs-exact-computation" aria-label="Anchor">#</a></span></h3><p>RAG does not calculate. If the agent needs to compute tax, compare large tables, or validate totals, use a calculator, code execution, or a verified business service. Retrieved documents may explain the formula, but a tool should perform the calculation.</p>
+<h3 id="the-corpus-is-low-quality" class="relative group">The corpus is low quality <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-corpus-is-low-quality" aria-label="Anchor">#</a></span></h3><p>RAG only helps when the source content is useful. If documents are outdated, duplicated, contradictory, or poorly chunked, retrieval may return convincing nonsense. Fix the corpus before adding more agent logic.</p>
+<p>Bad RAG often looks like a model problem. The real issue is source quality.</p>
+<h3 id="the-user-needs-a-creative-or-strategic-draft" class="relative group">The user needs a creative or strategic draft <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-user-needs-a-creative-or-strategic-draft" aria-label="Anchor">#</a></span></h3><p>If a user asks for a brainstorming list, a rewrite, or a high-level planning draft based on information in the prompt, RAG may not add value. It can even make the output stiff by forcing irrelevant retrieved text into the response.</p>
+<h2 id="build-a-retrieval-strategy-before-choosing-a-vector-database" class="relative group">Build a retrieval strategy before choosing a vector database <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#build-a-retrieval-strategy-before-choosing-a-vector-database" aria-label="Anchor">#</a></span></h2><p>Many teams start RAG design by picking a vector store. That is backward. Start with the retrieval behaviour the agent needs.</p>
+<p>Key decisions include:</p>
+<ul>
+<li>Which sources are trusted?</li>
+<li>How often do they change?</li>
+<li>What metadata matters?</li>
+<li>How should documents be chunked?</li>
+<li>Should retrieval use keyword search, vector search, or both?</li>
+<li>How many passages should be returned?</li>
+<li>Should the agent rerank results?</li>
+<li>How should citations appear?</li>
+<li>What should happen when retrieval finds nothing useful?</li>
+</ul>
+<h3 id="good-chunking-reflects-the-task" class="relative group">Good chunking reflects the task <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#good-chunking-reflects-the-task" aria-label="Anchor">#</a></span></h3><p>Chunking is not just splitting documents every few hundred tokens. The chunk should match how people use the information.</p>
+<p>For policies, chunk by clause or section. For API docs, chunk by endpoint. For troubleshooting guides, chunk by symptom and fix. For legal documents, preserve section numbers and definitions.</p>
+<p>A chunk should be large enough to contain meaning but small enough to avoid burying the relevant line.</p>
+<h3 id="metadata-improves-retrieval-quality" class="relative group">Metadata improves retrieval quality <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#metadata-improves-retrieval-quality" aria-label="Anchor">#</a></span></h3><p>Metadata helps the system filter before ranking. Useful metadata may include:</p>
+<ul>
+<li>Document type</li>
+<li>Department</li>
+<li>Product version</li>
+<li>Region</li>
+<li>Effective date</li>
+<li>Access level</li>
+<li>Owner</li>
+<li>Language</li>
+<li>Status</li>
+</ul>
+<p>For a nationwide support system, region and policy version often matter. An agent answering a payroll question should not mix old and new policy versions, or confuse one state-specific rule with another.</p>
+<h3 id="retrieval-needs-failure-behaviour" class="relative group">Retrieval needs failure behaviour <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#retrieval-needs-failure-behaviour" aria-label="Anchor">#</a></span></h3><p>The agent should know what to do when retrieval fails. It should not invent.</p>
+<p>Good failure responses include:</p>
+<ul>
+<li>Ask a clarifying question</li>
+<li>Say the relevant source was not found</li>
+<li>Route to a human reviewer</li>
+<li>Use a safe general response with clear limits</li>
+<li>Trigger a document quality issue for the content team</li>
+</ul>
+<p>Failure behaviour is a product decision, not just a model setting.</p>
+<h2 id="planning-needs-control-over-depth-and-cost" class="relative group">Planning needs control over depth and cost <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#planning-needs-control-over-depth-and-cost" aria-label="Anchor">#</a></span></h2><p>Agentic systems can overthink. A task that needs one search becomes six tool calls, three reflections, and a costly final answer. A task that needs careful analysis gets a shallow response.</p>
+<p>Design the planning loop with limits and escalation.</p>
+<p>Useful controls include:</p>
+<ul>
+<li>Maximum number of steps</li>
+<li>Maximum tool calls by tool type</li>
+<li>Time budget</li>
+<li>Cost budget</li>
+<li>Required evidence threshold</li>
+<li>Confidence threshold</li>
+<li>Human review triggers</li>
+<li>Retry limits</li>
+<li>Stop conditions</li>
+</ul>
+<p>For example, a log analysis agent could follow this rule:</p>
+<p>If the agent cannot identify a likely cause after three relevant log queries and one runbook search, it must summarise findings and escalate.</p>
+<p>This stops the agent from wandering. It also gives engineers a clear failure packet.</p>
+<h3 id="use-different-planning-modes" class="relative group">Use different planning modes <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#use-different-planning-modes" aria-label="Anchor">#</a></span></h3><p>Not every task needs the same agent loop. Three modes work well in practice.</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Mode</strong></th>
+					<th><strong>Use when</strong></th>
+					<th><strong>Behaviour</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Fast path</td>
+					<td>The task is simple and low risk</td>
+					<td>Answer or act with minimal tool use</td>
+			</tr>
+			<tr>
+					<td>Standard path</td>
+					<td>The task needs evidence or several steps</td>
+					<td>Plan, retrieve, use tools, verify</td>
+			</tr>
+			<tr>
+					<td>Careful path</td>
+					<td>The task is high impact or ambiguous</td>
+					<td>Add review, stronger checks, and stricter citations</td>
+			</tr>
+	</tbody>
+</table>
+<p>A support bot might use the fast path for “How do I reset my password?” It should use the careful path for “I was charged twice and need my money back.”</p>
+<h2 id="evaluation-should-test-behaviour-not-just-answers" class="relative group">Evaluation should test behaviour, not just answers <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#evaluation-should-test-behaviour-not-just-answers" aria-label="Anchor">#</a></span></h2><p>Agentic AI evaluation must cover the full loop. A correct final answer can hide a poor process. A poor final answer may come from a good plan with bad retrieval.</p>
+<p>Evaluate these layers separately:</p>
+<ul>
+<li>Intent understanding</li>
+<li>Plan quality</li>
+<li>Tool selection</li>
+<li>Tool argument correctness</li>
+<li>Retrieval relevance</li>
+<li>Evidence use</li>
+<li>Safety and policy compliance</li>
+<li>Final answer quality</li>
+<li>Cost and latency</li>
+<li>Recovery from failure</li>
+</ul>
+<p>Create test cases from real tasks, anonymised where needed. Include normal cases, edge cases, missing data cases, permission failures, and conflicting document cases.</p>
+<h3 id="track-traces-for-every-run" class="relative group">Track traces for every run <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#track-traces-for-every-run" aria-label="Anchor">#</a></span></h3><p>A trace is the agent’s execution record. It should show prompts, tool calls, retrieved chunks, intermediate decisions, hook outcomes, and final output.</p>
+<p>Traces help answer practical questions:</p>
+<ul>
+<li>Did the agent search the right source?</li>
+<li>Did retrieval return the right passage?</li>
+<li>Did the model ignore the evidence?</li>
+<li>Did a hook block the right action?</li>
+<li>Did the agent stop too early?</li>
+<li>Did it ask for human review when needed?</li>
+</ul>
+<p>Without traces, debugging becomes guesswork.</p>
+<h3 id="use-human-review-where-judgement-is-expensive" class="relative group">Use human review where judgement is expensive <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#use-human-review-where-judgement-is-expensive" aria-label="Anchor">#</a></span></h3><p>Some tasks should not be fully automated. Human review is part of good system design, not a sign of failure.</p>
+<p>Review is useful when:</p>
+<ul>
+<li>The action has financial, legal, or safety impact</li>
+<li>The agent’s confidence is low</li>
+<li>Source documents conflict</li>
+<li>The user disputes the result</li>
+<li>The task falls outside known patterns</li>
+<li>The agent proposes an irreversible action</li>
+</ul>
+<p>A well-designed system routes only the right cases to humans. It should include the agent’s evidence, plan, and uncertainty so the reviewer does not start from zero.</p>
+<h2 id="a-practical-design-pattern-for-an-agentic-system" class="relative group">A practical design pattern for an agentic system <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#a-practical-design-pattern-for-an-agentic-system" aria-label="Anchor">#</a></span></h2><p>A strong agentic architecture often has these components:</p>
+<p><strong>Task intake</strong></p>
+<p>Parse the user goal, collect required fields, and assign risk level.</p>
+<p><strong>Context builder</strong></p>
+<p>Add user permissions, tenant settings, locale, session history, and relevant memory.</p>
+<p><strong>Planner</strong></p>
+<p>Decide the steps, tools, and retrieval needs.</p>
+<p><strong>Skill router</strong></p>
+<p>Select reusable skills instead of one giant prompt.</p>
+<p><strong>Retrieval layer</strong></p>
+<p>Search trusted knowledge sources when needed.</p>
+<p><strong>Tool layer</strong></p>
+<p>Call APIs, databases, code runners, ticketing systems, or calculators.</p>
+<p><strong>Hook layer</strong></p>
+<p>Enforce policy before and after key actions.</p>
+<p><strong>Verifier</strong></p>
+<p>Check evidence, output format, and task completion.</p>
+<p><strong>Human review</strong></p>
+<p>Route risky or unclear cases with full trace context.</p>
+<ol start="10">
+<li>
+<p><strong>Learning loop</strong></p>
+<p>Use traces, feedback, and test failures to improve skills, hooks, retrieval, and prompts.</p>
+</li>
+</ol>
+<p>Here is a practical example.</p>
+<p>A field service agent receives this request:</p>
+<p>“Create a plan to fix repeated inverter shutdowns at Site A. Check past incidents, current device logs, and maintenance notes.”</p>
+<p>The system could work like this:</p>
+<ul>
+<li>Intake classifies the task as technical diagnosis.</li>
+<li>Context builder adds site access permissions and device type.</li>
+<li>Planner decides it needs incident history, logs, and maintenance records.</li>
+<li>Retrieval gets maintenance notes and runbooks.</li>
+<li>Tool calls fetch recent telemetry and event logs.</li>
+<li>A diagnostic skill compares symptoms with known failure patterns.</li>
+<li>A hook blocks the agent from scheduling physical work without approval.</li>
+<li>The verifier checks whether the plan cites evidence.</li>
+<li>The final response gives likely causes, recommended checks, required parts, and open uncertainties.</li>
+<li>Human review is triggered if the recommendation includes safety-sensitive electrical work.</li>
+</ul>
+<p>This is agentic AI used well. The model reasons across messy inputs. Tools fetch live facts. RAG grounds the answer in trusted documents. Hooks prevent unsafe action. Review catches high-impact cases.</p>
+<h2 id="tips-for-building-agents-that-behave-well-in-production" class="relative group">Tips for building agents that behave well in production <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tips-for-building-agents-that-behave-well-in-production" aria-label="Anchor">#</a></span></h2><p>Start narrow. Choose a task with clear value, visible outcomes, and examples of past work. Avoid starting with a broad “AI assistant for everything.”</p>
+<p>Write down the agent contract before writing prompts. If the boundaries are unclear in design, they will be unclear in production.</p>
+<p>Prefer small skills over one large prompt. Skills can be tested, reused, and improved without changing the whole system.</p>
+<p>Give tools strict schemas. Validate tool arguments before execution. Treat every tool call as a system boundary.</p>
+<p>Use RAG only when the answer needs grounded knowledge. Build source quality, metadata, and failure handling before worrying about model tricks.</p>
+<p>Add hooks early. Retrofitting policy checks after the agent has grown usually creates brittle patches.</p>
+<p>Log traces from day one. The first production issue will need them.</p>
+<p>Measure cost and latency by task type. A careful agent is useful only if it fits the product experience and budget.</p>
+<p>Keep humans in the loop for high-risk work. The best systems combine machine speed with human responsibility.</p>
+<h2 id="the-takeaway" class="relative group">The takeaway <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-takeaway" aria-label="Anchor">#</a></span></h2><p>Planning system design with Agentic AI Skills Hooks and Smart RAG Use is about assigning responsibility clearly. The model should reason, but it should not carry the whole system. Skills package repeatable expertise. Hooks enforce rules at the right moments. Tools handle facts and actions. RAG grounds answers when external knowledge is needed, but it should not replace databases, calculators, or clean workflow design.</p>
+<p>The most reliable agentic systems are not the ones with the most freedom. They are the ones with the clearest contracts, the best evidence paths, the smallest useful skills, and the strongest feedback loops. Build the system so the agent can succeed, and design every boundary so it can fail safely.</p>
+<p>Hopefully this will add more order in the chaos of the AI world, where if you see everything is a prompt. You can also follow my work on my github account <a href="https://github.com/ankitagrahari" target="_blank" rel="noreferrer">https://github.com/ankitagrahari</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/using-twilio-for-sending-whatsapp-message-in-java/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Using Twilio for Sending WhatsApp Message in Java</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/spring-ai-with-ollama/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Spring AI with Ollama </span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:22 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>

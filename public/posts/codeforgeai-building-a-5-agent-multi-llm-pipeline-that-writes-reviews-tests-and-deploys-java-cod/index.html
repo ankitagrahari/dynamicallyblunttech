@@ -1,0 +1,1155 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        
+TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
+
+Table of Contents #Motivation &amp; Goals
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally">
+	<meta property="og:description" content="TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
+Table of Contents #Motivation &amp; Goals">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:17+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:17+05:30">
+		<meta property="article:tag" content="[]">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally">
+	<meta name="twitter:description" content="TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
+Table of Contents #Motivation &amp; Goals">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally",
+    "headline": "CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally",
+    
+    "abstract": "\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR\u003c\/strong\u003e — CodeForgeAI is a Spring Boot \u002b Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003ch2 id=\u0022table-of-contents\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eTable of Contents\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#table-of-contents\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eMotivation \u0026amp; Goals\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:17\u002b05:30",
+    "datePublished": "2026-10-27T08:14:17\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:17\u002b05:30",
+    
+    "keywords": ["[]"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "4724"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/6249579158f0bd10b2a57273/",
+       "name": "[\"6249579158f0bd10b2a57273\"",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Code Forge Ai Building a 5 Agent Multi Llm Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:17 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">23 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <blockquote>
+<p><strong>TL;DR</strong> — CodeForgeAI is a Spring Boot + Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.</p>
+</blockquote>
+<h2 id="table-of-contents" class="relative group"><strong>Table of Contents</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#table-of-contents" aria-label="Anchor">#</a></span></h2><p>Motivation &amp; Goals</p>
+<p>Tech Stack</p>
+<p>End-to-End Pipeline Architecture</p>
+<p>The 5 Agents — Deep Dive</p>
+<ul>
+<li>Business Analyst Agent</li>
+<li>Code Generator Agent</li>
+<li>Code Review Agent</li>
+<li>Test Generator Agent</li>
+<li>Test Executor Agent</li>
+</ul>
+<p>RAG: Codebase Ingestion &amp; Vector Store</p>
+<p>The Hardest Part: Running Multiple LLMs Locally via Ollama</p>
+<ul>
+<li>Hardware Constraints</li>
+<li>Models We Evaluated</li>
+<li>The num_ctx Uniformity Breakthrough</li>
+<li>Final Model Decision</li>
+<li>Ollama Environment Variables That Mattered</li>
+</ul>
+<p>Challenges We Solved</p>
+<p>Code Structure</p>
+<p>Real-Time UI with Vaadin &amp; Server Push</p>
+<p>Jira Integration</p>
+<p>Human-in-the-Loop Checkpoints</p>
+<p>What We Learned</p>
+<h2 id="1-motivation--goals" class="relative group"><strong>1. Motivation &amp; Goals</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-motivation--goals" aria-label="Anchor">#</a></span></h2><p>Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that&rsquo;s a hard blocker.</p>
+<p>We set out to answer a specific question: <strong>Can a fully local, open-weight LLM pipeline produce production-quality Java code, tests, and Jira stories from a requirements PDF — without a single API call to a cloud provider?</strong></p>
+<p>The constraints were deliberate:</p>
+<ul>
+<li><strong>100% on-premise</strong> — Ollama on a developer laptop, no external model APIs.</li>
+<li><strong>Agentic pipeline</strong> — not a single mega-prompt, but a chain of specialised agents, each with its own role, prompt, and review loop.</li>
+<li><strong>Real codebase awareness</strong> — the pipeline reads the existing target module&rsquo;s source, ingests it into a vector store, and generates code that fits the existing structure.</li>
+<li><strong>Human review gates</strong> — the pipeline pauses at key stages so an engineer can approve before code is written to disk.</li>
+</ul>
+<h2 id="2-tech-stack" class="relative group"><strong>2. Tech Stack</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-tech-stack" aria-label="Anchor">#</a></span></h2><table>
+	<thead>
+			<tr>
+					<th><strong>Layer</strong></th>
+					<th><strong>Technology</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Backend framework</td>
+					<td>Spring Boot 3.4, Java 21</td>
+			</tr>
+			<tr>
+					<td>AI integration</td>
+					<td>Spring AI (Ollama backend)</td>
+			</tr>
+			<tr>
+					<td>Local LLM runtime</td>
+					<td>Ollama 0.6</td>
+			</tr>
+			<tr>
+					<td>Vector store</td>
+					<td>PostgreSQL + PGVector (HNSW index, cosine distance)</td>
+			</tr>
+			<tr>
+					<td>Embedding model</td>
+					<td>nomic-embed-text (768-dim)</td>
+			</tr>
+			<tr>
+					<td>Primary LLM</td>
+					<td>qwen2.5-coder:7b-instruct (Q4_K_M, ~4.7 GB)</td>
+			</tr>
+			<tr>
+					<td>Frontend</td>
+					<td>Vaadin Flow 24 (server-side Java UI, Lumo theme)</td>
+			</tr>
+			<tr>
+					<td>Database</td>
+					<td>PostgreSQL 16</td>
+			</tr>
+			<tr>
+					<td>Connection pool</td>
+					<td>HikariCP (keepalive-tuned for long LLM calls)</td>
+			</tr>
+			<tr>
+					<td>Issue tracking</td>
+					<td>Jira Cloud REST API v3</td>
+			</tr>
+			<tr>
+					<td>Build</td>
+					<td>Maven 3</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="3-end-to-end-pipeline-architecture" class="relative group"><strong>3. End-to-End Pipeline Architecture</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-end-to-end-pipeline-architecture" aria-label="Anchor">#</a></span></h2><h3 id="status-state-machine" class="relative group"><strong>Status State Machine</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#status-state-machine" aria-label="Anchor">#</a></span></h3><h2 id="4-the-5-agents--deep-dive" class="relative group"><strong>4. The 5 Agents — Deep Dive</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-the-5-agents--deep-dive" aria-label="Anchor">#</a></span></h2><h3 id="41-business-analyst-agent" class="relative group"><strong>4.1 Business Analyst Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#41-business-analyst-agent" aria-label="Anchor">#</a></span></h3><p>The BA agent reads the raw requirements text and returns a structured JSON array of user stories, each with a title, description in &ldquo;As a / I want / So that&rdquo; format, acceptance criteria, and test case specs.</p>
+<p><strong>The core challenge</strong> was that small 7B models regularly wrap JSON in markdown fences, add preamble text like &ldquo;Sure, here are your user stories:&rdquo;, or append trailing commentary. We built a four-layer extraction strategy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: BusinessAnalystAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">extractJson</span>(String response) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Layer 1: markdown-fenced JSON  ─ ```json [...] ```</span>
+</span></span><span style="display:flex;"><span>    Matcher markdownMatcher <span style="color:#f92672">=</span> MARKDOWN_JSON_PATTERN
+</span></span><span style="display:flex;"><span>               .<span style="color:#a6e22e">matcher</span>(response);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (markdownMatcher.<span style="color:#a6e22e">find</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> markdownMatcher.<span style="color:#a6e22e">group</span>(1).<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Layer 2: bare JSON array anywhere in the text</span>
+</span></span><span style="display:flex;"><span>    Matcher jsonMatcher <span style="color:#f92672">=</span> JSON_ARRAY_PATTERN.<span style="color:#a6e22e">matcher</span>(response);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (jsonMatcher.<span style="color:#a6e22e">find</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> jsonMatcher.<span style="color:#a6e22e">group</span>().<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Layer 3: whole response is already a JSON array</span>
+</span></span><span style="display:flex;"><span>    String trimmed <span style="color:#f92672">=</span> response.<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (trimmed.<span style="color:#a6e22e">startsWith</span>(<span style="color:#e6db74">&#34;[&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> trimmed.<span style="color:#a6e22e">endsWith</span>(<span style="color:#e6db74">&#34;]&#34;</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> trimmed;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Layer 4: bracket-matching fallback — find first &#39;[&#39; and last &#39;]&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> firstBracket <span style="color:#f92672">=</span> trimmed.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;[&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> lastBracket  <span style="color:#f92672">=</span> trimmed.<span style="color:#a6e22e">lastIndexOf</span>(<span style="color:#e6db74">&#39;]&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (firstBracket <span style="color:#f92672">&gt;=</span> 0 <span style="color:#f92672">&amp;&amp;</span> lastBracket <span style="color:#f92672">&gt;</span> firstBracket) {
+</span></span><span style="display:flex;"><span>        String candidate <span style="color:#f92672">=</span> trimmed.<span style="color:#a6e22e">substring</span>(firstBracket, lastBracket <span style="color:#f92672">+</span> 1);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (candidate.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#34;{&#34;</span>)) <span style="color:#66d9ef">return</span> candidate;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>On parsing failure the agent retries with a strengthened prompt:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: BusinessAnalystAgent.java — retry reinforcement</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (attempt <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>    prompt <span style="color:#f92672">=</span> prompt <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n\nREMINDER: You MUST output ONLY a JSON array starting &#34;</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;with [ and ending with ]. Do NOT say anything else. &#34;</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Do NOT introduce yourself. Just output the JSON array of user stories.&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>BA prompt template</strong> (<a href="http://ba-user-story-generator.st" target="_blank" rel="noreferrer">ba-user-story-generator.st</a>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Analyze the following software requirements document and generate User Stories.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> START OF REQUIREMENTS DOCUMENT <span style="color:#f92672">===</span>
+</span></span><span style="display:flex;"><span>{requirements}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> END OF REQUIREMENTS DOCUMENT <span style="color:#f92672">===</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Based on the requirements above, generate a complete set of User Stories.
+</span></span><span style="display:flex;"><span>Each story must have a title, description (As a... I want... So that...),
+</span></span><span style="display:flex;"><span>acceptance criteria, and test cases.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You MUST respond <span style="color:#66d9ef">with</span> ONLY a JSON array. No other text, no explanations,
+</span></span><span style="display:flex;"><span>no markdown fences.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The JSON array must use <span style="color:#66d9ef">this</span> exact structure:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Short descriptive title&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;As a [role], I want [feature], so that [benefit].&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;acceptanceCriteria&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;Given [context], When [action], Then [outcome]&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;testCases&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Test case title&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;steps&#34;</span>: <span style="color:#e6db74">&#34;1. Step one\n2. Step two&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;expectedResult&#34;</span>: <span style="color:#e6db74">&#34;Expected outcome description&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="42-code-generator-agent" class="relative group"><strong>4.2 Code Generator Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#42-code-generator-agent" aria-label="Anchor">#</a></span></h3><p>The code generator is the most complex agent. It runs in three distinct modes:</p>
+<h4 id="mode-1-planning-phase" class="relative group"><strong>Mode 1: Planning Phase</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#mode-1-planning-phase" aria-label="Anchor">#</a></span></h4><p>Before any code is generated, a lightweight LLM call produces a file plan — a numbered list of every file that needs to be created or modified across all stories. This prevents cross-story inconsistencies like two stories each creating a <a href="http://BookService.java" target="_blank" rel="noreferrer">BookService.java</a> that overwrite each other.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeGeneratorAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">runPlanningPhase</span>(PipelineContext context) {
+</span></span><span style="display:flex;"><span>    String prompt <span style="color:#f92672">=</span> planPromptTemplate
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;{projectStructure}&#34;</span>,    context.<span style="color:#a6e22e">getProjectStructure</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;{existingSourceSummary}&#34;</span>, context.<span style="color:#a6e22e">getExistingSourceSummary</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;{requirements}&#34;</span>,       context.<span style="color:#a6e22e">getOriginalRequirements</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;{userStories}&#34;</span>,        context.<span style="color:#a6e22e">getUserStoriesJson</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String planOutput <span style="color:#f92672">=</span> chatClient.<span style="color:#a6e22e">prompt</span>().<span style="color:#a6e22e">user</span>(prompt).<span style="color:#a6e22e">call</span>().<span style="color:#a6e22e">content</span>();
+</span></span><span style="display:flex;"><span>    context.<span style="color:#a6e22e">setGenerationPlan</span>(planOutput.<span style="color:#a6e22e">trim</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="mode-2-per-story-code-generation-the-signatures-index-trick" class="relative group"><strong>Mode 2: Per-Story Code Generation (the Signatures-Index Trick)</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#mode-2-per-story-code-generation-the-signatures-index-trick" aria-label="Anchor">#</a></span></h4><p>Instead of passing full accumulated code between stories (which blows past the 16,384-token context window after just 2–3 stories), we pass only <strong>method signatures</strong> — a condensed index showing class names, field declarations, and method signatures without bodies:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeGeneratorAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">buildAccumulatedCodeIndex</span>(Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> fileMap) {
+</span></span><span style="display:flex;"><span>    StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> entry : fileMap.<span style="color:#a6e22e">entrySet</span>()) {
+</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;// === FILE: &#34;</span>).<span style="color:#a6e22e">append</span>(entry.<span style="color:#a6e22e">getKey</span>()).<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34; ===\n&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String content <span style="color:#f92672">=</span> entry.<span style="color:#a6e22e">getValue</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Include: package declaration</span>
+</span></span><span style="display:flex;"><span>        Matcher pkgMatcher <span style="color:#f92672">=</span> PACKAGE_DECLARATION.<span style="color:#a6e22e">matcher</span>(content);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (pkgMatcher.<span style="color:#a6e22e">find</span>()) sb.<span style="color:#a6e22e">append</span>(pkgMatcher.<span style="color:#a6e22e">group</span>()).<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Include: class/interface declaration line only</span>
+</span></span><span style="display:flex;"><span>        Matcher classMatcher <span style="color:#f92672">=</span> CLASS_NAME_EXTRACT.<span style="color:#a6e22e">matcher</span>(content);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (classMatcher.<span style="color:#a6e22e">find</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> classStart <span style="color:#f92672">=</span> classMatcher.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> lineStart  <span style="color:#f92672">=</span> content.<span style="color:#a6e22e">lastIndexOf</span>(<span style="color:#e6db74">&#39;\n&#39;</span>, classStart) <span style="color:#f92672">+</span> 1;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> lineEnd    <span style="color:#f92672">=</span> content.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;\n&#39;</span>, classStart);
+</span></span><span style="display:flex;"><span>            String classLine <span style="color:#f92672">=</span> content.<span style="color:#a6e22e">substring</span>(lineStart, lineEnd <span style="color:#f92672">&lt;</span> 0 <span style="color:#f92672">?</span> content.<span style="color:#a6e22e">length</span>() : lineEnd).<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>            sb.<span style="color:#a6e22e">append</span>(classLine.<span style="color:#a6e22e">replaceAll</span>(<span style="color:#e6db74">&#34;\\{.*$&#34;</span>, <span style="color:#e6db74">&#34;{&#34;</span>)).<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Include: public/protected method signatures only (no bodies)</span>
+</span></span><span style="display:flex;"><span>        Matcher methodMatcher <span style="color:#f92672">=</span> PUBLIC_METHOD_PATTERN.<span style="color:#a6e22e">matcher</span>(content);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (methodMatcher.<span style="color:#a6e22e">find</span>()) {
+</span></span><span style="display:flex;"><span>            String sig <span style="color:#f92672">=</span> methodMatcher.<span style="color:#a6e22e">group</span>().<span style="color:#a6e22e">trim</span>().<span style="color:#a6e22e">replaceAll</span>(<span style="color:#e6db74">&#34;\\{\\s*$&#34;</span>, <span style="color:#e6db74">&#34;;&#34;</span>);
+</span></span><span style="display:flex;"><span>            sb.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;    &#34;</span>).<span style="color:#a6e22e">append</span>(sig).<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;}\n&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sb.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This reduces a 4,000-line accumulated codebase to ~200 lines of signatures, keeping every per-story prompt well within budget.</p>
+<h4 id="mode-3-feedback-loop-regeneration" class="relative group"><strong>Mode 3: Feedback Loop Regeneration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#mode-3-feedback-loop-regeneration" aria-label="Anchor">#</a></span></h4><p>When the AI code reviewer rejects a story&rsquo;s code, the generator gets a focused regeneration prompt containing the previous code + the specific issues found:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeGeneratorAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">regenerateStoryWithFeedback</span>(
+</span></span><span style="display:flex;"><span>            PipelineContext context, 
+</span></span><span style="display:flex;"><span>            UserStory story,
+</span></span><span style="display:flex;"><span>            String previousStoryCode, 
+</span></span><span style="display:flex;"><span>            String feedback,
+</span></span><span style="display:flex;"><span>            Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> accumulatedFiles) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Per-story feedback: no truncation needed since context is small (single story)</span>
+</span></span><span style="display:flex;"><span>    String prompt <span style="color:#f92672">=</span> perStoryFeedbackPromptTemplate
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;{previousStoryCode}&#34;</span>, previousStoryCode)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#34;{feedback}&#34;</span>,          feedback)
+</span></span><span style="display:flex;"><span>        ...;
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Per-story feedback prompt size: {} chars (no truncation needed).&#34;</span>, prompt.<span style="color:#a6e22e">length</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> extractCode(chatClient.<span style="color:#a6e22e">prompt</span>().<span style="color:#a6e22e">user</span>(prompt).<span style="color:#a6e22e">call</span>().<span style="color:#a6e22e">content</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="handling-truncated-output" class="relative group"><strong>Handling Truncated Output</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#handling-truncated-output" aria-label="Anchor">#</a></span></h4><p>7B models regularly hit their num_predict token limit mid-method, producing code with more { than }. We detect and auto-repair:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeGeneratorAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> openBraces  <span style="color:#f92672">=</span> code.<span style="color:#a6e22e">chars</span>().<span style="color:#a6e22e">filter</span>(c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;{&#39;</span>).<span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> closeBraces <span style="color:#f92672">=</span> code.<span style="color:#a6e22e">chars</span>().<span style="color:#a6e22e">filter</span>(c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;}&#39;</span>).<span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (openBraces <span style="color:#f92672">&gt;</span> closeBraces) {
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#34;Generated code appears TRUNCATED: {} open braces, {} close braces.&#34;</span>,
+</span></span><span style="display:flex;"><span>             openBraces, closeBraces);
+</span></span><span style="display:flex;"><span>    StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder(code);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">long</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> openBraces <span style="color:#f92672">-</span> closeBraces; i<span style="color:#f92672">++</span>) sb.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;\n}&#34;</span>);
+</span></span><span style="display:flex;"><span>    code <span style="color:#f92672">=</span> sb.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Auto-closed {} missing braces.&#34;</span>, openBraces <span style="color:#f92672">-</span> closeBraces);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The per-story prompt template enforces strict output format:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CRITICAL OUTPUT FORMAT <span style="color:#960050;background-color:#1e0010">—</span> READ CAREFULLY:
+</span></span><span style="display:flex;"><span>Your ENTIRE response must be a single <span style="color:#960050;background-color:#1e0010">```</span>java code block containing ALL files.
+</span></span><span style="display:flex;"><span>Do NOT write ANY text, commentary, analysis, or explanations outside the code block.
+</span></span><span style="display:flex;"><span>Start your response IMMEDIATELY <span style="color:#66d9ef">with</span> <span style="color:#960050;background-color:#1e0010">```</span>java and end <span style="color:#66d9ef">with</span> <span style="color:#960050;background-color:#1e0010">```</span>.
+</span></span><span style="display:flex;"><span>If you write plain text instead of code, you have FAILED the task.
+</span></span></code></pre></div><h3 id="43-code-review-agent" class="relative group"><strong>4.3 Code Review Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#43-code-review-agent" aria-label="Anchor">#</a></span></h3><p>The reviewer runs a two-layer check: first a deterministic structural pre-validation, then an LLM-powered semantic review.</p>
+<p><strong>Structural pre-validation</strong> catches the most common generator failures before invoking the (expensive) LLM call:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeReviewAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">validateStructure</span>(String code) {
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> issues <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>code.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#34;// === FILE:&#34;</span>)) {
+</span></span><span style="display:flex;"><span>        issues.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;No FILE separators found. The code generator must separate each &#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;class with a FILE separator for proper deployment.&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>code.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#34;package &#34;</span>)) {
+</span></span><span style="display:flex;"><span>        issues.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;No package declarations found. Every Java file must have a package.&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> openBraces  <span style="color:#f92672">=</span> code.<span style="color:#a6e22e">chars</span>().<span style="color:#a6e22e">filter</span>(c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;{&#39;</span>).<span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> closeBraces <span style="color:#f92672">=</span> code.<span style="color:#a6e22e">chars</span>().<span style="color:#a6e22e">filter</span>(c <span style="color:#f92672">-&gt;</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;}&#39;</span>).<span style="color:#a6e22e">count</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (openBraces <span style="color:#f92672">!=</span> closeBraces) {
+</span></span><span style="display:flex;"><span>        issues.<span style="color:#a6e22e">add</span>(String.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Unbalanced braces: %d open &#39;{&#39; vs %d close &#39;}&#39;.&#34;</span>,
+</span></span><span style="display:flex;"><span>                                 openBraces, closeBraces));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>code.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#34;import &#34;</span>)) {
+</span></span><span style="display:flex;"><span>        issues.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;No import statements found.&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> issues;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The LLM is asked to return a structured JSON verdict:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;approved&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;issues&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;Missing @RestController annotation&#34;</span>, <span style="color:#e6db74">&#34;findById returns raw Optional&#34;</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;suggestions&#34;</span>: <span style="color:#e6db74">&#34;Add proper ResponseEntity wrapping and null handling.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We use a brace-counting JSON extractor (not regex) to reliably parse nested JSON from noisy LLM output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeReviewAgent.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">extractJson</span>(String text) {
+</span></span><span style="display:flex;"><span>    Matcher startMatcher <span style="color:#f92672">=</span> JSON_START_PATTERN.<span style="color:#a6e22e">matcher</span>(text); <span style="color:#75715e">// looks for {&#34;approved&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>startMatcher.<span style="color:#a6e22e">find</span>()) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> start <span style="color:#f92672">=</span> startMatcher.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> depth <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> inString <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, escaped <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> start; i <span style="color:#f92672">&lt;</span> text.<span style="color:#a6e22e">length</span>(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> text.<span style="color:#a6e22e">charAt</span>(i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (escaped)         { escaped <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>; <span style="color:#66d9ef">continue</span>; }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">&amp;&amp;</span> inString) { escaped <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>; <span style="color:#66d9ef">continue</span>; }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;&#34;&#39;</span>)        { inString <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>inString; <span style="color:#66d9ef">continue</span>; }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>inString) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;{&#39;</span>) depth<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;}&#39;</span>) { depth<span style="color:#f92672">--</span>; <span style="color:#66d9ef">if</span> (depth <span style="color:#f92672">==</span> 0) <span style="color:#66d9ef">return</span> text.<span style="color:#a6e22e">substring</span>(start, i <span style="color:#f92672">+</span> 1); }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Safety-first default</strong>: if JSON parsing fails entirely, the reviewer defaults to approved = false — preventing bad code from being deployed.</p>
+<h3 id="44-test-generator-agent" class="relative group"><strong>4.4 Test Generator Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#44-test-generator-agent" aria-label="Anchor">#</a></span></h3><p>For each story, the test generator receives the generated Java code, the user story with its BA-authored test case specs, and the project structure. It produces JUnit 5 tests with AssertJ assertions and Mockito mocking, placed in the correct test package.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: TestGeneratorAgent.java — per-story prompt</span>
+</span></span><span style="display:flex;"><span>String prompt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Generate comprehensive JUnit 5 unit tests for the following Java source code.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    === PROJECT STRUCTURE ===
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    %s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    === SOURCE CODE ===
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    %s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    === USER STORY REQUIREMENTS ===
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    %s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Generate tests that verify the code fulfills the user story requirements.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Place test classes in the appropriate test package matching the source package structure.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Include edge cases, boundary values, and error scenarios.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Use AssertJ assertions and Mockito for mocking where appropriate.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>.<span style="color:#a6e22e">formatted</span>(projectStructure, storyCode, requirements.<span style="color:#a6e22e">toString</span>());
+</span></span></code></pre></div><h3 id="45-test-executor-agent" class="relative group"><strong>4.5 Test Executor Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#45-test-executor-agent" aria-label="Anchor">#</a></span></h3><p>The Test Executor compiles all accumulated code and tests together (using cross-story dependencies) in a temporary directory and runs the tests via the Maven Surefire plugin. It captures stdout/stderr and parses pass/fail counts:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: PipelineOrchestrator.java — per-story test execution</span>
+</span></span><span style="display:flex;"><span>String allCode <span style="color:#f92672">=</span> codeGeneratorAgent.<span style="color:#a6e22e">buildAccumulatedCodeString</span>(accumulatedFiles);
+</span></span><span style="display:flex;"><span>TestExecutionResult testResult <span style="color:#f92672">=</span> testExecutorAgent.<span style="color:#a6e22e">executeForStory</span>(allCode, result.<span style="color:#a6e22e">getGeneratedTests</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result.<span style="color:#a6e22e">setCompilationSuccess</span>(testResult.<span style="color:#a6e22e">compiled</span>());
+</span></span><span style="display:flex;"><span>result.<span style="color:#a6e22e">setTestsRun</span>(testResult.<span style="color:#a6e22e">testsRun</span>());
+</span></span><span style="display:flex;"><span>result.<span style="color:#a6e22e">setTestsPassedCount</span>(testResult.<span style="color:#a6e22e">testsPassed</span>());
+</span></span><span style="display:flex;"><span>result.<span style="color:#a6e22e">setTestsFailedCount</span>(testResult.<span style="color:#a6e22e">testsFailed</span>());
+</span></span></code></pre></div><h2 id="5-rag-codebase-ingestion--vector-store" class="relative group"><strong>5. RAG: Codebase Ingestion &amp; Vector Store</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-rag-codebase-ingestion--vector-store" aria-label="Anchor">#</a></span></h2><p>Before any code generation begins, the target module&rsquo;s entire source tree is ingested into PGVector using nomic-embed-text embeddings. This gives the Code Generator real context about the existing architecture.</p>
+<p><strong>Fingerprint-based cache</strong> — re-ingestion only happens when files actually change:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodebaseIngestionService.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">computeFingerprint</span>(List<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> files) {
+</span></span><span style="display:flex;"><span>    StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (Path file : files) {
+</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(file.<span style="color:#a6e22e">toAbsolutePath</span>())
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;:&#39;</span>)
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">append</span>(Files.<span style="color:#a6e22e">getLastModifiedTime</span>(file).<span style="color:#a6e22e">toMillis</span>())
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;;&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    MessageDigest digest <span style="color:#f92672">=</span> MessageDigest.<span style="color:#a6e22e">getInstance</span>(<span style="color:#e6db74">&#34;SHA-256&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> hash <span style="color:#f92672">=</span> digest.<span style="color:#a6e22e">digest</span>(sb.<span style="color:#a6e22e">toString</span>().<span style="color:#a6e22e">getBytes</span>(StandardCharsets.<span style="color:#a6e22e">UTF_8</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> HexFormat.<span style="color:#a6e22e">of</span>().<span style="color:#a6e22e">formatHex</span>(hash).<span style="color:#a6e22e">substring</span>(0, 16);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Two context modes</strong> — for small codebases (&lt;10 KB total source), the full file content is passed. For larger codebases, we extract signatures only:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodebaseIngestionService.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> fullMode <span style="color:#f92672">=</span> totalChars <span style="color:#f92672">&lt;</span> 10_000;
+</span></span><span style="display:flex;"><span>log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Building source summary for {} Java files ({}KB total, mode={})&#34;</span>,
+</span></span><span style="display:flex;"><span>         javaFiles.<span style="color:#a6e22e">size</span>(), totalChars <span style="color:#f92672">/</span> 1024, fullMode <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;FULL&#34;</span> : <span style="color:#e6db74">&#34;SIGNATURES&#34;</span>);
+</span></span></code></pre></div><p>Chunking with TokenTextSplitter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>TokenTextSplitter splitter <span style="color:#f92672">=</span> TokenTextSplitter.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withChunkSize</span>(800)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withMinChunkSizeChars</span>(100)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withMinChunkLengthToEmbed</span>(50)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withMaxNumChunks</span>(200)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">withKeepSeparator</span>(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">build</span>();
+</span></span></code></pre></div><p>RAG retrieval is configured in <a href="http://AiConfig.java" target="_blank" rel="noreferrer">AiConfig.java</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: AiConfig.java — only the Code Generator uses RAG</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">defaultAdvisors</span>(QuestionAnswerAdvisor.<span style="color:#a6e22e">builder</span>(vectorStore)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">searchRequest</span>(SearchRequest.<span style="color:#a6e22e">builder</span>().<span style="color:#a6e22e">topK</span>(8).<span style="color:#a6e22e">build</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">build</span>())
+</span></span></code></pre></div><p>The Code Review and BA agents deliberately do <strong>not</strong> use RAG — the review agent needs to be objective about the generated code, and injecting random source embeddings into the BA agent&rsquo;s prompt confused the model.</p>
+<h2 id="6-the-hardest-part-running-multiple-llms-locally-via-ollama" class="relative group"><strong>6. The Hardest Part: Running Multiple LLMs Locally via Ollama</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-the-hardest-part-running-multiple-llms-locally-via-ollama" aria-label="Anchor">#</a></span></h2><p>This section is the heart of the project. Nothing in the design took more time or produced more surprising failures than the local LLM configuration.</p>
+<h3 id="61-hardware-constraints" class="relative group"><strong>6.1 Hardware Constraints</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#61-hardware-constraints" aria-label="Anchor">#</a></span></h3><p>The development machine is an <strong>Intel Core Ultra 7 265H</strong> with <strong>32 GB RAM</strong>. No discrete GPU. Intel Arc Xe is present but Ollama&rsquo;s llama.cpp backend has no Intel GPU path — everything runs on CPU via AVX2 + AVX_VNNI. That gives roughly <strong>8–12 tokens/second for a 7B Q4_K_M model</strong> and <strong>20–30 tokens/second for a 2B model</strong>.</p>
+<p>A full pipeline run with 4 user stories takes <strong>15–25 minutes</strong> on this hardware. That is the price of 100% on-premise.</p>
+<h3 id="62-models-we-evaluated" class="relative group"><strong>6.2 Models We Evaluated</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#62-models-we-evaluated" aria-label="Anchor">#</a></span></h3><p>We tested six models over the course of the project. The comparison shaped every configuration decision.</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Model</strong></th>
+					<th><strong>Size</strong></th>
+					<th><strong>Speed (tok/s)</strong></th>
+					<th><strong>Code Quality</strong></th>
+					<th><strong>Decision</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>gemma4:e2b</td>
+					<td>~2 GB</td>
+					<td>20–30</td>
+					<td>❌ Truncates multi-file output, misses imports</td>
+					<td>BA only</td>
+			</tr>
+			<tr>
+					<td>gemma4:e4b</td>
+					<td>~9.4 GB</td>
+					<td>4–7</td>
+					<td>⚠️ General-purpose, not code-specialised</td>
+					<td>Rejected</td>
+			</tr>
+			<tr>
+					<td>deepseek-coder-v2:16b</td>
+					<td>~10 GB</td>
+					<td>3–5</td>
+					<td>✅ Best code quality</td>
+					<td>Too slow &amp; too large</td>
+			</tr>
+			<tr>
+					<td>qwen2.5-coder:7b-instruct</td>
+					<td>~4.7 GB</td>
+					<td>8–12</td>
+					<td>✅ Best balance</td>
+					<td><strong>SELECTED</strong> ✓</td>
+			</tr>
+			<tr>
+					<td>nomic-embed-text</td>
+					<td>~0.5 GB</td>
+					<td>n/a</td>
+					<td>Embedding only</td>
+					<td><strong>SELECTED</strong> ✓</td>
+			</tr>
+	</tbody>
+</table>
+<p>From the actual Modelfile comments:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Modelfile.<span style="color:#a6e22e">qwen</span><span style="color:#f92672">-</span>coder
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> COMPARISON vs alternatives:
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>   gemma4:e2b  (<span style="color:#f92672">~</span>7.<span style="color:#a6e22e">2</span> GB)   <span style="color:#960050;background-color:#1e0010">→</span> 20<span style="color:#f92672">-</span>30 tok<span style="color:#f92672">/</span>sec BUT truncates multi<span style="color:#f92672">-</span>file output,
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>                            misses imports <span style="color:#960050;background-color:#1e0010">→</span> USE FOR BA ONLY
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>   gemma4:e4b  (<span style="color:#f92672">~</span>9.<span style="color:#a6e22e">4</span> GB) <span style="color:#960050;background-color:#1e0010">→</span> 4<span style="color:#f92672">-</span>7 tok<span style="color:#f92672">/</span>sec, general<span style="color:#f92672">-</span>purpose, not code<span style="color:#f92672">-</span>specialised
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>   deepseek<span style="color:#f92672">-</span>coder<span style="color:#f92672">-</span>v2:16b <span style="color:#960050;background-color:#1e0010">→</span> best code quality, <span style="color:#f92672">~</span>3<span style="color:#f92672">-</span>5 tok<span style="color:#f92672">/</span>sec
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>                           (use <span style="color:#66d9ef">if</span> quality <span style="color:#f92672">&gt;</span> speed)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>   qwen<span style="color:#f92672">-</span>coder:7b (THIS)  <span style="color:#960050;background-color:#1e0010">→</span> best balance of speed <span style="color:#f92672">+</span> code quality <span style="color:#960050;background-color:#1e0010">✓</span>
+</span></span></code></pre></div><p><strong>Why gemma4:e2b failed for code generation:</strong></p>
+<p>We ran gemma4:e2b on the full code generation pipeline first because its 2B size meant near-instant responses. It failed consistently in three ways: it would stop generating mid-class leaving unbalanced braces, it skipped all import statements (the Jakarta/JPA/Lombok imports that Spring Boot relies on), and it never produced // === FILE: === separators — the convention our pipeline uses to split multi-class output into individual files for deployment. The model simply lacked the depth to hold an entire Spring Boot class hierarchy in its working memory.</p>
+<p><strong>Why deepseek-coder-v2:16b was not selected (despite best quality):</strong></p>
+<p>The code quality was genuinely impressive — better package placement, better REST conventions, more idiomatic Spring patterns. But at 10 GB weight + ~3 tok/sec on this CPU, a single per-story code generation call took 8–12 minutes. A 4-story pipeline would take over an hour. Additionally, we hit a subtle double-BOS (beginning-of-sentence) token bug in Ollama&rsquo;s chat template — documented in Modelfile.deepseek-coder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Fixed Modelfile <span style="color:#66d9ef">for</span> deepseek<span style="color:#f92672">-</span>coder<span style="color:#f92672">-</span>v2:16b
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Change: Removed explicit BOS token from the chat template.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> The llama.<span style="color:#a6e22e">cpp</span> tokenizer already adds BOS via add_bos_token<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span> in the model config.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Having it in the template too causes the <span style="color:#66d9ef">double</span><span style="color:#f92672">-</span>BOS warning and degrades generation quality.
+</span></span></code></pre></div><p>This required creating a custom Modelfile to strip the duplicated token.</p>
+<h3 id="63-the-num_" class="relative group"><strong>6.3 The num_ctx Uniformity Breakthrough</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#63-the-num_" aria-label="Anchor">#</a></span></h3><p>The single most impactful performance discovery of the project: <strong>Ollama reloads the entire model from disk whenever num_ctx changes between requests.</strong> On a 4.7 GB model over a 20-second cold load, this adds 20–30 seconds to every pipeline stage transition.</p>
+<p>Early in development, we had different context windows: BA at 8192, Code Generator at 16384, Code Reviewer at 8192, Test Generator at 12288. Every agent-to-agent handoff forced a model reload. A 4-story pipeline was losing 2–3 minutes to reloads alone.</p>
+<p>The fix was to normalise every agent to num_ctx = 16384:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> application.<span style="color:#a6e22e">yaml</span>
+</span></span><span style="display:flex;"><span>codeforgeai:
+</span></span><span style="display:flex;"><span>  ollama:
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> Uniform 16384 context window <span style="color:#66d9ef">for</span> all agents <span style="color:#960050;background-color:#1e0010">—</span> avoids Ollama model reloads
+</span></span><span style="display:flex;"><span>    code<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>ctx:   16384
+</span></span><span style="display:flex;"><span>    review<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>ctx: 16384
+</span></span><span style="display:flex;"><span>    test<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>ctx:   16384
+</span></span><span style="display:flex;"><span>    ba<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>ctx:     16384
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span> Output limits stay per<span style="color:#f92672">-</span>agent (these don<span style="color:#960050;background-color:#1e0010">&#39;</span>t cause model reloads)
+</span></span><span style="display:flex;"><span>    code<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>predict:   6144
+</span></span><span style="display:flex;"><span>    review<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>predict: 1024
+</span></span><span style="display:flex;"><span>    test<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>predict:   6144
+</span></span><span style="display:flex;"><span>    ba<span style="color:#f92672">-</span>num<span style="color:#f92672">-</span>predict:     2048
+</span></span></code></pre></div><p>Memory math for num_ctx = 16384 at Q4_K_M:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>KV cache per token <span style="color:#f92672">=</span> 2 <span style="color:#960050;background-color:#1e0010">×</span> num_layers <span style="color:#960050;background-color:#1e0010">×</span> head_dim <span style="color:#960050;background-color:#1e0010">×</span> bytes_per_element
+</span></span><span style="display:flex;"><span>qwen2.<span style="color:#a6e22e">5</span><span style="color:#f92672">-</span>coder:7b at 16384 tokens <span style="color:#960050;background-color:#1e0010">→</span> KV cache <span style="color:#960050;background-color:#1e0010">≈</span> 0.<span style="color:#a6e22e">6</span> GiB  <span style="color:#960050;background-color:#1e0010">✓</span> trivial on 32 GB
+</span></span></code></pre></div><p>Total memory budget:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>qwen2.<span style="color:#a6e22e">5</span><span style="color:#f92672">-</span>coder:7b <span style="color:#a6e22e">weights</span> (Q4_K_M) : <span style="color:#f92672">~</span>4.<span style="color:#a6e22e">7</span> GiB
+</span></span><span style="display:flex;"><span>KV <span style="color:#a6e22e">cache</span> (num_ctx<span style="color:#f92672">=</span>16384)          : <span style="color:#f92672">~</span>0.<span style="color:#a6e22e">6</span> GiB
+</span></span><span style="display:flex;"><span>Compute graph overhead            : <span style="color:#f92672">~</span>0.<span style="color:#a6e22e">3</span> GiB
+</span></span><span style="display:flex;"><span>nomic<span style="color:#f92672">-</span>embed<span style="color:#f92672">-</span>text (always<span style="color:#f92672">-</span>on)      : <span style="color:#f92672">~</span>0.<span style="color:#a6e22e">5</span> GiB
+</span></span><span style="display:flex;"><span>Spring Boot JVM                   : <span style="color:#f92672">~</span>1.<span style="color:#a6e22e">5</span> GiB
+</span></span><span style="display:flex;"><span>Windows OS overhead               : <span style="color:#f92672">~</span>6.<span style="color:#a6e22e">0</span> GiB
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">─────────────────────────────────────────────</span>
+</span></span><span style="display:flex;"><span>Total                             : <span style="color:#f92672">~</span>13.<span style="color:#a6e22e">6</span> GiB of 32 GiB  <span style="color:#960050;background-color:#1e0010">✓</span> comfortable
+</span></span><span style="display:flex;"><span>Free headroom                     : <span style="color:#f92672">~</span>18 GiB
+</span></span></code></pre></div><h3 id="64-final-model-decision" class="relative group"><strong>6.4 Final Model Decision</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#64-final-model-decision" aria-label="Anchor">#</a></span></h3><p>One model (qwen2.5-coder:7b-instruct) running all 4 code/review/test agents, uniform num_ctx = 16384. No hot-swap delays. No model reloads between pipeline stages.</p>
+<p>Per-agent temperature was tuned separately:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: AiConfig.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Code Generator — slightly creative but predictable</span>
+</span></span><span style="display:flex;"><span>OllamaChatOptions.<span style="color:#a6e22e">builder</span>().<span style="color:#a6e22e">temperature</span>(0.<span style="color:#a6e22e">3</span>)...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Code Reviewer — consistent, reproducible JSON verdicts</span>
+</span></span><span style="display:flex;"><span>OllamaChatOptions.<span style="color:#a6e22e">builder</span>().<span style="color:#a6e22e">temperature</span>(0.<span style="color:#a6e22e">2</span>)...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Test Generator — slightly creative for edge case discovery</span>
+</span></span><span style="display:flex;"><span>OllamaChatOptions.<span style="color:#a6e22e">builder</span>().<span style="color:#a6e22e">temperature</span>(0.<span style="color:#a6e22e">3</span>)...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// BA Agent — deterministic JSON output</span>
+</span></span><span style="display:flex;"><span>OllamaChatOptions.<span style="color:#a6e22e">builder</span>().<span style="color:#a6e22e">temperature</span>(0.<span style="color:#a6e22e">2</span>)...
+</span></span></code></pre></div><p>The Modelfile pins temperature to 0.1 at the model level (overridable per-request by the app):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Modelfile.<span style="color:#a6e22e">qwen</span><span style="color:#f92672">-</span>coder
+</span></span><span style="display:flex;"><span>PARAMETER temperature 0.<span style="color:#a6e22e">1</span>    <span style="color:#960050;background-color:#1e0010">#</span> Very low: deterministic, reproducible code
+</span></span><span style="display:flex;"><span>PARAMETER num_thread   16    <span style="color:#960050;background-color:#1e0010">#</span> All 16 threads <span style="color:#960050;background-color:#1e0010">—</span> AVX2 <span style="color:#f92672">+</span> AVX_VNNI fast path
+</span></span><span style="display:flex;"><span>PARAMETER num_ctx    16384
+</span></span><span style="display:flex;"><span>PARAMETER num_predict  6144
+</span></span><span style="display:flex;"><span>PARAMETER stop <span style="color:#f92672">&lt;|</span>im_end<span style="color:#f92672">|&gt;</span>
+</span></span><span style="display:flex;"><span>PARAMETER stop <span style="color:#f92672">&lt;|</span>endoftext<span style="color:#f92672">|&gt;</span>
+</span></span></code></pre></div><h3 id="65-ollama-environment-variables-that-mattered" class="relative group"><strong>6.5 Ollama Environment Variables That Mattered</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#65-ollama-environment-variables-that-mattered" aria-label="Anchor">#</a></span></h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> Set permanently in Windows System Environment Variables
+</span></span><span style="display:flex;"><span>OLLAMA_MAX_LOADED_MODELS <span style="color:#f92672">=</span> 1   <span style="color:#960050;background-color:#1e0010">#</span> One model hot at a <span style="color:#a6e22e">time</span> (single model, no swap)
+</span></span><span style="display:flex;"><span>OLLAMA_NUM_PARALLEL      <span style="color:#f92672">=</span> 1   <span style="color:#960050;background-color:#1e0010">#</span> One inference at a <span style="color:#a6e22e">time</span> (CPU can<span style="color:#960050;background-color:#1e0010">&#39;</span>t parallelise)
+</span></span><span style="display:flex;"><span>OLLAMA_FLASH_ATTENTION   <span style="color:#f92672">=</span> 1   <span style="color:#960050;background-color:#1e0010">#</span> Reduces KV cache memory usage
+</span></span><span style="display:flex;"><span>OLLAMA_KEEP_ALIVE        <span style="color:#f92672">=</span> 10m <span style="color:#960050;background-color:#1e0010">#</span> Keep model loaded during pipeline, unload after
+</span></span></code></pre></div><p>OLLAMA_FLASH_ATTENTION=1 alone reduced KV cache by ~30% with no measurable quality impact — worth setting on any CPU-bound deployment.</p>
+<h2 id="7-challenges-we-solved" class="relative group"><strong>7. Challenges We Solved</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-challenges-we-solved" aria-label="Anchor">#</a></span></h2><h3 id="challenge-1-llm-ignores-output-format-instructions" class="relative group"><strong>Challenge 1: LLM Ignores Output Format Instructions</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-1-llm-ignores-output-format-instructions" aria-label="Anchor">#</a></span></h3><p><strong>Problem</strong>: Even with explicit &ldquo;respond with only a JSON array&rdquo; instructions, qwen2.5-coder would prefix responses with &ldquo;Sure! Here are your user stories:&rdquo; or wrap output in markdown fences.</p>
+<p><strong>Solution</strong>: Multi-layer extraction (see §4.1) + retry with reinforcement prompt. On second attempt, we append a stern reminder directly to the prompt.</p>
+<h3 id="challenge-2-context-window-overflow-on-multi-story-pipelines" class="relative group"><strong>Challenge 2: Context Window Overflow on Multi-Story Pipelines</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-2-context-window-overflow-on-multi-story-pipelines" aria-label="Anchor">#</a></span></h3><p><strong>Problem</strong>: Story 1 generates <a href="http://BookController.java" target="_blank" rel="noreferrer">BookController.java</a>, <a href="http://BookService.java" target="_blank" rel="noreferrer">BookService.java</a>, and <a href="http://BookRepository.java" target="_blank" rel="noreferrer">BookRepository.java</a>. Story 2 needs to know about all three to avoid duplicate code, but passing them verbatim consumed 60–70% of the context window before the story description even started.</p>
+<p><strong>Solution</strong>: The <strong>signatures-only index</strong> (buildAccumulatedCodeIndex) — pass method signatures only, not method bodies. A 400-line Java class reduces to ~15 lines of signatures.</p>
+<h3 id="challenge-3-truncated-output--unclosed-braces" class="relative group"><strong>Challenge 3: Truncated Output — Unclosed Braces</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-3-truncated-output--unclosed-braces" aria-label="Anchor">#</a></span></h3><p><strong>Problem</strong>: At num_predict = 6144, the model would hit the token limit mid-method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Book<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">searchByTitle</span>(String title) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bookRepository.<span style="color:#a6e22e">findByTitleContainingIgnoreCase</span>(title);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &lt;token limit hit — class never closed&gt;</span>
+</span></span></code></pre></div><p><strong>Solution</strong>: Detect truncated code blocks (UNCLOSED_CODE_BLOCK_PATTERN), count { vs }, and auto-close the deficit:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Matcher unclosedMatcher <span style="color:#f92672">=</span> UNCLOSED_CODE_BLOCK_PATTERN.<span style="color:#a6e22e">matcher</span>(response);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (unclosedMatcher.<span style="color:#a6e22e">find</span>()) {
+</span></span><span style="display:flex;"><span>    String truncatedCode <span style="color:#f92672">=</span> unclosedMatcher.<span style="color:#a6e22e">group</span>(1).<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>    log.<span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#34;Detected TRUNCATED code output. Length: {} chars&#34;</span>, truncatedCode.<span style="color:#a6e22e">length</span>());
+</span></span><span style="display:flex;"><span>    codeBlocks.<span style="color:#a6e22e">add</span>(truncatedCode);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="challenge-4-postgresql" class="relative group"><strong>Challenge 4: PostgreSQL &ldquo;Marked as Broken&rdquo; Connections</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-4-postgresql" aria-label="Anchor">#</a></span></h3><p><strong>Problem</strong>: LLM inference calls run for 3–8 minutes. During that time, HikariCP connections sit idle. PostgreSQL silently drops idle TCP connections after ~5 minutes, leaving Hikari&rsquo;s pool holding dead connections. The next DB write fails with SQLSTATE(08006).</p>
+<p><strong>Solution</strong>: Two-pronged fix in application.yaml:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>hikari:
+</span></span><span style="display:flex;"><span>  keepalive<span style="color:#f92672">-</span>time: 30000       <span style="color:#960050;background-color:#1e0010">#</span> 30s <span style="color:#960050;background-color:#1e0010">—</span> sends <span style="color:#e6db74">&#34;SELECT 1&#34;</span> <span style="color:#66d9ef">to</span> PG every 30s
+</span></span><span style="display:flex;"><span>  idle<span style="color:#f92672">-</span>timeout:   600000      <span style="color:#960050;background-color:#1e0010">#</span> 10 min <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#66d9ef">return</span> connections before PG drops them
+</span></span><span style="display:flex;"><span>  connection<span style="color:#f92672">-</span>timeout: 30000
+</span></span><span style="display:flex;"><span>  leak<span style="color:#f92672">-</span>detection<span style="color:#f92672">-</span>threshold: 120000  <span style="color:#960050;background-color:#1e0010">#</span> Warn <span style="color:#66d9ef">if</span> connection held <span style="color:#f92672">&gt;</span> 2 min
+</span></span></code></pre></div><p>Combined with TCP keepalives in the JDBC URL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>url: jdbc:postgresql:<span style="color:#75715e">//localhost:5432/codeforgeai?tcpKeepAlive=true&amp;socketTimeout=0&amp;connectTimeout=10</span>
+</span></span></code></pre></div><h3 id="challenge-5-deepseek-coder-v2-double-bos-token" class="relative group"><strong>Challenge 5: deepseek-coder-v2 Double-BOS Token</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-5-deepseek-coder-v2-double-bos-token" aria-label="Anchor">#</a></span></h3><p><strong>Problem</strong>: Ollama&rsquo;s default chat template for deepseek-coder-v2:16b injected an explicit &lt;｜begin▁of▁sentence｜&gt; token, but llama.cpp also adds it via add_bos_token=true in the model config. The double-BOS produced garbled generation quality.</p>
+<p><strong>Solution</strong>: Custom Modelfile stripping the explicit BOS from the template (Modelfile.deepseek-coder).</p>
+<h3 id="challenge-6-ollama-model-reloads-between-pipeline-stages" class="relative group"><strong>Challenge 6: Ollama Model Reloads Between Pipeline Stages</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-6-ollama-model-reloads-between-pipeline-stages" aria-label="Anchor">#</a></span></h3><p>Already described in §6.3. The fix was normalising num_ctx = 16384 across all agents.</p>
+<h3 id="challenge-7-llm-returns-plain-text-instead-of-code" class="relative group"><strong>Challenge 7: LLM Returns Plain Text Instead of Code</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-7-llm-returns-plain-text-instead-of-code" aria-label="Anchor">#</a></span></h3><p>The code generator has a retry path for this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: CodeGeneratorAgent.java</span>
+</span></span><span style="display:flex;"><span>log.<span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#34;LLM returned plain text. Attempting retry with explicit code-only instruction...&#34;</span>);
+</span></span><span style="display:flex;"><span>String retryPrompt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Your previous response was plain text, NOT code. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Convert the following description into actual Java source code. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Respond with ONLY a ```java code block. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;No explanations. No commentary. Just code. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Start EVERY file with: // === FILE: &lt;relative-path-from-src&gt; ===\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Start immediately with ```java\n\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Here is what you described (convert this to code):\n&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> response.<span style="color:#a6e22e">substring</span>(0, Math.<span style="color:#a6e22e">min</span>(4000, response.<span style="color:#a6e22e">length</span>()));
+</span></span></code></pre></div><h2 id="8-code-structure" class="relative group"><strong>8. Code Structure</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-code-structure" aria-label="Anchor">#</a></span></h2><p>codeforgeai/</p>
+<p>├── src/main/java/org/epam/codeforgeai/</p>
+<p>│   ├── agent/                          # The 5 AI agents</p>
+<p>│   │   ├── Agent.java                  # Common interface: execute(PipelineContext)</p>
+<p>│   │   ├── BusinessAnalystAgent.java   # Requirements → User Stories JSON</p>
+<p>│   │   ├── CodeGeneratorAgent.java     # User Stories → Java source code (839 lines)</p>
+<p>│   │   ├── CodeReviewAgent.java        # Java code → JSON review verdict</p>
+<p>│   │   ├── TestGeneratorAgent.java     # Java code → JUnit 5 tests</p>
+<p>│   │   └── TestExecutorAgent.java      # Compile + run tests, capture results</p>
+<p>│   │</p>
+<p>│   ├── config/</p>
+<p>│   │   ├── AiConfig.java               # 4 ChatClient beans (per-agent model/temp/ctx)</p>
+<p>│   │   ├── AppProperties.java          # @ConfigurationProperties for YAML</p>
+<p>│   │   ├── AsyncConfig.java            # @Async thread pool for pipeline</p>
+<p>│   │   └── VaadinConfig.java           # Vaadin push + session config</p>
+<p>│   │</p>
+<p>│   ├── event/</p>
+<p>│   │   └── PipelineProgressEvent.java  # Spring ApplicationEvent for UI push</p>
+<p>│   │</p>
+<p>│   ├── model/</p>
+<p>│   │   ├── dto/</p>
+<p>│   │   │   ├── PipelineContext.java    # Mutable pipeline state (passed agent→agent)</p>
+<p>│   │   │   ├── UserStory.java          # BA output: title, description, AC, test cases</p>
+<p>│   │   │   ├── StoryPipelineResult.java# Per-story: code, review, tests, exec output</p>
+<p>│   │   │   ├── CodeReviewResult.java   # approved, issues[], suggestions</p>
+<p>│   │   │   ├── AgentToggles.java       # Feature flags: enableBA, enableDev, etc.</p>
+<p>│   │   │   └── TestCaseSpec.java       # Test case: title, steps, expectedResult</p>
+<p>│   │   ├── entity/</p>
+<p>│   │   │   ├── PipelineRun.java        # JPA: pipeline run with all results</p>
+<p>│   │   │   └── AgentExecution.java     # JPA: per-agent timing + status</p>
+<p>│   │   └── enums/</p>
+<p>│   │       ├── PipelineStatus.java     # PENDING→IN_PROGRESS→&hellip;→COMPLETED</p>
+<p>│   │       └── AgentType.java          # BA_AGENT, CODE_GENERATOR, etc.</p>
+<p>│   │</p>
+<p>│   ├── repository/</p>
+<p>│   │   ├── PipelineRunRepository.java  # JPA + custom queries</p>
+<p>│   │   └── <a href="http://AgentExecutionRepository.java" target="_blank" rel="noreferrer">AgentExecutionRepository.java</a></p>
+<p>│   │</p>
+<p>│   ├── service/</p>
+<p>│   │   ├── PipelineOrchestrator.java   # @Async: coordinates all 5 agents (1053 lines)</p>
+<p>│   │   ├── PipelineTrackingService.java# Transactional DB writes for pipeline state</p>
+<p>│   │   ├── CodebaseIngestionService.java # RAG: walks module, chunks, embeds to PGVector</p>
+<p>│   │   ├── CodeDeploymentService.java  # Writes approved Java files to module/src/</p>
+<p>│   │   ├── DocumentIngestionService.java # PDF/TXT → raw requirements text</p>
+<p>│   │   └── JiraService.java            # Creates Jira stories + test cases via REST</p>
+<p>│   │</p>
+<p>│   └── ui/                             # Vaadin views</p>
+<p>│       ├── MainLayout.java             # AppLayout: sidebar nav + dark mode toggle</p>
+<p>│       ├── NewPipelineView.java        # Upload PDF, set agent toggles, start pipeline</p>
+<p>│       ├── PipelineDetailView.java     # Real-time pipeline progress (1151 lines)</p>
+<p>│       ├── PipelineHistoryView.java    # History grid with results</p>
+<p>│       ├── BaPipelineView.java         # BA-only analysis view</p>
+<p>│       └── DashboardView.java          # Stats: total runs, pass rate, etc.</p>
+<p>│</p>
+<p>├── src/main/resources/</p>
+<p>│   ├── application.yaml               # All config: Ollama, Hikari, PGVector, Jira</p>
+<p>│   └── prompts/</p>
+<p>│       ├── ba-system.st               # BA system prompt</p>
+<p>│       ├── ba-user-story-generator.st # BA user prompt template</p>
+<p>│       ├── code-generator-system.st   # Code gen system prompt</p>
+<p>│       ├── code-generator-plan.st     # Planning phase prompt</p>
+<p>│       ├── code-generator-per-story.st          # Per-story generation prompt</p>
+<p>│       ├── code-generator-per-story-feedback.st # Per-story feedback regen</p>
+<p>│       ├── code-generator-with-feedback.st      # Legacy monolithic feedback</p>
+<p>│       ├── code-review-system.st      # Code review system prompt</p>
+<p>│       └── test-generator-system.st   # Test generator system prompt</p>
+<p>│</p>
+<p>└── docker/</p>
+<pre><code>├── Modelfile.qwen-coder            # qwen2.5-coder:7b CPU config
+
+├── Modelfile.gemma4                # gemma4:e2b BA-agent config
+
+└── Modelfile.deepseek-coder        # deepseek-coder-v2:16b (alternative)
+</code></pre>
+<h2 id="9-real-time-ui-with-vaadin--server-push" class="relative group"><strong>9. Real-Time UI with Vaadin &amp; Server Push</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-real-time-ui-with-vaadin--server-push" aria-label="Anchor">#</a></span></h2><p>The UI is built with Vaadin Flow (server-side Java), rendering all components in Java without writing HTML or JavaScript.</p>
+<p><strong>Server Push architecture</strong>: The pipeline runs in a background thread (@Async). To update the browser in real time, each agent call publishes a PipelineProgressEvent using Spring&rsquo;s ApplicationEventPublisher. A static registry in PipelineDetailView maps pipeline run IDs to active browser sessions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: PipelineDetailView.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Map<span style="color:#f92672">&lt;</span>UUID, Set<span style="color:#f92672">&lt;</span>PipelineDetailView<span style="color:#f92672">&gt;&gt;</span> ACTIVE_VIEWS <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EventListener</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onPipelineProgress</span>(PipelineProgressEvent event) {
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>PipelineDetailView<span style="color:#f92672">&gt;</span> views <span style="color:#f92672">=</span> ACTIVE_VIEWS.<span style="color:#a6e22e">get</span>(event.<span style="color:#a6e22e">getPipelineRunId</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (views <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> views.<span style="color:#a6e22e">isEmpty</span>()) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (PipelineDetailView view : views) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (view.<span style="color:#a6e22e">ui</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            view.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">access</span>(() <span style="color:#f92672">-&gt;</span> {              <span style="color:#75715e">// UI.access() → server push to browser</span>
+</span></span><span style="display:flex;"><span>                view.<span style="color:#a6e22e">updateStepCard</span>(event.<span style="color:#a6e22e">getAgentType</span>(), event.<span style="color:#a6e22e">getStatus</span>(), event.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>                view.<span style="color:#a6e22e">updateStatusBadge</span>(event.<span style="color:#a6e22e">getStatus</span>());
+</span></span><span style="display:flex;"><span>                view.<span style="color:#a6e22e">updateProgressBar</span>(event.<span style="color:#a6e22e">getStatus</span>());
+</span></span><span style="display:flex;"><span>                view.<span style="color:#a6e22e">loadPipelineData</span>();        <span style="color:#75715e">// Refresh per-story sections from DB</span>
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Progress bar</strong> is computed from real story/agent data — not a spinner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: PipelineDetailView.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Layout: BA (10%) → Stories (80%) → Final (10%)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Within each story: code=25% → review=50% → test gen=75% → test exec=100%</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> storyWeight <span style="color:#f92672">=</span> 0.<span style="color:#a6e22e">80</span> <span style="color:#f92672">/</span> lastKnownTotalStories;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> phaseProgress <span style="color:#f92672">=</span> <span style="color:#66d9ef">switch</span> (lastKnownAgentType) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CODE_GENERATOR <span style="color:#f92672">-&gt;</span> 0.<span style="color:#a6e22e">25</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CODE_REVIEWER  <span style="color:#f92672">-&gt;</span> 0.<span style="color:#a6e22e">50</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> TEST_GENERATOR <span style="color:#f92672">-&gt;</span> 0.<span style="color:#a6e22e">75</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> TEST_EXECUTOR  <span style="color:#f92672">-&gt;</span> 1.<span style="color:#a6e22e">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span>             <span style="color:#f92672">-&gt;</span> 0.<span style="color:#a6e22e">0</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> progress <span style="color:#f92672">=</span> 0.<span style="color:#a6e22e">10</span> <span style="color:#f92672">+</span> (lastKnownStoryIndex <span style="color:#f92672">*</span> storyWeight) <span style="color:#f92672">+</span> (phaseProgress <span style="color:#f92672">*</span> storyWeight);
+</span></span></code></pre></div><p><strong>Dark mode toggle</strong> uses Vaadin&rsquo;s Lumo theme with VaadinSession persistence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: MainLayout.java</span>
+</span></span><span style="display:flex;"><span>darkModeBtn.<span style="color:#a6e22e">addClickListener</span>(e <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> themeList <span style="color:#f92672">=</span> UI.<span style="color:#a6e22e">getCurrent</span>().<span style="color:#a6e22e">getElement</span>().<span style="color:#a6e22e">getThemeList</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> nowDark <span style="color:#f92672">=</span> themeList.<span style="color:#a6e22e">contains</span>(Lumo.<span style="color:#a6e22e">DARK</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nowDark) {
+</span></span><span style="display:flex;"><span>        themeList.<span style="color:#a6e22e">remove</span>(Lumo.<span style="color:#a6e22e">DARK</span>);
+</span></span><span style="display:flex;"><span>        darkModeBtn.<span style="color:#a6e22e">setText</span>(<span style="color:#e6db74">&#34;🌙&#34;</span>);
+</span></span><span style="display:flex;"><span>        VaadinSession.<span style="color:#a6e22e">getCurrent</span>().<span style="color:#a6e22e">setAttribute</span>(DARK_MODE_SESSION_KEY, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        themeList.<span style="color:#a6e22e">add</span>(Lumo.<span style="color:#a6e22e">DARK</span>);
+</span></span><span style="display:flex;"><span>        darkModeBtn.<span style="color:#a6e22e">setText</span>(<span style="color:#e6db74">&#34;☀️&#34;</span>);
+</span></span><span style="display:flex;"><span>        VaadinSession.<span style="color:#a6e22e">getCurrent</span>().<span style="color:#a6e22e">setAttribute</span>(DARK_MODE_SESSION_KEY, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="10-jira-integration" class="relative group"><strong>10. Jira Integration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-jira-integration" aria-label="Anchor">#</a></span></h2><p>After the BA agent generates user stories, JiraService creates Jira issues and links test cases. The pipeline pauses at a human review checkpoint so the engineer can review the created stories in Jira before code generation begins.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: PipelineOrchestrator.java — BA human review checkpoint</span>
+</span></span><span style="display:flex;"><span>humanReviewPhase.<span style="color:#a6e22e">put</span>(runId, REVIEW_PHASE_BA);
+</span></span><span style="display:flex;"><span>controlSignals.<span style="color:#a6e22e">put</span>(runId, PipelineSignal.<span style="color:#a6e22e">HUMAN_REVIEW_REQUESTED</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>String baReviewMsg <span style="color:#f92672">=</span> context.<span style="color:#a6e22e">getJiraStoryKeys</span>().<span style="color:#a6e22e">isEmpty</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;BA analysis complete. Review user stories and approve to proceed.&#34;</span>
+</span></span><span style="display:flex;"><span>    : <span style="color:#e6db74">&#34;Jira stories created: &#34;</span> <span style="color:#f92672">+</span> String.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;, &#34;</span>, context.<span style="color:#a6e22e">getJiraStoryKeys</span>())
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;. Review and approve to proceed.&#34;</span>;
+</span></span><span style="display:flex;"><span>publishEvent(runId, AgentType.<span style="color:#a6e22e">BA_AGENT</span>, PipelineStatus.<span style="color:#a6e22e">AWAITING_HUMAN_REVIEW</span>,
+</span></span><span style="display:flex;"><span>             baReviewMsg, 0, REVIEW_PHASE_BA, context.<span style="color:#a6e22e">getJiraStoryKeys</span>());
+</span></span></code></pre></div><p>The AppProperties.JiraProperties drives all connection parameters:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: AppProperties.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JiraProperties</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  baseUrl;         <span style="color:#75715e">// e.g. https://your-domain.atlassian.net</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  projectKey;      <span style="color:#75715e">// e.g. SCRUM</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  username;        <span style="color:#75715e">// email for Jira Cloud</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  apiToken;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  storyIssueType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Task&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  testIssueType  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Task&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String  issueLinkType  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Relates&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> enabled        <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="11-human-in-the-loop-checkpoints" class="relative group"><strong>11. Human-in-the-Loop Checkpoints</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#11-human-in-the-loop-checkpoints" aria-label="Anchor">#</a></span></h2><p>The pipeline has <strong>three</strong> pause points, each waiting for an explicit browser-side approval before proceeding:</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Checkpoint</strong></th>
+					<th><strong>Phase</strong></th>
+					<th><strong>Purpose</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>After BA Agent</td>
+					<td>Review generated user stories in Jira before code generation starts</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>After all stories processed</td>
+					<td>Approve final accumulated code before deployment to module</td>
+			</tr>
+			<tr>
+					<td>(Legacy) 3</td>
+					<td>After test generation</td>
+					<td>Review generated tests before executing them</td>
+			</tr>
+	</tbody>
+</table>
+<p>Implemented via a cooperative signal map:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: PipelineOrchestrator.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> PipelineSignal { RUNNING, PAUSE_REQUESTED, CANCEL_REQUESTED, HUMAN_REVIEW_REQUESTED }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">checkpoint</span>(UUID runId) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>        PipelineSignal signal <span style="color:#f92672">=</span> controlSignals.<span style="color:#a6e22e">getOrDefault</span>(runId, PipelineSignal.<span style="color:#a6e22e">RUNNING</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> (signal) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> CANCEL_REQUESTED <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                trackingService.<span style="color:#a6e22e">updateRunStatus</span>(runId, PipelineStatus.<span style="color:#a6e22e">CANCELLED</span>);
+</span></span><span style="display:flex;"><span>                controlSignals.<span style="color:#a6e22e">remove</span>(runId);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;   <span style="color:#75715e">// caller returns, pipeline stops</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> PAUSE_REQUESTED, HUMAN_REVIEW_REQUESTED <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                trackingService.<span style="color:#a6e22e">updateRunStatus</span>(runId, status);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">synchronized</span> (controlSignals) { controlSignals.<span style="color:#a6e22e">wait</span>(30_000); }
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Loop back — re-evaluate signal after wake</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> RUNNING <span style="color:#f92672">-&gt;</span> { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>; }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="12-what-we-learned" class="relative group"><strong>12. What We Learned</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#12-what-we-learned" aria-label="Anchor">#</a></span></h2><p><strong>1. Model selection matters more than prompt engineering.</strong> The best prompt in the world cannot make a 2B model reliably produce multi-file Spring Boot code. The jump from gemma4:e2b to qwen2.5-coder:7b removed entire categories of failure (missing imports, missing braces, missing FILE separators) that no prompt reinforcement could fix.</p>
+<p><strong>2. Uniform num_ctx is not optional when running sequential agents.</strong> The 20–30 second model reload delay per stage — invisible during single-agent testing — compounds into minutes across a full pipeline. Always benchmark multi-agent pipelines with realistic stage-to-stage transitions, not individual calls.</p>
+<p><strong>3. Deterministic output requires very low temperature.</strong> Code generation at temperature=0.1–0.3 produces consistent, repeatable output. Higher temperatures generated creative but broken Java — inconsistent method names, invented annotations that don&rsquo;t exist, mismatched parameter types across files.</p>
+<p><strong>4. Never pass full accumulated source to every story prompt.</strong> A signatures-only index is the practical solution to the context window problem. Four stories × 3 Java files × 200 lines each = 2,400 lines. Passed as signatures: ~60 lines. The LLM gets the structural contract without the noise.</p>
+<p><strong>5. Structural pre-validation before LLM review saves tokens.</strong> Running a fast heuristic check for // === FILE:, balanced braces, and package declarations before invoking the Code Review LLM catches ~40% of failures in microseconds instead of the 30–60 seconds an LLM call costs.</p>
+<p><strong>6. The database connection pool needs tuning for LLM workloads.</strong> Standard HikariCP defaults assume fast OLTP queries. LLM pipelines hold transactions open across calls that last minutes. The 30-second keepalive-time and tcpKeepAlive=true in the JDBC URL are not optional.</p>
+<p>Refer to the Github account for full code base.</p>
+<p>Repo Link:  <a href="https://github.com/ankitagrahari/codeforgeai" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/codeforgeai</a></p>
+<p><em>CodeForgeAI is built on Spring Boot 4.0.x, Spring AI, Vaadin Flow 25, Ollama, and PostgreSQL + PGVector. All LLM inference runs locally via Ollama on an Intel Core Ultra 7 265H with 32 GB RAM — no cloud API calls.</em></p>
+<p>If you find this tutorial of some use, do comment, and share your thoughts, suggestions.</p>
+<p>Happy learning !!</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/log4j-vulnerability-continued/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Log4j Vulnerability - Continued</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:17 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/posts/set-swappiness-in-linux/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Set Swappiness in Linux</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:18 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>
