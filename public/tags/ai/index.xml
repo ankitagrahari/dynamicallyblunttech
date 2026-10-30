@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>AI on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/ai/</link>
+		<description>Recent content in AI on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:27 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Building an AI Tutor with Spring AI, Ollama, and Vaadin</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:27 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;AI Tutor&lt;/strong&gt; is a web application that uses &lt;strong&gt;Spring Boot&lt;/strong&gt; and &lt;strong&gt;Spring AI&lt;/strong&gt; on the backend, an &lt;strong&gt;Ollama&lt;/strong&gt;-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and &lt;strong&gt;Vaadin&lt;/strong&gt; for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a &lt;strong&gt;PGVector&lt;/strong&gt;-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions &lt;em&gt;specific to the uploaded documents&lt;/em&gt;, avoiding “hallucinations”  .&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

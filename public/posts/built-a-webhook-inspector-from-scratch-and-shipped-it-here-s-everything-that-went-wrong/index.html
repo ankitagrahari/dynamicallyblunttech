@@ -69,10 +69,13 @@
     content="
       
         
+			
+		
+
+
 Live at: https://hookspy.inHookSpy - Walk Through
 
 Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and&hellip; nothing. The endpoint didn&rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.
-Tools like RequestBin and Webhook.site exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That&rsquo;s HookSpy.
       
     "
   />
@@ -100,21 +103,22 @@ Tools like RequestBin and Webhook.site exist. But I wanted to build my own — o
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong">
 	<meta property="og:description" content="Live at: https://hookspy.inHookSpy - Walk Through
-Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and… nothing. The endpoint didn’t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.
-Tools like RequestBin and Webhook.site exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That’s HookSpy.">
+Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and… nothing. The endpoint didn’t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:26+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:26+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="Webhook">
+		<meta property="article:tag" content="Hookspy">
+		<meta property="article:tag" content="Kafka">
+		<meta property="article:tag" content="Spring">
 
   
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong">
 	<meta name="twitter:description" content="Live at: https://hookspy.inHookSpy - Walk Through
-Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and… nothing. The endpoint didn’t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.
-Tools like RequestBin and Webhook.site exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That’s HookSpy.">
+Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and… nothing. The endpoint didn’t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.">
 
   
   <script type="application/ld+json">
@@ -125,7 +129,7 @@ Tools like RequestBin and Webhook.site exist. But I wanted to build my own — o
     "name": "Built a Webhook Inspector from Scratch and Shipped It — Here\u0027s Everything That Went Wrong",
     "headline": "Built a Webhook Inspector from Scratch and Shipped It — Here\u0027s Everything That Went Wrong",
     
-    "abstract": "\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eLive at:\u003c\/strong\u003e \u003ca href=\u0022https:\/\/hookspy.in\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/hookspy.in\u003c\/a\u003eHookSpy - Walk Through\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eEvery developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and\u0026hellip; nothing. The endpoint didn\u0026rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.\u003c\/p\u003e\n\u003cp\u003eTools like \u003cem\u003eRequestBin\u003c\/em\u003e and \u003cem\u003eWebhook.site\u003c\/em\u003e exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That\u0026rsquo;s \u003cem\u003e\u003cstrong\u003eHookSpy\u003c\/strong\u003e\u003c\/em\u003e.\u003c\/p\u003e",
+    "abstract": "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/FGn4FYMa6-U?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eLive at:\u003c\/strong\u003e \u003ca href=\u0022https:\/\/hookspy.in\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/hookspy.in\u003c\/a\u003eHookSpy - Walk Through\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eEvery developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and\u0026hellip; nothing. The endpoint didn\u0026rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong\/",
     "author" : {
@@ -138,7 +142,7 @@ Tools like RequestBin and Webhook.site exist. But I wanted to build my own — o
     
     "dateModified": "2026-10-27T08:14:26\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["Webhook","hookspy","kafka","Spring"],
     
     "mainEntityOfPage": "true",
     "wordCount": "1653"
@@ -164,8 +168,8 @@ Tools like RequestBin and Webhook.site exist. But I wanted to build my own — o
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/",
-       "name": "[\"6249579158f0bd10b2a57273\"",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/kafka/",
+       "name": "Kafka",
        "position": 3
      },
      {
@@ -323,7 +327,11 @@ Tools like RequestBin and Webhook.site exist. But I wanted to build my own — o
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
-        <blockquote>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/FGn4FYMa6-U?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
+<blockquote>
 <p><strong>Live at:</strong> <a href="https://hookspy.in" target="_blank" rel="noreferrer">https://hookspy.in</a>HookSpy - Walk Through</p>
 </blockquote>
 <p>Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and&hellip; nothing. The endpoint didn&rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.</p>

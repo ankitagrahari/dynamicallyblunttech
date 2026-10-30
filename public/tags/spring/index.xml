@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Spring on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/spring/</link>
+		<description>Recent content in Spring on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:26 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Built a Webhook Inspector from Scratch and Shipped It — Here&#39;s Everything That Went Wrong</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:26 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/built-a-webhook-inspector-from-scratch-and-shipped-it-here-s-everything-that-went-wrong/</guid>
+				<description>&lt;p&gt;{{&amp;lt; youtubeLite id=&amp;ldquo;FGn4FYMa6-U&amp;rdquo; label=&amp;ldquo;Webhook Inspector&amp;rdquo; &amp;gt;}}&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Live at:&lt;/strong&gt; &lt;a href=&#34;https://hookspy.in&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;https://hookspy.in&lt;/a&gt;HookSpy - Walk Through&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Every developer integrating Stripe, Razorpay, or GitHub has been there. You set up a webhook, fire a test event, and&amp;hellip; nothing. The endpoint didn&amp;rsquo;t respond. Or it did but your handler crashed silently. Or you just want to see the exact payload the service sends before writing a single line of handler code.&lt;/p&gt;&#xA;&lt;p&gt;Tools like &lt;em&gt;RequestBin&lt;/em&gt; and &lt;em&gt;Webhook.site&lt;/em&gt; exist. But I wanted to build my own — one I understood end to end, could deploy myself, and could use as a real product to learn distributed systems in practice. That&amp;rsquo;s &lt;em&gt;&lt;strong&gt;HookSpy&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

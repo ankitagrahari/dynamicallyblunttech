@@ -7,6 +7,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/dynamic-scheduling-any-rest-api-s/</loc>
             <lastmod>2026-10-27T08:14:31+05:30</lastmod>
@@ -91,6 +93,14 @@
     
   
     
+  
+    
+  
+    
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</loc>
             <lastmod>2026-10-27T08:14:29+05:30</lastmod>
@@ -141,6 +151,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/</loc>
             <lastmod>2026-10-27T08:14:27+05:30</lastmod>
@@ -166,6 +178,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/i-sentence-segmentation-using-apache-opennlp/</loc>
             <lastmod>2026-10-27T08:14:26+05:30</lastmod>
@@ -180,10 +194,18 @@
     
   
     
+  
+    
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java-with-spring-ai-generated/</loc>
             <lastmod>2026-10-27T08:14:26+05:30</lastmod>
           </url>
+    
+  
     
   
     
@@ -241,6 +263,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/</loc>
             <lastmod>2026-10-27T08:14:23+05:30</lastmod>
@@ -266,6 +290,14 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/find-all-anagrams-sliding-window-algorithm/</loc>
             <lastmod>2026-10-27T08:14:22+05:30</lastmod>
           </url>
+    
+  
+    
+  
+    
+  
+    
+  
     
   
     
@@ -352,6 +384,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/</loc>
             <lastmod>2026-10-27T08:14:19+05:30</lastmod>
@@ -377,6 +411,8 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/set-swappiness-in-linux/</loc>
             <lastmod>2026-10-27T08:14:18+05:30</lastmod>
           </url>
+    
+  
     
   
     
@@ -431,10 +467,14 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/</loc>
             <lastmod>2026-10-27T08:14:16+05:30</lastmod>
           </url>
+    
+  
     
   
     
@@ -549,12 +589,6 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/reading-csv-file-in-python-with-encoding/</loc>
             <lastmod>2026-10-27T08:14:12+05:30</lastmod>
           </url>
-    
-  
-    
-  
-    
-  
     
   
 </urlset>
