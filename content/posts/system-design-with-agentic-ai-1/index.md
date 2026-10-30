@@ -176,6 +176,8 @@ For a triage agent, a structured output could include:
 
 This does three things. It makes downstream routing easier. It makes testing easier. It reduces the risk that a useful detail gets buried in a paragraph.
 
+![Skills should be small enough to test and useful enough to reuse](images/df024c_dffce15e497e4170a91db4e20e8f3507.jpg "Skills should be small enough to test and useful enough to reuse")
+
 ## Hooks let the system guide the agent at the right moments
 
 Hooks are event-driven interventions in the agent loop. They run before or after key actions, such as a tool call, retrieval step, plan update, or final response. They help enforce policy, add context, check quality, and route control.
