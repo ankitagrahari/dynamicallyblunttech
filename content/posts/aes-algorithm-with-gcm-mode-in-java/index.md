@@ -2,9 +2,8 @@
 title: "AES Algorithm with GCM Mode in Java"
 date: 2026-10-27T08:14:25+05:30
 draft: false
-featureImage: "images/nsplsh_fd3dfe2582124123ba9c9751ff715791.jpg"
-tags: ['[]']
-categories: ['["6249579158f0bd10b2a57273"]']
+tags: ['AES', 'Encryption']
+categories: ['AES', 'Encryption']
 showReadingTime: true
 ---
 

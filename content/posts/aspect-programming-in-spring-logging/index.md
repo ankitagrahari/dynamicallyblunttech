@@ -2,7 +2,6 @@
 title: "Aspect Programming in Spring - Logging"
 date: 2026-10-27T08:14:14+05:30
 draft: false
-featureImage: "images/df024c_e3fc5355a244409db90ce2a8b1beafd9.jpg"
 tags: ['Spring Boot', 'Aspects']
 categories: ['Spring Boot']
 showReadingTime: true

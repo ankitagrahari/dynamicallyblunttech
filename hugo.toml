@@ -1,4 +1,4 @@
-baseURL = 'https://ankitagrahari.github.io/dynamicallyblunttech/'
+baseURL = "https://ankitagrahari.github.io/dynamicallyblunttech/"
 locale = 'en-us'
 title = 'DynamicallyBluntTech'
 theme = 'congo'

@@ -2,9 +2,8 @@
 title: "CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts"
 date: 2026-10-27T08:14:28+05:30
 draft: false
-featureImage: "images/df024c_5399559a147b4ccf87b34be38643f27c.jpg"
-tags: ['CCFA', 'Claude', 'GenAI']
-categories: ['Claude', 'CCFA']
+tags: ['CCAF', 'Claude', 'GenAI']
+categories: ['Claude', 'CCAF']
 showReadingTime: true
 ---
 
