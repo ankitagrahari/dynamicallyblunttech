@@ -4,12 +4,13 @@ title = 'DynamicallyBluntTech'
 theme = 'congo'
 
 [outputs]
-  home = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "JSON"]
   page = ["HTML"]
 
 [params]
   defaultTheme = "dark"          # Activates Congo's sleek tech dark-mode layout
   showReadingTime = true         # Surfaces reading statistics per post
+  enableSearch = true
 
 [params.homepage]
     showRecent = true

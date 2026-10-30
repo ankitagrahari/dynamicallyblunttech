@@ -1,0 +1,774 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts &middot; DynamicallyBluntTech</title>
+    <meta name="title" content="CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts &middot; DynamicallyBluntTech" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification
+Topics Covered #
+agentic vs workflow vs conversational systems,
+the agentic loop (gather context → act → verify),
+task decomposition,
+sequential vs parallel execution,
+multi-agent orchestration (hub-and-spoke, coordinator/subagent patterns),
+hooks vs prompts,
+session resumption, and
+common anti-patterns.
+
+
+Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.
+
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-1-agentic-architecture-orchestration-key-concepts/cca-f-domain1-agentic-architecture-orchestration-key-concepts/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
+    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-1-agentic-architecture-orchestration-key-concepts/cca-f-domain1-agentic-architecture-orchestration-key-concepts/">
+	<meta property="og:site_name" content="DynamicallyBluntTech">
+	<meta property="og:title" content="CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts">
+	<meta property="og:description" content="I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification
+Topics Covered # agentic vs workflow vs conversational systems, the agentic loop (gather context → act → verify), task decomposition, sequential vs parallel execution, multi-agent orchestration (hub-and-spoke, coordinator/subagent patterns), hooks vs prompts, session resumption, and common anti-patterns. Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-10-27T08:14:28+05:30">
+		<meta property="article:modified_time" content="2026-10-27T08:14:28+05:30">
+		<meta property="article:tag" content="CCFA">
+		<meta property="article:tag" content="Claude">
+		<meta property="article:tag" content="GenAI">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts">
+	<meta name="twitter:description" content="I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. #Where to Register: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification
+Topics Covered # agentic vs workflow vs conversational systems, the agentic loop (gather context → act → verify), task decomposition, sequential vs parallel execution, multi-agent orchestration (hub-and-spoke, coordinator/subagent patterns), hooks vs prompts, session resumption, and common anti-patterns. Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "CCA-F Domain1: Agentic Architecture \u0026 Orchestration - Key Concepts",
+    "headline": "CCA-F Domain1: Agentic Architecture \u0026 Orchestration - Key Concepts",
+    
+    "abstract": "\u003ch3 id=\u0022i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 class=\u0022relative group\u0022\u003eI am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eWhere to Register: \u003ca href=\u0022https:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ehttps:\/\/anthropic-partners.skilljar.com\/claude-certified-architect-foundations-certification\u003c\/a\u003e\u003c\/p\u003e\n\u003ch3 id=\u0022topics-covered\u0022 class=\u0022relative group\u0022\u003eTopics Covered \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#topics-covered\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cul\u003e\n\u003cli\u003eagentic vs workflow vs conversational systems,\u003c\/li\u003e\n\u003cli\u003ethe agentic loop (gather context → act → verify),\u003c\/li\u003e\n\u003cli\u003etask decomposition,\u003c\/li\u003e\n\u003cli\u003esequential vs parallel execution,\u003c\/li\u003e\n\u003cli\u003emulti-agent orchestration (hub-and-spoke, coordinator\/subagent patterns),\u003c\/li\u003e\n\u003cli\u003ehooks vs prompts,\u003c\/li\u003e\n\u003cli\u003esession resumption, and\u003c\/li\u003e\n\u003cli\u003ecommon anti-patterns.\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cblockquote\u003e\n\u003cp\u003e\u003cem\u003eUnofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.\u003c\/em\u003e\u003c\/p\u003e\n\u003c\/blockquote\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/cca-f-domain-1-agentic-architecture-orchestration-key-concepts\/cca-f-domain1-agentic-architecture-orchestration-key-concepts\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-27T08:14:28\u002b05:30",
+    "datePublished": "2026-10-27T08:14:28\u002b05:30",
+    
+    "dateModified": "2026-10-27T08:14:28\u002b05:30",
+    
+    "keywords": ["CCFA","Claude","GenAI"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3109"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/dynamicallyblunttech/",
+       "name": "Dynamically Blunt Tech",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/claude/",
+       "name": "Claude",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Cca F Domain1 Agentic Architecture \u0026 Orchestration Key Concepts",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/dynamicallyblunttech/"
+    >DynamicallyBluntTech</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/dynamicallyblunttech/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              <button id="search-button-m0" title="Search (/)">
+                <span
+                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                >
+                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                </span>
+              </button>
+            </li>
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <h3 id="i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" class="relative group">I am preparing for the Claude Certified Architect — Foundations (CCA-F), and placing all types of practice questions that I encounter. This may help others, but objective is to keep track of key concept and some practice question that define the topics as well. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#i-am-preparing-for-the-claude-certified-architect--foundations-cca-f-and-placing-all-types-of-practice-questions-that-i-encounter-this-may-help-others-but-objective-is-to-keep-track-of-key-concept-and-some-practice-question-that-define-the-topics-as-well" aria-label="Anchor">#</a></span></h3><p>Where to Register: <a href="https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification" target="_blank" rel="noreferrer">https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification</a></p>
+<h3 id="topics-covered" class="relative group">Topics Covered <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#topics-covered" aria-label="Anchor">#</a></span></h3><ul>
+<li>agentic vs workflow vs conversational systems,</li>
+<li>the agentic loop (gather context → act → verify),</li>
+<li>task decomposition,</li>
+<li>sequential vs parallel execution,</li>
+<li>multi-agent orchestration (hub-and-spoke, coordinator/subagent patterns),</li>
+<li>hooks vs prompts,</li>
+<li>session resumption, and</li>
+<li>common anti-patterns.</li>
+</ul>
+<blockquote>
+<p><em>Unofficial practice set, written to match publicly reported blueprint topics — not sourced from the real exam bank. Use for concept drilling, not as a guarantee of exam content.</em></p>
+</blockquote>
+<h2 id="section-a-agentic-systems-vs-simpler-patterns" class="relative group">Section A: Agentic Systems vs Simpler Patterns <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-a-agentic-systems-vs-simpler-patterns" aria-label="Anchor">#</a></span></h2><h4 id="agentic-system-a-system-where-claude-decides-its-own-next-actionbased-on-what-happened-before-instead-of-following-a-fixed-script-the-number-of-steps-isnt-known-in-advance--claude-figures-it-out-as-it-goes" class="relative group"><em><strong>Agentic System</strong></em>: A system where <strong>Claude decides its own next action</strong> based on what happened before, instead of following a fixed script. The number of steps isn&rsquo;t known in advance — Claude figures it out as it goes. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#agentic-system-a-system-where-claude-decides-its-own-next-actionbased-on-what-happened-before-instead-of-following-a-fixed-script-the-number-of-steps-isnt-known-in-advance--claude-figures-it-out-as-it-goes" aria-label="Anchor">#</a></span></h4><p><em>Think:</em> &ldquo;Go find out X&rdquo; (agentic) vs. &ldquo;Do step 1, then step 2, then step 3&rdquo; (not agentic).</p>
+<h4 id="workflow-vs-agent-a-workflowis-a-fixed-predictable-sequence-of-steps-written-by-a-human-claude-might-be-used-inside-one-step-like-classifying-something-but-claude-doesnt-decide-the-overall-structure" class="relative group">***Workflow (vs Agent): ***A <strong>workflow</strong> is a fixed, predictable sequence of steps written by a human. Claude might be used inside one step (like classifying something), but Claude doesn&rsquo;t decide the overall structure. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#workflow-vs-agent-a-workflowis-a-fixed-predictable-sequence-of-steps-written-by-a-human-claude-might-be-used-inside-one-step-like-classifying-something-but-claude-doesnt-decide-the-overall-structure" aria-label="Anchor">#</a></span></h4><p><em>Rule of thumb:</em> If you can draw the exact steps on a whiteboard beforehand, it&rsquo;s a workflow, not an agent.</p>
+<h4 id="conversational-system-the-simplest-pattern--a-back-and-forth-chat-with-no-autonomous-tool-use-or-looping-one-prompt-in-one-answer-out" class="relative group">***Conversational System: ***The simplest pattern — a back-and-forth chat with no autonomous tool use or looping. One prompt in, one answer out. <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#conversational-system-the-simplest-pattern--a-back-and-forth-chat-with-no-autonomous-tool-use-or-looping-one-prompt-in-one-answer-out" aria-label="Anchor">#</a></span></h4><p><strong>Q1.</strong> A support workflow always follows the same 4 steps: classify ticket → fetch order → apply refund rule → send templated reply. Which architecture fits best?</p>
+<p>A) Fully autonomous agent with open-ended tool access</p>
+<p>B) A deterministic workflow with Claude used only at the classification step</p>
+<p>C) Multi-agent hub-and-spoke system</p>
+<p>D) A single conversational session with no tools</p>
+<p>Answer: B — Fixed, predictable steps don&rsquo;t need agentic autonomy. Reserve agentic loops for tasks with unpredictable branching or unknown step count.</p>
+<p><strong>Q2.</strong> Which property is NOT a defining trait of an agentic system?</p>
+<p>A) The model decides its own next action based on tool results</p>
+<p>B) The number of steps is unknown in advance</p>
+<p>C) Output is generated in a single forward pass with no tool calls</p>
+<p>D) The loop continues until a task-completion condition is met</p>
+<p>Answer: C — that describes a plain conversational/completion pattern, not an agentic one.</p>
+<p><strong>Q3.</strong> A team wants Claude to research a topic across an unknown number of sources and compile a report. What&rsquo;s the strongest justification for an agentic (vs workflow) approach here?</p>
+<p>A) Agentic systems are always cheaper</p>
+<p>B) The number and choice of sources can&rsquo;t be predicted ahead of time, so the model must decide dynamically</p>
+<p>C) Workflows can&rsquo;t call tools</p>
+<p>D) Agentic systems don&rsquo;t require verification steps</p>
+<p>Answer: B.</p>
+<h2 id="section-b-the-agentic-loop-gather-context--take-action--verify" class="relative group">Section B: The Agentic Loop (Gather Context → Take Action → Verify) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-b-the-agentic-loop-gather-context--take-action--verify" aria-label="Anchor">#</a></span></h2><h2 id="the-agentic-loop" class="relative group">The Agentic Loop <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-agentic-loop" aria-label="Anchor">#</a></span></h2><p>The core cycle every agentic system runs through, repeatedly, until done:</p>
+<p><strong>Gather context</strong> – collect the info needed (read a file, call an API, search)</p>
+<p><strong>Take action</strong> – do something (call a tool, make a change)</p>
+<p><strong>Verify</strong> – check if that action actually worked / got closer to the goal</p>
+<p>Repeat, or stop if the goal is met.</p>
+<p><em>Key idea:</em> this loop should keep going until a <strong>real, checkable finish line</strong> is hit — not until Claude just &ldquo;feels&rdquo; done.</p>
+<p><strong>Q4.</strong> In a well-formed agentic loop, what should determine when the loop terminates?</p>
+<p>A) A fixed number of turns set in the system prompt</p>
+<p>B) An explicit, checkable completion condition (e.g., tool result matches success criteria)</p>
+<p>C) The model&rsquo;s own natural-language judgment that it is &ldquo;done&rdquo;</p>
+<p>D) A hard timeout only</p>
+<p>Answer: B — relying purely on the model saying &ldquo;I&rsquo;m done&rdquo; (natural-language loop termination) is a known anti-pattern; termination should be verifiable.</p>
+<p><strong>Q5.</strong> An agent keeps calling a search tool even after finding the answer, because there&rsquo;s no verification step. What&rsquo;s missing from the loop?</p>
+<p>A) A retry policy</p>
+<p>B) A verify/check stage that confirms the goal state before exiting</p>
+<p>C) A system prompt</p>
+<p>D) Prompt caching</p>
+<p>Answer: B.</p>
+<p><strong>Q6.</strong> Which is the best example of &ldquo;verify results&rdquo; in an agentic loop for a code-fixing agent?</p>
+<p>A) The agent states it believes the bug is fixed</p>
+<p>B) The agent re-runs the test suite and checks for a pass/fail signal</p>
+<p>C) The agent asks the user if it looks right</p>
+<p>D) The agent moves to the next task after one edit</p>
+<p>Answer: B — verification should be a deterministic, checkable action, not a self-report.</p>
+<p><strong>Q7.</strong> True/False: Increasing max iterations in an agentic loop is a substitute for proper stop conditions.</p>
+<p>Answer: False — a high iteration cap without real completion/failure conditions leads to runaway loops and wasted cost; it doesn&rsquo;t fix a missing termination signal.<!-- raw HTML omitted --></p>
+<h2 id="section-c-task-decomposition--sequential-vs-parallel-execution" class="relative group">Section C: Task Decomposition &amp; Sequential vs Parallel Execution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-c-task-decomposition--sequential-vs-parallel-execution" aria-label="Anchor">#</a></span></h2><h4 id="task-decomposition" class="relative group"><em><strong>Task Decomposition:</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#task-decomposition" aria-label="Anchor">#</a></span></h4><p>Breaking one big, messy task into <strong>smaller pieces that can each be done and checked on their own</strong>. Good decomposition splits along natural, independent chunks of work — not just &ldquo;split the words in half.&rdquo;</p>
+<h4 id="sequential-execution" class="relative group"><em><strong>Sequential Execution</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sequential-execution" aria-label="Anchor">#</a></span></h4><p>Steps run <strong>one after another</strong>, because each step needs the result of the one before it (e.g., you can&rsquo;t load data before you&rsquo;ve validated it).</p>
+<h4 id="parallel-execution" class="relative group"><em><strong>Parallel Execution</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#parallel-execution" aria-label="Anchor">#</a></span></h4><p>Steps run <strong>at the same time</strong>, because they don&rsquo;t depend on each other (e.g., fetching data from two unrelated APIs). Parallel execution saves time but adds a challenge: someone has to <strong>combine the results afterward</strong>.</p>
+<p><strong>Q8.</strong> A task requires:</p>
+<p>(1) fetch data from API A,</p>
+<p>(2) fetch data from API B,</p>
+<p>(3) merge and summarize both.</p>
+<p>Which execution structure minimizes latency without sacrificing correctness?</p>
+<p>A) Fully sequential: A → B → merge</p>
+<p>B) A and B run in parallel (independent), then merge runs after both complete</p>
+<p>C) Fully parallel including merge</p>
+<p>D) Random order</p>
+<p>Answer: B — independent subtasks parallelize; the dependent step (merge) must wait.</p>
+<p><strong>Q9.</strong> When decomposing a large task into subtasks for an agent, which is the strongest criterion for splitting?</p>
+<p>A) Split by number of words in the instructions</p>
+<p>B) Split along independent, verifiable units of work with clear success criteria</p>
+<p>C) Always split into exactly 3 subtasks</p>
+<p>D) Never split — one large task is more reliable</p>
+<p>Answer: B.</p>
+<p><strong>Q10.</strong> A data-pipeline agent must</p>
+<p>(1) validate schema,</p>
+<p>(2) transform records,</p>
+<p>(3) load to warehouse — each step depends on the prior succeeding.</p>
+<p>What orchestration pattern is this?</p>
+<p>A) Parallel fan-out</p>
+<p>B) Sequential pipeline with dependency gating</p>
+<p>C) Hub-and-spoke</p>
+<p>D) Map-reduce</p>
+<p>Answer: B.</p>
+<p><strong>Q11.</strong> Why might over-decomposing a task into too many tiny subagent calls hurt a system?</p>
+<p>A) It always improves accuracy</p>
+<p>B) It increases coordination overhead, latency, and cost without proportional benefit</p>
+<p>C) Claude cannot handle more than 2 subtasks</p>
+<p>D) It removes the need for verification</p>
+<p>Answer: B.</p>
+<h2 id="section-d-multi-agent-orchestration-hub-and-spoke-coordinatorsubagent" class="relative group">Section D: Multi-Agent Orchestration (Hub-and-Spoke, Coordinator/Subagent) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-d-multi-agent-orchestration-hub-and-spoke-coordinatorsubagent" aria-label="Anchor">#</a></span></h2><h4 id="multi-agent-orchestration" class="relative group"><em><strong>Multi-Agent Orchestration</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#multi-agent-orchestration" aria-label="Anchor">#</a></span></h4><p>Using <strong>more than one agent</strong> to solve a task, instead of one agent doing everything. Usually one agent manages, others execute.</p>
+<h4 id="hub-and-spoke-pattern" class="relative group"><em><strong>Hub-and-Spoke Pattern</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#hub-and-spoke-pattern" aria-label="Anchor">#</a></span></h4><p>A specific multi-agent setup:</p>
+<ul>
+<li><strong>Hub (coordinator):</strong> breaks the task down, hands out pieces to other agents, and combines their answers at the end.</li>
+<li><strong>Spokes (subagents):</strong> each does one focused piece of work and reports back.</li>
+</ul>
+<p><em>Why use it:</em> keeps each subagent&rsquo;s job small and focused, so it doesn&rsquo;t get confused doing ten things at once.</p>
+<h4 id="subagent" class="relative group"><em><strong>Subagent</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#subagent" aria-label="Anchor">#</a></span></h4><p>A smaller, specialized agent that gets <strong>its own separate context window</strong> (its own &ldquo;workspace&rdquo;) to do one job. Keeping it separate from the main agent stops irrelevant information from cluttering things up — this is called avoiding <strong>context pollution</strong>.</p>
+<h4 id="coordinator" class="relative group"><em><strong>Coordinator</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#coordinator" aria-label="Anchor">#</a></span></h4><p>Another name for the &ldquo;hub&rdquo; in hub-and-spoke — the agent in charge of splitting work up, sending it out, and merging results back together. Doesn&rsquo;t usually do the hands-on work itself.</p>
+<h4 id="scoped-tool-access" class="relative group"><em><strong>Scoped Tool Access</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#scoped-tool-access" aria-label="Anchor">#</a></span></h4><p>Giving each agent/subagent <strong>only the tools it actually needs</strong> for its job, not the entire toolbox. This limits how much damage a mistake can cause (smaller &ldquo;blast radius&rdquo;) and keeps the agent focused.</p>
+<p><strong>Q12.</strong> In a hub-and-spoke multi-agent design, what is the role of the hub (coordinator)?</p>
+<p>A) It performs all the actual domain work itself</p>
+<p>B) It decomposes the task, dispatches to specialized subagents, and integrates their results</p>
+<p>C) It only logs errors</p>
+<p>D) It replaces the need for tool use</p>
+<p>Answer: B.</p>
+<p><strong>Q13.</strong> Why use isolated subagents (separate context windows) instead of one large agent doing everything in a single context?</p>
+<p>A) Isolation prevents any tool use</p>
+<p>B) It keeps each subagent&rsquo;s context focused, reduces context pollution, and allows specialization</p>
+<p>C) It&rsquo;s required by the Claude API</p>
+<p>D) It removes the need for a coordinator</p>
+<p>Answer: B.</p>
+<p><strong>Q14.</strong> A coordinator dispatches 5 subagents to research 5 competitors in parallel, then synthesizes a report. What risk does this pattern specifically introduce that a sequential single-agent approach wouldn&rsquo;t?</p>
+<p>A) Increased latency</p>
+<p>B) Inconsistent formatting/conflicting findings across subagents that the coordinator must reconcile</p>
+<p>C) Inability to use tools</p>
+<p>D) Loss of the system prompt</p>
+<p>Answer: B — parallel independent subagents can return inconsistent or conflicting outputs; the coordinator&rsquo;s integration step must handle this.</p>
+<p><strong>Q15.</strong> Which scenario is the WEAKEST fit for multi-agent orchestration?</p>
+<p>A) Researching 10 independent topics in parallel</p>
+<p>B) A simple two-step task: fetch one value, format it into a sentence</p>
+<p>C) Reviewing a large codebase where each subagent audits a different module</p>
+<p>D) Running independent evaluations across multiple test scenarios</p>
+<p>Answer: B — trivial, tightly coupled two-step tasks don&rsquo;t need orchestration overhead; a single call suffices.</p>
+<p><strong>Q16.</strong> What is a key architectural reason to give subagents restricted/scoped tool access rather than the full toolset?</p>
+<p>A) It&rsquo;s required by the API</p>
+<p>B) It limits blast radius and keeps each subagent&rsquo;s decision space aligned to its specific job</p>
+<p>C) It speeds up token generation</p>
+<p>D) It removes the need for permission checks</p>
+<p>Answer: B.</p>
+<h2 id="section-e-hooks-vs-prompts" class="relative group">Section E: Hooks vs Prompts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-e-hooks-vs-prompts" aria-label="Anchor">#</a></span></h2><h4 id="hooks" class="relative group"><em><strong>Hooks</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#hooks" aria-label="Anchor">#</a></span></h4><p><strong>Hard, code-level rules</strong> that run outside of Claude&rsquo;s own reasoning and can block, modify, or intercept an action <em>before it happens</em> — no matter what Claude &ldquo;decides.&rdquo; Used when something absolutely must never happen (e.g., never delete production data).</p>
+<p><em>Key idea:</em> Hooks are <strong>guaranteed</strong>. They don&rsquo;t rely on Claude following instructions correctly.</p>
+<h4 id="prompts-as-a-control-mechanism" class="relative group"><em><strong>Prompts (as a control mechanism)</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#prompts-as-a-control-mechanism" aria-label="Anchor">#</a></span></h4><p><strong>Instructions written in plain language</strong> that guide Claude&rsquo;s behavior by influence, not force. Good for soft preferences (tone, style) — but Claude <em>could</em> still deviate, especially under confusing input. Not safe for hard rules.</p>
+<p><em>Key contrast:</em> Hooks = guaranteed / deterministic. Prompts = likely / probabilistic.</p>
+<p><strong>Q17.</strong> You need to GUARANTEE that no agent ever writes to a production database, even if the model misunderstands instructions. What&rsquo;s the right mechanism?</p>
+<p>A) Add a strong instruction in the system prompt</p>
+<p>B) A deterministic hook/guardrail that blocks or intercepts the tool call before execution</p>
+<p>C) Ask the model to double-check itself</p>
+<p>D) Increase temperature to 0</p>
+<p>Answer: B — prompts are persuasive, not enforced; hooks (or equivalent deterministic checks) are needed for hard guarantees.</p>
+<p><strong>Q18.</strong> When should you prefer a prompt-based instruction over a hook for controlling agent behavior?</p>
+<p>A) When the behavior must be 100% deterministic and safety-critical</p>
+<p>B) When the desired behavior is a matter of style, tone, or soft preference, not a hard constraint</p>
+<p>C) Never — hooks are always better</p>
+<p>D) When there is no tool use involved</p>
+<p>Answer: B.</p>
+<p><strong>Q19.</strong> True/False: Hooks execute deterministically outside the model&rsquo;s reasoning, while prompts only influence the model&rsquo;s probabilistic behavior.</p>
+<p>Answer: True.</p>
+<h2 id="section-f-session-resumption--state" class="relative group">Section F: Session Resumption &amp; State <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-f-session-resumption--state" aria-label="Anchor">#</a></span></h2><h4 id="session-resumption" class="relative group"><em><strong>Session Resumption</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#session-resumption" aria-label="Anchor">#</a></span></h4><p>The ability to <strong>pick a long task back up where it left off</strong> (e.g., after a crash or interruption) instead of starting over from scratch.</p>
+<h4 id="checkpointing" class="relative group"><em><strong>Checkpointing</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#checkpointing" aria-label="Anchor">#</a></span></h4><p><strong>Saving progress at intervals</strong> during a long task, so that if something breaks, the system can resume from the last saved point instead of redoing already-finished (and already-verified) work.</p>
+<h4 id="stop_" class="relative group"><em><strong>stop_reason (the real termination signal)</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stop_" aria-label="Anchor">#</a></span></h4><p>Every Claude API response includes a <strong>stop_reason</strong> field — this is the <em>correct, reliable</em> way to know whether Claude wants to keep going (e.g. tool_use) or has actually finished (end_turn). The exam treats checking stop_reason as the right answer, and <strong>parsing Claude&rsquo;s text for phrases like &ldquo;I&rsquo;m done&rdquo;</strong> as the wrong one. This is the concrete, code-level version of &ldquo;natural-language loop termination&rdquo; below — good to know both the plain-English idea <em>and</em> this exact API term.</p>
+<h4 id="context-sharing-for-subagents" class="relative group"><em><strong>Context Sharing (for subagents)</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#context-sharing-for-subagents" aria-label="Anchor">#</a></span></h4><p>A design decision about <strong>how much of the main agent&rsquo;s context a subagent gets to see</strong> when it&rsquo;s spawned — full history, a summary, or just the specific inputs it needs. Too much shared context defeats the purpose of isolation; too little and the subagent lacks what it needs to do its job.</p>
+<h4 id="spawning-strategy" class="relative group"><em><strong>Spawning Strategy</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#spawning-strategy" aria-label="Anchor">#</a></span></h4><p>The rule for <strong>when and how many subagents get created</strong> — e.g., spawn one per independent subtask up front (parallel fan-out) vs. spawn subagents dynamically as the coordinator discovers new work.</p>
+<h4 id="forking-workflows" class="relative group"><em><strong>Forking (workflows)</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#forking-workflows" aria-label="Anchor">#</a></span></h4><p>Splitting an in-progress session into <strong>multiple independent branches</strong> that can each continue separately (e.g., to try two different approaches from the same checkpoint). Different from resumption — resumption continues <em>one</em> path after a stop; forking creates <em>multiple</em> paths from one point.</p>
+<h4 id="workflow-handoffs" class="relative group"><em><strong>Workflow Handoffs</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#workflow-handoffs" aria-label="Anchor">#</a></span></h4><p>The <strong>hand-off point where one agent/session passes control (and relevant state) to another</strong> — e.g., a triage agent handing a ticket to a specialist agent. Design questions here: what state transfers, what gets dropped, and how the receiving agent knows what already happened.</p>
+<h4 id="over-engineering-the-1-way-this-domain-loses-marks" class="relative group"><em><strong>Over-Engineering (the #1 way this domain loses marks)</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#over-engineering-the-1-way-this-domain-loses-marks" aria-label="Anchor">#</a></span></h4><p>Reaching for a <strong>complex pattern (multi-agent orchestration, elaborate loops) when a simpler workflow or single agent call would solve the task just as well.</strong> The exam specifically tests whether you can recognize when the simple answer is correct — not just whether you know the advanced patterns exist.</p>
+<p><strong>Q20.</strong> A long-running agentic task gets interrupted mid-way (process crash). What architectural feature allows it to continue without redoing completed work?</p>
+<p>A) A higher max_tokens setting</p>
+<p>B) Persisted session/task state that can be resumed from the last checkpoint</p>
+<p>C) A larger context window</p>
+<p>D) Prompt caching alone</p>
+<p>Answer: B.</p>
+<p><strong>Q21.</strong> Why is checkpointing progress important in long multi-step agentic workflows?</p>
+<p>A) It reduces the model&rsquo;s temperature</p>
+<p>B) It allows recovery and resumption without re-executing already-verified steps, saving cost and avoiding duplicate side effects</p>
+<p>C) It&rsquo;s only relevant for parallel agents</p>
+<p>D) It replaces the need for verification</p>
+<p>Answer: B.</p>
+<h2 id="section-g-anti-patterns-high-yield" class="relative group">Section G: Anti-Patterns (High-Yield) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-g-anti-patterns-high-yield" aria-label="Anchor">#</a></span></h2><h4 id="natural-language-loop-termination" class="relative group"><em><strong>Natural-Language Loop Termination</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#natural-language-loop-termination" aria-label="Anchor">#</a></span></h4><p>Ending an agentic loop just because <strong>Claude says &ldquo;I&rsquo;m done&rdquo;</strong> in plain text, instead of checking a real, verifiable condition (like a test passing or a value matching). Risky because Claude can be wrong about its own completion.</p>
+<h4 id="same-session-self-review" class="relative group"><em><strong>Same-Session Self-Review</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#same-session-self-review" aria-label="Anchor">#</a></span></h4><p>Having the <strong>same agent, in the same context</strong>, both do the work AND grade whether the work is correct. Risky because it&rsquo;s checking its own homework — it shares the same blind spots and assumptions that led to the original output.</p>
+<p><em>Better approach:</em> verify with a separate process, a fresh context, or an independent check.</p>
+<h4 id="tool-sprawl" class="relative group"><em><strong>Tool Sprawl</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tool-sprawl" aria-label="Anchor">#</a></span></h4><p>Giving an agent <strong>too many tools</strong>, especially ones that overlap or sound similar. This makes it harder for Claude to pick the <em>right</em> tool, wastes context space listing all the tool descriptions, and increases mistakes.</p>
+<p><strong>Q22.</strong> &ldquo;Natural-language loop termination&rdquo; refers to which anti-pattern?</p>
+<p>A) Ending a loop based on the model saying it&rsquo;s finished, rather than a checkable condition</p>
+<p>B) Using JSON instead of prose</p>
+<p>C) Terminating a loop after exactly one tool call</p>
+<p>D) Using hooks to stop a loop</p>
+<p>Answer: A.</p>
+<p><strong>Q23.</strong> &ldquo;Same-session self-review&rdquo; as an anti-pattern means:</p>
+<p>A) The agent reviews its own output for tone</p>
+<p>B) The same agent instance/context that produced an output also grades/verifies its own correctness, introducing bias and blind spots</p>
+<p>C) Two subagents reviewing each other</p>
+<p>D) A human reviewing agent output</p>
+<p>Answer: B — verification is more reliable when done by an independent process/context (or fresh session) than by the same context that generated the work.<!-- raw HTML omitted --></p>
+<p><strong>Q24.</strong> &ldquo;Tool sprawl&rdquo; describes:</p>
+<p>A) Giving an agent too many tools with overlapping or unclear purposes, degrading its tool-selection accuracy</p>
+<p>B) Using too few tools</p>
+<p>C) A tool that calls other tools</p>
+<p>D) Parallel tool execution</p>
+<p>Answer: A.</p>
+<p><strong>Q25.</strong> A team gives their agent 40 tools &ldquo;just in case,&rdquo; many with similar names and overlapping functionality. What&rsquo;s the most likely consequence?</p>
+<p>A) Improved accuracy from more options</p>
+<p>B) Increased tool-selection errors and wasted context on tool schemas</p>
+<p>C) Lower latency</p>
+<p>D) No effect</p>
+<p>Answer: B.</p>
+<h2 id="section-h-scenario-style-exam-realistic" class="relative group">Section H: Scenario-Style (Exam-Realistic) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#section-h-scenario-style-exam-realistic" aria-label="Anchor">#</a></span></h2><p><strong>Q26.</strong> You&rsquo;re designing an agent to triage incoming support tickets, and escalate to a human for billing disputes over $500 but auto-resolve everything else. Which combination of concepts from this domain applies MOST directly?</p>
+<p>A) Task decomposition only</p>
+<p>B) A workflow/agent hybrid with a deterministic guardrail (hook) enforcing the escalation threshold, not just a prompt instruction</p>
+<p>C) Pure conversational pattern</p>
+<p>D) Hub-and-spoke with 10 subagents</p>
+<p>Answer: B — the $500 threshold is a hard business rule; it should be enforced deterministically (hook/code check), not left to the model&rsquo;s prompt-following.</p>
+<p><strong>Q27.</strong> An agent&rsquo;s loop keeps re-fetching the same API data 15 times because its &ldquo;am I done?&rdquo; check is a vague self-assessment prompt. Identify the two problems present.</p>
+<p>A) Tool sprawl and hub-and-spoke misuse</p>
+<p>B) Natural-language loop termination and missing verification step</p>
+<p>C) Session resumption failure and hook misuse</p>
+<p>D) Sequential vs parallel confusion</p>
+<p>Answer: B.</p>
+<p><strong>Q28.</strong> A codebase-review system uses one coordinator to assign each subagent a different module, run them in parallel, then merge findings into one report, flagging conflicting recommendations for human review. Which best describes the design quality?</p>
+<p>A) Poor — should be sequential</p>
+<p>B) Good — matches hub-and-spoke pattern with parallel independent work and appropriate conflict handling at integration</p>
+<p>C) Poor — subagents should share one context</p>
+<p>D) Poor — no tools should be used</p>
+<p>Answer: B.</p>
+<h2 id="quick-contrast-table" class="relative group">Quick Contrast Table <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#quick-contrast-table" aria-label="Anchor">#</a></span></h2><table>
+	<thead>
+			<tr>
+					<th>Term</th>
+					<th>Term</th>
+					<th>Key Difference</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Agent</td>
+					<td>Workflow</td>
+					<td>Agent decides its own steps; workflow has fixed steps</td>
+			</tr>
+			<tr>
+					<td>Sequential</td>
+					<td>Parallel</td>
+					<td>Sequential = dependent steps; Parallel = independent steps, needs merging</td>
+			</tr>
+			<tr>
+					<td>Hooks</td>
+					<td>Prompts</td>
+					<td>Hooks = enforced by code; Prompts = suggested to the model</td>
+			</tr>
+			<tr>
+					<td>Hub</td>
+					<td>Spoke</td>
+					<td>Hub coordinates/merges; Spoke executes one focused job</td>
+			</tr>
+			<tr>
+					<td>Verification</td>
+					<td>Self-report</td>
+					<td>Verification = checkable proof; Self-report = Claude&rsquo;s own claim (&ldquo;I&rsquo;m done&rdquo;)</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="quick-reference-key-terms-to-know-cold" class="relative group">Quick Reference: Key Terms to Know Cold <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#quick-reference-key-terms-to-know-cold" aria-label="Anchor">#</a></span></h2><ul>
+<li><strong>Agentic loop:</strong> gather context → take action → verify → repeat/terminate</li>
+<li><strong>Workflow vs agent:</strong> fixed predictable steps vs model-driven dynamic steps</li>
+<li><strong>Hub-and-spoke:</strong> coordinator decomposes + dispatches + integrates; subagents execute scoped work</li>
+<li><strong>Hooks vs prompts:</strong> hooks = deterministic enforcement; prompts = probabilistic guidance</li>
+<li><strong>Session resumption:</strong> checkpointed state enabling recovery without redoing work</li>
+<li><strong>Anti-patterns:</strong> natural-language loop termination, same-session self-review, tool sprawl</li>
+</ul>
+<p><em>Study tip: for a 27%-weighted domain, expect scenario questions (&ldquo;what&rsquo;s wrong with this design?&rdquo;) more than definition recall. Practice spotting anti-patterns in a described system.</em></p>
+<p>In next post we will look for 
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts/">Domain 2: Tool design and MCP Integration.</a></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/log4jshell-vulnerability/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Log4JShell Vulnerability</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Transfer Files with Executor Service </span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:29 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/dynamicallyblunttech/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

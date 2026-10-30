@@ -3,8 +3,8 @@ title: "CCA-F Domain1: Agentic Architecture & Orchestration - Key Concepts"
 date: 2026-10-27T08:14:28+05:30
 draft: false
 featureImage: "images/df024c_5399559a147b4ccf87b34be38643f27c.jpg"
-tags: ['[]']
-categories: ['["6a89342d6797a1f792f34566"]']
+tags: ['CCFA', 'Claude', 'GenAI']
+categories: ['Claude', 'CCFA']
 showReadingTime: true
 ---
 
@@ -516,4 +516,4 @@ Answer: B.
 
 *Study tip: for a 27%-weighted domain, expect scenario questions ("what's wrong with this design?") more than definition recall. Practice spotting anti-patterns in a described system.*
 
-In next post we will look for [Domain 2: Tool design and MCP Integration.](/post/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts)
+In next post we will look for [Domain 2: Tool design and MCP Integration.](/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts)
