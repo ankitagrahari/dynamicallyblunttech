@@ -2,9 +2,8 @@
 title: "CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally"
 date: 2026-10-27T08:14:17+05:30
 draft: false
-featureImage: "images/df024c_e2b0b9bc236d42a7adfe1e52fcfaf000.jpg"
-tags: ['[]']
-categories: ['["6249579158f0bd10b2a57273"', '"681676055d80aaac0c9329be"', '"69928c20ed328546cacbfdd1"]']
+tags: ['MultiAgent', 'AIPipeline']
+categories: ['Spring', 'MultiAgent', 'LLM']
 showReadingTime: true
 ---
 
@@ -12,39 +11,28 @@ showReadingTime: true
 
 ## **Table of Contents**
 
-Motivation & Goals
-
-Tech Stack
-
-End-to-End Pipeline Architecture
-
-The 5 Agents — Deep Dive
-* Business Analyst Agent
-* Code Generator Agent
-* Code Review Agent
-* Test Generator Agent
-* Test Executor Agent
-
-RAG: Codebase Ingestion & Vector Store
-
-The Hardest Part: Running Multiple LLMs Locally via Ollama
-* Hardware Constraints
-* Models We Evaluated
-* The num_ctx Uniformity Breakthrough
-* Final Model Decision
-* Ollama Environment Variables That Mattered
-
-Challenges We Solved
-
-Code Structure
-
-Real-Time UI with Vaadin & Server Push
-
-Jira Integration
-
-Human-in-the-Loop Checkpoints
-
-What We Learned
+1. Motivation & Goals
+2. Tech Stack
+3. End-to-End Pipeline Architecture
+    1. The 5 Agents — Deep Dive
+    2. Business Analyst Agent
+    3. Code Generator Agent
+    4. Code Review Agent
+    5. Test Generator Agent
+    6. Test Executor Agent
+4. RAG: Codebase Ingestion & Vector Store
+5. The Hardest Part: Running Multiple LLMs Locally via Ollama
+    1. Hardware Constraints
+    2. Models We Evaluated
+    3. The num_ctx Uniformity Breakthrough
+    4. Final Model Decision
+    5. Ollama Environment Variables That Mattered
+6. Challenges We Solved
+7. Code Structure
+8. Real-Time UI with Vaadin & Server Push
+9. Jira Integration
+10. Human-in-the-Loop Checkpoints
+11. What We Learned
 
 ## **1. Motivation & Goals**
 
@@ -77,8 +65,10 @@ The constraints were deliberate:
 
 
 ## **3. End-to-End Pipeline Architecture**
+![End to End Pipeline Architecture](images/df024c_2c2b809ba57d4585a0e5bf45c40913b2.jpg "End to End Pipeline Architecture")
 
 ### **Status State Machine**
+![State Machine](images/df024c_d0b5141b44c94d20b4a1774e3a3122f6.jpg "State Machine")
 
 ## **4. The 5 Agents — Deep Dive**
 
@@ -667,148 +657,79 @@ String retryPrompt = "Your previous response was plain text, NOT code. "
 ```
 
 ## **8. Code Structure**
-
+```
 codeforgeai/
-
 ├── src/main/java/org/epam/codeforgeai/
-
 │   ├── agent/                          # The 5 AI agents
-
 │   │   ├── Agent.java                  # Common interface: execute(PipelineContext)
-
 │   │   ├── BusinessAnalystAgent.java   # Requirements → User Stories JSON
-
 │   │   ├── CodeGeneratorAgent.java     # User Stories → Java source code (839 lines)
-
 │   │   ├── CodeReviewAgent.java        # Java code → JSON review verdict
-
 │   │   ├── TestGeneratorAgent.java     # Java code → JUnit 5 tests
-
 │   │   └── TestExecutorAgent.java      # Compile + run tests, capture results
-
 │   │
-
 │   ├── config/
-
 │   │   ├── AiConfig.java               # 4 ChatClient beans (per-agent model/temp/ctx)
-
 │   │   ├── AppProperties.java          # @ConfigurationProperties for YAML
-
 │   │   ├── AsyncConfig.java            # @Async thread pool for pipeline
-
 │   │   └── VaadinConfig.java           # Vaadin push + session config
-
 │   │
-
 │   ├── event/
-
 │   │   └── PipelineProgressEvent.java  # Spring ApplicationEvent for UI push
-
 │   │
-
 │   ├── model/
-
 │   │   ├── dto/
-
 │   │   │   ├── PipelineContext.java    # Mutable pipeline state (passed agent→agent)
-
 │   │   │   ├── UserStory.java          # BA output: title, description, AC, test cases
-
 │   │   │   ├── StoryPipelineResult.java# Per-story: code, review, tests, exec output
-
 │   │   │   ├── CodeReviewResult.java   # approved, issues[], suggestions
-
 │   │   │   ├── AgentToggles.java       # Feature flags: enableBA, enableDev, etc.
-
 │   │   │   └── TestCaseSpec.java       # Test case: title, steps, expectedResult
-
 │   │   ├── entity/
-
 │   │   │   ├── PipelineRun.java        # JPA: pipeline run with all results
-
 │   │   │   └── AgentExecution.java     # JPA: per-agent timing + status
-
 │   │   └── enums/
-
 │   │       ├── PipelineStatus.java     # PENDING→IN_PROGRESS→...→COMPLETED
-
 │   │       └── AgentType.java          # BA_AGENT, CODE_GENERATOR, etc.
-
 │   │
-
 │   ├── repository/
-
 │   │   ├── PipelineRunRepository.java  # JPA + custom queries
-
 │   │   └── [AgentExecutionRepository.java](http://AgentExecutionRepository.java)
-
 │   │
-
 │   ├── service/
-
 │   │   ├── PipelineOrchestrator.java   # @Async: coordinates all 5 agents (1053 lines)
-
 │   │   ├── PipelineTrackingService.java# Transactional DB writes for pipeline state
-
 │   │   ├── CodebaseIngestionService.java # RAG: walks module, chunks, embeds to PGVector
-
 │   │   ├── CodeDeploymentService.java  # Writes approved Java files to module/src/
-
 │   │   ├── DocumentIngestionService.java # PDF/TXT → raw requirements text
-
 │   │   └── JiraService.java            # Creates Jira stories + test cases via REST
-
 │   │
-
 │   └── ui/                             # Vaadin views
-
 │       ├── MainLayout.java             # AppLayout: sidebar nav + dark mode toggle
-
 │       ├── NewPipelineView.java        # Upload PDF, set agent toggles, start pipeline
-
 │       ├── PipelineDetailView.java     # Real-time pipeline progress (1151 lines)
-
 │       ├── PipelineHistoryView.java    # History grid with results
-
 │       ├── BaPipelineView.java         # BA-only analysis view
-
 │       └── DashboardView.java          # Stats: total runs, pass rate, etc.
-
 │
-
 ├── src/main/resources/
-
 │   ├── application.yaml               # All config: Ollama, Hikari, PGVector, Jira
-
 │   └── prompts/
-
 │       ├── ba-system.st               # BA system prompt
-
 │       ├── ba-user-story-generator.st # BA user prompt template
-
 │       ├── code-generator-system.st   # Code gen system prompt
-
 │       ├── code-generator-plan.st     # Planning phase prompt
-
 │       ├── code-generator-per-story.st          # Per-story generation prompt
-
 │       ├── code-generator-per-story-feedback.st # Per-story feedback regen
-
 │       ├── code-generator-with-feedback.st      # Legacy monolithic feedback
-
 │       ├── code-review-system.st      # Code review system prompt
-
 │       └── test-generator-system.st   # Test generator system prompt
-
 │
-
 └── docker/
-
     ├── Modelfile.qwen-coder            # qwen2.5-coder:7b CPU config
-
     ├── Modelfile.gemma4                # gemma4:e2b BA-agent config
-
     └── Modelfile.deepseek-coder        # deepseek-coder-v2:16b (alternative)
+```
 
 ## **9. Real-Time UI with Vaadin & Server Push**
 

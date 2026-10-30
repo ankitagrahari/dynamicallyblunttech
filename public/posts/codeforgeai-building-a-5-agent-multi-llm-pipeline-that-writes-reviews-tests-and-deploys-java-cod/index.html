@@ -71,7 +71,37 @@
         
 TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
 
-Table of Contents #Motivation &amp; Goals
+Table of Contents #
+Motivation &amp; Goals
+Tech Stack
+End-to-End Pipeline Architecture
+
+The 5 Agents — Deep Dive
+Business Analyst Agent
+Code Generator Agent
+Code Review Agent
+Test Generator Agent
+Test Executor Agent
+
+
+RAG: Codebase Ingestion &amp; Vector Store
+The Hardest Part: Running Multiple LLMs Locally via Ollama
+
+Hardware Constraints
+Models We Evaluated
+The num_ctx Uniformity Breakthrough
+Final Model Decision
+Ollama Environment Variables That Mattered
+
+
+Challenges We Solved
+Code Structure
+Real-Time UI with Vaadin &amp; Server Push
+Jira Integration
+Human-in-the-Loop Checkpoints
+What We Learned
+
+1. Motivation &amp; Goals #Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that&rsquo;s a hard blocker.
       
     "
   />
@@ -99,19 +129,22 @@ Table of Contents #Motivation &amp; Goals
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally">
 	<meta property="og:description" content="TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
-Table of Contents #Motivation &amp; Goals">
+Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Architecture The 5 Agents — Deep Dive Business Analyst Agent Code Generator Agent Code Review Agent Test Generator Agent Test Executor Agent RAG: Codebase Ingestion &amp; Vector Store The Hardest Part: Running Multiple LLMs Locally via Ollama Hardware Constraints Models We Evaluated The num_ctx Uniformity Breakthrough Final Model Decision Ollama Environment Variables That Mattered Challenges We Solved Code Structure Real-Time UI with Vaadin &amp; Server Push Jira Integration Human-in-the-Loop Checkpoints What We Learned 1. Motivation &amp; Goals #Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that’s a hard blocker.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:17+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:17+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="MultiAgent">
+		<meta property="article:tag" content="AIPipeline">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg">
 	<meta name="twitter:title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally">
 	<meta name="twitter:description" content="TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
-Table of Contents #Motivation &amp; Goals">
+Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Architecture The 5 Agents — Deep Dive Business Analyst Agent Code Generator Agent Code Review Agent Test Generator Agent Test Executor Agent RAG: Codebase Ingestion &amp; Vector Store The Hardest Part: Running Multiple LLMs Locally via Ollama Hardware Constraints Models We Evaluated The num_ctx Uniformity Breakthrough Final Model Decision Ollama Environment Variables That Mattered Challenges We Solved Code Structure Real-Time UI with Vaadin &amp; Server Push Jira Integration Human-in-the-Loop Checkpoints What We Learned 1. Motivation &amp; Goals #Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that’s a hard blocker.">
 
   
   <script type="application/ld+json">
@@ -122,7 +155,7 @@ Table of Contents #Motivation &amp; Goals">
     "name": "CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally",
     "headline": "CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally",
     
-    "abstract": "\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR\u003c\/strong\u003e — CodeForgeAI is a Spring Boot \u002b Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003ch2 id=\u0022table-of-contents\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eTable of Contents\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#table-of-contents\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eMotivation \u0026amp; Goals\u003c\/p\u003e",
+    "abstract": "\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR\u003c\/strong\u003e — CodeForgeAI is a Spring Boot \u002b Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003ch2 id=\u0022table-of-contents\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eTable of Contents\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#table-of-contents\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003col\u003e\n\u003cli\u003eMotivation \u0026amp; Goals\u003c\/li\u003e\n\u003cli\u003eTech Stack\u003c\/li\u003e\n\u003cli\u003eEnd-to-End Pipeline Architecture\n\u003col\u003e\n\u003cli\u003eThe 5 Agents — Deep Dive\u003c\/li\u003e\n\u003cli\u003eBusiness Analyst Agent\u003c\/li\u003e\n\u003cli\u003eCode Generator Agent\u003c\/li\u003e\n\u003cli\u003eCode Review Agent\u003c\/li\u003e\n\u003cli\u003eTest Generator Agent\u003c\/li\u003e\n\u003cli\u003eTest Executor Agent\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003eRAG: Codebase Ingestion \u0026amp; Vector Store\u003c\/li\u003e\n\u003cli\u003eThe Hardest Part: Running Multiple LLMs Locally via Ollama\n\u003col\u003e\n\u003cli\u003eHardware Constraints\u003c\/li\u003e\n\u003cli\u003eModels We Evaluated\u003c\/li\u003e\n\u003cli\u003eThe num_ctx Uniformity Breakthrough\u003c\/li\u003e\n\u003cli\u003eFinal Model Decision\u003c\/li\u003e\n\u003cli\u003eOllama Environment Variables That Mattered\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003eChallenges We Solved\u003c\/li\u003e\n\u003cli\u003eCode Structure\u003c\/li\u003e\n\u003cli\u003eReal-Time UI with Vaadin \u0026amp; Server Push\u003c\/li\u003e\n\u003cli\u003eJira Integration\u003c\/li\u003e\n\u003cli\u003eHuman-in-the-Loop Checkpoints\u003c\/li\u003e\n\u003cli\u003eWhat We Learned\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch2 id=\u00221-motivation--goals\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003e1. Motivation \u0026amp; Goals\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#1-motivation--goals\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eGenerative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that\u0026rsquo;s a hard blocker.\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod\/",
     "author" : {
@@ -135,10 +168,10 @@ Table of Contents #Motivation &amp; Goals">
     
     "dateModified": "2026-10-27T08:14:17\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["MultiAgent","AIPipeline"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "4724"
+    "wordCount": "4734"
   }
   </script>
     
@@ -161,8 +194,8 @@ Table of Contents #Motivation &amp; Goals">
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/",
-       "name": "[\"6249579158f0bd10b2a57273\"",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/spring/",
+       "name": "Spring",
        "position": 3
      },
      {
@@ -316,6 +349,70 @@ Table of Contents #Motivation &amp; Goals">
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_b4b98ea36acca28e.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_161ad2107fb238ff.webp 660w
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_fad4834cf967739.webp 1024w
+              
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_fad4834cf967739.webp 1024w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1024"
+        height="1024"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_dee3472f6d3c7540.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_4d427606f6329c9a.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_dee3472f6d3c7540.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg 1024w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
@@ -323,32 +420,36 @@ Table of Contents #Motivation &amp; Goals">
         <blockquote>
 <p><strong>TL;DR</strong> — CodeForgeAI is a Spring Boot + Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.</p>
 </blockquote>
-<h2 id="table-of-contents" class="relative group"><strong>Table of Contents</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#table-of-contents" aria-label="Anchor">#</a></span></h2><p>Motivation &amp; Goals</p>
-<p>Tech Stack</p>
-<p>End-to-End Pipeline Architecture</p>
-<p>The 5 Agents — Deep Dive</p>
-<ul>
+<h2 id="table-of-contents" class="relative group"><strong>Table of Contents</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#table-of-contents" aria-label="Anchor">#</a></span></h2><ol>
+<li>Motivation &amp; Goals</li>
+<li>Tech Stack</li>
+<li>End-to-End Pipeline Architecture
+<ol>
+<li>The 5 Agents — Deep Dive</li>
 <li>Business Analyst Agent</li>
 <li>Code Generator Agent</li>
 <li>Code Review Agent</li>
 <li>Test Generator Agent</li>
 <li>Test Executor Agent</li>
-</ul>
-<p>RAG: Codebase Ingestion &amp; Vector Store</p>
-<p>The Hardest Part: Running Multiple LLMs Locally via Ollama</p>
-<ul>
+</ol>
+</li>
+<li>RAG: Codebase Ingestion &amp; Vector Store</li>
+<li>The Hardest Part: Running Multiple LLMs Locally via Ollama
+<ol>
 <li>Hardware Constraints</li>
 <li>Models We Evaluated</li>
 <li>The num_ctx Uniformity Breakthrough</li>
 <li>Final Model Decision</li>
 <li>Ollama Environment Variables That Mattered</li>
-</ul>
-<p>Challenges We Solved</p>
-<p>Code Structure</p>
-<p>Real-Time UI with Vaadin &amp; Server Push</p>
-<p>Jira Integration</p>
-<p>Human-in-the-Loop Checkpoints</p>
-<p>What We Learned</p>
+</ol>
+</li>
+<li>Challenges We Solved</li>
+<li>Code Structure</li>
+<li>Real-Time UI with Vaadin &amp; Server Push</li>
+<li>Jira Integration</li>
+<li>Human-in-the-Loop Checkpoints</li>
+<li>What We Learned</li>
+</ol>
 <h2 id="1-motivation--goals" class="relative group"><strong>1. Motivation &amp; Goals</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-motivation--goals" aria-label="Anchor">#</a></span></h2><p>Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that&rsquo;s a hard blocker.</p>
 <p>We set out to answer a specific question: <strong>Can a fully local, open-weight LLM pipeline produce production-quality Java code, tests, and Jira stories from a requirements PDF — without a single API call to a cloud provider?</strong></p>
 <p>The constraints were deliberate:</p>
@@ -412,7 +513,133 @@ Table of Contents #Motivation &amp; Goals">
 			</tr>
 	</tbody>
 </table>
-<h2 id="3-end-to-end-pipeline-architecture" class="relative group"><strong>3. End-to-End Pipeline Architecture</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-end-to-end-pipeline-architecture" aria-label="Anchor">#</a></span></h2><h3 id="status-state-machine" class="relative group"><strong>Status State Machine</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#status-state-machine" aria-label="Anchor">#</a></span></h3><h2 id="4-the-5-agents--deep-dive" class="relative group"><strong>4. The 5 Agents — Deep Dive</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-the-5-agents--deep-dive" aria-label="Anchor">#</a></span></h2><h3 id="41-business-analyst-agent" class="relative group"><strong>4.1 Business Analyst Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#41-business-analyst-agent" aria-label="Anchor">#</a></span></h3><p>The BA agent reads the raw requirements text and returns a structured JSON array of user stories, each with a title, description in &ldquo;As a / I want / So that&rdquo; format, acceptance criteria, and test case specs.</p>
+<h2 id="3-end-to-end-pipeline-architecture" class="relative group"><strong>3. End-to-End Pipeline Architecture</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-end-to-end-pipeline-architecture" aria-label="Anchor">#</a></span></h2><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_fc0e1c5b39e8d2a7.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_3bacf5c18cf0f138.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_b25f9b441d72a3b8.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_3c8df4b2af73b7ef.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="1410"
+        class="mx-auto my-0 rounded-md"
+        alt="End to End Pipeline Architecture"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_aea8db9dec463451.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_f1011f9680ef66aa.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_aea8db9dec463451.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_82fed40733c73852.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_5130a51bc3b58510.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">End to End Pipeline Architecture</figcaption>
+</figure>
+</p>
+<h3 id="status-state-machine" class="relative group"><strong>Status State Machine</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#status-state-machine" aria-label="Anchor">#</a></span></h3><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_d5c6d84c564225ee.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_3adb321d50d383f4.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_51561ae278788311.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_a38cbf538c0f6caf.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="1404"
+        class="mx-auto my-0 rounded-md"
+        alt="State Machine"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c0928bf98fcb3e4.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c8fb58a81d37be84.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c0928bf98fcb3e4.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_f67849d9460e2bed.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_d5dd43dbe3f14bd6.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">State Machine</figcaption>
+</figure>
+</p>
+<h2 id="4-the-5-agents--deep-dive" class="relative group"><strong>4. The 5 Agents — Deep Dive</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-the-5-agents--deep-dive" aria-label="Anchor">#</a></span></h2><h3 id="41-business-analyst-agent" class="relative group"><strong>4.1 Business Analyst Agent</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#41-business-analyst-agent" aria-label="Anchor">#</a></span></h3><p>The BA agent reads the raw requirements text and returns a structured JSON array of user stories, each with a title, description in &ldquo;As a / I want / So that&rdquo; format, acceptance criteria, and test case specs.</p>
 <p><strong>The core challenge</strong> was that small 7B models regularly wrap JSON in markdown fences, add preamble text like &ldquo;Sure, here are your user stories:&rdquo;, or append trailing commentary. We built a four-layer extraction strategy:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: BusinessAnalystAgent.java</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">extractJson</span>(String response) {
@@ -840,81 +1067,78 @@ Table of Contents #Motivation &amp; Goals">
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Start immediately with ```java\n\n&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Here is what you described (convert this to code):\n&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">+</span> response.<span style="color:#a6e22e">substring</span>(0, Math.<span style="color:#a6e22e">min</span>(4000, response.<span style="color:#a6e22e">length</span>()));
-</span></span></code></pre></div><h2 id="8-code-structure" class="relative group"><strong>8. Code Structure</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-code-structure" aria-label="Anchor">#</a></span></h2><p>codeforgeai/</p>
-<p>├── src/main/java/org/epam/codeforgeai/</p>
-<p>│   ├── agent/                          # The 5 AI agents</p>
-<p>│   │   ├── Agent.java                  # Common interface: execute(PipelineContext)</p>
-<p>│   │   ├── BusinessAnalystAgent.java   # Requirements → User Stories JSON</p>
-<p>│   │   ├── CodeGeneratorAgent.java     # User Stories → Java source code (839 lines)</p>
-<p>│   │   ├── CodeReviewAgent.java        # Java code → JSON review verdict</p>
-<p>│   │   ├── TestGeneratorAgent.java     # Java code → JUnit 5 tests</p>
-<p>│   │   └── TestExecutorAgent.java      # Compile + run tests, capture results</p>
-<p>│   │</p>
-<p>│   ├── config/</p>
-<p>│   │   ├── AiConfig.java               # 4 ChatClient beans (per-agent model/temp/ctx)</p>
-<p>│   │   ├── AppProperties.java          # @ConfigurationProperties for YAML</p>
-<p>│   │   ├── AsyncConfig.java            # @Async thread pool for pipeline</p>
-<p>│   │   └── VaadinConfig.java           # Vaadin push + session config</p>
-<p>│   │</p>
-<p>│   ├── event/</p>
-<p>│   │   └── PipelineProgressEvent.java  # Spring ApplicationEvent for UI push</p>
-<p>│   │</p>
-<p>│   ├── model/</p>
-<p>│   │   ├── dto/</p>
-<p>│   │   │   ├── PipelineContext.java    # Mutable pipeline state (passed agent→agent)</p>
-<p>│   │   │   ├── UserStory.java          # BA output: title, description, AC, test cases</p>
-<p>│   │   │   ├── StoryPipelineResult.java# Per-story: code, review, tests, exec output</p>
-<p>│   │   │   ├── CodeReviewResult.java   # approved, issues[], suggestions</p>
-<p>│   │   │   ├── AgentToggles.java       # Feature flags: enableBA, enableDev, etc.</p>
-<p>│   │   │   └── TestCaseSpec.java       # Test case: title, steps, expectedResult</p>
-<p>│   │   ├── entity/</p>
-<p>│   │   │   ├── PipelineRun.java        # JPA: pipeline run with all results</p>
-<p>│   │   │   └── AgentExecution.java     # JPA: per-agent timing + status</p>
-<p>│   │   └── enums/</p>
-<p>│   │       ├── PipelineStatus.java     # PENDING→IN_PROGRESS→&hellip;→COMPLETED</p>
-<p>│   │       └── AgentType.java          # BA_AGENT, CODE_GENERATOR, etc.</p>
-<p>│   │</p>
-<p>│   ├── repository/</p>
-<p>│   │   ├── PipelineRunRepository.java  # JPA + custom queries</p>
-<p>│   │   └── <a href="http://AgentExecutionRepository.java" target="_blank" rel="noreferrer">AgentExecutionRepository.java</a></p>
-<p>│   │</p>
-<p>│   ├── service/</p>
-<p>│   │   ├── PipelineOrchestrator.java   # @Async: coordinates all 5 agents (1053 lines)</p>
-<p>│   │   ├── PipelineTrackingService.java# Transactional DB writes for pipeline state</p>
-<p>│   │   ├── CodebaseIngestionService.java # RAG: walks module, chunks, embeds to PGVector</p>
-<p>│   │   ├── CodeDeploymentService.java  # Writes approved Java files to module/src/</p>
-<p>│   │   ├── DocumentIngestionService.java # PDF/TXT → raw requirements text</p>
-<p>│   │   └── JiraService.java            # Creates Jira stories + test cases via REST</p>
-<p>│   │</p>
-<p>│   └── ui/                             # Vaadin views</p>
-<p>│       ├── MainLayout.java             # AppLayout: sidebar nav + dark mode toggle</p>
-<p>│       ├── NewPipelineView.java        # Upload PDF, set agent toggles, start pipeline</p>
-<p>│       ├── PipelineDetailView.java     # Real-time pipeline progress (1151 lines)</p>
-<p>│       ├── PipelineHistoryView.java    # History grid with results</p>
-<p>│       ├── BaPipelineView.java         # BA-only analysis view</p>
-<p>│       └── DashboardView.java          # Stats: total runs, pass rate, etc.</p>
-<p>│</p>
-<p>├── src/main/resources/</p>
-<p>│   ├── application.yaml               # All config: Ollama, Hikari, PGVector, Jira</p>
-<p>│   └── prompts/</p>
-<p>│       ├── ba-system.st               # BA system prompt</p>
-<p>│       ├── ba-user-story-generator.st # BA user prompt template</p>
-<p>│       ├── code-generator-system.st   # Code gen system prompt</p>
-<p>│       ├── code-generator-plan.st     # Planning phase prompt</p>
-<p>│       ├── code-generator-per-story.st          # Per-story generation prompt</p>
-<p>│       ├── code-generator-per-story-feedback.st # Per-story feedback regen</p>
-<p>│       ├── code-generator-with-feedback.st      # Legacy monolithic feedback</p>
-<p>│       ├── code-review-system.st      # Code review system prompt</p>
-<p>│       └── test-generator-system.st   # Test generator system prompt</p>
-<p>│</p>
-<p>└── docker/</p>
-<pre><code>├── Modelfile.qwen-coder            # qwen2.5-coder:7b CPU config
-
-├── Modelfile.gemma4                # gemma4:e2b BA-agent config
-
-└── Modelfile.deepseek-coder        # deepseek-coder-v2:16b (alternative)
-</code></pre>
-<h2 id="9-real-time-ui-with-vaadin--server-push" class="relative group"><strong>9. Real-Time UI with Vaadin &amp; Server Push</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-real-time-ui-with-vaadin--server-push" aria-label="Anchor">#</a></span></h2><p>The UI is built with Vaadin Flow (server-side Java), rendering all components in Java without writing HTML or JavaScript.</p>
+</span></span></code></pre></div><h2 id="8-code-structure" class="relative group"><strong>8. Code Structure</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-code-structure" aria-label="Anchor">#</a></span></h2><pre tabindex="0"><code>codeforgeai/
+├── src/main/java/org/epam/codeforgeai/
+│   ├── agent/                          # The 5 AI agents
+│   │   ├── Agent.java                  # Common interface: execute(PipelineContext)
+│   │   ├── BusinessAnalystAgent.java   # Requirements → User Stories JSON
+│   │   ├── CodeGeneratorAgent.java     # User Stories → Java source code (839 lines)
+│   │   ├── CodeReviewAgent.java        # Java code → JSON review verdict
+│   │   ├── TestGeneratorAgent.java     # Java code → JUnit 5 tests
+│   │   └── TestExecutorAgent.java      # Compile + run tests, capture results
+│   │
+│   ├── config/
+│   │   ├── AiConfig.java               # 4 ChatClient beans (per-agent model/temp/ctx)
+│   │   ├── AppProperties.java          # @ConfigurationProperties for YAML
+│   │   ├── AsyncConfig.java            # @Async thread pool for pipeline
+│   │   └── VaadinConfig.java           # Vaadin push + session config
+│   │
+│   ├── event/
+│   │   └── PipelineProgressEvent.java  # Spring ApplicationEvent for UI push
+│   │
+│   ├── model/
+│   │   ├── dto/
+│   │   │   ├── PipelineContext.java    # Mutable pipeline state (passed agent→agent)
+│   │   │   ├── UserStory.java          # BA output: title, description, AC, test cases
+│   │   │   ├── StoryPipelineResult.java# Per-story: code, review, tests, exec output
+│   │   │   ├── CodeReviewResult.java   # approved, issues[], suggestions
+│   │   │   ├── AgentToggles.java       # Feature flags: enableBA, enableDev, etc.
+│   │   │   └── TestCaseSpec.java       # Test case: title, steps, expectedResult
+│   │   ├── entity/
+│   │   │   ├── PipelineRun.java        # JPA: pipeline run with all results
+│   │   │   └── AgentExecution.java     # JPA: per-agent timing + status
+│   │   └── enums/
+│   │       ├── PipelineStatus.java     # PENDING→IN_PROGRESS→...→COMPLETED
+│   │       └── AgentType.java          # BA_AGENT, CODE_GENERATOR, etc.
+│   │
+│   ├── repository/
+│   │   ├── PipelineRunRepository.java  # JPA + custom queries
+│   │   └── [AgentExecutionRepository.java](http://AgentExecutionRepository.java)
+│   │
+│   ├── service/
+│   │   ├── PipelineOrchestrator.java   # @Async: coordinates all 5 agents (1053 lines)
+│   │   ├── PipelineTrackingService.java# Transactional DB writes for pipeline state
+│   │   ├── CodebaseIngestionService.java # RAG: walks module, chunks, embeds to PGVector
+│   │   ├── CodeDeploymentService.java  # Writes approved Java files to module/src/
+│   │   ├── DocumentIngestionService.java # PDF/TXT → raw requirements text
+│   │   └── JiraService.java            # Creates Jira stories + test cases via REST
+│   │
+│   └── ui/                             # Vaadin views
+│       ├── MainLayout.java             # AppLayout: sidebar nav + dark mode toggle
+│       ├── NewPipelineView.java        # Upload PDF, set agent toggles, start pipeline
+│       ├── PipelineDetailView.java     # Real-time pipeline progress (1151 lines)
+│       ├── PipelineHistoryView.java    # History grid with results
+│       ├── BaPipelineView.java         # BA-only analysis view
+│       └── DashboardView.java          # Stats: total runs, pass rate, etc.
+│
+├── src/main/resources/
+│   ├── application.yaml               # All config: Ollama, Hikari, PGVector, Jira
+│   └── prompts/
+│       ├── ba-system.st               # BA system prompt
+│       ├── ba-user-story-generator.st # BA user prompt template
+│       ├── code-generator-system.st   # Code gen system prompt
+│       ├── code-generator-plan.st     # Planning phase prompt
+│       ├── code-generator-per-story.st          # Per-story generation prompt
+│       ├── code-generator-per-story-feedback.st # Per-story feedback regen
+│       ├── code-generator-with-feedback.st      # Legacy monolithic feedback
+│       ├── code-review-system.st      # Code review system prompt
+│       └── test-generator-system.st   # Test generator system prompt
+│
+└── docker/
+    ├── Modelfile.qwen-coder            # qwen2.5-coder:7b CPU config
+    ├── Modelfile.gemma4                # gemma4:e2b BA-agent config
+    └── Modelfile.deepseek-coder        # deepseek-coder-v2:16b (alternative)
+</code></pre><h2 id="9-real-time-ui-with-vaadin--server-push" class="relative group"><strong>9. Real-Time UI with Vaadin &amp; Server Push</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-real-time-ui-with-vaadin--server-push" aria-label="Anchor">#</a></span></h2><p>The UI is built with Vaadin Flow (server-side Java), rendering all components in Java without writing HTML or JavaScript.</p>
 <p><strong>Server Push architecture</strong>: The pipeline runs in a background thread (@Async). To update the browser in real time, each agent call publishes a PipelineProgressEvent using Spring&rsquo;s ApplicationEventPublisher. A static registry in PipelineDetailView maps pipeline run IDs to active browser sessions:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// From: PipelineDetailView.java</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Map<span style="color:#f92672">&lt;</span>UUID, Set<span style="color:#f92672">&lt;</span>PipelineDetailView<span style="color:#f92672">&gt;&gt;</span> ACTIVE_VIEWS <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;</span>();
