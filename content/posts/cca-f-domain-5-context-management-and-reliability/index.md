@@ -2,9 +2,8 @@
 title: "CCA-F Domain 5: Context Management and Reliability"
 date: 2026-10-27T08:14:27+05:30
 draft: false
-featureImage: "images/df024c_fb94b84e2f79490ca16c4a56a758b6bd.jpg"
-tags: ['[]']
-categories: ['["6a89342d6797a1f792f34566"]']
+tags: ['CCAF', 'Claude', 'GenAI']
+categories: ['Claude', 'CCAF']
 showReadingTime: true
 ---
 

@@ -2,9 +2,8 @@
 title: "CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts"
 date: 2026-10-27T08:14:21+05:30
 draft: false
-featureImage: "images/df024c_5399559a147b4ccf87b34be38643f27c.jpg"
-tags: ['[]']
-categories: ['["6a89342d6797a1f792f34566"]']
+tags: ['CCAF', 'Claude', 'GenAI']
+categories: ['CCAF', 'Claude', 'GenAI']
 showReadingTime: true
 ---
 

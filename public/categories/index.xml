@@ -1,143 +1,241 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Categories on DynamicallyBluntTech</title>
+		<title>[] on DynamicallyBluntTech</title>
 		<link>http://localhost:1313/dynamicallyblunttech/categories/</link>
-		<description>Recent content in Categories on DynamicallyBluntTech</description>
+		<description>Recent content in [] on DynamicallyBluntTech</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
 		
 		
 		
-			<lastBuildDate>Tue, 27 Oct 2026 08:14:31 +0530</lastBuildDate>
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:30 +0530</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/dynamicallyblunttech/categories/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>[&#34;619c9d9d8da2c200166cb558&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:31 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Spring Boot</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/spring-boot/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:31 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/spring-boot/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>&#34;6249579158f0bd10b2a57273&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</link>
+				<title>Binary Tree Traversal</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:30 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/</guid>
+				<description>&lt;p&gt;In this post we will look into the different ways to traverse a Binary Tree.&lt;/p&gt;&#xA;&lt;p&gt;In a binary tree, you can traverse in two different ways:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Breadth first traversal&lt;/li&gt;&#xA;&lt;li&gt;Depth first traversal&lt;/li&gt;&#xA;&lt;li&gt;In-order&lt;/li&gt;&#xA;&lt;li&gt;Pre-order&lt;/li&gt;&#xA;&lt;li&gt;Post-order&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Lets start with an example. Given the following binary tree:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;4&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  2     7&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;1   3 6   9&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When we traverse a binary tree, we can go either breadth first or depth first.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>[&#34;619c9d9d8da2c200166cb558&#34;</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/</link>
+				<title>Target Machine Actively Refused it - MongoDB Issue</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/target-machine-actively-refused-it-mongodb-issue/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:30 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/target-machine-actively-refused-it-mongodb-issue/</guid>
+				<description>&lt;p&gt;In this post we will discuss one of the issue encountered after installing MongoDB on my windows machine. This from the &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/crud-operation-in-mongodb&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;&lt;strong&gt;previous post&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt; where we performed all the CRUD operation on MonogDB in Java.&lt;/p&gt;&#xA;&lt;p&gt;For installation of MongoDB, follow the official guide.&lt;/p&gt;&#xA;&lt;h3 id=&#34;issue&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Issue&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#issue&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;While opening the mongo.exe by double clicking on it, the console opens and then it vanishes. So, I tired again, still the console just showed for a second or two and then vanished again in thin air. Even tried using the mongoDB compass editor to check the connection, but that also didn&amp;rsquo;t connect.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>[&#34;6249579158f0bd10b2a57273&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:30 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</guid>
-				<description></description>
+				<title>III - Named Entity Recognition - Apache OpenNLP</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/iii-named-entity-recognition-apache-opennlp/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:29 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/iii-named-entity-recognition-apache-opennlp/</guid>
+				<description>&lt;p&gt;In this series of learning Natural Language Processing with &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library in Java, we will discuss on &lt;em&gt;&lt;strong&gt;NamedEntityRecognition&lt;/strong&gt;&lt;/em&gt;, which can identify names, places, locations etc. in any given string.&lt;/p&gt;&#xA;&lt;p&gt;In &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library, &lt;em&gt;&lt;strong&gt;NamedEntityRecognition&lt;/strong&gt;&lt;/em&gt; uses predefined trained models which is used to recognize names or date or places or location etc. in the given string. These models are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;en-nerdate.bn,&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-location.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-organization.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-person.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-time.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Like in previous posts on &lt;a href=&#34;https://dynamicallyblunttech.blogspot.com/2020/07/find-sentences-using-apache-open-nlp.html&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;SentenceDetector&lt;/em&gt;&lt;/a&gt;&lt;a href=&#34;https://dynamicallyblunttech.blogspot.com/2020/07/find-sentences-using-apache-open-nlp.html&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;*** ***&lt;/a&gt;and &lt;a href=&#34;https://dynamicallyblunttech.blogspot.com/2020/07/tokenization-using-apache-opennlp.html&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Tokenization&lt;/em&gt;&lt;/a&gt;, here also we have to identify the models which we want to use, load the model, and use the find method of the ***NameFinderME ***class to find the specific name, location or place as per the models used.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>[]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:30 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/</guid>
-				<description></description>
+				<title>Transfer Files with Executor Service </title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:29 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</guid>
+				<description>&lt;p&gt;In this post we will move all files from one directory to another using Java&amp;rsquo;s Executor Service and will also discuss on how we can enhance the entire process.&lt;/p&gt;&#xA;&lt;p&gt;To move files from one directory to another:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;List all files in the source directory&lt;/li&gt;&#xA;&lt;li&gt;Create a main class which will call the threads to process all the files in given directory.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>CCAF</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/ccaf/</link>
+				<title>Log4JShell Vulnerability</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/log4jshell-vulnerability/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:28 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/ccaf/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/log4jshell-vulnerability/</guid>
+				<description>&lt;p&gt;Everyone has used log4j libraries for logging in their application or for learning. It is also talk of the town after &lt;a href=&#34;https://nvd.nist.gov/vuln/detail/CVE-2021-44228&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;CVE Remote Code Execution vulnerability&lt;/em&gt;&lt;/a&gt; added recently.&lt;/p&gt;&#xA;&lt;h3 id=&#34;remote-code-execution-rce&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Remote Code Execution (RCE)&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#remote-code-execution-rce&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;It is one of the most dangerous kind of vulnerabilities, where an attacker will be able to execute any malicious code without your knowledge. This is how kaspersky enclyopedia defines RCE as&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>Claude</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/claude/</link>
+				<title>Stop Guessing, Find Perfect Local LLM with OllamaAdvisor</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:28 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/claude/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/</guid>
+				<description>&lt;p&gt;Ollama Advisor Walkthrough&lt;/p&gt;&#xA;&lt;p&gt;Have you ever excitedly run &lt;em&gt;ollama run llama3:70b&lt;/em&gt; on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.&lt;/p&gt;&#xA;&lt;p&gt;The biggest bottleneck in local AI isn&amp;rsquo;t the models themselves—it&amp;rsquo;s &lt;strong&gt;hardware-model mismatch&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>[&#34;681676055d80aaac0c9329be&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:27 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>[&#34;6a89342d6797a1f792f34566&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/6a89342d6797a1f792f34566/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:27 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/6a89342d6797a1f792f34566/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>&#34;69928c20ed328546cacbfdd1&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/69928c20ed328546cacbfdd1/</link>
+				<title>I - Sentence Segmentation Using Apache  OpenNLP</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/i-sentence-segmentation-using-apache-opennlp/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:26 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/69928c20ed328546cacbfdd1/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/i-sentence-segmentation-using-apache-opennlp/</guid>
+				<description>&lt;p&gt;In this post, we will discuss on how to find sentences in a block of text, which can be a paragraph or an entire book. We will be using &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library with Java.&lt;/p&gt;&#xA;&lt;p&gt;Objective here is to learn &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library and effectively use it in processing any text. We will start with Sentence Segmentation and will post more on the usage of its services in further posts.&lt;/p&gt;&#xA;&lt;h3 id=&#34;apache-open-nlp&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Apache Open NLP&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#apache-open-nlp&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;Apache OpenNLP is an open source library, which is used to process &lt;em&gt;&lt;strong&gt;Natural Language Text&lt;/strong&gt;&lt;/em&gt;. It provides services such as sentence segmentation, tokenization, part of speech tagging, named entity extraction, chunking, parsing etc. Its a powerful library which comes with its own set of models, which I will be using in our examples. You can find the set of models from here &lt;a href=&#34;http://opennlp.sourceforge.net/models-1.5/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;http://opennlp.sourceforge.net/models-1.5/&lt;/a&gt;&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>[&#34;6249579158f0bd10b2a57273&#34;</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:26 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</guid>
-				<description></description>
+				<title>#LC105 - Binary Tree from In-Order and Pre-Order Traversal</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/lc105-binary-tree-from-in-order-and-pre-order-traversal/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:25 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc105-binary-tree-from-in-order-and-pre-order-traversal/</guid>
+				<description>&lt;p&gt;In this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here &lt;a href=&#34;https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;&lt;strong&gt;leetcode #105&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;So, in a binary tree, we can do depth first traversal in three ways:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;***In-order traversal  (left -&amp;gt; root -&amp;gt; right) ***&lt;/li&gt;&#xA;&lt;li&gt;***Pre-order traversal  (root -&amp;gt; left -&amp;gt; right) ***&lt;/li&gt;&#xA;&lt;li&gt;***Post-order traversal  (left -&amp;gt; right -&amp;gt; root) ***&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Refer &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/binary-tree-traversal&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;&lt;strong&gt;Binary Tree - Traversal&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt; to understand on how to traverse using the above three ways.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>&#34;6249579158f0bd10b2a57273&#34;</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</link>
+				<title>#LC983 - Find The Minimum Cost For Tickets (DP)</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/lc983-find-the-minimum-cost-for-tickets-dp/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:25 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc983-find-the-minimum-cost-for-tickets-dp/</guid>
+				<description>&lt;p&gt;In this post we will go through the &lt;a href=&#34;https://leetcode.com/problems/minimum-cost-for-tickets/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Leetcode #983&lt;/em&gt;&lt;/a&gt; to find the minimum cost for Tickets, which could be one of the starting practice programs in &lt;em&gt;&lt;strong&gt;Dynamic Programming&lt;/strong&gt;&lt;/em&gt;. This is a really interesting problem and I took help from &lt;a href=&#34;https://www.youtube.com/watch?v=HyN5hdD1JU4&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Nideesh Terapalli&lt;/em&gt;&lt;/a&gt; youtube video.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Problem Statement&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;In a country popular for train travel, you have planned some train travelling one year in advance.  The days of the year that you will travel is given as an array days.  Each day is an integer from 1 to 365.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Multi Release Functionality</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/multi-release-functionality/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:25 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/multi-release-functionality/</guid>
+				<description>&lt;p&gt;In this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.&lt;/p&gt;&#xA;&lt;p&gt;When Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>#LC1481 - Find Least Number of Unique Integers After K Removals</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/lc1481-find-least-number-of-unique-integers-after-k-removals/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:24 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/6249579158f0bd10b2a57273/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc1481-find-least-number-of-unique-integers-after-k-removals/</guid>
+				<description>&lt;p&gt;In this post, we will look into one of the &lt;a href=&#34;https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Leetcode problem #1481&lt;/em&gt;&lt;/a&gt;, where we have to find the least number of unique integers after removing k elements.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Problem Statement:&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;Given an array of integers &lt;em&gt;&lt;strong&gt;arr&lt;/strong&gt;&lt;/em&gt; and an integer &lt;em&gt;&lt;strong&gt;k&lt;/strong&gt;&lt;/em&gt;. Find the &lt;em&gt;least number of unique integers&lt;/em&gt; after removing exactly k elements.&#xA;So, the problem statements says to remove k elements from the given array in such a way that we get the least number of unique integers. Lets say we have following array:&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>&#34;681676055d80aaac0c9329be&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:24 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/</guid>
-				<description></description>
+				<title>Log4j Vulnerability - Saga Continues </title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/log4j-vulnerability-saga-continues/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:23 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/log4j-vulnerability-saga-continues/</guid>
+				<description>&lt;p&gt;To everyone&amp;rsquo;s surprise, the latest release of log4j 2.16.0 is now effected by Denial of Service vulnerability and is claimed to be fixed in another release 2.17.0.&lt;/p&gt;&#xA;&lt;p&gt;This Denial of Service vulnerability is reported by &lt;em&gt;Hideki Okamoto&lt;/em&gt; of Akamai technologies and other vulnerabilities researchers.&lt;/p&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;&lt;strong&gt;Versions Impacted&lt;/strong&gt;&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;&lt;strong&gt;CVE&lt;/strong&gt;&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;&lt;strong&gt;Severity&lt;/strong&gt;&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;&lt;strong&gt;Type of Vulnerability&lt;/strong&gt;&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;&lt;strong&gt;Fixed in&lt;/strong&gt;&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&amp;lt; 2.16.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;a href=&#34;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-45105&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;CVE-2021-45105&lt;/em&gt;&lt;/a&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;7.5&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Denial of Service&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.17.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&amp;lt; 2.15.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;a href=&#34;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-45046&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;CVE-2021-45046&lt;/em&gt;&lt;/a&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;9.0 (earlier 3.5)&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Remote Code Execution&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.16.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&amp;lt; v2.14.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;a href=&#34;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;CVE-2021-44228&lt;/em&gt;&lt;/a&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;10&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Remote Code Execution&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.15.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;You can refer to the older vulnerabilities details and its mitigation steps in these post:&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>&#34;69928c20ed328546cacbfdd1&#34;</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/69928c20ed328546cacbfdd1/</link>
+				<title>#LC438 - Find All Anagrams - Sliding Window Algorithm</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/find-all-anagrams-sliding-window-algorithm/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:22 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/find-all-anagrams-sliding-window-algorithm/</guid>
+				<description>&lt;p&gt;In this topic we will cover the &lt;a href=&#34;https://leetcode.com/problems/find-all-anagrams-in-a-string/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;leetcode #438&lt;/em&gt;&lt;/a&gt; Find all anagram programming question.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;Problem Statement: &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;Given two strings s and p, return *an array of all the start indices of p&amp;rsquo;s anagrams in *s. You may return the answer in &lt;strong&gt;any order&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;input&#34; class=&#34;relative group&#34;&gt;Input &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#input&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;String from&lt;/strong&gt;&lt;/em&gt;   &amp;ndash; this is the main string from which we have to find all the anagrams.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>System Design with Agentic AI - 1</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/system-design-with-agentic-ai-1/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:22 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/system-design-with-agentic-ai-1/</guid>
+				<description>&lt;p&gt;Agentic AI fails less often because of the model and more often because the system around the model was vague. The agent was given too much freedom, too little context, weak tools, no memory strategy, and no clear way to recover when things went wrong.&lt;/p&gt;&#xA;&lt;p&gt;A good agent is not a chatbot with extra prompts. It is a system that can plan, call tools, inspect results, revise its path, and stop at the right time. That means &lt;strong&gt;system design&lt;/strong&gt; matters. The planner, tools, skills, hooks, memory, retrieval, guardrails, and evaluation loop all shape whether the agent behaves like a careful assistant or a noisy automation script.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Using Twilio for Sending WhatsApp Message in Java</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/using-twilio-for-sending-whatsapp-message-in-java/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:22 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/using-twilio-for-sending-whatsapp-message-in-java/</guid>
+				<description>&lt;p&gt;In this blog post, we will try to send WhatsApp message in Java using &lt;a href=&#34;https://www.twilio.com/docs/whatsapp&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Twilio account&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;**Prerequisite: **&lt;/p&gt;&#xA;&lt;p&gt;Create a free account in Twilio.&lt;/p&gt;&#xA;&lt;p&gt;Once verified, you will have your own account SID and authorization token.&lt;/p&gt;&#xA;&lt;p&gt;Thereafter, you need to activate the Sandbox.&lt;/p&gt;&#xA;&lt;p&gt;Now add the number +14155238886 in you mobile account and send a message &amp;ldquo;&lt;em&gt;&lt;strong&gt;join up-post&lt;/strong&gt;&lt;/em&gt;&amp;rdquo; (without quotes).&lt;/p&gt;&#xA;&lt;p&gt;This will register your mobile number with Twilio sandbox and now you are eligible to send WhatsApp messages. The sandbox will look like below:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>#LC746 - Minimum Cost Of Climbing Stairs</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/lc746-minimum-cost-of-climbing-stairs/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:21 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc746-minimum-cost-of-climbing-stairs/</guid>
+				<description>&lt;p&gt;In this post we will look into the the &lt;a href=&#34;https://leetcode.com/problems/min-cost-climbing-stairs/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;leetcode #746&lt;/em&gt;&lt;/a&gt; problem to find the minimum cost of climbing stairs. This is also a good example to start your journey to learn dynamic programming.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Problem Statement&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;You are given an integer array cost where &lt;em&gt;&lt;strong&gt;cost[i]&lt;/strong&gt;&lt;/em&gt; is the cost of &lt;em&gt;&lt;strong&gt;ith&lt;/strong&gt;&lt;/em&gt; step on a staircase. Once you pay the cost, you can either climb one or two steps. You can either start from the step with index 0, or the step with index 1.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Fork-Join Framework in Java</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:21 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/</guid>
+				<description>&lt;p&gt;This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-it-works&#34; class=&#34;relative group&#34;&gt;How it Works &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#how-it-works&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Lets understand some key points in this framework&lt;/p&gt;&#xA;&lt;p&gt;Fork means spawning a new task.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>CRUD operation in MongoDB</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:20 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/69928c20ed328546cacbfdd1/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/</guid>
+				<description>&lt;p&gt;In this post we will create a Java application which will interact with MongoDB to perform all the CRUD operations.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-nosql-database&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;What is NoSQL database.&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#what-is-nosql-database&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;To start with, these database are non-relational database, but that doesn&amp;rsquo;t mean that the NoSQL database cannot maintain relationship. These database are different from relational database in the way the data is stored. NoSQL data model keeps the related data nested to single data structure.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>&#34;69a5166ca84159d4b5dd8ff1&#34;]</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/69a5166ca84159d4b5dd8ff1/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:20 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/69a5166ca84159d4b5dd8ff1/</guid>
-				<description></description>
+				<title>Docker Desktop Model Runner</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:18 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/</guid>
+				<description>&lt;p&gt;In today&amp;rsquo;s rapidly evolving tech landscape, the availability of diverse AI models for everyday users marks a significant shift in how we interact with technology. However, with this convenience comes a critical responsibility: &lt;em&gt;ensuring data privacy remains intact&lt;/em&gt;. Enter Docker Desktop, a powerful tool that revolutionised application deployment by packaging large applications as lightweight images, which can be executed in isolated environments called containers.&lt;/p&gt;&#xA;&lt;p&gt;One of the standout features of Docker Desktop is the &lt;strong&gt;Docker Model Runner&lt;/strong&gt;. This innovative addition empowers developers to run AI models locally on their machines. By leveraging this feature, users can harness the capabilities of advanced AI without the need to share sensitive data or manage complex API keys. With Docker Model Runner, you can focus on development and experimentation while maintaining control over your data privacy.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>&#34;681676055d80aaac0c9329be&#34;</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/</link>
+				<title>Set Swappiness in Linux</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/set-swappiness-in-linux/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:18 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/set-swappiness-in-linux/</guid>
+				<description>&lt;p&gt;In this post we will look into how to change the swappiness value in Linux.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Swappiness&lt;/strong&gt; is the kernel parameter that defines how much your Linux kernel will use to copy RAM contents to swap. A low swap value means kernel will try to avoid swapping as much as possible, while a higher value will tend to use more data for swapping.&lt;/p&gt;&#xA;&lt;h3 id=&#34;approach-1&#34; class=&#34;relative group&#34;&gt;Approach 1: &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#approach-1&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h4 id=&#34;steps&#34; class=&#34;relative group&#34;&gt;Steps &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#steps&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Login as root.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;To get the current swappiness value:&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+			</item>
+			<item>
+				<title>Log4j Vulnerability - Continued</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/log4j-vulnerability-continued/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:17 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/</guid>
-				<description></description>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/log4j-vulnerability-continued/</guid>
+				<description>&lt;p&gt;There was second discovery of a new vulnerability on the recent version of log4j 2.15.0.&lt;/p&gt;&#xA;&lt;h2 id=&#34;denial-of-service-attack&#34; class=&#34;relative group&#34;&gt;Denial of Service Attack &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#denial-of-service-attack&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;If the service or application is vulnerable to DoS attack, then a attacker can block the service or the application by bombarding it with infinite request, which will result in failure of the service because of the overburden resource utilization.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>CCFA</title>
-				<link>http://localhost:1313/dynamicallyblunttech/categories/ccfa/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/categories/ccfa/</guid>
-				<description></description>
+				<title>Scraping Youtube Videos - Using Python&#39;s Requests &amp; JSON Libraries</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:17 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/</guid>
+				<description>&lt;p&gt;In this post we will look into &lt;em&gt;&lt;strong&gt;Scraping any Youtube video&lt;/strong&gt;&lt;/em&gt; metadata to get the views, likes, dislikes, published date etc. information using &lt;em&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/em&gt;. We will not be using any third party libraries which parse the HTML like Beautiful Soup.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Problem Statement:&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the &lt;em&gt;&lt;strong&gt;Youtube API&lt;/strong&gt;&lt;/em&gt; to fetch data.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Custom Java Class : Peculiar Cases</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:16 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</guid>
+				<description>&lt;p&gt;This post is about understanding the type of interview questions which can come from a Custom Java class where we can override &lt;em&gt;equals&lt;/em&gt;, &lt;em&gt;hashcode&lt;/em&gt;, *toString *or implements the Interface to *sort *the list of this custom Java class.&lt;/p&gt;&#xA;&lt;p&gt;Lets go one by one, where you start your coding round and the first information provided is&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Web Socket Client - Receiving Stream of Messages</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:16 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/</guid>
+				<description>&lt;p&gt;In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.&lt;/p&gt;&#xA;&lt;h3 id=&#34;web-sockets&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Web Sockets&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#web-sockets&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are &lt;em&gt;&lt;strong&gt;bi-directional, full duplex&lt;/strong&gt;&lt;/em&gt; communication protocol. This means that the data can be flown in either directions, client to server or server to client.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>KUBERNETES LEARNING PHASE 1 - BASIC COMMANDS</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/kubernetes-learning-phase-1-basic-commands/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:15 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/kubernetes-learning-phase-1-basic-commands/</guid>
+				<description>&lt;p&gt;This post will only includes scenario based Kubernetes problem and the commands/debugging steps. It will be updated whenever I learn something new.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;For Installation of Kubernetes refer here&lt;/strong&gt;: &lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;https://kubernetes.io/docs/tasks/tools/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;case-1-get-all-pods-in-a-namespace&#34; class=&#34;relative group&#34;&gt;Case 1: Get all pods in a namespace &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#case-1-get-all-pods-in-a-namespace&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get pods &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;namespace_name&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;case-2-get-all-namespaces&#34; class=&#34;relative group&#34;&gt;Case 2: Get all namespaces &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#case-2-get-all-namespaces&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get namespaces &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;OR&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get ns&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;case-3-create-pods-with-a-name-and-image-in-a-particular-namespace&#34; class=&#34;relative group&#34;&gt;Case 3: Create pods with a name and image in a particular namespace &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#case-3-create-pods-with-a-name-and-image-in-a-particular-namespace&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl run &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;pod_name&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;image&lt;span style=&#34;color:#f92672&#34;&gt;=&amp;lt;&lt;/span&gt;image_name&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;namespace&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;e.g.&lt;/em&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Exploring Government&#39;s Cowin APIs</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/exploring-government-s-cowin-apis/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/exploring-government-s-cowin-apis/</guid>
+				<description>&lt;p&gt;In this post we will be looking into the CoWIN APIs which GoI has published during the covid period where the third party app can utilize the APIs to create there own app.&lt;/p&gt;&#xA;&lt;p&gt;We used only few API from the public list and created a &lt;em&gt;&lt;strong&gt;Spring boot application&lt;/strong&gt;&lt;/em&gt; which will get me the list of all the available slots for either the old or young people based on their age on a given date and list of pin codes.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>II - Tokenization using Apache OpenNLP</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/ii-tokenization-using-apache-opennlp/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/ii-tokenization-using-apache-opennlp/</guid>
+				<description>&lt;p&gt;In this post we will create tokens of the given string using &lt;strong&gt;Apache OpenNLP&lt;/strong&gt; library.&lt;/p&gt;&#xA;&lt;p&gt;This post is a continuation of the previous post &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/i-sentence-segmentation-using-apache-opennlp&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;strong&gt;Find Sentences using Apache Open NLP&lt;/strong&gt;&lt;/a&gt;**. **Refer to this post first for the setting up your project with Apache OpenNLP library. In the previous post we used &lt;em&gt;&lt;strong&gt;SentenceDetecterME&lt;/strong&gt;&lt;/em&gt;, &lt;em&gt;&lt;strong&gt;SentenceModel&lt;/strong&gt;&lt;/em&gt;, and ***Span ***class of the openNLP library.&lt;/p&gt;&#xA;&lt;p&gt;Apache OpenNLP library provides the &lt;em&gt;&lt;strong&gt;SimpleTokenizer&lt;/strong&gt;&lt;/em&gt;, ***WhitespaceTokenizer ***and ***TokenizerME ***which will use the normal process to tokenize by splitting the string either on whitespace or using some already trained models. These classes doesn&amp;rsquo;t expose their constructors, so we have to use ***INSTANCE ***to get the instance of these classes.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>IV - Recognizing Parts Of Speech Using Apache OpenNLP</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/iv-recognizing-parts-of-speech-using-apache-opennlp/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/iv-recognizing-parts-of-speech-using-apache-opennlp/</guid>
+				<description>&lt;p&gt;In this post we will discuss on recognizing parts of speech in a given sentence using &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library. This is part of the series on &lt;em&gt;learning Natural Language Processing&lt;/em&gt; using Apache OpenNLP  library.&lt;/p&gt;&#xA;&lt;p&gt;Like other models where we detect sentence, or find names, or tokenize any give string, in this post also we will be using one of the trained models which is provided by Apache Open NLP library only.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Read/Write Excel Using Apache POI &amp; Java</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/read-write-excel-using-apache-poi-java/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:13 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/read-write-excel-using-apache-poi-java/</guid>
+				<description>&lt;p&gt;This post will explore Apache POI library which is used to read any excel document and can also edit the excel sheets.&lt;/p&gt;&#xA;&lt;p&gt;Apache POI (&lt;em&gt;&lt;strong&gt;Poor Obfuscation Implementation&lt;/strong&gt;&lt;/em&gt;) is open source java project to read or write Microsoft excel documents. The latest version is &lt;strong&gt;5.0.1&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;dependencies&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Dependencies&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#dependencies&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;To include Apache POI libraries, there are two libraries to handle different version of Excel.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>#LC226 - Inversion Of Binary Tree Using Recursion</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:12 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/</guid>
+				<description>&lt;p&gt;Following the last post on the&lt;a href=&#34;https://www.dynamicallyblunttech.com/post/binary-tree-traversal&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;* binary tree traversals*&lt;/a&gt;, in this post we will try to invert a given binary tree.&lt;/p&gt;&#xA;&lt;p&gt;Binary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;4&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  2     7&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;1   3 6   9&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the above binary tree, root node has a value of 4 and 2 is the left node of the root and 7 is right node of the root. &lt;em&gt;&lt;strong&gt;An inverted node will look like this, where the left node is swapped with the right node.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Maven - Manifest file and Jar with Dependencies</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/maven-manifest-file-and-jar-with-dependencies/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:12 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/maven-manifest-file-and-jar-with-dependencies/</guid>
+				<description>&lt;p&gt;In this post, we will build a simple maven project which will create two jar files, which can be executed using below command&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;java &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;jar sample.&lt;span style=&#34;color:#a6e22e&#34;&gt;jar&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;arguments space separated&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In maven, there is plugin called *maven-assembly-plugin, *which will assemble the dependencies and package it into a jar file, provided packaging as jar is given in the maven pom.xml file.&lt;/p&gt;&#xA;&lt;p&gt;So, first and foremost thing is to have packaging given as jar like this&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Reading CSV file in Python with Encoding</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/reading-csv-file-in-python-with-encoding/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:12 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/reading-csv-file-in-python-with-encoding/</guid>
+				<description>&lt;p&gt;This post will be to resolve a particular error I encountered while reading the csv files for one of my task. This csv file can contain &lt;em&gt;non-English&lt;/em&gt; characters like Chinese or Japanese and hence we need to use the correct encoding format to read the file.&lt;/p&gt;&#xA;&lt;p&gt;Lets say the csv file contains following:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Title&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Id&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2018-适用于 Windows Server 2016 的 05 累积更新，适合基于 x64 的系统 (KB4103723)&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;e6c7b5bd04ec&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2021-适用于 Windows Server 2016 的 09 服务堆栈更新，适合基于 x64 的系统 (KB5005698)&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;840e7e93b835&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Windows 恶意软件删除工具 x64 - v5.96 (KB890830)&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;cffc4d7bc390&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see it contains windows update KB name in Chinese characters.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

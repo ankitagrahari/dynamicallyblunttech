@@ -2,9 +2,8 @@
 title: "CCA-F Domain 4: Prompt Engineering and Structured Output"
 date: 2026-10-27T08:14:16+05:30
 draft: false
-featureImage: "images/df024c_5399559a147b4ccf87b34be38643f27c.jpg"
-tags: ['[]']
-categories: ['["6a89342d6797a1f792f34566"]']
+tags: ['CCAF', 'Claude', 'GenAI']
+categories: ['Claude', 'CCAF']
 showReadingTime: true
 ---
 
