@@ -69,7 +69,13 @@
     content="
       
         Part 1 of the StreamMetrics Series
-*Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | **Part 4: From *Localhost* to Kubernetes*
+*Previous parts: 
+      
+    Part 2: Consumer &#43; DLQ | 
+      
+    Part 3: Real-Time Aggregations | 
+      
+    Part 4: From Localhost to Kubernetes
 Love how it rhymes &ldquo;Production Kafka Producer&rdquo;.
 Here&rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving &ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the Tale of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.
       
@@ -99,7 +105,7 @@ Here&rsquo;s to coding in an era of AI Agents. They suggest and are confident th
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="Building a Production Kafka Producer">
 	<meta property="og:description" content="Part 1 of the StreamMetrics Series
-*Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | **Part 4: From *Localhost* to Kubernetes*
+*Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: From Localhost to Kubernetes
 Love how it rhymes “Production Kafka Producer”.
 Here’s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving – sometimes listens, and on others, feels cornered by his other siblings. This is the Tale of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.">
 	<meta property="og:locale" content="en_us">
@@ -107,13 +113,17 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:12+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:12+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="Kafka">
+		<meta property="article:tag" content="Spring">
+		<meta property="article:tag" content="Redis">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature.jpg">
 	<meta name="twitter:title" content="Building a Production Kafka Producer">
 	<meta name="twitter:description" content="Part 1 of the StreamMetrics Series
-*Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | **Part 4: From *Localhost* to Kubernetes*
+*Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: From Localhost to Kubernetes
 Love how it rhymes “Production Kafka Producer”.
 Here’s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving – sometimes listens, and on others, feels cornered by his other siblings. This is the Tale of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.">
 
@@ -126,7 +136,7 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
     "name": "Building a Production Kafka Producer",
     "headline": "Building a Production Kafka Producer",
     
-    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 1 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-production-grade-kafka-consumer-patterns\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 4: From *\u003c\/a\u003e\u003ca href=\u0022http:\/\/Localhost\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eLocalhost\u003c\/em\u003e\u003c\/a\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* to Kubernetes*\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003eLove how it rhymes \u0026ldquo;Production Kafka Producer\u0026rdquo;.\u003c\/p\u003e\n\u003cp\u003eHere\u0026rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving \u0026ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the \u003cem\u003e\u003cstrong\u003eTale\u003c\/strong\u003e\u003c\/em\u003e of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 1 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e\u003c\/p\u003e\n\u003cp\u003eLove how it rhymes \u0026ldquo;Production Kafka Producer\u0026rdquo;.\u003c\/p\u003e\n\u003cp\u003eHere\u0026rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving \u0026ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the \u003cem\u003e\u003cstrong\u003eTale\u003c\/strong\u003e\u003c\/em\u003e of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/",
     "author" : {
@@ -139,10 +149,10 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
     
     "dateModified": "2026-10-27T08:14:12\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["Kafka","Spring","Redis"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1378"
+    "wordCount": "1395"
   }
   </script>
     
@@ -165,8 +175,8 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/",
-       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/kafka/",
+       "name": "Kafka",
        "position": 3
      },
      {
@@ -320,16 +330,145 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_e91d10e5361c1f53.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_76a13a444c12e50e.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_da79480629a526c3.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_1641165996df4840.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="826"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_748dc5e0f701e484.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_65419a78cda996eb.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_748dc5e0f701e484.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_7d3fedf7bdbe6d06.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_42742697e4a97d0c.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p><strong>Part 1 of the StreamMetrics Series</strong></p>
-<p>*Previous parts: <em><a href="https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns" target="_blank" rel="noreferrer"><em>Part 2: Consumer + DLQ</em></a></em> | <em><a href="https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec" target="_blank" rel="noreferrer"><em>Part 3: Real-Time Aggregations</em></a></em> | *<a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">*Part 4: From *</a><a href="http://Localhost" target="_blank" rel="noreferrer"><em>Localhost</em></a><a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">* to Kubernetes*</a></p>
+<p>*Previous parts: <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/"><em>Part 3: Real-Time Aggregations</em></a></em> | <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/"><em>Part 4: From Localhost to Kubernetes</em></a></em></p>
 <p>Love how it rhymes &ldquo;Production Kafka Producer&rdquo;.</p>
 <p>Here&rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving &ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the <em><strong>Tale</strong></em> of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.</p>
-<h2 id="stream-metrics" class="relative group">Stream Metrics: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stream-metrics" aria-label="Anchor">#</a></span></h2><p>StreamMetrics is a real-time analytics platform that processes application metrics from multiple Spring Boot microservices using Kafka, providing sub-second visibility into system health and performance.</p>
-<p>So, Objective for this post is to establish a 3 node Kafka cluster, which enable the Producer to produce some messages. Consumer will come later in this series.</p>
+<h2 id="stream-metrics" class="relative group">Stream Metrics: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stream-metrics" aria-label="Anchor">#</a></span></h2><p>StreamMetrics is a real-time analytics platform that processes application metrics from multiple Spring Boot microservices using Kafka, providing sub-second visibility into system health and performance.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_da7e02d9da5c44e4.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_f22d2c67b6bc9538.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_a01b334e4ce43d8f.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_b30d9708870c7b28.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="696"
+        class="mx-auto my-0 rounded-md"
+        alt="High Level Architecture"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_d9bde0b3962baab4.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_98a9fbb7154e2b52.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_d9bde0b3962baab4.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_19ff74c3204b36d6.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_95ddf637e7703e1e.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">High Level Architecture</figcaption>
+</figure>
+
+So, Objective for this post is to establish a 3 node Kafka cluster, which enable the Producer to produce some messages. Consumer will come later in this series.</p>
 <h3 id="technology-stack" class="relative group"><strong>Technology Stack</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#technology-stack" aria-label="Anchor">#</a></span></h3><h4 id="core-infrastructure" class="relative group"><strong>Core Infrastructure</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#core-infrastructure" aria-label="Anchor">#</a></span></h4><ul>
 <li>Kafka: 3.6.0 (Multi-broker cluster)</li>
 <li>Zookeeper: 3.8.0 (Kafka dependency)</li>
@@ -351,7 +490,59 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 <li>Micrometer: Metrics collection</li>
 <li>Lombok: Reduce boilerplate</li>
 </ul>
-<h3 id="project-structure" class="relative group">Project Structure: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#project-structure" aria-label="Anchor">#</a></span></h3><h3 id="main-module" class="relative group"><strong>Main Module:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main-module" aria-label="Anchor">#</a></span></h3><p>This is the main module, which will have sub modules like:</p>
+<h3 id="project-structure" class="relative group">Project Structure: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#project-structure" aria-label="Anchor">#</a></span></h3><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            
+              srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/project-structure_hu_d52f54c6f8c81af9.webp"
+            
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="554"
+        height="611"
+        class="mx-auto my-0 rounded-md"
+        alt="Project Structure"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/project-structure.jpg"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Project Structure</figcaption>
+</figure>
+</p>
+<h3 id="main-module" class="relative group"><strong>Main Module:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#main-module" aria-label="Anchor">#</a></span></h3><p>This is the main module, which will have sub modules like:</p>
 <ul>
 <li>streammetric-common (common module - which contains the sede)</li>
 <li>streammetric-producer (Kafka Producer)</li>
@@ -499,29 +690,219 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 </span></span><span style="display:flex;"><span>    CUSTOM_HISTOGRAM
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Then comes the serializers and deserializers which will be mapped to Kafka configuration.</p>
-<p>The Serializer will import org.apache.kafka.common.serialization.Serializer and Deserializer</p>
-<p>will import org.apache.kafka.common.serialization.Deserializer.</p>
+<p>The Serializer will import <code>org.apache.kafka.common.serialization.Serializer</code> and Deserializer will import <code>org.apache.kafka.common.serialization.Deserializer</code>.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_64493fcd0c30d5fe.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_7fd41386f0be9896.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_357f48c30dda3ff2.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_269fa2f86167d095.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1366"
+        height="358"
+        class="mx-auto my-0 rounded-md"
+        alt="Serialize-Deserialize"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_32190f95ae717c18.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_b53274e1888af137.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_32190f95ae717c18.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_26438937af32d5dd.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_7ee0c04c6175a042.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
 <h4 id="challenges-1" class="relative group">Challenges: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenges-1" aria-label="Anchor">#</a></span></h4><ul>
-<li><strong>Issue:</strong> UnsatisfiedDependencyException - Spring trying to autowire beans in common module</li>
+<li><strong>Issue:</strong> <code>UnsatisfiedDependencyException</code> - Spring trying to autowire beans in common module</li>
 <li><strong>Root cause:</strong> Common module had Spring Boot dependencies (should be plain Java library)</li>
 <li><strong>Fix:</strong> Removed Spring dependencies from common, moved tests to producer</li>
 </ul>
 <h3 id="streammetric-producer-module" class="relative group"><strong>streammetric-producer module:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#streammetric-producer-module" aria-label="Anchor">#</a></span></h3><p>This module is the Kafka producer, that will be produce the messages to different topics.</p>
-<p>Define the ProducerFactory</p>
-<p>Create KafkaTemplate</p>
-<h4 id="producerfactory" class="relative group">ProducerFactory: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#producerfactory" aria-label="Anchor">#</a></span></h4><p>Kafka Template:</p>
+<ul>
+<li>Define the ProducerFactory</li>
+<li>Create KafkaTemplate</li>
+</ul>
+<h4 id="producerfactory" class="relative group">ProducerFactory: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#producerfactory" aria-label="Anchor">#</a></span></h4><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_1bdd81a8a598d6a1.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_b06ea36e7149cfcc.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_cfa940a6b61b7148.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_4f8b138987bb0d4.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="1280"
+        class="mx-auto my-0 rounded-md"
+        alt="Producer Factory"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_803a698776fce955.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_d1e2ccd69b1600a6.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_803a698776fce955.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_c687520812dbcee9.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_7f35934e20cd2c51.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Producer Factory</figcaption>
+</figure>
+</p>
+<p>Kafka Template:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> KafkaTemplate<span style="color:#f92672">&lt;</span>String, MetricEvent<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">kafkaTemplate</span>() {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> KafkaTemplate<span style="color:#f92672">&lt;&gt;</span>(producerFactory());
 </span></span><span style="display:flex;"><span>    }
-</span></span></code></pre></div><p>Then we will use the kafkaTemplate to send the data to specific topic.</p>
+</span></span></code></pre></div><p>Then we will use the kafkaTemplate to send the data to specific topic.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_b85ff9da327ec3e8.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_905c4ea35b5f6e6d.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_a92f5bb4d82e7c52.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_8dd7f62490a4d226.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="1822"
+        class="mx-auto my-0 rounded-md"
+        alt="sendMetric"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_4474b1ff23028a7b.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_5d8ba17beb5bfa32.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_4474b1ff23028a7b.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_199f4eaef7dacae.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_21e4c314d7f7b609.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">SendMetric</figcaption>
+</figure>
+</p>
 <h4 id="retry-implementation" class="relative group">Retry Implementation: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#retry-implementation" aria-label="Anchor">#</a></span></h4><blockquote>
 <p>This annotation can be applied to a class or a specific method. Applying it on a class is equivalent to applying it on all its public methods. The annotation enables backend retry for all methods where it is applied. Backend retry is performed via a retry. If using Spring, name and fallbackMethod can be resolved using Spring Expression Language (SpEL).</p>
 </blockquote>
 <h4 id="circuitbreaker" class="relative group">CircuitBreaker: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#circuitbreaker" aria-label="Anchor">#</a></span></h4><blockquote>
 <p>This annotation can be applied to a class or a specific method. Applying it on a class is equivalent to applying it on all its public methods. The annotation enables backend monitoring for all methods where it is applied. Backend monitoring is performed via a circuit breaker. See io.github.resilience4j.circuitbreaker.CircuitBreaker for details. If using Spring, name and fallbackMethod can be resolved using Spring Expression Language (SpEL).</p>
 </blockquote>
-<p>This is producer will send the message and logs it, without doing much for now.</p>
+<p>This producer will send the message and logs it, without doing much for now.</p>
 <p>Lets check the application.yml configuration needed with a 3 node cluster.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
 </span></span><span style="display:flex;"><span>  application:
@@ -577,7 +958,7 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 </span></span><span style="display:flex;"><span>        minimum<span style="color:#f92672">-</span>number<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>calls: 5
 </span></span><span style="display:flex;"><span>        permitted<span style="color:#f92672">-</span>number<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>calls<span style="color:#f92672">-</span>in<span style="color:#f92672">-</span>half<span style="color:#f92672">-</span><span style="color:#66d9ef">open</span><span style="color:#f92672">-</span>state: 3
 </span></span></code></pre></div><p>The naming is self explanatory. If more info is needed, check the official <a href="https://docs.spring.io/spring-kafka/reference/kafka.html" target="_blank" rel="noreferrer">documentation</a>.</p>
-<p>Now, lets talk about the elephant in the room.</p>
+<p>Now, lets talk about the <code>elephant</code> in the room.</p>
 <p>Since we are creating a Kafka cluster with 3 nodes, we need to define the Kafka network, port mapping, advertised listeners, clusterId, replication factor which are mandatory for the cluster to work properly.</p>
 <p>Here is the part of docker-compose file, which configures Kafka Node1:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>services:
@@ -616,10 +997,13 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 <p>Refer to my <a href="https://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer">Github repo</a> to get the entire docker-compose.yml file to setup the 3 node kafka cluster.</p>
 <h4 id="challenges-faced" class="relative group">Challenges Faced: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenges-faced" aria-label="Anchor">#</a></span></h4><ul>
 <li><strong>Issue:</strong> UnknownHostException: kafka1,2,3, then Connection to node could not be established</li>
-<li><strong>Root causes:</strong></li>
+<li><strong>Root causes:</strong>
+<ul>
 <li>Kafka containers advertising internal hostnames (kafka1:9092) instead of <a href="http://localhost" target="_blank" rel="noreferrer">localhost</a></li>
 <li>Missing EXTERNAL listeners for host machine access</li>
 <li>Port mapping mismatch (9094:9092 instead of 9094:9094)</li>
+</ul>
+</li>
 <li><strong>Fix:</strong> Added dual listeners (INTERNAL for broker-to-broker, EXTERNAL for <a href="http://localhost" target="_blank" rel="noreferrer">localhost</a>)</li>
 </ul>
 <p>Another issue was with Stale data</p>
@@ -628,8 +1012,73 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 <li><strong>Root cause:</strong> Old cluster metadata in /data directories</li>
 <li><strong>Fix:</strong> Cleaned kafka1/2/3 data directories before restart</li>
 </ul>
-<h3 id="kafka-ui" class="relative group"><strong>Kafka UI</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#kafka-ui" aria-label="Anchor">#</a></span></h3><p>We have setup Kafka UI also to refer for all the brokers assigned, topics created and the messages producer vs consumed.</p>
-<p>Can be accessed via: <a href="http://localhost:8080/ui/clusters/local/brokers" target="_blank" rel="noreferrer">http://localhost:8080/ui/clusters/local/brokers</a></p>
+<h3 id="kafka-ui" class="relative group"><strong>Kafka UI</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#kafka-ui" aria-label="Anchor">#</a></span></h3><p>We have setup Kafka UI also to refer for all the brokers assigned, topics created and the messages producer vs consumed.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_43553fae71ec1fb1.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_163151ad7f6aec98.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_b71817be3417d32d.webp 1024w
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_9f149b1f0cbe87b8.webp 1182w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1182"
+        height="580"
+        class="mx-auto my-0 rounded-md"
+        alt="Kafka UI - Brokers"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_6f085ec1fed14266.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_17f5549682e69e3a.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_6f085ec1fed14266.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_9c7359b317c56df5.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1.jpg 1182w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Brokers</figcaption>
+</figure>
+
+Can be accessed via: <a href="http://localhost:8080/ui/clusters/local/brokers" target="_blank" rel="noreferrer">http://localhost:8080/ui/clusters/local/brokers</a></p>
 <p>This is how we setup Kafka-UI through docker-compose:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>kafka<span style="color:#f92672">-</span>ui:
 </span></span><span style="display:flex;"><span>    image: provectuslabs<span style="color:#f92672">/</span>kafka<span style="color:#f92672">-</span>ui:latest
@@ -646,7 +1095,133 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> kafka3
 </span></span><span style="display:flex;"><span>    networks:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> streammetrics<span style="color:#f92672">-</span>network
-</span></span></code></pre></div><p>This is the Kafka UI after producer sends 300 messages:</p>
+</span></span></code></pre></div><p>This is the Kafka UI after producer sends 300 messages:
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_7d583f185905bf6a.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_da029091ba54de84.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_17f6ac003f7c82ba.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_9a075f13884eb031.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="278"
+        class="mx-auto my-0 rounded-md"
+        alt="Kafka UI - Message Count"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_413f945860bc3e91.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_a54cc1fe117750ce.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_413f945860bc3e91.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_903e0703e80732d9.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_ad4c7e342b994e97.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Message Count</figcaption>
+</figure>
+</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_5b04d570299a5bab.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_5881805b5175511c.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_d94d2343e51c3494.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_827a4f7090db1695.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="2588"
+        class="mx-auto my-0 rounded-md"
+        alt="Mind Map"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_32d9f84375ca7d8a.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_8baa89c79c6268a2.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_32d9f84375ca7d8a.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_da3e465658441c01.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_11965ef999bb1edc.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Mind Map</figcaption>
+</figure>
+</p>
 <h2 id="outcome--success" class="relative group"><strong>Outcome: ✅ Success</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#outcome--success" aria-label="Anchor">#</a></span></h2><ul>
 <li><strong>3-broker Kafka cluster</strong> running in KRaft mode (no Zookeeper)</li>
 <li><strong>Producer sending messages</strong> with idempotent + exactly-once semantics</li>
@@ -657,10 +1232,13 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 </ul>
 <p>Next part will have the Kafka consumer with manual offset commits, implement dead letter queue for failed messages and proper error handling and test end to end producer &ndash;&gt; consumer flow.</p>
 <p>You can find my</p>
-<p>Github:</p>
-<p>Instagram:</p>
-<p>Medium:</p>
-<p>Share your thoughts whether you liked or disliked it. Do let me know if you having any queries or suggestions. Never forget, Learning is the primary goal.</p>
+<ul>
+<li>Github: <a href="https://github.com/ankitagrahari" target="_blank" rel="noreferrer">https://github.com/ankitagrahari</a></li>
+<li>Instagram: <a href="https://www.instagram.com/backendbrilliance/" target="_blank" rel="noreferrer">https://www.instagram.com/backendbrilliance/</a></li>
+<li>Medium: <a href="https://medium.com/@ankitagrahari.rkgit" target="_blank" rel="noreferrer">https://medium.com/@ankitagrahari.rkgit</a></li>
+</ul>
+<p>Share your thoughts whether you liked or disliked it. Do let me know if you having any queries or suggestions.
+Never forget, Learning is the primary goal.</p>
 <p>Learn with every commit.</p>
 
       </div>

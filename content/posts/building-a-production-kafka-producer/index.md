@@ -2,15 +2,14 @@
 title: "Building a Production Kafka Producer"
 date: 2026-10-27T08:14:12+05:30
 draft: false
-featureImage: "images/df024c_783f5ffba5d14152bd74513adff527fc.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"', '"6249579158f0bd10b2a57273"', '"69928c20ed328546cacbfdd1"', '"69a5166ca84159d4b5dd8ff1"]']
+tags: ['Kafka', 'Spring', 'Redis']
+categories: ['Kafka', 'Spring', 'Redis']
 showReadingTime: true
 ---
 
 **Part 1 of the StreamMetrics Series**
 
-*Previous parts: *[*Part 2: Consumer + DLQ*](https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns)* | *[*Part 3: Real-Time Aggregations*](https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec)* | *[*Part 4: From *](https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale)[*Localhost*](http://Localhost)[* to Kubernetes*](https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale)
+*Previous parts: *[*Part 2: Consumer + DLQ*](posts/building-production-grade-kafka-consumer-patterns)* | *[*Part 3: Real-Time Aggregations*](posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec)* | *[*Part 4: From Localhost to Kubernetes*](posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale)*
 
 Love how it rhymes "Production Kafka Producer".
 
@@ -19,7 +18,7 @@ Here's to coding in an era of AI Agents. They suggest and are confident that thi
 ## Stream Metrics:
 
 StreamMetrics is a real-time analytics platform that processes application metrics from multiple Spring Boot microservices using Kafka, providing sub-second visibility into system health and performance. 
-
+![High Level Architecture](images/highlevelArch.jpg "High Level Architecture")
 So, Objective for this post is to establish a 3 node Kafka cluster, which enable the Producer to produce some messages. Consumer will come later in this series. 
 
 ### **Technology Stack**
@@ -46,7 +45,7 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
 * Lombok: Reduce boilerplate
 
 ### Project Structure:
-
+![Project Structure](images/project-structure.jpg "Project Structure")
 ### **Main Module:**
 
 This is the main module, which will have sub modules like:
@@ -215,27 +214,24 @@ public enum MetricType {
 
 Then comes the serializers and deserializers which will be mapped to Kafka configuration.
 
-The Serializer will import org.apache.kafka.common.serialization.Serializer and Deserializer
-
-will import org.apache.kafka.common.serialization.Deserializer.
+The Serializer will import `org.apache.kafka.common.serialization.Serializer` and Deserializer will import `org.apache.kafka.common.serialization.Deserializer`.
+![Serialize-Deserialize](images/serialize-deserialize.jpg)
 
 #### Challenges:
-* **Issue:** UnsatisfiedDependencyException - Spring trying to autowire beans in common module
+* **Issue:** `UnsatisfiedDependencyException` - Spring trying to autowire beans in common module
 * **Root cause:** Common module had Spring Boot dependencies (should be plain Java library)
 * **Fix:** Removed Spring dependencies from common, moved tests to producer
 
 ### **streammetric-producer module:**
 
 This module is the Kafka producer, that will be produce the messages to different topics. 
-
-Define the ProducerFactory
-
-Create KafkaTemplate
+- Define the ProducerFactory
+- Create KafkaTemplate
 
 #### ProducerFactory:
+![Producer Factory](images/producerfactory.jpg "Producer Factory")
 
 Kafka Template:
-
 ```java
 @Bean
     public KafkaTemplate<String, MetricEvent> kafkaTemplate() {
@@ -244,6 +240,7 @@ Kafka Template:
 ```
 
 Then we will use the kafkaTemplate to send the data to specific topic.
+![sendMetric](images/kafka-template.jpg "SendMetric")
 
 #### Retry Implementation:
 
@@ -253,7 +250,7 @@ Then we will use the kafkaTemplate to send the data to specific topic.
 
 > This annotation can be applied to a class or a specific method. Applying it on a class is equivalent to applying it on all its public methods. The annotation enables backend monitoring for all methods where it is applied. Backend monitoring is performed via a circuit breaker. See io.github.resilience4j.circuitbreaker.CircuitBreaker for details. If using Spring, name and fallbackMethod can be resolved using Spring Expression Language (SpEL).
 
-This is producer will send the message and logs it, without doing much for now. 
+This producer will send the message and logs it, without doing much for now. 
 
 Lets check the application.yml configuration needed with a 3 node cluster.
 
@@ -319,9 +316,9 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
 ```
 
- The naming is self explanatory. If more info is needed, check the official [documentation](https://docs.spring.io/spring-kafka/reference/kafka.html).
+The naming is self explanatory. If more info is needed, check the official [documentation](https://docs.spring.io/spring-kafka/reference/kafka.html).
 
-Now, lets talk about the elephant in the room. 
+Now, lets talk about the `elephant` in the room. 
 
 Since we are creating a Kafka cluster with 3 nodes, we need to define the Kafka network, port mapping, advertised listeners, clusterId, replication factor which are mandatory for the cluster to work properly. 
 
@@ -365,12 +362,12 @@ Here
 Refer to my [Github repo](https://github.com/ankitagrahari/StreamAnalytics) to get the entire docker-compose.yml file to setup the 3 node kafka cluster. 
 
 #### Challenges Faced:
-* **Issue:** UnknownHostException: kafka1,2,3, then Connection to node could not be established
-* **Root causes:**
-* Kafka containers advertising internal hostnames (kafka1:9092) instead of [localhost](http://localhost)
-* Missing EXTERNAL listeners for host machine access
-* Port mapping mismatch (9094:9092 instead of 9094:9094)
-* **Fix:** Added dual listeners (INTERNAL for broker-to-broker, EXTERNAL for [localhost](http://localhost))
+- **Issue:** UnknownHostException: kafka1,2,3, then Connection to node could not be established
+- **Root causes:**
+  - Kafka containers advertising internal hostnames (kafka1:9092) instead of [localhost](http://localhost)
+  - Missing EXTERNAL listeners for host machine access
+  - Port mapping mismatch (9094:9092 instead of 9094:9094)
+- **Fix:** Added dual listeners (INTERNAL for broker-to-broker, EXTERNAL for [localhost](http://localhost))
 
 Another issue was with Stale data 
 * **Issue:** DUPLICATE_BROKER_REGISTRATION errors
@@ -380,7 +377,7 @@ Another issue was with Stale data
 ### **Kafka UI**
 
 We have setup Kafka UI also to refer for all the brokers assigned, topics created and the messages producer vs consumed. 
-
+![Kafka UI - Brokers](images/kafka-ui-1.jpg "Brokers")
 Can be accessed via: [http://localhost:8080/ui/clusters/local/brokers](http://localhost:8080/ui/clusters/local/brokers)
 
 This is how we setup Kafka-UI through docker-compose:
@@ -404,7 +401,9 @@ kafka-ui:
 ```
 
 This is the Kafka UI after producer sends 300 messages:
+![Kafka UI - Message Count](images/kafka-ui-2.jpg "Message Count")
 
+![Mind Map](images/mindmap.jpg "Mind Map")
 ## **Outcome: ✅ Success**
 * **3-broker Kafka cluster** running in KRaft mode (no Zookeeper)
 * **Producer sending messages** with idempotent + exactly-once semantics
@@ -416,13 +415,11 @@ This is the Kafka UI after producer sends 300 messages:
 Next part will have the Kafka consumer with manual offset commits, implement dead letter queue for failed messages and proper error handling and test end to end producer --> consumer flow. 
 
 You can find my
+- Github: https://github.com/ankitagrahari
+- Instagram: https://www.instagram.com/backendbrilliance/
+- Medium: https://medium.com/@ankitagrahari.rkgit
 
-Github:
-
-Instagram: 
-
-Medium:
-
-Share your thoughts whether you liked or disliked it. Do let me know if you having any queries or suggestions. Never forget, Learning is the primary goal. 
+Share your thoughts whether you liked or disliked it. Do let me know if you having any queries or suggestions. 
+Never forget, Learning is the primary goal. 
 
 Learn with every commit.
