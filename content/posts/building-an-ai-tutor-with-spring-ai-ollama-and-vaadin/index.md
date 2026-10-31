@@ -7,11 +7,9 @@ categories: ['AI', 'Spring', 'Ollama']
 showReadingTime: true
 ---
 
-{{< youtube id="39abcaXCe7o" >}}
-
 **AI Tutor** is a web application that uses **Spring Boot** and **Spring AI** on the backend, an **Ollama**-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and **Vaadin** for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a **PGVector**-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions *specific to the uploaded documents*, avoiding “hallucinations”  .
 
-!["Project Spotlight: AI Tutor"](images/df024c_ee3af1a0970947a385eaf059a88d945d.jpg "Project Spotlight: AI Tutor")
+{{< youtube id="39abcaXCe7o" >}}
 
 ## **Tech Stack and Configuration**
 

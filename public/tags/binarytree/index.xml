@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>BinaryTree on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/binarytree/</link>
+		<description>Recent content in BinaryTree on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:30 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/binarytree/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Binary Tree Traversal</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:30 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/</guid>
+				<description>&lt;p&gt;In this post we will look into the different ways to traverse a Binary Tree.&lt;/p&gt;&#xA;&lt;p&gt;In a binary tree, you can traverse in two different ways:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Breadth first traversal&lt;/li&gt;&#xA;&lt;li&gt;Depth first traversal&lt;/li&gt;&#xA;&lt;li&gt;In-order&lt;/li&gt;&#xA;&lt;li&gt;Pre-order&lt;/li&gt;&#xA;&lt;li&gt;Post-order&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Lets start with an example. Given the following binary tree:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;4&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  2     7&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;   &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;1   3 6   9&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When we traverse a binary tree, we can go either breadth first or depth first.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

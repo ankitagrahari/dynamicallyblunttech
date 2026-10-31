@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>LocalModel on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/localmodel/</link>
+		<description>Recent content in LocalModel on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:28 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/localmodel/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Stop Guessing, Find Perfect Local LLM with OllamaAdvisor</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:28 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/</guid>
+				<description>&lt;p&gt;Have you ever excitedly run &lt;em&gt;ollama run llama3:70b&lt;/em&gt; on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.&lt;/p&gt;&#xA;&lt;p&gt;The biggest bottleneck in local AI isn&amp;rsquo;t the models themselves—it&amp;rsquo;s &lt;strong&gt;hardware-model mismatch&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

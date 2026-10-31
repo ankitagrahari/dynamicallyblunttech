@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Executor on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/executor/</link>
+		<description>Recent content in Executor on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:29 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/executor/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Transfer Files with Executor Service </title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:29 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</guid>
+				<description>&lt;p&gt;In this post we will move all files from one directory to another using Java&amp;rsquo;s Executor Service and will also discuss on how we can enhance the entire process.&lt;/p&gt;&#xA;&lt;p&gt;To move files from one directory to another:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;List all files in the source directory&lt;/li&gt;&#xA;&lt;li&gt;Create a main class which will call the threads to process all the files in given directory.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

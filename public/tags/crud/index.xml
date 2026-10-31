@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>CRUD on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/crud/</link>
+		<description>Recent content in CRUD on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:20 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/crud/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>CRUD operation in MongoDB</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:20 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/</guid>
+				<description>&lt;p&gt;In this post we will create a Java application which will interact with MongoDB to perform all the CRUD operations.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-nosql-database&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;What is NoSQL database.&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#what-is-nosql-database&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;To start with, these database are non-relational database, but that doesn&amp;rsquo;t mean that the NoSQL database cannot maintain relationship. These database are different from relational database in the way the data is stored. NoSQL data model keeps the related data nested to single data structure.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

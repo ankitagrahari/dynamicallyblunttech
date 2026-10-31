@@ -68,11 +68,7 @@
     name="description"
     content="
       
-        
-			
-		
-
-AI Tutor is a web application that uses Spring Boot and Spring AI on the backend, an Ollama-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and Vaadin for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a PGVector-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions specific to the uploaded documents, avoiding “hallucinations”  .
+        AI Tutor is a web application that uses Spring Boot and Spring AI on the backend, an Ollama-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and Vaadin for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a PGVector-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions specific to the uploaded documents, avoiding “hallucinations”  .
       
     "
   />
@@ -108,9 +104,11 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
 		<meta property="article:tag" content="AI">
 		<meta property="article:tag" content="Spring">
 		<meta property="article:tag" content="Ollama">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature.jpg">
 	<meta name="twitter:title" content="Building an AI Tutor with Spring AI, Ollama, and Vaadin">
 	<meta name="twitter:description" content="AI Tutor is a web application that uses Spring Boot and Spring AI on the backend, an Ollama-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and Vaadin for the rich web UI. Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a PGVector-enabled PostgreSQL database. At chat time, similar chunks are retrieved and included as context so the LLM can answer questions specific to the uploaded documents, avoiding “hallucinations” .">
 
@@ -123,7 +121,7 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
     "name": "Building an AI Tutor with Spring AI, Ollama, and Vaadin",
     "headline": "Building an AI Tutor with Spring AI, Ollama, and Vaadin",
     
-    "abstract": "\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/39abcaXCe7o?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cp\u003e\u003cstrong\u003eAI Tutor\u003c\/strong\u003e is a web application that uses \u003cstrong\u003eSpring Boot\u003c\/strong\u003e and \u003cstrong\u003eSpring AI\u003c\/strong\u003e on the backend, an \u003cstrong\u003eOllama\u003c\/strong\u003e-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and \u003cstrong\u003eVaadin\u003c\/strong\u003e for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a \u003cstrong\u003ePGVector\u003c\/strong\u003e-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions \u003cem\u003especific to the uploaded documents\u003c\/em\u003e, avoiding “hallucinations”  .\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003eAI Tutor\u003c\/strong\u003e is a web application that uses \u003cstrong\u003eSpring Boot\u003c\/strong\u003e and \u003cstrong\u003eSpring AI\u003c\/strong\u003e on the backend, an \u003cstrong\u003eOllama\u003c\/strong\u003e-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and \u003cstrong\u003eVaadin\u003c\/strong\u003e for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a \u003cstrong\u003ePGVector\u003c\/strong\u003e-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions \u003cem\u003especific to the uploaded documents\u003c\/em\u003e, avoiding “hallucinations”  .\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin\/",
     "author" : {
@@ -139,7 +137,7 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
     "keywords": ["AI","Spring","Ollama"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1211"
+    "wordCount": "1207"
   }
   </script>
     
@@ -317,24 +315,11 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
         </div>
       
       
-    </header>
-    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
-      
-      <div class="min-h-0 min-w-0 max-w-prose grow">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/39abcaXCe7o?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
-		</div>
-
-<p><strong>AI Tutor</strong> is a web application that uses <strong>Spring Boot</strong> and <strong>Spring AI</strong> on the backend, an <strong>Ollama</strong>-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and <strong>Vaadin</strong> for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a <strong>PGVector</strong>-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions <em>specific to the uploaded documents</em>, avoiding “hallucinations”  .</p>
-<p>
-
-
-
-
-
-<figure>
-    
-    
+        <div class="prose">
+          
+          
+          
+          
 
 
 
@@ -345,7 +330,7 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
 
   
     <picture
-      class="mx-auto my-0 rounded-md"
+      class="mb-6 rounded-md"
       
     >
       
@@ -354,12 +339,12 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_45f152314713ada8.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_635715465c9f78a.webp 660w
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_45f152314713ada8.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_635715465c9f78a.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_bca6ad3e9e4b0ec9.webp 1024w
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_bca6ad3e9e4b0ec9.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_12fa4690ce2886a2.webp 1320w
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_12fa4690ce2886a2.webp 1320w
             "
           
           sizes="100vw"
@@ -369,16 +354,16 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
       <img
         width="1480"
         height="826"
-        class="mx-auto my-0 rounded-md"
-        alt="&ldquo;Project Spotlight: AI Tutor&rdquo;"
-        loading="lazy" decoding="async"
+        class="mb-6 rounded-md"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_a52ecba9b0cb7984.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_d1e4127f22e896c5.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_a52ecba9b0cb7984.jpg 660w
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_a52ecba9b0cb7984.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_d1e4127f22e896c5.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_a52ecba9b0cb7984.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_363f5cdde706407.jpg 1024w
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_363f5cdde706407.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/images/df024c_ee3af1a0970947a385eaf059a88d945d_hu_93d1af05bb0f4556.jpg 1320w
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-an-ai-tutor-with-spring-ai-ollama-and-vaadin/feature_hu_93d1af05bb0f4556.jpg 1320w
           "
           sizes="100vw"
         
@@ -386,9 +371,19 @@ AI Tutor is a web application that uses Spring Boot and Spring AI on the back
     </picture>
   
 
-<figcaption class="text-center">Project Spotlight: AI Tutor</figcaption>
-</figure>
-</p>
+
+          
+        </div>
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><strong>AI Tutor</strong> is a web application that uses <strong>Spring Boot</strong> and <strong>Spring AI</strong> on the backend, an <strong>Ollama</strong>-hosted LLM (e.g. Google’s Gemma3) for natural language understanding, and <strong>Vaadin</strong> for the rich web UI.  Its core innovation is a Retrieval-Augmented Generation (RAG) pipeline: when the user uploads course materials (PDFs, text, etc.), the app splits them into chunks, creates vector embeddings, and stores these in a <strong>PGVector</strong>-enabled PostgreSQL database.  At chat time, similar chunks are retrieved and included as context so the LLM can answer questions <em>specific to the uploaded documents</em>, avoiding “hallucinations”  .</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/39abcaXCe7o?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
 <h2 id="tech-stack-and-configuration" class="relative group"><strong>Tech Stack and Configuration</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tech-stack-and-configuration" aria-label="Anchor">#</a></span></h2><p>The project uses <strong>Spring AI</strong> to glue all pieces together.  In application.yml, we configure Ollama and PGVector.  For example:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
 </span></span><span style="display:flex;"><span>  datasource:

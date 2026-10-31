@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Tue, 27 Oct 2026 08:14:29 +0530</lastBuildDate>
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:31 +0530</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/dynamicallyblunttech/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Spring4Shell - Zero Day Vulnerability in Spring Framework</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/spring4shell-zero-day-vulnerability-in-spring-framework/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:31 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/spring4shell-zero-day-vulnerability-in-spring-framework/</guid>
+				<description>&lt;p&gt;In the days of Vulnerabilities, the famous Spring framework is the latest victim, which has quite a turns of event for the CVE identified as &lt;a href=&#34;https://tanzu.vmware.com/security/cve-2022-22965&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;CVE-2022-22965&lt;/em&gt;&lt;/a&gt;. The latest Spring Vulnerabilities was to be reported on 31st March, 2022, but someone has leaked the detailed information online a day before the CVE publication.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;A &lt;strong&gt;&lt;strong&gt;Zero Day Vulnerability&lt;/strong&gt;&lt;/strong&gt; occurs when a software package has a vulnerability that becomes public knowledge and there is no approved patch available to fix it at the time it becomes public.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+			</item>
 			<item>
 				<title>Authentication With LDAP in Spring</title>
 				<link>http://localhost:1313/dynamicallyblunttech/posts/authentication-with-ldap-in-spring-project/</link>

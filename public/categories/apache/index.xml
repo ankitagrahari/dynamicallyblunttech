@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Apache on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/categories/apache/</link>
+		<description>Recent content in Apache on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:29 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/categories/apache/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>III - Named Entity Recognition - Apache OpenNLP</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/iii-named-entity-recognition-apache-opennlp/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:29 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/iii-named-entity-recognition-apache-opennlp/</guid>
+				<description>&lt;p&gt;In this series of learning Natural Language Processing with &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library in Java, we will discuss on &lt;em&gt;&lt;strong&gt;NamedEntityRecognition&lt;/strong&gt;&lt;/em&gt;, which can identify names, places, locations etc. in any given string.&lt;/p&gt;&#xA;&lt;p&gt;In &lt;em&gt;&lt;strong&gt;Apache OpenNLP&lt;/strong&gt;&lt;/em&gt; library, &lt;em&gt;&lt;strong&gt;NamedEntityRecognition&lt;/strong&gt;&lt;/em&gt; uses predefined trained models which is used to recognize names or date or places or location etc. in the given string. These models are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;en-nerdate.bn,&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-location.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-organization.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-person.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;en-ner-time.bin&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Like in previous posts on &lt;a href=&#34;https://dynamicallyblunttech.blogspot.com/2020/07/find-sentences-using-apache-open-nlp.html&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;SentenceDetector&lt;/em&gt;&lt;/a&gt;&lt;a href=&#34;https://dynamicallyblunttech.blogspot.com/2020/07/find-sentences-using-apache-open-nlp.html&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;*** ***&lt;/a&gt;and &lt;a href=&#34;https://dynamicallyblunttech.blogspot.com/2020/07/tokenization-using-apache-opennlp.html&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Tokenization&lt;/em&gt;&lt;/a&gt;, here also we have to identify the models which we want to use, load the model, and use the find method of the ***NameFinderME ***class to find the specific name, location or place as per the models used.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

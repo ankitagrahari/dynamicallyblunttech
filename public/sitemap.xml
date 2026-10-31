@@ -5,10 +5,6 @@
     
   
     
-  
-    
-  
-    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/dynamic-scheduling-any-rest-api-s/</loc>
             <lastmod>2026-10-27T08:14:31+05:30</lastmod>
@@ -34,6 +30,10 @@
     
   
     
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/spring4shell-zero-day-vulnerability-in-spring-framework/</loc>
             <lastmod>2026-10-27T08:14:31+05:30</lastmod>
@@ -45,16 +45,16 @@
     
   
     
-  
-    
-  
-    
-  
-    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/binary-tree-traversal/</loc>
             <lastmod>2026-10-27T08:14:30+05:30</lastmod>
           </url>
+    
+  
+    
+  
+    
+  
     
   
     
@@ -72,6 +72,18 @@
     
   
     
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/target-machine-actively-refused-it-mongodb-issue/</loc>
             <lastmod>2026-10-27T08:14:30+05:30</lastmod>
@@ -79,10 +91,18 @@
     
   
     
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/authentication-with-ldap-in-spring-project/</loc>
             <lastmod>2026-10-27T08:14:29+05:30</lastmod>
           </url>
+    
+  
+    
+  
     
   
     
@@ -99,12 +119,16 @@
     
   
     
-  
-    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</loc>
             <lastmod>2026-10-27T08:14:29+05:30</lastmod>
           </url>
+    
+  
+    
+  
+    
+  
     
   
     
@@ -135,6 +159,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/log4jshell-vulnerability/</loc>
             <lastmod>2026-10-27T08:14:28+05:30</lastmod>
@@ -142,14 +168,14 @@
     
   
     
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/</loc>
             <lastmod>2026-10-27T08:14:28+05:30</lastmod>
           </url>
-    
-  
-    
-  
     
   
     
@@ -242,6 +268,8 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/multi-release-functionality/</loc>
             <lastmod>2026-10-27T08:14:25+05:30</lastmod>
           </url>
+    
+  
     
   
     
@@ -356,6 +384,10 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/spring-boot-application-external-configurations/</loc>
             <lastmod>2026-10-27T08:14:21+05:30</lastmod>
           </url>
+    
+  
+    
+  
     
   
     
@@ -533,6 +565,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts/</loc>
             <lastmod>2026-10-27T08:14:13+05:30</lastmod>
@@ -558,6 +592,8 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/read-write-excel-using-apache-poi-java/</loc>
             <lastmod>2026-10-27T08:14:13+05:30</lastmod>
           </url>
+    
+  
     
   
     

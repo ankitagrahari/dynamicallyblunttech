@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>MongoDB on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/mongodb/</link>
+		<description>Recent content in MongoDB on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:30 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Target Machine Actively Refused it - MongoDB Issue</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/target-machine-actively-refused-it-mongodb-issue/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:30 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/target-machine-actively-refused-it-mongodb-issue/</guid>
+				<description>&lt;p&gt;In this post we will discuss one of the issue encountered after installing MongoDB on my windows machine. This from the &#xA;      &#xA;    &lt;a href=&#34;http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/&#34;&gt;&lt;em&gt;&lt;strong&gt;previous post&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt; where we performed all the CRUD operation on MonogDB in Java.&lt;/p&gt;&#xA;&lt;p&gt;For installation of MongoDB, follow the official guide.&lt;/p&gt;&#xA;&lt;h3 id=&#34;issue&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Issue&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#issue&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;While opening the mongo.exe by double clicking on it, the console opens and then it vanishes. So, I tired again, still the console just showed for a second or two and then vanished again in thin air. Even tried using the mongoDB compass editor to check the connection, but that also didn&amp;rsquo;t connect.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
