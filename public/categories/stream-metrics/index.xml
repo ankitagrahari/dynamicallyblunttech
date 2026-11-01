@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Stream-Metrics on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/categories/stream-metrics/</link>
+		<description>Recent content in Stream-Metrics on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:20 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/categories/stream-metrics/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Real-Time Aggregations with Kafka Streams at 10K Events/Sec</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:20 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;Part 3 of the StreamMetrics Series&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;*Previous parts: &lt;em&gt;&#xA;      &#xA;    &lt;a href=&#34;http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/&#34;&gt;&lt;em&gt;Part 1: Kafka Producer&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | &lt;em&gt;&#xA;      &#xA;    &lt;a href=&#34;http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/&#34;&gt;&lt;em&gt;Part 2: Consumer + DLQ&lt;/em&gt;&lt;/a&gt;&lt;/em&gt; | *&#xA;      &#xA;    &lt;a href=&#34;http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/&#34;&gt;&lt;em&gt;Part 4: From Localhost to Kubernetes&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Building production-grade streaming analytics: windows, state stores, and performance validation&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;In Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;How do you extract insights from that fire hose of data?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

@@ -69,8 +69,16 @@
     content="
       
         Part 2 of the StreamMetrics Series
-*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | **Part 4: From *Localhost* to Kubernetes*
-*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
+*Previous parts: 
+      
+    Part 1: Kafka Producer | 
+      
+    *Part 3: Real-time Aggregation * | *
+      
+    Part 4: From Localhost to Kubernetes
+A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In 
+      
+    Part 1 we built the producer, today we add the consumer.
 Why This Matters #Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!
       
     "
@@ -99,22 +107,26 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="Building Production-Grade Apache Kafka Consumer Patterns">
 	<meta property="og:description" content="Part 2 of the StreamMetrics Series
-*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | **Part 4: From *Localhost* to Kubernetes*
-*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
+*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | * Part 4: From Localhost to Kubernetes
+A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
 Why This Matters #Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:15+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:15+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="StreamMetrics">
+		<meta property="article:tag" content="Kafka">
+		<meta property="article:tag" content="Spring">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature.jpg">
 	<meta name="twitter:title" content="Building Production-Grade Apache Kafka Consumer Patterns">
 	<meta name="twitter:description" content="Part 2 of the StreamMetrics Series
-*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | **Part 4: From *Localhost* to Kubernetes*
-*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
+*Previous parts: Part 1: Kafka Producer | *Part 3: Real-time Aggregation * | * Part 4: From Localhost to Kubernetes
+A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot &#43; Apache Kafka. This is part 2 of the series Stream Metrics application. *In Part 1 we built the producer, today we add the consumer.
 Why This Matters #Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!">
 
   
@@ -126,7 +138,7 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
     "name": "Building Production-Grade Apache Kafka Consumer Patterns",
     "headline": "Building Production-Grade Apache Kafka Consumer Patterns",
     
-    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 2 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 3: Real-time Aggregation *\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e*Part 4: From *\u003c\/a\u003e\u003ca href=\u0022http:\/\/Localhost\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003eLocalhost\u003c\/em\u003e\u003c\/a\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* to Kubernetes*\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003e*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot \u002b Apache Kafka. This is part 2 of the series Stream Metrics application. *In \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003ePart 1\u003c\/a\u003e we built the producer, today we add the consumer.\u003c\/p\u003e\n\u003ch4 id=\u0022why-this-matters\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWhy This Matters\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#why-this-matters\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003cp\u003eMost tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 2 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e*Part 3: Real-time Aggregation *\u003c\/a\u003e\u003c\/em\u003e | *\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/p\u003e\n\u003cp\u003eA deep-dive into manual offset management, dead letter queues, and observability with Spring Boot \u002b Apache Kafka. This is part 2 of the series Stream Metrics application. *In \n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/\u0022\u003ePart 1\u003c\/a\u003e we built the producer, today we add the consumer.\u003c\/p\u003e\n\u003ch4 id=\u0022why-this-matters\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWhy This Matters\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#why-this-matters\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003cp\u003eMost tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/",
     "author" : {
@@ -139,10 +151,10 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
     
     "dateModified": "2026-10-27T08:14:15\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["StreamMetrics","Kafka","Spring"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1626"
+    "wordCount": "1632"
   }
   </script>
     
@@ -165,8 +177,8 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/",
-       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/streammetrics/",
+       "name": "StreamMetrics",
        "position": 3
      },
      {
@@ -320,13 +332,81 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_e91d10e5361c1f53.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_76a13a444c12e50e.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_da79480629a526c3.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_1641165996df4840.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="826"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_748dc5e0f701e484.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_65419a78cda996eb.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_748dc5e0f701e484.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_7d3fedf7bdbe6d06.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/feature_hu_42742697e4a97d0c.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p><strong>Part 2 of the StreamMetrics Series</strong></p>
-<p>*Previous parts: <em><a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer"><em>Part 1: Kafka Producer</em></a></em> | <em><a href="https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec" target="_blank" rel="noreferrer">*Part 3: Real-time Aggregation *</a></em> | *<a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">*Part 4: From *</a><a href="http://Localhost" target="_blank" rel="noreferrer"><em>Localhost</em></a><a href="https://www.dynamicallyblunttech.com/post/from-localhost-to-kubernetes-deploying-streammetrics-at-scale" target="_blank" rel="noreferrer">* to Kubernetes*</a></p>
-<p>*A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot + Apache Kafka. This is part 2 of the series Stream Metrics application. *In <a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer">Part 1</a> we built the producer, today we add the consumer.</p>
+<p>*Previous parts: <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/"><em>Part 1: Kafka Producer</em></a></em> | <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/">*Part 3: Real-time Aggregation *</a></em> | *
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/"><em>Part 4: From Localhost to Kubernetes</em></a></p>
+<p>A deep-dive into manual offset management, dead letter queues, and observability with Spring Boot + Apache Kafka. This is part 2 of the series Stream Metrics application. *In 
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/">Part 1</a> we built the producer, today we add the consumer.</p>
 <h4 id="why-this-matters" class="relative group"><strong>Why This Matters</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-this-matters" aria-label="Anchor">#</a></span></h4><p>Most tutorials show you how to build a Kafka consumer. They show you @KafkaListener, they show you how to read a message, and they call it production-ready. It is not!</p>
 <p>Production Kafka consumers need to answer hard questions:</p>
 <ul>
@@ -337,8 +417,71 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 </ul>
 <p>This post answers all of those questions with code from StreamMetrics, a real-time analytics platform I built to process 10,000+ events per second from multiple microservices.</p>
 <p><strong>Architecture Overview</strong></p>
-<p>Before diving into code, here is the data flow StreamMetrics uses:</p>
-<p>The consumer group has 3 threads, each owning 2 partitions from the 6-partition topic. This gives us parallelism while maintaining partition-level ordering guarantees.</p>
+<p>Before diving into code, here is the data flow StreamMetrics uses:
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_6853488fec08df65.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_f31fcfc448d162d1.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_b743380db7b341b.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_bebd67ea3f3f2335.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="696"
+        class="mx-auto my-0 rounded-md"
+        alt="Archiecture Overview"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_922a53c1e7b979ff.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_4f250b74a061dc5d.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_922a53c1e7b979ff.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_1a5ea7ed4227b818.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Flow_hu_5885021fb3fcd129.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Archiecture Overview</figcaption>
+</figure>
+
+The consumer group has 3 threads, each owning 2 partitions from the 6-partition topic. This gives us parallelism while maintaining partition-level ordering guarantees.</p>
 <h2 id="1-manual-offset-management-why-auto-commit-will-eventually-burn-you" class="relative group"><strong>1. Manual Offset Management: Why Auto-Commit Will Eventually Burn You</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-manual-offset-management-why-auto-commit-will-eventually-burn-you" aria-label="Anchor">#</a></span></h2><p>Spring Kafka&rsquo;s default is <em>enable.auto.commit=true</em>, which commits offsets every 5 seconds regardless of whether your processing succeeded. This creates a silent data loss scenario that is extremely hard to debug in production.</p>
 <p><strong>The Problem with Auto-Commit</strong></p>
 <p>Consider this sequence of events with auto-commit enabled:</p>
@@ -349,15 +492,9 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 <li>Consumer restarts - but offsets are already committed</li>
 <li>Records 301-500 are silently lost forever.</li>
 </ul>
-<table>
-	<thead>
-			<tr>
-					<th><em>Auto-commit is optimistic. Manual offset management is pessimistic. For financial metrics, audit logs, or any data you cannot afford to lose, always use manual commits.</em></th>
-			</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+<blockquote>
+<p><em>Auto-commit is optimistic. Manual offset management is pessimistic. For financial metrics, audit logs, or any data you cannot afford to lose, always use manual commits.</em></p>
+</blockquote>
 <h4 id="configuration" class="relative group"><strong>Configuration:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#configuration" aria-label="Anchor">#</a></span></h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> application.<span style="color:#a6e22e">yml</span>
 </span></span><span style="display:flex;"><span>spring:
 </span></span><span style="display:flex;"><span>  kafka:
@@ -419,15 +556,9 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 </span></span><span style="display:flex;"><span>    acknowledgment.<span style="color:#a6e22e">acknowledge</span>();
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><table>
-	<thead>
-			<tr>
-					<th><em><strong>Key insight:</strong></em>* Even when processing fails, we commit the offset after sending to DLQ. This prevents a single bad message (<strong><strong>poison pill)</strong></strong> from blocking the entire partition forever.*</th>
-			</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+</span></span></code></pre></div><blockquote>
+<p><strong>Key insight:</strong> Even when processing fails, we commit the offset after sending to DLQ. This prevents a single bad message (<strong>poison pill)</strong> from blocking the entire partition forever.</p>
+</blockquote>
 <h2 id="2-the-dead-letter-queue-pattern" class="relative group"><strong>2. The Dead Letter Queue Pattern</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-the-dead-letter-queue-pattern" aria-label="Anchor">#</a></span></h2><p>A Dead Letter Queue (DLQ) is where messages go when they cannot be processed.</p>
 <p>Without a DLQ, you have two terrible options:</p>
 <ul>
@@ -479,15 +610,9 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 </span></span><span style="display:flex;"><span>          }
 </span></span><span style="display:flex;"><span>      });
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><table>
-	<thead>
-			<tr>
-					<th><em>Always enrich DLQ messages with failure metadata before sending. When you investigate failures 3 days later, you need to know WHY the message failed, WHEN it failed, and WHERE it came from.</em></th>
-			</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+</span></span></code></pre></div><blockquote>
+<p><em>Always enrich DLQ messages with failure metadata before sending. When you investigate failures 3 days later, you need to know WHY the message failed, WHEN it failed, and WHERE it came from.</em></p>
+</blockquote>
 <h4 id="monitoring-your-dlq" class="relative group"><strong>Monitoring Your DLQ</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#monitoring-your-dlq" aria-label="Anchor">#</a></span></h4><p>A growing DLQ is a production alert. In Kafka UI (or any Kafka management tool), watch the message count on your dead-letter topic. If it grows faster than your team can investigate, you have a systemic problem.</p>
 <p>In StreamMetrics, we track this with a custom Micrometer counter:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Increment on every DLQ send</span>
@@ -570,15 +695,9 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> kafkaTemplate.<span style="color:#a6e22e">send</span>(topic, event.<span style="color:#a6e22e">getServiceId</span>(), event);
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><table>
-	<thead>
-			<tr>
-					<th><em>This is a general principle: observability tools should observe your system, not be a dependency of it. If your tracing library throws an exception and crashes your producer, you have made your system less reliable in the name of observability.</em></th>
-			</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+</span></span></code></pre></div><blockquote>
+<p><em>This is a general principle: observability tools should observe your system, not be a dependency of it. If your tracing library throws an exception and crashes your producer, you have made your system less reliable in the name of observability.</em></p>
+</blockquote>
 <h2 id="4-hard-won-lessons-from-building-this" class="relative group"><strong>4. Hard-Won Lessons from Building This</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-hard-won-lessons-from-building-this" aria-label="Anchor">#</a></span></h2><h4 id="kafka-docker-listener-configuration-is-unintuitive" class="relative group"><strong>Kafka Docker Listener Configuration Is Unintuitive</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#kafka-docker-listener-configuration-is-unintuitive" aria-label="Anchor">#</a></span></h4><p>The single biggest time sink in this project was Kafka&rsquo;s listener configuration in Docker. When running Kafka in Docker and your Spring Boot app on the host machine, you need two separate listeners: one for internal <em>broker-to-broker</em> communication, and one for <em>external</em> clients.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> docker<span style="color:#f92672">-</span>compose.<span style="color:#a6e22e">yml</span> <span style="color:#960050;background-color:#1e0010">—</span> The config that <span style="color:#66d9ef">finally</span> worked
 </span></span><span style="display:flex;"><span>KAFKA_LISTENERS: <span style="color:#960050;background-color:#1e0010">&#39;</span>PLAINTEXT:<span style="color:#75715e">//kafka1:19092,EXTERNAL://0.0.0.0:9092,CONTROLLER://kafka1:9093&#39;</span>
@@ -601,12 +720,139 @@ Why This Matters #Most tutorials show you how to build a Kafka consumer. They sh
 <li>Optional distributed tracing through Zipkin</li>
 <li>Manual offset commits ensuring exactly-once processing semantics</li>
 </ul>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_342acbc59554289f.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_b83a64084d956301.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_4b518b53d5cc797.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_cef9d72865edd444.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="708"
+        class="mx-auto my-0 rounded-md"
+        alt="Graphana Metrics"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_27ed993d7d0db96e.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_4e79a270a9a83f47.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_27ed993d7d0db96e.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_3e326448a811d7cc.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/Graphana-metrics_hu_3a4860e8edc6cbe.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Graphana Metrics</figcaption>
+</figure>
+</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_98e8ab62f32385d2.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_35b0524b1b0e5b93.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_ba784e4bdd4cfe00.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_9303c510fd467a83.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="378"
+        class="mx-auto my-0 rounded-md"
+        alt="Kafka UI with 30k Messages"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_d6ddf0323da5efca.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_da7d46661995e7b.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_d6ddf0323da5efca.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_1a59a0385fa32b17.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/images/KafkaUIWith30kMessages_hu_a6360abe582e3ba7.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Kafka UI with 30k Messages</figcaption>
+</figure>
+</p>
 <h2 id="what" class="relative group"><strong>What&rsquo;s Next</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what" aria-label="Anchor">#</a></span></h2><p>Part 3 will cover Kafka Streams for real-time aggregations: computing 1-minute and 5-minute rolling averages of metric values, handling late-arriving data, and storing aggregated results back to Kafka and Redis.</p>
-<p>The full code is available at: <a href="http://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer">github.com/ankitagrahari/StreamAnalytics</a></p>
 <p>You can find my:</p>
-<p>Github:</p>
-<p>Instagram:</p>
-<p>Medium:</p>
+<ul>
+<li>Github: <a href="http://github.com/ankitagrahari/StreamAnalytics" target="_blank" rel="noreferrer">StreamAnalytics</a></li>
+<li>Instagram: <a href="https://www.instagram.com/backendbrilliance/" target="_blank" rel="noreferrer">backendbrilliance</a></li>
+<li>Medium: <a href="https://medium.com/@ankitagrahari.rkgit" target="_blank" rel="noreferrer">Link</a></li>
+</ul>
 <p>Share your thoughts whether you liked or disliked it. Do let me know if you having any queries or suggestions. Never forget, Learning is the primary goal.</p>
 <p>Learn with every commit.</p>
 

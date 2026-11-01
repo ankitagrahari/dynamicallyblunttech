@@ -391,10 +391,6 @@
     
   
     
-  
-    
-  
-    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/</loc>
             <lastmod>2026-10-27T08:14:20+05:30</lastmod>
@@ -409,12 +405,14 @@
     
   
     
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/testing-in-microservices/</loc>
             <lastmod>2026-10-27T08:14:20+05:30</lastmod>
           </url>
-    
-  
     
   
     
@@ -528,6 +526,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/aspect-programming-in-spring-logging/</loc>
             <lastmod>2026-10-27T08:14:14+05:30</lastmod>
@@ -629,6 +629,10 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/reading-csv-file-in-python-with-encoding/</loc>
             <lastmod>2026-10-27T08:14:12+05:30</lastmod>
           </url>
+    
+  
+    
+  
     
   
     

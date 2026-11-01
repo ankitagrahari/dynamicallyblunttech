@@ -69,7 +69,17 @@
     content="
       
         Part 4 of the StreamMetrics Series
-*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+*Previous parts: 
+      
+    Part 1: Kafka Producer | 
+      
+    Part 2: Consumer &#43; DLQ | *
+      
+    Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+
+			
+		
+
 Love how after building something locally, you think &ldquo;okay, it works on my machine!&rdquo; and then reality hits when you try to deploy it. Docker says &ldquo;works on my machine&rdquo; is not an excuse anymore, and Kubernetes says &ldquo;hold my beer, let&rsquo;s make it production-ready.&rdquo;
       
     "
@@ -98,20 +108,24 @@ Love how after building something locally, you think &ldquo;okay, it works on my
 	<meta property="og:site_name" content="DynamicallyBluntTech">
 	<meta property="og:title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale">
 	<meta property="og:description" content="Part 4 of the StreamMetrics Series
-*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | * Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
 Love how after building something locally, you think “okay, it works on my machine!” and then reality hits when you try to deploy it. Docker says “works on my machine” is not an excuse anymore, and Kubernetes says “hold my beer, let’s make it production-ready.”">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:19+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:19+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="StreamMetrics">
+		<meta property="article:tag" content="Kafka">
+		<meta property="article:tag" content="Spring">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature.jpg">
 	<meta name="twitter:title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale">
 	<meta name="twitter:description" content="Part 4 of the StreamMetrics Series
-*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | *Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
+*Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | * Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
 Love how after building something locally, you think “okay, it works on my machine!” and then reality hits when you try to deploy it. Docker says “works on my machine” is not an excuse anymore, and Kubernetes says “hold my beer, let’s make it production-ready.”">
 
   
@@ -123,7 +137,7 @@ Love how after building something locally, you think “okay, it works on my mac
     "name": "From Localhost to Kubernetes: Deploying StreamMetrics at Scale",
     "headline": "From Localhost to Kubernetes: Deploying StreamMetrics at Scale",
     
-    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 4 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-a-production-kafka-producer\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/building-production-grade-kafka-consumer-patterns\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003eStreammetric Bottleneck Explainer by NotebookLM\u003c\/p\u003e\n\u003cp\u003eLove how after building something locally, you think \u0026ldquo;\u003cem\u003eokay, it works on my machine!\u003c\/em\u003e\u0026rdquo; and then reality hits when you try to deploy it. Docker says \u0026ldquo;\u003cem\u003eworks on my machine\u003c\/em\u003e\u0026rdquo; is not an excuse anymore, and Kubernetes says \u0026ldquo;\u003cem\u003ehold my beer, let\u0026rsquo;s make it production-ready.\u003c\/em\u003e\u0026rdquo;\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 4 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003eStreammetric Bottleneck Explainer by NotebookLM\u003c\/p\u003e\n\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/2Bs8K6folk0?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cp\u003eLove how after building something locally, you think \u0026ldquo;\u003cem\u003eokay, it works on my machine!\u003c\/em\u003e\u0026rdquo; and then reality hits when you try to deploy it. Docker says \u0026ldquo;\u003cem\u003eworks on my machine\u003c\/em\u003e\u0026rdquo; is not an excuse anymore, and Kubernetes says \u0026ldquo;\u003cem\u003ehold my beer, let\u0026rsquo;s make it production-ready.\u003c\/em\u003e\u0026rdquo;\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/",
     "author" : {
@@ -136,10 +150,10 @@ Love how after building something locally, you think “okay, it works on my mac
     
     "dateModified": "2026-10-27T08:14:19\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["StreamMetrics","Kafka","Spring"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1954"
+    "wordCount": "1955"
   }
   </script>
     
@@ -162,8 +176,8 @@ Love how after building something locally, you think “okay, it works on my mac
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/",
-       "name": "[\"619c9d9d8da2c200166cb558\"",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/streammetrics/",
+       "name": "StreamMetrics",
        "position": 3
      },
      {
@@ -317,12 +331,82 @@ Love how after building something locally, you think “okay, it works on my mac
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_238dd391352e2ee.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_8010a8d6d47f0af5.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_eaa2f82a49c86e5f.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_2cc1d5ae69fc65e4.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="826"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_38341c351310ce41.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_b3dc3e93e8d69687.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_38341c351310ce41.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_a43e506b6e9f5d4a.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_b9cd24227d2d4354.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p><strong>Part 4 of the StreamMetrics Series</strong></p>
-<p>*Previous parts: <em><a href="https://www.dynamicallyblunttech.com/post/building-a-production-kafka-producer" target="_blank" rel="noreferrer"><em>Part 1: Kafka Producer</em></a></em> | <em><a href="https://www.dynamicallyblunttech.com/post/building-production-grade-kafka-consumer-patterns" target="_blank" rel="noreferrer"><em>Part 2: Consumer + DLQ</em></a></em> | *<a href="https://www.dynamicallyblunttech.com/post/real-time-aggregations-with-kafka-streams-at-10k-events-sec" target="_blank" rel="noreferrer"><em>Part 3: Real-Time Aggregations</em></a>Streammetric Bottleneck Explainer by NotebookLM</p>
+<p>*Previous parts: <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/"><em>Part 1: Kafka Producer</em></a></em> | <em>
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | *
+      
+    <a href="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/"><em>Part 3: Real-Time Aggregations</em></a>Streammetric Bottleneck Explainer by NotebookLM</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2Bs8K6folk0?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
 <p>Love how after building something locally, you think &ldquo;<em>okay, it works on my machine!</em>&rdquo; and then reality hits when you try to deploy it. Docker says &ldquo;<em>works on my machine</em>&rdquo; is not an excuse anymore, and Kubernetes says &ldquo;<em>hold my beer, let&rsquo;s make it production-ready.</em>&rdquo;</p>
 <p>This is the tale of taking StreamMetrics from docker-compose on <a href="http://localhost" target="_blank" rel="noreferrer">localhost</a> to a full Kubernetes deployment with KRaft Kafka, discovering why Redis refuses to connect, why Alpine needs libstdc++, and why environment variables have a mind of their own.</p>
 <p><strong>Objective for this post:</strong> </p>
