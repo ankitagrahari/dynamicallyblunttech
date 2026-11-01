@@ -167,7 +167,7 @@ So the output on console will have the print statements from peek() and final li
 [4_Dynamic_Blunt_30_(READ), 5_Dynamic_BluntTech_30_(All), 2_Greg_Smith_30_(All), 1_John_Doe_26_(All), 3_Alex_Smith_13_(All)]
 ```
 
-### **2. Distinct **Privileges
+### 2. Distinct Privileges
 
 We need to return all the distinct privileges which are part of the input list of User.
 
@@ -840,4 +840,4 @@ This will conclude the list of different scenarios which should help us in learn
 
 There will be other ways to do these problem set. Please do comment out if you find any. 
 
-Hope this will help you in your learning process. Please do suggest more content topics of your choice and share your feedback. Also [*subscribe and appreciate*](https://razorpay.com/payment-button/pl_IKvqCobZrv20Av/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button) the blog if you like it.
+Hope this will help you in your learning process. Please do suggest more content topics of your choice and share your feedback. Also *subscribe and appreciate* the blog if you like it.

@@ -69,6 +69,10 @@
     content="
       
         Devops Intelligence
+
+			
+		
+
 Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&rsquo;s just say it involved more debugging than coding.
 In this post, I&rsquo;ll walk you through:
 
@@ -132,7 +136,7 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
     "name": "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges \u0026 Solutions",
     "headline": "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges \u0026 Solutions",
     
-    "abstract": "\u003cp\u003eDevops Intelligence\u003c\/p\u003e\n\u003cp\u003eToday, I successfully built and deployed a \u003cstrong\u003eModel Context Protocol (MCP) server\u003c\/strong\u003e using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let\u0026rsquo;s just say it involved more debugging than coding.\u003c\/p\u003e\n\u003cp\u003eIn this post, I\u0026rsquo;ll walk you through:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eWhat we built (the DevOps Intelligence Platform)\u003c\/li\u003e\n\u003cli\u003eThe tools we created (K8s, Prometheus, Logs, Deployments)\u003c\/li\u003e\n\u003cli\u003eEvery challenge we faced (and how we solved them)\u003c\/li\u003e\n\u003cli\u003eWhy Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR:\u003c\/strong\u003e Built an MCP server with 5\u002b DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.\u003c\/p\u003e",
+    "abstract": "\u003cp\u003eDevops Intelligence\u003c\/p\u003e\n\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/DLVG0z-aHV4?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cp\u003eToday, I successfully built and deployed a \u003cstrong\u003eModel Context Protocol (MCP) server\u003c\/strong\u003e using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let\u0026rsquo;s just say it involved more debugging than coding.\u003c\/p\u003e\n\u003cp\u003eIn this post, I\u0026rsquo;ll walk you through:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eWhat we built (the DevOps Intelligence Platform)\u003c\/li\u003e\n\u003cli\u003eThe tools we created (K8s, Prometheus, Logs, Deployments)\u003c\/li\u003e\n\u003cli\u003eEvery challenge we faced (and how we solved them)\u003c\/li\u003e\n\u003cli\u003eWhy Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR:\u003c\/strong\u003e Built an MCP server with 5\u002b DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions\/",
     "author" : {
@@ -148,7 +152,7 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
     "keywords": ["[]"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1846"
+    "wordCount": "1851"
   }
   </script>
     
@@ -331,6 +335,10 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Devops Intelligence</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/DLVG0z-aHV4?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
 <p>Today, I successfully built and deployed a <strong>Model Context Protocol (MCP) server</strong> using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&rsquo;s just say it involved more debugging than coding.</p>
 <p>In this post, I&rsquo;ll walk you through:</p>
 <ul>
@@ -373,9 +381,135 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 <li>deployment_rollback - Rollback mechanism</li>
 <li>deployment_status - Current deployment status</li>
 </ul>
-<p>Here&rsquo;s what the MCP Inspector shows when fully connected:</p>
-<p><em>The DevOps Intelligence server with all tools discovered and ready to execute</em></p>
-<h2 id="architecture-how-it-all-fits-together" class="relative group">Architecture: How It All Fits Together <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#architecture-how-it-all-fits-together" aria-label="Anchor">#</a></span></h2><h2 id="challenge-1-tomcat-web-server-pollution" class="relative group">Challenge #1: Tomcat Web Server Pollution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-1-tomcat-web-server-pollution" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
+<p>Here&rsquo;s what the MCP Inspector shows when fully connected:
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_44cddfbe7b41b03c.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_f7e746b0d4168c87.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_487715b09dc04a96.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_6acbaedab28a297.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2800"
+        height="1570"
+        class="mx-auto my-0 rounded-md"
+        alt="MCP Inspector"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_b76a849145d82bf8.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_9ce04efd89adf79d.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_b76a849145d82bf8.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_8b4b0cdb09b77fc7.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/mcp-inspector_hu_d69e77d6b9ede8bb.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">MCP Inspector</figcaption>
+</figure>
+
+<em>The DevOps Intelligence server with all tools discovered and ready to execute</em></p>
+<h2 id="architecture-how-it-all-fits-together" class="relative group">Architecture: How It All Fits Together <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#architecture-how-it-all-fits-together" aria-label="Anchor">#</a></span></h2><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_3518568e1fced93.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_b5a3b49c7683abdb.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_8ad7b457b23d118.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_334af06730fe638.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="1084"
+        class="mx-auto my-0 rounded-md"
+        alt="Architecture"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_bfb9ec70802f542.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_9ed3e6206f379755.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_bfb9ec70802f542.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_8e087527b7bf375d.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/images/arch_hu_d542da0a2efa6cc2.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Architecture</figcaption>
+</figure>
+</p>
+<h2 id="challenge-1-tomcat-web-server-pollution" class="relative group">Challenge #1: Tomcat Web Server Pollution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-1-tomcat-web-server-pollution" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mvn spring<span style="color:#f92672">-</span>boot:run
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>20:01:48.<span style="color:#a6e22e">612</span> <span style="color:#f92672">[</span>main<span style="color:#f92672">]</span> INFO o.<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">boot</span>.<span style="color:#a6e22e">tomcat</span>.<span style="color:#a6e22e">TomcatWebServer</span> <span style="color:#f92672">-</span> Tomcat initialized <span style="color:#66d9ef">with</span> port 8080
@@ -705,10 +839,12 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Refer to the repo for the complete code base. Similarly ELK and Github should be using their client libraries.</p>
 <h2 id="testing-with-mcp-inspector" class="relative group">Testing with MCP Inspector <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#testing-with-mcp-inspector" aria-label="Anchor">#</a></span></h2><p>Once connected, you can:</p>
-<p><strong>See all tools</strong> in the Tools tab</p>
-<p><strong>Click a tool</strong> to view its parameters</p>
-<p><strong>Execute the tool</strong> and see results in real-time</p>
-<p><strong>Check History</strong> of all tool calls</p>
+<ul>
+<li><strong>See all tools</strong> in the Tools tab</li>
+<li><strong>Click a tool</strong> to view its parameters</li>
+<li><strong>Execute the tool</strong> and see results in real-time</li>
+<li><strong>Check History</strong> of all tool calls</li>
+</ul>
 <p>The Inspector shows exactly what Claude sees when using your tools.</p>
 <h2 id="github-repository" class="relative group">GitHub Repository <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#github-repository" aria-label="Anchor">#</a></span></h2><p>Full source code available: 🔗 <a href="https://github.com/ankitagrahari/devops-intelligence" target="_blank" rel="noreferrer">https://github.com/ankitagrahari/devops-intelligence</a></p>
 <p>Key files:</p>
@@ -718,12 +854,14 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 <li><em>src/main/java/org/backendbrilliance/devopsintelligence/clients/mocks</em> - Mock clients</li>
 <li><em>src/main/java/org/backendbrilliance/devopsintelligence/clients</em> - Actual client implementation.</li>
 </ul>
-<h2 id="lessons-learned-" class="relative group">Lessons Learned 📚 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lessons-learned-" aria-label="Anchor">#</a></span></h2><p><strong>Spring AI 2.0.0-M2 is the sweet spot</strong> - M1 is old, M3 is not completely ready as it is still under snapshot view.</p>
-<p><strong>MCP STDIO needs pure I/O</strong> - No logs, no web servers, no output to STDOUT</p>
-<p><strong>Auto-configuration &gt; Manual beans</strong> - Let Spring do the heavy lifting</p>
-<p><strong>Annotation scanner is powerful</strong> - @Component + @McpTool is all you need</p>
-<p><strong>Test with MCP Inspector first</strong> - Then integrate with Claude Desktop</p>
-<p><strong>Mock clients for development</strong> - Real infrastructure comes later</p>
+<h2 id="lessons-learned-" class="relative group">Lessons Learned 📚 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#lessons-learned-" aria-label="Anchor">#</a></span></h2><ul>
+<li><strong>Spring AI 2.0.0-M2 is the sweet spot</strong> - M1 is old, M3 is not completely ready as it is still under snapshot view.</li>
+<li><strong>MCP STDIO needs pure I/O</strong> - No logs, no web servers, no output to STDOUT</li>
+<li><strong>Auto-configuration &gt; Manual beans</strong> - Let Spring do the heavy lifting</li>
+<li><strong>Annotation scanner is powerful</strong> - @Component + @McpTool is all you need</li>
+<li><strong>Test with MCP Inspector first</strong> - Then integrate with Claude Desktop</li>
+<li><strong>Mock clients for development</strong> - Real infrastructure comes later</li>
+</ul>
 <h2 id="whats-next" class="relative group">What&rsquo;s Next? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#whats-next" aria-label="Anchor">#</a></span></h2><ul>
 <li>✅ MCP server running with 5+ tools</li>
 <li>✅ Inspector can discover and execute tools</li>

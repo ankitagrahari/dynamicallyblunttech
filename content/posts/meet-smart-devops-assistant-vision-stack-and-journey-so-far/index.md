@@ -2,9 +2,8 @@
 title: "Meet Smart Devops Assistant: Vision, Stack and Journey so far"
 date: 2026-10-27T08:14:14+05:30
 draft: false
-featureImage: "images/df024c_3d9beee05bb34ba18a65da736358c037.jpg"
-tags: ['[]']
-categories: ['["6249579158f0bd10b2a57273"', '"681676055d80aaac0c9329be"]']
+tags: ['SDA', 'AI', 'Agents', 'LLM']
+categories: ['SDA', 'AI', 'Agents', 'LLM']
 showReadingTime: true
 ---
 
@@ -34,18 +33,9 @@ Modern teams drown in pull requests, context switching, and “Did we test that?
 * **Agents:** Lightweight services (Code Reviewer, Test Generator, Scrum Assistant) orchestrated by a Spring service; parallelised with @Async + CompletableFuture for speed.
 
 **High-level flow**
+> PR opened/updated → Fetch PR title/description/diff → Retrieve relevant code/docs from vector store → Run specialised agents (in parallel) → Aggregate results → Post to Slack / expose via API.
 
-PR opened/updated → 
-
-Fetch PR title/description/diff →
-
-Retrieve relevant code/docs from vector store →
-
-Run specialised agents (in parallel) →
-
-Aggregate results → 
-
-Post to Slack / expose via API.
+![SDA Architecture](images/SDA_Arch.jpg "SDA-Architecture") 
 
 ## **Our build journey (the 5-part roadmap)**
 
@@ -129,11 +119,11 @@ ngrok http http://localhost:8389
 ```
 
 which will launch a server and provide URL that can be used with Github webhook. 
-
+![NGROK](images/ngrok.jpg "NGROK")
 The URL as part of Forwarding can be used now in Github Webhook. 
 
 In the Github, under the settings tab, go to Webhooks, click on Add Webhook, and fill out the details like Payload URL (in this case [https://aab4835964fe.ngrok-free.app](https://aab4835964fe.ngrok-free.app)) and Content Type (application/json). You can also enable SSL verification for more secure routing. 
-
+[Enable SSL](images/enable-ssl.jpg "Enable SSL")
 Once enabled, it will send the POST request with the payload to SDA.
 
 ## **API /analyzepr**
@@ -146,8 +136,10 @@ SDA has and endpoint which will accept the POST request from the Github Webhook,
 * store in ChromaDb Vector Store
 
 The file content will act as the context for the AI agent to analyse the PR and provide suggestions/improvements. 
+![GitService.analyzePR()](images/analyze-pr.jpg "GitService.analyzePR()")
 
 Then the SDA prepares the prompt with the PR difference and injects the QuestionAnswerAdvisor of Spring AI to prevents model from generating a general PR summary, instead a more context aware response related to the files changed in the PR. And AI will generate a structure response like 
+![AI Response](images/ai-response.jpg "AI Response")
 
 ## **Gotchas we hit (so you don’t)**
 * **Spring AI dependency names & properties evolve.** Prefer the latest docs and BOM; older guides might use milestone artifacts or different property names. Pin compatible versions and read the starter docs when integrating Chroma.

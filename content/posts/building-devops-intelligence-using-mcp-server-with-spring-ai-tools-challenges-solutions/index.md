@@ -10,6 +10,8 @@ showReadingTime: true
 
 Devops Intelligence
 
+{{< youtube id="DLVG0z-aHV4" >}}
+
 Today, I successfully built and deployed a **Model Context Protocol (MCP) server** using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let's just say it involved more debugging than coding.
 
 In this post, I'll walk you through:
@@ -67,10 +69,11 @@ We created a Spring Boot application that exposes **real DevOps infrastructure**
 * deployment_status - Current deployment status
 
 Here's what the MCP Inspector shows when fully connected:
-
+![MCP Inspector](images/mcp-inspector.jpg "MCP Inspector")
 *The DevOps Intelligence server with all tools discovered and ready to execute*
 
 ## Architecture: How It All Fits Together
+![Architecture](images/arch.jpg "Architecture")
 
 ## Challenge #1: Tomcat Web Server Pollution
 
@@ -514,14 +517,10 @@ Refer to the repo for the complete code base. Similarly ELK and Github should be
 ## Testing with MCP Inspector
 
 Once connected, you can:
-
-**See all tools** in the Tools tab
-
-**Click a tool** to view its parameters
-
-**Execute the tool** and see results in real-time
-
-**Check History** of all tool calls
+- **See all tools** in the Tools tab
+- **Click a tool** to view its parameters
+- **Execute the tool** and see results in real-time
+- **Check History** of all tool calls
 
 The Inspector shows exactly what Claude sees when using your tools.
 
@@ -536,18 +535,12 @@ Key files:
 * *src/main/java/org/backendbrilliance/devopsintelligence/clients* - Actual client implementation.
 
 ## Lessons Learned 📚
-
-**Spring AI 2.0.0-M2 is the sweet spot** - M1 is old, M3 is not completely ready as it is still under snapshot view. 
-
-**MCP STDIO needs pure I/O** - No logs, no web servers, no output to STDOUT
-
-**Auto-configuration > Manual beans** - Let Spring do the heavy lifting
-
-**Annotation scanner is powerful** - @Component + @McpTool is all you need
-
-**Test with MCP Inspector first** - Then integrate with Claude Desktop
-
-**Mock clients for development** - Real infrastructure comes later
+- **Spring AI 2.0.0-M2 is the sweet spot** - M1 is old, M3 is not completely ready as it is still under snapshot view. 
+- **MCP STDIO needs pure I/O** - No logs, no web servers, no output to STDOUT
+- **Auto-configuration > Manual beans** - Let Spring do the heavy lifting
+- **Annotation scanner is powerful** - @Component + @McpTool is all you need
+- **Test with MCP Inspector first** - Then integrate with Claude Desktop
+- **Mock clients for development** - Real infrastructure comes later
 
 ## What's Next?
 * ✅ MCP server running with 5+ tools
@@ -558,7 +551,6 @@ Key files:
 * 🔜 Cost optimization analysis
 
 ## Final Thoughts
-
 Building an MCP server is **surprisingly straightforward** once you know the gotchas:
 * Remove web servers (STDIO needs pure I/O)
 * Suppress all logging (STDOUT is sacred)
