@@ -2,13 +2,12 @@
 title: "Building the Foundation: APIs, Prompts, and First Runs"
 date: 2026-10-27T08:14:21+05:30
 draft: false
-featureImage: "images/df024c_2190cdd1a6a2492481ba54e64560921e.jpg"
-tags: ['[]']
-categories: ['["681676055d80aaac0c9329be"]']
+tags: ['Spring', 'SDA', 'RAG']
+categories: ['Spring', 'SDA', 'RAG']
 showReadingTime: true
 ---
 
-In [Part 1](https://www.dynamicallyblunttech.com/post/meet-smart-devops-assistant-vision-stack-and-journey-so-far) of this series, we introduced the **Smart DevOps Assistant (SDA)** — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
+In [Part 1](posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far) of this series, we introduced the **Smart DevOps Assistant (SDA)** — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
 
 Now it’s time to get our hands dirty. In this post, we’ll:
 * Scaffold core APIs (/generate-summary, /analyze-pr)
@@ -235,7 +234,7 @@ public PRSuggestionResponse analyzePR(String prDiff, List<String> fileNames){
 ```
 
 This ensures only **relevant code snippets** (like [UserService.java](http://UserService.java)) are injected into the model’s context.
-
+![Flow](images/df024c_2190cdd1a6a2492481ba54e64560921e.jpg "Flow")
 The Spring AI framework creates an ChatClientRequest from user’s Prompt along with an empty advisor context object.
 
 Each advisor in the chain processes the request, potentially modifying it. Alternatively, it can choose to block the request by not making the call to invoke the next entity. In the latter case, the advisor is responsible for filling out the response.

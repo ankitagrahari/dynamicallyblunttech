@@ -2,9 +2,8 @@
 title: "Reactive Programming in Java with Spring (AI Generated)"
 date: 2026-10-27T08:14:26+05:30
 draft: false
-featureImage: "images/df024c_bc7e5bec60eb4de5be5cb3ffb0144337.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Reactive', 'Spring']
+categories: ['Reactive', 'Spring']
 showReadingTime: true
 ---
 
