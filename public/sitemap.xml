@@ -230,10 +230,16 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java-with-spring-ai-generated/</loc>
             <lastmod>2026-10-27T08:14:26+05:30</lastmod>
           </url>
+    
+  
+    
+  
     
   
     
@@ -268,10 +274,18 @@
     
   
     
+  
+    
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/multi-release-functionality/</loc>
             <lastmod>2026-10-27T08:14:25+05:30</lastmod>
           </url>
+    
+  
+    
+  
     
   
     
@@ -292,8 +306,6 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/</loc>
             <lastmod>2026-10-27T08:14:24+05:30</lastmod>
           </url>
-    
-  
     
   
     
@@ -318,12 +330,12 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/find-all-anagrams-sliding-window-algorithm/</loc>
             <lastmod>2026-10-27T08:14:22+05:30</lastmod>
           </url>
-    
-  
     
   
     
@@ -351,6 +363,8 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/using-twilio-for-sending-whatsapp-message-in-java/</loc>
             <lastmod>2026-10-27T08:14:22+05:30</lastmod>
           </url>
+    
+  
     
   
     
@@ -492,6 +506,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-4-prompt-engineering-and-structured-output/</loc>
             <lastmod>2026-10-27T08:14:16+05:30</lastmod>
@@ -613,6 +629,8 @@
     
   
     
+  
+    
       <url>
             <loc>http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/</loc>
             <lastmod>2026-10-27T08:14:12+05:30</lastmod>
@@ -645,16 +663,6 @@
             <loc>http://localhost:1313/dynamicallyblunttech/posts/reading-csv-file-in-python-with-encoding/</loc>
             <lastmod>2026-10-27T08:14:12+05:30</lastmod>
           </url>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
     
   
     

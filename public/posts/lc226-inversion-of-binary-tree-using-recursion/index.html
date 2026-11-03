@@ -70,7 +70,7 @@
       
         Following the last post on the* binary tree traversals*, in this post we will try to invert a given binary tree.
 Binary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.
-4
+     4
    /   \
   2     7
  / \   / \
@@ -110,10 +110,13 @@ Binary tree is a data structure in which a node can have maximum two child nodes
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:12+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:12+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="Leetcode">
+		<meta property="article:tag" content="#226">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature.jpg">
 	<meta name="twitter:title" content="#LC226 - Inversion Of Binary Tree Using Recursion">
 	<meta name="twitter:description" content="Following the last post on the* binary tree traversals*, in this post we will try to invert a given binary tree.
 Binary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.
@@ -128,7 +131,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
     "name": "#LC226 - Inversion Of Binary Tree Using Recursion",
     "headline": "#LC226 - Inversion Of Binary Tree Using Recursion",
     
-    "abstract": "\u003cp\u003eFollowing the last post on the\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/binary-tree-traversal\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* binary tree traversals*\u003c\/a\u003e, in this post we will try to invert a given binary tree.\u003c\/p\u003e\n\u003cp\u003eBinary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre tabindex=\u00220\u0022 style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;\u0022\u003e\u003ccode class=\u0022language-java\u0022 data-lang=\u0022java\u0022\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e4\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e   \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e  2     7\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e1   3 6   9\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003eIn the above binary tree, root node has a value of 4 and 2 is the left node of the root and 7 is right node of the root. \u003cem\u003e\u003cstrong\u003eAn inverted node will look like this, where the left node is swapped with the right node.\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e",
+    "abstract": "\u003cp\u003eFollowing the last post on the\u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/binary-tree-traversal\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e* binary tree traversals*\u003c\/a\u003e, in this post we will try to invert a given binary tree.\u003c\/p\u003e\n\u003cp\u003eBinary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.\u003c\/p\u003e\n\u003cdiv class=\u0022highlight\u0022\u003e\u003cpre tabindex=\u00220\u0022 style=\u0022color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;\u0022\u003e\u003ccode class=\u0022language-java\u0022 data-lang=\u0022java\u0022\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e     4\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e   \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e  2     7\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e   \u003cspan style=\u0022color:#f92672\u0022\u003e\/\u003c\/span\u003e \u003cspan style=\u0022color:#960050;background-color:#1e0010\u0022\u003e\\\u003c\/span\u003e\n\u003c\/span\u003e\u003c\/span\u003e\u003cspan style=\u0022display:flex;\u0022\u003e\u003cspan\u003e1   3 6   9\n\u003c\/span\u003e\u003c\/span\u003e\u003c\/code\u003e\u003c\/pre\u003e\u003c\/div\u003e\u003cp\u003eIn the above binary tree, root node has a value of 4 and 2 is the left node of the root and 7 is right node of the root. \u003cem\u003e\u003cstrong\u003eAn inverted node will look like this, where the left node is swapped with the right node.\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e",
     "inLanguage": "en-us",
     "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/lc226-inversion-of-binary-tree-using-recursion\/",
     "author" : {
@@ -141,7 +144,7 @@ Binary tree is a data structure in which a node can have maximum two child nodes
     
     "dateModified": "2026-10-27T08:14:12\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["leetcode","#226"],
     
     "mainEntityOfPage": "true",
     "wordCount": "383"
@@ -167,8 +170,8 @@ Binary tree is a data structure in which a node can have maximum two child nodes
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/",
-       "name": "[]",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/leetcode/",
+       "name": "Leetcode",
        "position": 3
      },
      {
@@ -322,19 +325,83 @@ Binary tree is a data structure in which a node can have maximum two child nodes
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_43592ff471c3f0e.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_d905c8bdb228d951.webp 660w
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_6df739e84bbead31.webp 911w
+              
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_6df739e84bbead31.webp 911w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="911"
+        height="301"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_c94818626e1f74e1.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_4a10fb486a6d5931.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature_hu_c94818626e1f74e1.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature.jpg 911w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/feature.jpg 911w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Following the last post on the<a href="https://www.dynamicallyblunttech.com/post/binary-tree-traversal" target="_blank" rel="noreferrer">* binary tree traversals*</a>, in this post we will try to invert a given binary tree.</p>
 <p>Binary tree is a data structure in which a node can have maximum two child nodes and minimum zero nodes. Each node contains the value of the node, the left node reference and right node reference.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>4
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>     4
 </span></span><span style="display:flex;"><span>   <span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">\</span>
 </span></span><span style="display:flex;"><span>  2     7
 </span></span><span style="display:flex;"><span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>   <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>
 </span></span><span style="display:flex;"><span>1   3 6   9
 </span></span></code></pre></div><p>In the above binary tree, root node has a value of 4 and 2 is the left node of the root and 7 is right node of the root. <em><strong>An inverted node will look like this, where the left node is swapped with the right node.</strong></em></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>4
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>     4
 </span></span><span style="display:flex;"><span>   <span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">\</span>
 </span></span><span style="display:flex;"><span>  7     2
 </span></span><span style="display:flex;"><span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>   <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">\</span>

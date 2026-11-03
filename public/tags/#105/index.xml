@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>#105 on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/%23105/</link>
+		<description>Recent content in #105 on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:25 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/%23105/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>#LC105 - Binary Tree from In-Order and Pre-Order Traversal</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/lc105-binary-tree-from-in-order-and-pre-order-traversal/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:25 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc105-binary-tree-from-in-order-and-pre-order-traversal/</guid>
+				<description>&lt;p&gt;In this post we will create a binary tree from the given in-order and pre-order traversal. You can find the details on the question here &lt;a href=&#34;https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;&lt;strong&gt;leetcode #105&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;So, in a binary tree, we can do depth first traversal in three ways:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;***In-order traversal  (left -&amp;gt; root -&amp;gt; right) ***&lt;/li&gt;&#xA;&lt;li&gt;***Pre-order traversal  (root -&amp;gt; left -&amp;gt; right) ***&lt;/li&gt;&#xA;&lt;li&gt;***Post-order traversal  (left -&amp;gt; right -&amp;gt; root) ***&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Refer &lt;a href=&#34;https://www.dynamicallyblunttech.com/post/binary-tree-traversal&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;&lt;strong&gt;Binary Tree - Traversal&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt; to understand on how to traverse using the above three ways.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

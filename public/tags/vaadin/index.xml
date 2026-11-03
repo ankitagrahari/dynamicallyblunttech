@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Vaadin on DynamicallyBluntTech</title>
+		<link>http://localhost:1313/dynamicallyblunttech/tags/vaadin/</link>
+		<description>Recent content in Vaadin on DynamicallyBluntTech</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:23 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/vaadin/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Morphous AI: Building Multi-Modal AI Workflows with Spring Boot and Vaadin</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/morphous-ai-building-multi-modal-ai-workflows-with-spring-boot-and-vaadin/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:23 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/morphous-ai-building-multi-modal-ai-workflows-with-spring-boot-and-vaadin/</guid>
+				<description>&lt;p&gt;Multi-modal AI workflows are becoming essential for modern backend systems. They allow applications to process and generate different types of data—text, images, audio—within a unified framework. This capability opens new possibilities for richer user experiences and more intelligent automation. The MorphousAI project, built with Spring Boot, Vaadin, and Spring AI, offers a practical example of how to implement such workflows in a backend-first Java environment. This article explores MorphousAI’s architecture, technology choices, and key implementation details, providing insights for senior Java developers and architects interested in AI integration.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
