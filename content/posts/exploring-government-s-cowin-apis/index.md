@@ -2,9 +2,8 @@
 title: "Exploring Government's Cowin APIs"
 date: 2026-10-27T08:14:14+05:30
 draft: false
-featureImage: "images/df024c_0fee975913424b4eb20fba84efaa6260.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['covid', 'cowin', 'vaccine']
+categories: ['Java', 'Spring']
 showReadingTime: true
 ---
 
@@ -35,6 +34,7 @@ We have three services which will be listed here with its descriptions:
     e.g.: http://localhost:8083/cowin/pin=221001/date=07-05-2021
 
 **Sample Output**:
+![Output](images/1.jpg "Output")
 
 ### 2. Get all available slots for Young people on a given date and for given list of pincodes
 
@@ -46,6 +46,7 @@ We have three services which will be listed here with its descriptions:
 
     e.g.: http://localhost:8083/cowin/young/pins=431801,431802,431803/date=07-05-2021
 **Sample Output**:
+![Output](images/2.jpg "Output")
 
 ### 3. Get all available slots for Old people on a given date and for given list of pincodes
 
@@ -56,6 +57,7 @@ We have three services which will be listed here with its descriptions:
 **Endpoint**: cowin/old/pins=pincode1,pincode2,pincode3/date=date1
     e.g.: http://localhost:8083/cowin/old/pins=221001,221002,221003,221004,221005/date=07-05-2021
 **Sample Output**:
+![Output](images/3.jpg "Output")
 
 Github Link: [*https://github.com/ankitagrahari/CowinCo*](https://github.com/ankitagrahari/CowinCo)
 
@@ -66,3 +68,5 @@ If you find the post helpful, do give a thumbs up and also share your feedback a
 
 
 If you are looking for some COVID19 resources, follow this post [COVID19-Resources](https://dynamicallyblunttech.blogspot.com/2021/04/covid19-resourceswebsites.html) for all the websites/application or twitter search format
+
+{{< video src="images/giphy.mp4" >}}

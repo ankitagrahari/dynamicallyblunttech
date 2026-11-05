@@ -103,10 +103,13 @@ In this post, we will use the Docker Model Runner to run Google’s Gemma AI mod
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:16+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:16+05:30">
-		<meta property="article:tag" content="[]">
+		<meta property="article:tag" content="SpringAI">
+		<meta property="article:tag" content="AI">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature.jpg">
 	<meta name="twitter:title" content="Chatbot using Spring AI and OpenAI">
 	<meta name="twitter:description" content="In the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.
 In this post, we will use the Docker Model Runner to run Google’s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.">
@@ -133,7 +136,7 @@ In this post, we will use the Docker Model Runner to run Google’s Gemma AI mod
     
     "dateModified": "2026-10-27T08:14:16\u002b05:30",
     
-    "keywords": ["[]"],
+    "keywords": ["SpringAI","AI"],
     
     "mainEntityOfPage": "true",
     "wordCount": "682"
@@ -159,8 +162,8 @@ In this post, we will use the Docker Model Runner to run Google’s Gemma AI mod
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/681676055d80aaac0c9329be/",
-       "name": "[\"681676055d80aaac0c9329be\"]",
+       "item": "http://localhost:1313/dynamicallyblunttech/categories/springai/",
+       "name": "SpringAI",
        "position": 3
      },
      {
@@ -314,6 +317,70 @@ In this post, we will use the Docker Model Runner to run Google’s Gemma AI mod
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_e676e960614e76c.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_49e1bd0c863cb1b5.webp 660w
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_4783c6f73ceea120.webp 1024w
+              
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_4783c6f73ceea120.webp 1024w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1024"
+        height="1024"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_dd72c0119119d4f0.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_8dd08ec52f500a3e.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature_hu_dd72c0119119d4f0.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/feature.jpg 1024w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
@@ -359,6 +426,10 @@ In this post, we will use the Docker Model Runner to run Google’s Gemma AI mod
 </span></span></code></pre></div><p>With the new upgrade from Spring, <em>InMemoryChatMemory</em> was deprecated, and now Spring auto-configures <em>ChatMemory</em> bean when any AI model starters is used. By default it comes with <em>MessageWindowChatMemory</em> implementation which stores the conversation history in memory based on the default window maximum size. To manage the conversational history, the storage mechanism is decoupled from <em>ChatMemory</em> interface, and is now handled by <em>ChatMemoryRepository</em> interface.</p>
 <p>After creating the ChatClient bean, we can use it by auto-wiring it or by constructor injection in our Controller, where we will create a Get API, that will send the AI model with the message coming as request param.</p>
 <p>Lets try to test this application, where we will ask the AI model with two separate GET request,  which is supposed to be stateless, but in our use case the AI model, will be having a history of the conversation, therefore will be able to answer the next question. AI communication which remembers my name!</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/Ui9tPC5D0Ys?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
 <p>This can be extended to a nicer UI which will be much easier to work with, instead of sending multiple API request. Also, this is a very simple usage of how we can create a chat bot, which can have the context of the conversation history.</p>
 <h3 id="references" class="relative group"><strong>References</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h3><ul>
 <li><a href="https://docs.spring.io/spring-ai/reference/1.0/upgrade-notes.html" target="_blank" rel="noreferrer">https://docs.spring.io/spring-ai/reference/1.0/upgrade-notes.html</a></li>

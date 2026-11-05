@@ -2,9 +2,8 @@
 title: "Chatbot using Spring AI and OpenAI"
 date: 2026-10-27T08:14:16+05:30
 draft: false
-featureImage: "images/df024c_c62e7dc6cc2040be9ac8ce6da1991841.jpg"
-tags: ['[]']
-categories: ['["681676055d80aaac0c9329be"]']
+tags: ['SpringAI', 'AI']
+categories: ['SpringAI', 'Memory', 'AI']
 showReadingTime: true
 ---
 
@@ -78,6 +77,8 @@ With the new upgrade from Spring, *InMemoryChatMemory* was deprecated, and now S
 After creating the ChatClient bean, we can use it by auto-wiring it or by constructor injection in our Controller, where we will create a Get API, that will send the AI model with the message coming as request param. 
 
 Lets try to test this application, where we will ask the AI model with two separate GET request,  which is supposed to be stateless, but in our use case the AI model, will be having a history of the conversation, therefore will be able to answer the next question. AI communication which remembers my name!
+
+{{<youtube id="Ui9tPC5D0Ys">}}
 
 This can be extended to a nicer UI which will be much easier to work with, instead of sending multiple API request. Also, this is a very simple usage of how we can create a chat bot, which can have the context of the conversation history. 
 

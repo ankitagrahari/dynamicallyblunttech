@@ -41,5 +41,19 @@
 				<guid>http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/</guid>
 				<description>&lt;p&gt;In this post we will move all files from one directory to another using Java&amp;rsquo;s Executor Service and will also discuss on how we can enhance the entire process.&lt;/p&gt;&#xA;&lt;p&gt;To move files from one directory to another:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;List all files in the source directory&lt;/li&gt;&#xA;&lt;li&gt;Create a main class which will call the threads to process all the files in given directory.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;So lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.&lt;/p&gt;</description>
 			</item>
+			<item>
+				<title>Multi Release Functionality</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/multi-release-functionality/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:25 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/multi-release-functionality/</guid>
+				<description>&lt;p&gt;In this post we will explore one of the best feature provided by Java 9, its importance in present day development and how it will be a key in maintaining multiple version of code.&lt;/p&gt;&#xA;&lt;p&gt;When Java 9 released in July, 2017, it was not a Long term Support(LTS), though it was having multiple features which would help Java in long run. Some of it which is now playing a big role are&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Exploring Government&#39;s Cowin APIs</title>
+				<link>http://localhost:1313/dynamicallyblunttech/posts/exploring-government-s-cowin-apis/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
+				<guid>http://localhost:1313/dynamicallyblunttech/posts/exploring-government-s-cowin-apis/</guid>
+				<description>&lt;p&gt;In this post we will be looking into the CoWIN APIs which GoI has published during the covid period where the third party app can utilize the APIs to create there own app.&lt;/p&gt;&#xA;&lt;p&gt;We used only few API from the public list and created a &lt;em&gt;&lt;strong&gt;Spring boot application&lt;/strong&gt;&lt;/em&gt; which will get me the list of all the available slots for either the old or young people based on their age on a given date and list of pin codes.&lt;/p&gt;</description>
+			</item>
 	</channel>
 </rss>

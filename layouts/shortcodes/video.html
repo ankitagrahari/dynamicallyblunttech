@@ -1,0 +1,13 @@
+{{- $src := .Get "src" -}}
+{{- with .Page.Resources.GetMatch $src -}}
+<video width="100%" controls autoplay muted playsinline loop>
+    <source src="{{ .RelPermalink }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+{{- else -}}
+<!-- Fallback to static folder if not found in bundle -->
+<video width="100%" controls autoplay muted playsinline loop>
+    <source src="{{ $src | relURL }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+{{- end -}}
