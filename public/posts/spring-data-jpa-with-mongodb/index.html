@@ -106,9 +106,11 @@ Project Structure #We will create Employee repository which will store the Emplo
 		<meta property="article:published_time" content="2026-10-27T08:14:17+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:17+05:30">
 		<meta property="article:tag" content="[]">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/feature.jpg">
 	<meta name="twitter:title" content="Spring Data JPA with MongoDB">
 	<meta name="twitter:description" content="In this post we will create a simple Spring JPA project which will connect to MongoDB and create a document, where we will save records and then will try to fetch those records using JPA repository built in methods.
 In this post we will try performing all CRUD Operation on MongoDB Using JSON queries in Spring Data JPA
@@ -317,6 +319,55 @@ Project Structure #We will create Employee repository which will store the Emplo
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            
+              srcset="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/feature_hu_65747c6e102c4f6c.webp"
+            
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="582"
+        height="242"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/feature.jpg"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
@@ -374,8 +425,75 @@ Project Structure #We will create Employee repository which will store the Emplo
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Integer experience;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Here, we can add the document collection name (~table) using the <em>@Document</em> annotation. By default, if the <em>@Document</em> is not given, it will map it to the class name. It will also create the employee document in MongoDB if it is not present.</p>
-<p>After the data insertion in DB, it will look like this</p>
-<p>Notice that the id column is commented, but while storing to the MongoDB, it will add the <em>_id</em> field. Also, since we are using lombok, we don&rsquo;t have to write the boiler-plate code because lombok, will automatically add the getters and setter methods. Also we have asked to add all argument and no argument constructors.</p>
+<p>After the data insertion in DB, it will look like this
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_3b32e606baefda82.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_73811016b90dda39.webp 660w
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_839a682d70e6dfe6.webp 681w
+              
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_839a682d70e6dfe6.webp 681w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="681"
+        height="580"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_a68c118751687ae.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_bb8f68dcb360232.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1_hu_a68c118751687ae.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1.jpg 681w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/spring-data-jpa-with-mongodb/images/1.jpg 681w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+Notice that the id column is commented, but while storing to the MongoDB, it will add the <em>_id</em> field. Also, since we are using lombok, we don&rsquo;t have to write the boiler-plate code because lombok, will automatically add the getters and setter methods. Also we have asked to add all argument and no argument constructors.</p>
 <h3 id="repository" class="relative group"><strong>Repository</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#repository" aria-label="Anchor">#</a></span></h3><p>The *Employee *repository will extends *MongoRepository *class where we can define the key and value&rsquo;s data type. It also will have all the built-in methods and include any custom queries which we want to fetch data with.</p>
 <h4 id="fetch-data-byname" class="relative group">**Fetch Data **<em><strong>byName</strong></em> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#fetch-data-byname" aria-label="Anchor">#</a></span></h4><p>The employee repository will fetch data of employees by name attributes using this field</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Query</span>(<span style="color:#e6db74">&#34;{name:&#39;?0&#39;}&#34;</span>)

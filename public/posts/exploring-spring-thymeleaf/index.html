@@ -108,9 +108,11 @@ Thymeleaf is a modern server-side Java template engine for both web and standalo
 		<meta property="article:published_time" content="2026-10-27T08:14:23+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:23+05:30">
 		<meta property="article:tag" content="[]">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/feature.jpg">
 	<meta name="twitter:title" content="Exploring Spring Thymeleaf">
 	<meta name="twitter:description" content="In this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.
 Thymeleaf #As stated in official Thymeleaf website,
@@ -141,7 +143,7 @@ Thymeleaf is a modern server-side Java template engine for both web and standalo
     "keywords": ["[]"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1489"
+    "wordCount": "1498"
   }
   </script>
     
@@ -319,6 +321,55 @@ Thymeleaf is a modern server-side Java template engine for both web and standalo
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            
+              srcset="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/feature_hu_2e10ffb92ecef165.webp"
+            
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="587"
+        height="346"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/feature.jpg"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
@@ -330,8 +381,12 @@ Thymeleaf is a modern server-side Java template engine for both web and standalo
 </blockquote>
 <p>Spring can be integrated with Thymeleaf to process or parse HTML, CSS, JS, XML, code. It becomes very simple to create an UI for your application in very little time. Thymeleaf can be used for modern day HTML5 web development as well.</p>
 <p>Based on the requirement of dependencies, if you want to start a project with Spring and Thymeleaf, thymeleaf can be selected as dependency with others to give the basic template to start with from <a href="https://start.spring.io/" target="_blank" rel="noreferrer">https://start.spring.io/</a>.</p>
-<h2 id="registration-form" class="relative group"><strong>Registration Form</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#registration-form" aria-label="Anchor">#</a></span></h2><p>The form would look something like this:</p>
-<p>The elements are random textboxes to store either name, version, descriptions, return type or platform type etc.</p>
+<h2 id="registration-form" class="relative group"><strong>Registration Form</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#registration-form" aria-label="Anchor">#</a></span></h2><p>The form would look something like this:
+<video width="100%" controls autoplay muted playsinline loop>
+    <source src="/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/file.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+The elements are random textboxes to store either name, version, descriptions, return type or platform type etc.</p>
 <p>We will be checking following:</p>
 <p>The description section which is storing a nested class, where the default, detailed, audit, remediate description variables are part of nested class,</p>
 <p>The Supported platform is a list of variables displayed as drop down where user can select multiple values.</p>
@@ -421,7 +476,72 @@ Thymeleaf is a modern server-side Java template engine for both web and standalo
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;label style=&#34;</span>font<span style="color:#f92672">-</span>weight: bold<span style="color:#e6db74">&#34; for=&#34;</span>chooseFile<span style="color:#e6db74">&#34; class=&#34;</span>custom<span style="color:#f92672">-</span>file<span style="color:#f92672">-</span>label<span style="color:#e6db74">&#34;&gt;Choose Code file&lt;/label&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &lt;input type=&#34;</span>file<span style="color:#e6db74">&#34; name=&#34;</span>file<span style="color:#e6db74">&#34; th:field=&#34;</span><span style="color:#f92672">*</span>{epyFile}<span style="color:#e6db74">&#34; class=&#34;</span>custom<span style="color:#f92672">-</span>file<span style="color:#f92672">-</span>input<span style="color:#e6db74">&#34;&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
-</span></span></span></code></pre></div><h3 id="create-dynamic-table" class="relative group"><strong>Create Dynamic Table</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-dynamic-table" aria-label="Anchor">#</a></span></h3><p>In this case, we will be creating a table in which once the user clicks on Add Row, we will be adding a new row for user to type in new records. Also we will provide one remove button which will delete that entry when it is clicked by user.</p>
+</span></span></span></code></pre></div><h3 id="create-dynamic-table" class="relative group"><strong>Create Dynamic Table</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#create-dynamic-table" aria-label="Anchor">#</a></span></h3><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_e4e3cb3ece852a4c.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_b682bcabcde5016d.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_ffdd331157676952.webp 1024w
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_a07a75fa45ab2574.webp 1064w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1064"
+        height="232"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_a48de8b2eae4e633.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_603362348a460782.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_a48de8b2eae4e633.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1_hu_abbc46f1fb3878bb.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/exploring-spring-thymeleaf/images/1.jpg 1064w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+In this case, we will be creating a table in which once the user clicks on Add Row, we will be adding a new row for user to type in new records. Also we will provide one remove button which will delete that entry when it is clicked by user.</p>
 <p>On click of the <em><strong>AddRow</strong></em>, we will submit the form with the parameter add row, which will call a different method in the controller. The purpose of this method will be to add a new object to the Control&rsquo;s Arguments attribute.</p>
 <p>The html code will be like</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>div <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010">=&#34;</span><span style="color:#a6e22e">form</span><span style="color:#f92672">-</span>group<span style="color:#e6db74">&#34;&gt;

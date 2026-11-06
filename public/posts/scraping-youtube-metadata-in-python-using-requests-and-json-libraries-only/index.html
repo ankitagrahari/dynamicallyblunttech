@@ -104,9 +104,11 @@ Problem Statement: #To fetch Youtube video metadata like its View count, Likes/D
 		<meta property="article:published_time" content="2026-10-27T08:14:17+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:17+05:30">
 		<meta property="article:tag" content="[]">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/feature.jpg">
 	<meta name="twitter:title" content="Scraping Youtube Videos - Using Python&#39;s Requests & JSON Libraries">
 	<meta name="twitter:description" content="In this post we will look into Scraping any Youtube video metadata to get the views, likes, dislikes, published date etc. information using Python. We will not be using any third party libraries which parse the HTML like Beautiful Soup.
 Problem Statement: #To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the Youtube API to fetch data.">
@@ -314,6 +316,55 @@ Problem Statement: #To fetch Youtube video metadata like its View count, Likes/D
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            
+              srcset="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/feature_hu_28a627b8fd3ca6fb.webp"
+            
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="640"
+        height="319"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/feature.jpg"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
@@ -325,7 +376,74 @@ Problem Statement: #To fetch Youtube video metadata like its View count, Likes/D
 <p>There is a pattern to any Youtube video page source. When you open the page source, search for &lsquo;<em><strong>ytInitialData</strong></em>&rsquo; in the page source, and you will find that in the script tag, this variable is assigned with a Json. Only problem is that, we cannot use it as it is, and needs some manipulation. So basically, we will be manipulating strings in Python to get the data we want.</p>
 <p>To get the exact Json, I need to find the start and end Index of this Json from the page source. Lets try it out for any Youtube video you are watching.</p>
 <p><strong>F</strong>or getting the page source of any website, you can right click on the website and click on the *View Page Source *option</p>
-<p><strong>S</strong>earch for <em><strong>ytInitialData</strong></em> in the tab where the page source is open. Actual string will be like this:</p>
+<p><strong>S</strong>earch for <em><strong>ytInitialData</strong></em> in the tab where the page source is open. Actual string will be like this:
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_e85865ccc7d8bf42.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_1686a8de3b98e459.webp 660w
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_b555cba5b9f603.webp 905w
+              
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_b555cba5b9f603.webp 905w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="905"
+        height="358"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_772f1e759e119eab.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_65e2b8fbb6a8241a.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1_hu_772f1e759e119eab.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1.jpg 905w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/1.jpg 905w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
 <h3 id="code" class="relative group">Code <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#code" aria-label="Anchor">#</a></span></h3><p>Lets code it in Python step by step:</p>
 <p>You need to import ***json ***and ***requests ***libraries as the prerequisite step.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
@@ -346,8 +464,73 @@ Problem Statement: #To fetch Youtube video metadata like its View count, Likes/D
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>def <span style="color:#a6e22e">parse_json</span>(json_data):
 </span></span><span style="display:flex;"><span>    json_dict <span style="color:#f92672">=</span> json.<span style="color:#a6e22e">loads</span>(json_data)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> json_dict
-</span></span></code></pre></div><p>The Json we fetched in the last step will look something like this:</p>
-<p><strong>F</strong>rom the Json, we can now extract any information we want.</p>
+</span></span></code></pre></div><p>The Json we fetched in the last step will look something like this:
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_1beeb5c38a42a731.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_9b48fd57cd087e85.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_46cf273bc1abe9ce.webp 1024w
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_ee5225eaddda680a.webp 1136w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1136"
+        height="889"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_7d693475cb235506.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_f3d8138dc45898ee.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_7d693475cb235506.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2_hu_a8782d4c72aad33a.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/scraping-youtube-metadata-in-python-using-requests-and-json-libraries-only/images/2.jpg 1136w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+<strong>F</strong>rom the Json, we can now extract any information we want.</p>
 <p>The basic manual way to get the title, video Id, View Count, Likes, Dislikes, their short form and its published date are displayed here:</p>
 <p><em><strong>For Video Id</strong></em>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>video_id <span style="color:#f92672">=</span> yt_json<span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">&#39;</span>currentVideoEndpoint<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>watchEndpoint<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">][</span><span style="color:#960050;background-color:#1e0010">&#39;</span>videoId<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">]</span>
