@@ -112,20 +112,6 @@
 				<description>&lt;p&gt;In this post we will create a simple Spring JPA project which will connect to MongoDB and create a document, where we will save records and then will try to fetch those records using JPA repository built in methods.&lt;/p&gt;&#xA;&lt;p&gt;In this post we will try performing all CRUD Operation on MongoDB Using JSON queries in Spring Data JPA&lt;/p&gt;&#xA;&lt;h2 id=&#34;project-structure&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Project Structure&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#project-structure&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;We will create Employee repository which will store the Employee models, and will create Test cases to fetch data based on JSON queries from MongoDB on my local.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>Chatbot using Spring AI and OpenAI</title>
-				<link>http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:16 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/posts/chatbot-using-spring-ai-and-openai/</guid>
-				<description>&lt;p&gt;In the previous post about utilizing Spring AI with Ollama and employing Docker Model Runner to execute AI models locally, this post will expand on that by developing a chatbot. This chatbot will retain interaction data in memory, facilitating more meaningful communication.&lt;/p&gt;&#xA;&lt;p&gt;In this post, we will use the Docker Model Runner to run Google&amp;rsquo;s Gemma AI model in our local machine with OpenAI, and create a spring boot AI chat application which will generate responses based on the previous context.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Custom Java Class : Peculiar Cases</title>
-				<link>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:16 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</guid>
-				<description>&lt;p&gt;This post is about understanding the type of interview questions which can come from a Custom Java class where we can override &lt;em&gt;equals&lt;/em&gt;, &lt;em&gt;hashcode&lt;/em&gt;, *toString *or implements the Interface to *sort *the list of this custom Java class.&lt;/p&gt;&#xA;&lt;p&gt;Lets go one by one, where you start your coding round and the first information provided is&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.&lt;/p&gt;</description>
-			</item>
-			<item>
 				<title>KUBERNETES LEARNING PHASE 1 - BASIC COMMANDS</title>
 				<link>http://localhost:1313/dynamicallyblunttech/posts/kubernetes-learning-phase-1-basic-commands/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:15 +0530</pubDate>

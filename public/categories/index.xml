@@ -77,13 +77,6 @@
 				<description>&lt;p&gt;In this post we will look into &lt;em&gt;&lt;strong&gt;Scraping any Youtube video&lt;/strong&gt;&lt;/em&gt; metadata to get the views, likes, dislikes, published date etc. information using &lt;em&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/em&gt;. We will not be using any third party libraries which parse the HTML like Beautiful Soup.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Problem Statement:&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;To fetch Youtube video metadata like its View count, Likes/Dislikes count, Published Date, Title of the video etc. without using any 3rd party libraries which parses HTML or Javascript. To add to that, we will not be using the &lt;em&gt;&lt;strong&gt;Youtube API&lt;/strong&gt;&lt;/em&gt; to fetch data.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>Custom Java Class : Peculiar Cases</title>
-				<link>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:16 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</guid>
-				<description>&lt;p&gt;This post is about understanding the type of interview questions which can come from a Custom Java class where we can override &lt;em&gt;equals&lt;/em&gt;, &lt;em&gt;hashcode&lt;/em&gt;, *toString *or implements the Interface to *sort *the list of this custom Java class.&lt;/p&gt;&#xA;&lt;p&gt;Lets go one by one, where you start your coding round and the first information provided is&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.&lt;/p&gt;</description>
-			</item>
-			<item>
 				<title>KUBERNETES LEARNING PHASE 1 - BASIC COMMANDS</title>
 				<link>http://localhost:1313/dynamicallyblunttech/posts/kubernetes-learning-phase-1-basic-commands/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:15 +0530</pubDate>

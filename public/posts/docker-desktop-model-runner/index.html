@@ -104,9 +104,11 @@ One of the standout features of Docker Desktop is the Docker Model Runner. This 
 		<meta property="article:published_time" content="2026-10-27T08:14:18+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:18+05:30">
 		<meta property="article:tag" content="[]">
+		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature.jpg">
 
   
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature.jpg">
 	<meta name="twitter:title" content="Docker Desktop Model Runner">
 	<meta name="twitter:description" content="In today’s rapidly evolving tech landscape, the availability of diverse AI models for everyday users marks a significant shift in how we interact with technology. However, with this convenience comes a critical responsibility: ensuring data privacy remains intact. Enter Docker Desktop, a powerful tool that revolutionised application deployment by packaging large applications as lightweight images, which can be executed in isolated environments called containers.
 One of the standout features of Docker Desktop is the Docker Model Runner. This innovative addition empowers developers to run AI models locally on their machines. By leveraging this feature, users can harness the capabilities of advanced AI without the need to share sensitive data or manage complex API keys. With Docker Model Runner, you can focus on development and experimentation while maintaining control over your data privacy.">
@@ -136,7 +138,7 @@ One of the standout features of Docker Desktop is the Docker Model Runner. This 
     "keywords": ["[]"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "459"
+    "wordCount": "470"
   }
   </script>
     
@@ -314,6 +316,70 @@ One of the standout features of Docker Desktop is the Docker Model Runner. This 
         </div>
       
       
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_a73eaabe3bc49125.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_5dc173039136d768.webp 660w
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_9d12e5beed51380a.webp 1024w
+              
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_9d12e5beed51380a.webp 1024w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1024"
+        height="1024"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_35e99c2aaa459cc7.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_66901ab9af599ac6.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature_hu_35e99c2aaa459cc7.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/feature.jpg 1024w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
@@ -346,13 +412,208 @@ One of the standout features of Docker Desktop is the Docker Model Runner. This 
 </span></span><span style="display:flex;"><span>    E.<span style="color:#a6e22e">g</span>., POST <span style="color:#f92672">/</span>engines<span style="color:#f92672">/</span>v1<span style="color:#f92672">/</span>chat<span style="color:#f92672">/</span>completions.
 </span></span></code></pre></div><p>Note: You can also remove llama.cpp from the endpoint</p>
 <p>e.g: GET /engines/v1/models/{namespace}/{name}</p>
-<h3 id="enabling-docker-model-runner" class="relative group"><strong>Enabling Docker Model Runner</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#enabling-docker-model-runner" aria-label="Anchor">#</a></span></h3><p>After enabling it, you will have to Apply and Restart.</p>
+<h3 id="enabling-docker-model-runner" class="relative group"><strong>Enabling Docker Model Runner</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#enabling-docker-model-runner" aria-label="Anchor">#</a></span></h3><p><video width="100%" controls autoplay muted playsinline loop>
+    <source src="/dynamicallyblunttech/posts/docker-desktop-model-runner/images/file.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+After enabling it, you will have to Apply and Restart.</p>
 <p>Be mindful of the model you are trying to pull and run. Since Docker desktop caches these models, it will effect the performance of your system, if the model is huge. It was advisable to have a small effective model to use. We are going to run Google Gemma 3.</p>
 <p>To view all the available commands with Docker model runner, you can run</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>docker model help
-</span></span></code></pre></div><p>Here we are pulling Google Gemma 3.</p>
-<p>When we run the model, it will run an interactive chat session like below:</p>
-<p>This will help a lot of developers in learning and growing with AI models. I will be using this in developing application which will interact with AI models without running the Ollama server as we did in the previous post <a href="https://www.dynamicallyblunttech.com/post/spring-ai-with-ollama" target="_blank" rel="noreferrer">https://www.dynamicallyblunttech.com/post/spring-ai-with-ollama</a>.</p>
+</span></span></code></pre></div><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_a869f7ecae85d972.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_e525bd38324debde.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_eb7609f6f0b832f3.webp 1024w
+            
+            
+              
+                ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_65028aa2c8826855.webp 1204w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1204"
+        height="454"
+        class="mx-auto my-0 rounded-md"
+        alt="Available Commands"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_f2f74a094a284b4b.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_dc0faebed3ff84cd.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_f2f74a094a284b4b.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1_hu_ca7ef17f4c5e37c6.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/1.jpg 1204w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+<figcaption class="text-center">Available Commands</figcaption>
+</figure>
+
+Here we are pulling Google Gemma 3.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_705f2fcde78dd281.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_c9073e18b3e3684e.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_287e5d9b985005a2.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_9123f2e6675f225e.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1330"
+        height="338"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_b33d395f7237fac5.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_12162b688d8833fd.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_b33d395f7237fac5.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_8081079f07079275.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/2_hu_a90feb42e8603d7d.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>When we run the model, it will run an interactive chat session like below:
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_7b043c4ee942f2b7.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_e95fd37edebe1772.webp 660w
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_274ccb2805e26420.webp 1024w
+            
+            
+              ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_db102a1fc12a9d1f.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1480"
+        height="1264"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_2b910aecb7157422.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_f35fe46f0a049a82.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_2b910aecb7157422.jpg 660w
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_97ce6e6317b8dcd8.jpg 1024w
+          
+          
+            ,http://localhost:1313/dynamicallyblunttech/posts/docker-desktop-model-runner/images/3_hu_e70dfbfde6cde9f5.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+This will help a lot of developers in learning and growing with AI models. I will be using this in developing application which will interact with AI models without running the Ollama server as we did in the previous post <a href="https://www.dynamicallyblunttech.com/post/spring-ai-with-ollama" target="_blank" rel="noreferrer">https://www.dynamicallyblunttech.com/post/spring-ai-with-ollama</a>.</p>
 <p>Reference:</p>
 <p>-<a href="https://docs.docker.com/model-runner/" target="_blank" rel="noreferrer">https://docs.docker.com/model-runner/</a></p>
 
