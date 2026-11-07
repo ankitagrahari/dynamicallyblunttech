@@ -43,12 +43,12 @@ jobs:
       - name: Build Static Site
         env:
           HUGO_ENVIRONMENT: production
-          HUGO_BASEURL: "https://ankitagrahari.github.io/dynamicallyblunttech/"
+          HUGO_BASEURL: "https://dynamicallyblunttech.com/"
         run: |
           hugo \
             --gc \
             --minify \
-            --baseURL "https://ankitagrahari.github.io/dynamicallyblunttech/"
+            --baseURL "https://dynamicallyblunttech.com/"
 
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
