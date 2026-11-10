@@ -683,7 +683,7 @@ For my migration, I used the exported CMS dataset as the primary source for iden
 </span></span><span style="display:flex;"><span>                 v
 </span></span><span style="display:flex;"><span>         Hugo Content Files
 </span></span></code></pre></div><p>The images were properly mapped to each post, which made the final structure predictable and easier to maintain.</p>
-<p>Refer <a href="wix_migrator.py">here</a> for the custom script I used for migration.</p>
+<p>Refer <a href="https://github.com/ankitagrahari/dynamicallyblunttech/blob/main/utilities/wix_migrator.py" target="_blank" rel="noreferrer">here</a> for the custom script I used for migration.</p>
 <h3 id="33-understanding-wix-image-urls" class="relative group">3.3 Understanding Wix image URLs <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#33-understanding-wix-image-urls" aria-label="Anchor">#</a></span></h3><p>When inspecting the exported content, I encountered image references in the following format:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wix:image://v1/&lt;media-id&gt;/&lt;filename&gt;
 </span></span></code></pre></div><p>For example:</p>

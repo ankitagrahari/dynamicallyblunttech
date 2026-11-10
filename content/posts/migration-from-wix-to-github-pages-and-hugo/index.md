@@ -188,7 +188,7 @@ The process looked like this:
 
 The images were properly mapped to each post, which made the final structure predictable and easier to maintain.
 
-  Refer [here](wix_migrator.py) for the custom script I used for migration. 
+  Refer [here](https://github.com/ankitagrahari/dynamicallyblunttech/blob/main/utilities/wix_migrator.py) for the custom script I used for migration. 
 
 ### 3.3 Understanding Wix image URLs
 
