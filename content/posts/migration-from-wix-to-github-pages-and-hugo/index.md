@@ -805,7 +805,9 @@ And yes, I now have one more repository to maintain. Apparently, developers neve
 
 ---
 
-**Website:** [Dynamically Blunt Tech](https://www.dynamicallyblunttech.com/)  
 **Author:** Ankit Agrahari  
+**Github:** [ankitagrahari](https://github.com/ankitagrahari)  
+**Instagram:** [backendbrilliance](https://www.instagram.com/backendbrilliance/)  
+**Medium:** [@ankitagrahari.rkgit](https://medium.com/@ankitagrahari.rkgit) 
 
 ---
