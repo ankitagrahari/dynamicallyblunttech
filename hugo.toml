@@ -2,6 +2,11 @@ baseURL = "https://dynamicallyblunttech.com/"
 locale = 'en-us'
 title = 'Backend Brilliance'
 theme = 'congo'
+enableRobotsTXT = true
+
+[services]
+  [services.googleAnalytics]
+    id = "G-294572835"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
