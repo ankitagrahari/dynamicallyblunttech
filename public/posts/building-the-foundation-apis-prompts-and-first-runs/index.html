@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Building the Foundation: APIs, Prompts, and First Runs &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Building the Foundation: APIs, Prompts, and First Runs &middot; DynamicallyBluntTech" />
+  <title>Building the Foundation: APIs, Prompts, and First Runs &middot; Backend Brilliance</title>
+    <meta name="title" content="Building the Foundation: APIs, Prompts, and First Runs &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -86,24 +86,24 @@ By the end, you’ll have a working backend service that can summarize PRs and h
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/" />
+    <link rel="canonical" href="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Building the Foundation: APIs, Prompts, and First Runs">
 	<meta property="og:description" content="In Part 1 of this series, we introduced the Smart DevOps Assistant (SDA) — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
 Now it’s time to get our hands dirty. In this post, we’ll:
@@ -116,11 +116,11 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
 		<meta property="article:tag" content="Spring">
 		<meta property="article:tag" content="SDA">
 		<meta property="article:tag" content="RAG">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature.jpg">
 	<meta name="twitter:title" content="Building the Foundation: APIs, Prompts, and First Runs">
 	<meta name="twitter:description" content="In Part 1 of this series, we introduced the Smart DevOps Assistant (SDA) — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.
 Now it’s time to get our hands dirty. In this post, we’ll:
@@ -135,9 +135,9 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
     "name": "Building the Foundation: APIs, Prompts, and First Runs",
     "headline": "Building the Foundation: APIs, Prompts, and First Runs",
     
-    "abstract": "\u003cp\u003eIn \n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/meet-smart-devops-assistant-vision-stack-and-journey-so-far\/\u0022\u003ePart 1\u003c\/a\u003e of this series, we introduced the \u003cstrong\u003eSmart DevOps Assistant (SDA)\u003c\/strong\u003e — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.\u003c\/p\u003e\n\u003cp\u003eNow it’s time to get our hands dirty. In this post, we’ll:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eScaffold core APIs (\/generate-summary, \/analyze-pr)\u003c\/li\u003e\n\u003cli\u003eWire up our first \u003cstrong\u003eprompt templates\u003c\/strong\u003e\u003c\/li\u003e\n\u003cli\u003eConnect Spring AI to an LLM\u003c\/li\u003e\n\u003cli\u003eRun our very first \u003cstrong\u003eend-to-end test\u003c\/strong\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eBy the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀\u003c\/p\u003e",
+    "abstract": "\u003cp\u003eIn \n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/meet-smart-devops-assistant-vision-stack-and-journey-so-far\/\u0022\u003ePart 1\u003c\/a\u003e of this series, we introduced the \u003cstrong\u003eSmart DevOps Assistant (SDA)\u003c\/strong\u003e — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.\u003c\/p\u003e\n\u003cp\u003eNow it’s time to get our hands dirty. In this post, we’ll:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eScaffold core APIs (\/generate-summary, \/analyze-pr)\u003c\/li\u003e\n\u003cli\u003eWire up our first \u003cstrong\u003eprompt templates\u003c\/strong\u003e\u003c\/li\u003e\n\u003cli\u003eConnect Spring AI to an LLM\u003c\/li\u003e\n\u003cli\u003eRun our very first \u003cstrong\u003eend-to-end test\u003c\/strong\u003e\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eBy the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-the-foundation-apis-prompts-and-first-runs\/",
+    "url" : "http:\/\/localhost:1313\/posts\/building-the-foundation-apis-prompts-and-first-runs\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -162,19 +162,19 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/spring/",
+       "item": "http://localhost:1313/categories/spring/",
        "name": "Spring",
        "position": 3
      },
@@ -226,8 +226,8 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -240,7 +240,7 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -353,12 +353,12 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_d209803ccb136d19.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_49abd117225ee977.webp 660w
+            srcset="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_d209803ccb136d19.webp 330w,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_49abd117225ee977.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_7f43d192a0346d11.webp 1024w
+              ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_7f43d192a0346d11.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_754a72cc9686b338.webp 1320w
+              ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_754a72cc9686b338.webp 1320w
             "
           
           sizes="100vw"
@@ -372,12 +372,12 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_3750af73fd72484c.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_c11d85476ab58635.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_3750af73fd72484c.jpg 660w
+          src="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_3750af73fd72484c.jpg" srcset="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_c11d85476ab58635.jpg 330w,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_3750af73fd72484c.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_5f63818605fbc90.jpg 1024w
+            ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_5f63818605fbc90.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_9ba5463fc78858c8.jpg 1320w
+            ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/feature_hu_9ba5463fc78858c8.jpg 1320w
           "
           sizes="100vw"
         
@@ -395,7 +395,7 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>In 
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far/">Part 1</a> of this series, we introduced the <strong>Smart DevOps Assistant (SDA)</strong> — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.</p>
+    <a href="http://localhost:1313/posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far/">Part 1</a> of this series, we introduced the <strong>Smart DevOps Assistant (SDA)</strong> — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.</p>
 <p>Now it’s time to get our hands dirty. In this post, we’ll:</p>
 <ul>
 <li>Scaffold core APIs (/generate-summary, /analyze-pr)</li>
@@ -598,12 +598,12 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_e0af1a617c27ec91.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_dfab6e1afe63fa22.webp 660w
+            srcset="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_e0af1a617c27ec91.webp 330w,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_dfab6e1afe63fa22.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_b33d54fb636c2026.webp 1024w
+              ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_b33d54fb636c2026.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_187bed3edec72bea.webp 1320w
+              ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_187bed3edec72bea.webp 1320w
             "
           
           sizes="100vw"
@@ -617,12 +617,12 @@ Scaffold core APIs (/generate-summary, /analyze-pr) Wire up our first prompt tem
         alt="Flow"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_7bacbecb6a20d02a.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_6d1aae2061382c6c.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_7bacbecb6a20d02a.jpg 660w
+          src="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_7bacbecb6a20d02a.jpg" srcset="http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_6d1aae2061382c6c.jpg 330w,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_7bacbecb6a20d02a.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_3968b174ecaf37b9.jpg 1024w
+            ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_3968b174ecaf37b9.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_2e46abee3d2a21fb.jpg 1320w
+            ,http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/images/df024c_2190cdd1a6a2492481ba54e64560921e_hu_2e46abee3d2a21fb.jpg 1320w
           "
           sizes="100vw"
         
@@ -705,7 +705,7 @@ The Spring AI framework creates an ChatClientRequest from user’s Prompt along 
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
+            <a class="group flex" href="http://localhost:1313/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -727,7 +727,7 @@ The Spring AI framework creates an ChatClientRequest from user’s Prompt along 
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/lc746-minimum-cost-of-climbing-stairs/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/lc746-minimum-cost-of-climbing-stairs/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -808,7 +808,7 @@ The Spring AI framework creates an ChatClientRequest from user’s Prompt along 
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

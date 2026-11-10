@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Externalize Spring Boot Configuration &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Externalize Spring Boot Configuration &middot; DynamicallyBluntTech" />
+  <title>Externalize Spring Boot Configuration &middot; Backend Brilliance</title>
+    <meta name="title" content="Externalize Spring Boot Configuration &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -78,24 +78,24 @@ We have also discussed on Spring boot configuration files and how to get the val
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/" />
+    <link rel="canonical" href="http://localhost:1313/posts/externalize-spring-boot-configuration/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/externalize-spring-boot-configuration/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Externalize Spring Boot Configuration">
 	<meta property="og:description" content="In this post, we will discuss on fetching the Spring boot configuration values from outside the application jar file. We will discuss on dockerizing the application which will take the property values from an external configuration file. We will also use different Profiles to get the message based on the profile we choose.
 We have also discussed on Spring boot configuration files and how to get the values from it in this post spring-boot-application-external-configurations.">
@@ -106,11 +106,11 @@ We have also discussed on Spring boot configuration files and how to get the val
 		<meta property="article:modified_time" content="2026-10-27T08:14:30+05:30">
 		<meta property="article:tag" content="Spring">
 		<meta property="article:tag" content="Cloud">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/externalize-spring-boot-configuration/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/externalize-spring-boot-configuration/feature.jpg">
 	<meta name="twitter:title" content="Externalize Spring Boot Configuration">
 	<meta name="twitter:description" content="In this post, we will discuss on fetching the Spring boot configuration values from outside the application jar file. We will discuss on dockerizing the application which will take the property values from an external configuration file. We will also use different Profiles to get the message based on the profile we choose.
 We have also discussed on Spring boot configuration files and how to get the values from it in this post spring-boot-application-external-configurations.">
@@ -126,7 +126,7 @@ We have also discussed on Spring boot configuration files and how to get the val
     
     "abstract": "\u003cp\u003eIn this post, we will discuss on fetching the Spring boot configuration values from outside the application jar file. We will discuss on dockerizing the application which will take the property values from an external configuration file. We will also use different Profiles to get the message\nbased on the profile we choose.\u003c\/p\u003e\n\u003cp\u003eWe have also discussed on Spring boot configuration files and how to get the values from it in this post \u003ca href=\u0022https:\/\/www.dynamicallyblunttech.com\/post\/spring-boot-application-external-configurations\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003espring-boot-application-external-configurations\u003c\/em\u003e\u003c\/a\u003e\u003cem\u003e.\u003c\/em\u003e\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/externalize-spring-boot-configuration\/",
+    "url" : "http:\/\/localhost:1313\/posts\/externalize-spring-boot-configuration\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -151,19 +151,19 @@ We have also discussed on Spring boot configuration files and how to get the val
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/spring/",
+       "item": "http://localhost:1313/categories/spring/",
        "name": "Spring",
        "position": 3
      },
@@ -215,8 +215,8 @@ We have also discussed on Spring boot configuration files and how to get the val
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -229,7 +229,7 @@ We have also discussed on Spring boot configuration files and how to get the val
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -342,12 +342,12 @@ We have also discussed on Spring boot configuration files and how to get the val
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_c1942fa5657c87e9.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_6a0ecf56d7631dc.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_c1942fa5657c87e9.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_6a0ecf56d7631dc.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_cbf3e33a2afb8896.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_cbf3e33a2afb8896.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_c9499eac258d42c9.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_c9499eac258d42c9.webp 1320w
             "
           
           sizes="100vw"
@@ -361,12 +361,12 @@ We have also discussed on Spring boot configuration files and how to get the val
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_d7434d419c2628fb.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_466922a043bdfd45.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_d7434d419c2628fb.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_d7434d419c2628fb.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_466922a043bdfd45.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_d7434d419c2628fb.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_c1b89552e22775d9.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_c1b89552e22775d9.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/feature_hu_8ba6cc6029eebfc4.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/feature_hu_8ba6cc6029eebfc4.jpg 1320w
           "
           sizes="100vw"
         
@@ -414,12 +414,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_40194e299d7c53b5.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_d8d9401d549b1707.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_40194e299d7c53b5.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_d8d9401d549b1707.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_9f7b6c907ed67d90.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_9f7b6c907ed67d90.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_46a02ca82aebef38.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_46a02ca82aebef38.webp 1320w
             "
           
           sizes="100vw"
@@ -433,12 +433,12 @@ based on the profile we choose.</p>
         alt="Spring Initializr"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_7a30cfb7f790531e.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_c335e2da2146984b.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_7a30cfb7f790531e.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_7a30cfb7f790531e.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_c335e2da2146984b.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_7a30cfb7f790531e.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_cf02458873589fde.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_cf02458873589fde.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/2_hu_fd562ad7b8f1f869.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/2_hu_fd562ad7b8f1f869.jpg 1320w
           "
           sizes="100vw"
         
@@ -479,7 +479,7 @@ based on the profile we choose.</p>
         <source
           
             
-              srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/3_hu_ea166feca1e01f67.webp"
+              srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/3_hu_ea166feca1e01f67.webp"
             
           
           sizes="100vw"
@@ -493,7 +493,7 @@ based on the profile we choose.</p>
         alt="Project Structure"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/3.jpg"
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/3.jpg"
         
       />
     </picture>
@@ -530,13 +530,13 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_39a50fde5c7d107.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_fb2c27c00e609f62.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_39a50fde5c7d107.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_fb2c27c00e609f62.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_b0c83d262fc4f70f.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_b0c83d262fc4f70f.webp 1024w
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_df6d2b2463eddac2.webp 1235w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_df6d2b2463eddac2.webp 1235w
               
             "
           
@@ -551,12 +551,12 @@ based on the profile we choose.</p>
         alt="pom.xml"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_f03b1c89412bb0c9.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_82e66688b9b0e930.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_f03b1c89412bb0c9.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_f03b1c89412bb0c9.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_82e66688b9b0e930.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_f03b1c89412bb0c9.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4_hu_7ec86d0ccd78b7ae.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/4_hu_7ec86d0ccd78b7ae.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/4.jpg 1235w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/4.jpg 1235w
           "
           sizes="100vw"
         
@@ -606,13 +606,13 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_2d5d8cee54efe142.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_5f4178056ecfa338.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_2d5d8cee54efe142.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_5f4178056ecfa338.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_ead819c1d2285ca8.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_ead819c1d2285ca8.webp 1024w
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_c74a5419f0a151e0.webp 1040w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_c74a5419f0a151e0.webp 1040w
               
             "
           
@@ -627,12 +627,12 @@ based on the profile we choose.</p>
         alt="Controller"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_e7ccc283eb5d0cca.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_a1c7970ca346c0c8.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_e7ccc283eb5d0cca.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_e7ccc283eb5d0cca.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_a1c7970ca346c0c8.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_e7ccc283eb5d0cca.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5_hu_cbbcee796722fbe7.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/5_hu_cbbcee796722fbe7.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/5.jpg 1040w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/5.jpg 1040w
           "
           sizes="100vw"
         
@@ -672,12 +672,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_59292feef94e019f.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_e245c0035c84c533.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_59292feef94e019f.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_e245c0035c84c533.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_e025258b852c0118.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_e025258b852c0118.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_72369785a882793e.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_72369785a882793e.webp 1320w
             "
           
           sizes="100vw"
@@ -691,12 +691,12 @@ based on the profile we choose.</p>
         alt="Active Profile"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_ba6157d5ce2e9dce.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_f5807486f5fff363.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_ba6157d5ce2e9dce.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_ba6157d5ce2e9dce.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_f5807486f5fff363.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_ba6157d5ce2e9dce.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_a08d5997d4e4f1b1.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_a08d5997d4e4f1b1.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/6_hu_cb61a860eddd516a.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/6_hu_cb61a860eddd516a.jpg 1320w
           "
           sizes="100vw"
         
@@ -736,15 +736,15 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_f421acaa76912f0a.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_2b38da922663d22.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_f421acaa76912f0a.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_2b38da922663d22.webp 660w
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_488ec6a4e68cbd28.webp 788w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_488ec6a4e68cbd28.webp 788w
               
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_488ec6a4e68cbd28.webp 788w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_488ec6a4e68cbd28.webp 788w
               
             "
           
@@ -759,12 +759,12 @@ based on the profile we choose.</p>
         alt="Response"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_c54634bfd589424d.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_f925bd718d5dfe52.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7_hu_c54634bfd589424d.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_c54634bfd589424d.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_f925bd718d5dfe52.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/7_hu_c54634bfd589424d.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7.jpg 788w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/7.jpg 788w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/7.jpg 788w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/7.jpg 788w
           "
           sizes="100vw"
         
@@ -804,12 +804,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_434f4264f8dd085c.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_2df6d3759d562afb.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_434f4264f8dd085c.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_2df6d3759d562afb.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_a6ddaac2ad74a1c1.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_a6ddaac2ad74a1c1.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_efa2d93fdc65b063.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_efa2d93fdc65b063.webp 1320w
             "
           
           sizes="100vw"
@@ -823,12 +823,12 @@ based on the profile we choose.</p>
         alt="Cloud Profile"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_c99cc6c8c44c4042.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_9b245a5f9ba8747e.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_c99cc6c8c44c4042.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_c99cc6c8c44c4042.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_9b245a5f9ba8747e.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_c99cc6c8c44c4042.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_bd1141b4b00af90a.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_bd1141b4b00af90a.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/8_hu_d17d8359ef0230a8.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/8_hu_d17d8359ef0230a8.jpg 1320w
           "
           sizes="100vw"
         
@@ -868,15 +868,15 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_cec0ea59a0affca5.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_ae5007d66c1ea8a8.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_cec0ea59a0affca5.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_ae5007d66c1ea8a8.webp 660w
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_c14053bc24cb0ae9.webp 781w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_c14053bc24cb0ae9.webp 781w
               
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_c14053bc24cb0ae9.webp 781w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_c14053bc24cb0ae9.webp 781w
               
             "
           
@@ -891,12 +891,12 @@ based on the profile we choose.</p>
         alt="Response"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_16477e62c1fa2c48.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_31e83d04a2cd4f81.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9_hu_16477e62c1fa2c48.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_16477e62c1fa2c48.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_31e83d04a2cd4f81.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/9_hu_16477e62c1fa2c48.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9.jpg 781w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/9.jpg 781w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/9.jpg 781w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/9.jpg 781w
           "
           sizes="100vw"
         
@@ -939,12 +939,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_db26444c3e4ffc02.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_5a419dc3163bc64f.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_db26444c3e4ffc02.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_5a419dc3163bc64f.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_2573084011d93c5a.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_2573084011d93c5a.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_f8fff4fd43122669.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_f8fff4fd43122669.webp 1320w
             "
           
           sizes="100vw"
@@ -958,12 +958,12 @@ based on the profile we choose.</p>
         alt="Docker"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_e22666aaca2afe3a.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_4091b827fca39504.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_e22666aaca2afe3a.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_e22666aaca2afe3a.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_4091b827fca39504.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_e22666aaca2afe3a.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_5551f9abb6600556.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_5551f9abb6600556.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/10_hu_d8f06498d05758be.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/10_hu_d8f06498d05758be.jpg 1320w
           "
           sizes="100vw"
         
@@ -1012,12 +1012,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_91fa2b9c9ec71ed7.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_8230ebdb830b0bd2.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_91fa2b9c9ec71ed7.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_8230ebdb830b0bd2.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_2ae1f4397a8ff1eb.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_2ae1f4397a8ff1eb.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_32c5121b9e13de90.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_32c5121b9e13de90.webp 1320w
             "
           
           sizes="100vw"
@@ -1031,12 +1031,12 @@ based on the profile we choose.</p>
         alt="Docker"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_2703541c3728c59e.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_14eee3645408e22b.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_2703541c3728c59e.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_2703541c3728c59e.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_14eee3645408e22b.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_2703541c3728c59e.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_f949d58443785b96.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_f949d58443785b96.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/11_hu_15cc83ecdd5abaa0.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/11_hu_15cc83ecdd5abaa0.jpg 1320w
           "
           sizes="100vw"
         
@@ -1078,12 +1078,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_895e10a36071553d.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_b560f054bf379071.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_895e10a36071553d.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_b560f054bf379071.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_d17b2f2c44add4c4.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_d17b2f2c44add4c4.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_3fb258065fa08d2c.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_3fb258065fa08d2c.webp 1320w
             "
           
           sizes="100vw"
@@ -1097,12 +1097,12 @@ based on the profile we choose.</p>
         alt="Docker Build Logs"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_8178751deee89e7e.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_cb94d5b0f91337.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_8178751deee89e7e.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_8178751deee89e7e.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_cb94d5b0f91337.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_8178751deee89e7e.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_a84abd53a89122a1.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_a84abd53a89122a1.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/12_hu_f47d526e3067e10.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/12_hu_f47d526e3067e10.jpg 1320w
           "
           sizes="100vw"
         
@@ -1143,12 +1143,12 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_8c32833784e346b0.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_d35afb5fde61d620.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_8c32833784e346b0.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_d35afb5fde61d620.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_3e1d0b1534422e26.webp 1024w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_3e1d0b1534422e26.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_5ef7a234a69b7107.webp 1320w
+              ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_5ef7a234a69b7107.webp 1320w
             "
           
           sizes="100vw"
@@ -1162,12 +1162,12 @@ based on the profile we choose.</p>
         alt="Logs"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_935272da47a17f12.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_36a56f83001299a.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_935272da47a17f12.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_935272da47a17f12.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_36a56f83001299a.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_935272da47a17f12.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_e327d322da8dfa58.jpg 1024w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_e327d322da8dfa58.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/13_hu_a49e0a42bb73acb0.jpg 1320w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/13_hu_a49e0a42bb73acb0.jpg 1320w
           "
           sizes="100vw"
         
@@ -1207,15 +1207,15 @@ based on the profile we choose.</p>
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_21252aaff95b14d.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_38bdfec5547cf488.webp 660w
+            srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_21252aaff95b14d.webp 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_38bdfec5547cf488.webp 660w
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_4f19710271411da9.webp 838w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_4f19710271411da9.webp 838w
               
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_4f19710271411da9.webp 838w
+                ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_4f19710271411da9.webp 838w
               
             "
           
@@ -1230,12 +1230,12 @@ based on the profile we choose.</p>
         alt="Response"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_21d0f9e9bcb24f0c.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_fa9d96491b357435.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14_hu_21d0f9e9bcb24f0c.jpg 660w
+          src="http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_21d0f9e9bcb24f0c.jpg" srcset="http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_fa9d96491b357435.jpg 330w,http://localhost:1313/posts/externalize-spring-boot-configuration/images/14_hu_21d0f9e9bcb24f0c.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14.jpg 838w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/14.jpg 838w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/externalize-spring-boot-configuration/images/14.jpg 838w
+            ,http://localhost:1313/posts/externalize-spring-boot-configuration/images/14.jpg 838w
           "
           sizes="100vw"
         
@@ -1282,7 +1282,7 @@ based on the profile we choose.</p>
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/target-machine-actively-refused-it-mongodb-issue/">
+            <a class="group flex" href="http://localhost:1313/posts/target-machine-actively-refused-it-mongodb-issue/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -1304,7 +1304,7 @@ based on the profile we choose.</p>
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/custom-iterators-in-java/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/custom-iterators-in-java/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -1385,7 +1385,7 @@ based on the profile we choose.</p>
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

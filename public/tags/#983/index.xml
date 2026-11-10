@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>#983 on DynamicallyBluntTech</title>
-		<link>http://localhost:1313/dynamicallyblunttech/tags/%23983/</link>
-		<description>Recent content in #983 on DynamicallyBluntTech</description>
+		<title>#983 on Backend Brilliance</title>
+		<link>http://localhost:1313/tags/%23983/</link>
+		<description>Recent content in #983 on Backend Brilliance</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Tue, 27 Oct 2026 08:14:25 +0530</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/%23983/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/tags/%23983/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>#LC983 - Find The Minimum Cost For Tickets (DP)</title>
-				<link>http://localhost:1313/dynamicallyblunttech/posts/lc983-find-the-minimum-cost-for-tickets-dp/</link>
+				<link>http://localhost:1313/posts/lc983-find-the-minimum-cost-for-tickets-dp/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:25 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/posts/lc983-find-the-minimum-cost-for-tickets-dp/</guid>
+				<guid>http://localhost:1313/posts/lc983-find-the-minimum-cost-for-tickets-dp/</guid>
 				<description>&lt;p&gt;In this post we will go through the &lt;a href=&#34;https://leetcode.com/problems/minimum-cost-for-tickets/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Leetcode #983&lt;/em&gt;&lt;/a&gt; to find the minimum cost for Tickets, which could be one of the starting practice programs in &lt;em&gt;&lt;strong&gt;Dynamic Programming&lt;/strong&gt;&lt;/em&gt;. This is a really interesting problem and I took help from &lt;a href=&#34;https://www.youtube.com/watch?v=HyN5hdD1JU4&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Nideesh Terapalli&lt;/em&gt;&lt;/a&gt; youtube video.&lt;/p&gt;&#xA;&lt;h3 id=&#34;problem-statement&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Problem Statement&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#problem-statement&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;In a country popular for train travel, you have planned some train travelling one year in advance.  The days of the year that you will travel is given as an array days.  Each day is an integer from 1 to 365.&lt;/p&gt;</description>
 			</item>
 	</channel>

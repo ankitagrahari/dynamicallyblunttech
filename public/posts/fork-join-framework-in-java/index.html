@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Fork-Join Framework in Java &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Fork-Join Framework in Java &middot; DynamicallyBluntTech" />
+  <title>Fork-Join Framework in Java &middot; Backend Brilliance</title>
+    <meta name="title" content="Fork-Join Framework in Java &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -87,24 +87,24 @@ This approach ensures efficient execution of a big task, utilizing the available
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/" />
+    <link rel="canonical" href="http://localhost:1313/posts/fork-join-framework-in-java/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/fork-join-framework-in-java/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Fork-Join Framework in Java">
 	<meta property="og:description" content="This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.
 How it Works #Lets understand some key points in this framework
@@ -115,11 +115,11 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
 		<meta property="article:published_time" content="2026-10-27T08:14:21+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:21+05:30">
 		<meta property="article:tag" content="[]">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/fork-join-framework-in-java/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/fork-join-framework-in-java/feature.jpg">
 	<meta name="twitter:title" content="Fork-Join Framework in Java">
 	<meta name="twitter:description" content="This post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.
 How it Works #Lets understand some key points in this framework
@@ -136,7 +136,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
     
     "abstract": "\u003cp\u003eThis post will discuss on the Fork Join framework introduced in Java 7. It utilizes the maximum available processors to compute any recursive task. So e.g. calculating the Fibonacci series or finding a number in the huge array can be done in very less time.\u003c\/p\u003e\n\u003ch2 id=\u0022how-it-works\u0022 class=\u0022relative group\u0022\u003eHow it Works \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#how-it-works\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eLets understand some key points in this framework\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003eFork means spawning a new task.\u003c\/li\u003e\n\u003cli\u003eJoin means to join the pending task output.\u003c\/li\u003e\n\u003cli\u003eFork\/Join uses the \u003cem\u003e\u003cstrong\u003eDivide and Conquer\u003c\/strong\u003e\u003c\/em\u003e which divides the entire dataset into small chunks for computation or applying any specific logic. Once each task is computed independently, it will merge the output of the computation to get the final result.\u003c\/li\u003e\n\u003cli\u003eIt runs all the forked tasks in parallel using the available capacity of your machine on which it is running.\u003c\/li\u003e\n\u003cli\u003eTo run the tasks in parallel, it uses the number of processors available to JVM which is \u003cem\u003eRuntime.getRuntime().availableProcessors()\u003c\/em\u003e number of threads.\u003c\/li\u003e\n\u003cli\u003eEach of these threads have \u003cem\u003e\u003cstrong\u003edouble ended Queue (De-queue)\u003c\/strong\u003e\u003c\/em\u003e. In a de-queue you can add or remove an elements from the head or tail.\u003c\/li\u003e\n\u003cli\u003eUsing de-queue, it applies the \u003cem\u003e\u003cstrong\u003ework-stealing algorithm\u003c\/strong\u003e\u003c\/em\u003e, where if there are no tasks for  a thread to execute, it will steal the tasks from other threads.\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003cp\u003eThis approach ensures efficient execution of a big task, utilizing the available processors of your machine.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/fork-join-framework-in-java\/",
+    "url" : "http:\/\/localhost:1313\/posts\/fork-join-framework-in-java\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -161,19 +161,19 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/",
+       "item": "http://localhost:1313/categories/",
        "name": "[]",
        "position": 3
      },
@@ -225,8 +225,8 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -239,7 +239,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -353,7 +353,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
         <source
           
             
-              srcset="http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/feature_hu_f1bfbb9cb1fe8a99.webp"
+              srcset="http://localhost:1313/posts/fork-join-framework-in-java/feature_hu_f1bfbb9cb1fe8a99.webp"
             
           
           sizes="100vw"
@@ -367,7 +367,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/fork-join-framework-in-java/feature.jpg"
+          src="http://localhost:1313/posts/fork-join-framework-in-java/feature.jpg"
         
       />
     </picture>
@@ -496,7 +496,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/spring-boot-application-external-configurations/">
+            <a class="group flex" href="http://localhost:1313/posts/spring-boot-application-external-configurations/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -518,7 +518,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/cca-f-domain-3-claude-code-configuration-and-workflows-key-concepts/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -599,7 +599,7 @@ Fork means spawning a new task. Join means to join the pending task output. Fork
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

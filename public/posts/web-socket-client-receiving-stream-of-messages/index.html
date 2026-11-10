@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Web Socket Client - Receiving Stream of Messages &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Web Socket Client - Receiving Stream of Messages &middot; DynamicallyBluntTech" />
+  <title>Web Socket Client - Receiving Stream of Messages &middot; Backend Brilliance</title>
+    <meta name="title" content="Web Socket Client - Receiving Stream of Messages &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -77,24 +77,24 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/" />
+    <link rel="canonical" href="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Web Socket Client - Receiving Stream of Messages">
 	<meta property="og:description" content="In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.
 Web Sockets #The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are bi-directional, full duplex communication protocol. This means that the data can be flown in either directions, client to server or server to client.">
@@ -104,11 +104,11 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
 		<meta property="article:published_time" content="2026-10-27T08:14:16+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:16+05:30">
 		<meta property="article:tag" content="WebSocket">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/feature.jpg">
 	<meta name="twitter:title" content="Web Socket Client - Receiving Stream of Messages">
 	<meta name="twitter:description" content="In this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.
 Web Sockets #The web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are bi-directional, full duplex communication protocol. This means that the data can be flown in either directions, client to server or server to client.">
@@ -124,7 +124,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
     
     "abstract": "\u003cp\u003eIn this post we will be creating a Web Socket Client which will receive all messages coming from the Web Socket Server.\u003c\/p\u003e\n\u003ch3 id=\u0022web-sockets\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eWeb Sockets\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#web-sockets\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eThe web socket is a communication protocol like HTTP used in client - server architecture. But, unlike HTTP, web-sockets are \u003cem\u003e\u003cstrong\u003ebi-directional, full duplex\u003c\/strong\u003e\u003c\/em\u003e communication protocol. This means that the data can be flown in either directions, client to server or server to client.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/web-socket-client-receiving-stream-of-messages\/",
+    "url" : "http:\/\/localhost:1313\/posts\/web-socket-client-receiving-stream-of-messages\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -149,19 +149,19 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/stream/",
+       "item": "http://localhost:1313/categories/stream/",
        "name": "Stream",
        "position": 3
      },
@@ -213,8 +213,8 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -227,7 +227,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -341,7 +341,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
         <source
           
             
-              srcset="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/feature_hu_1f33df152303ba5c.webp"
+              srcset="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/feature_hu_1f33df152303ba5c.webp"
             
           
           sizes="100vw"
@@ -355,7 +355,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/feature.jpg"
+          src="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/feature.jpg"
         
       />
     </picture>
@@ -401,15 +401,15 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_2d0db9850b87a7b6.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_d9e24110fe789342.webp 660w
+            srcset="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_2d0db9850b87a7b6.webp 330w,http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_d9e24110fe789342.webp 660w
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_2bf29ae22098d35d.webp 671w
+                ,http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_2bf29ae22098d35d.webp 671w
               
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_2bf29ae22098d35d.webp 671w
+                ,http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_2bf29ae22098d35d.webp 671w
               
             "
           
@@ -424,12 +424,12 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
         alt="Transmissions"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_e874f69ad56a7b25.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_d0596fd989636627.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_e874f69ad56a7b25.jpg 660w
+          src="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_e874f69ad56a7b25.jpg" srcset="http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_d0596fd989636627.jpg 330w,http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406_hu_e874f69ad56a7b25.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406.jpg 671w
+            ,http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406.jpg 671w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406.jpg 671w
+            ,http://localhost:1313/posts/web-socket-client-receiving-stream-of-messages/images/df024c_3707aedc50644bb8b49d43b9fac53406.jpg 671w
           "
           sizes="100vw"
         
@@ -554,7 +554,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/">
+            <a class="group flex" href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -576,7 +576,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/custom-java-class-peculiar-cases/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -657,7 +657,7 @@ Web Sockets #The web socket is a communication protocol like HTTP used in client
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

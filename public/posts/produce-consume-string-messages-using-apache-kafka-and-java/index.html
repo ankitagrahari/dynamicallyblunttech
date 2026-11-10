@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Produce & Consume Messages Using Apache Kafka &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Produce & Consume Messages Using Apache Kafka &middot; DynamicallyBluntTech" />
+  <title>Produce & Consume Messages Using Apache Kafka &middot; Backend Brilliance</title>
+    <meta name="title" content="Produce & Consume Messages Using Apache Kafka &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -82,24 +82,24 @@ NOTE: The version 2.13.3 is not working and will throw Connection Refused error.
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/" />
+    <link rel="canonical" href="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Produce & Consume Messages Using Apache Kafka">
 	<meta property="og:description" content="In this post, we will create a Kafka producer which will produce string messages as Rest call and a consumer which will consume the produced messages.
 Install/Setup Kafka #To download Kafka refer to the Apache Kafka Download website.
@@ -111,11 +111,11 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
 		<meta property="article:published_time" content="2026-10-27T08:14:13+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:13+05:30">
 		<meta property="article:tag" content="[]">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature.jpg">
 	<meta name="twitter:title" content="Produce & Consume Messages Using Apache Kafka">
 	<meta name="twitter:description" content="In this post, we will create a Kafka producer which will produce string messages as Rest call and a consumer which will consume the produced messages.
 Install/Setup Kafka #To download Kafka refer to the Apache Kafka Download website.
@@ -133,7 +133,7 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
     
     "abstract": "\u003cp\u003eIn this post, we will create a Kafka producer which will produce string messages as Rest call and a consumer which will consume the produced messages.\u003c\/p\u003e\n\u003ch2 id=\u0022installsetup-kafka\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eInstall\/Setup Kafka\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#installsetup-kafka\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eTo download Kafka refer to the \u003ca href=\u0022https:\/\/kafka.apache.org\/downloads\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003eApache Kafka Download website\u003c\/a\u003e.\u003c\/p\u003e\n\u003cp\u003ePick any of the desired package. For this post we chose 2.8.1\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eScala 2.12  - \u003ca href=\u0022https:\/\/www.apache.org\/dyn\/closer.cgi?path=\/kafka\/3.0.0\/kafka_2.12-3.0.0.tgz\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003ekafka_2.12-3.0.0.tgz\u003c\/em\u003e\u003c\/a\u003e (\u003ca href=\u0022https:\/\/downloads.apache.org\/kafka\/3.0.0\/kafka_2.12-3.0.0.tgz.asc\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003easc\u003c\/em\u003e\u003c\/a\u003e, \u003ca href=\u0022https:\/\/downloads.apache.org\/kafka\/3.0.0\/kafka_2.12-3.0.0.tgz.sha512\u0022 target=\u0022_blank\u0022 rel=\u0022noreferrer\u0022\u003e\u003cem\u003esha512\u003c\/em\u003e\u003c\/a\u003e)\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003ch4 id=\u0022note-the-version-2133-is-not-working-and-will-throw-connection-refused-error\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eNOTE\u003c\/strong\u003e: The version 2.13.3 is not working and will throw Connection Refused error. \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#note-the-version-2133-is-not-working-and-will-throw-connection-refused-error\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h4\u003e\u003ch3 id=\u0022steps-to-setup\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eSteps to Setup:\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#steps-to-setup\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h3\u003e\u003cp\u003eExtract the tgz file to some directory.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/produce-consume-string-messages-using-apache-kafka-and-java\/",
+    "url" : "http:\/\/localhost:1313\/posts\/produce-consume-string-messages-using-apache-kafka-and-java\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -158,19 +158,19 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
        "name": "[\"619c9d9d8da2c200166cb558\"]",
        "position": 3
      },
@@ -222,8 +222,8 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -236,7 +236,7 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -350,7 +350,7 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
         <source
           
             
-              srcset="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature_hu_cc8be343e8973009.webp"
+              srcset="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature_hu_cc8be343e8973009.webp"
             
           
           sizes="100vw"
@@ -364,7 +364,7 @@ Scala 2.12 - kafka_2.12-3.0.0.tgz (asc, sha512) NOTE: The version 2.13.3 is not 
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature.jpg"
+          src="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/feature.jpg"
         
       />
     </picture>
@@ -575,7 +575,7 @@ To get the entire code base of the above example, refer to this <a href="https:/
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/">
+            <a class="group flex" href="http://localhost:1313/posts/reactive-programming-in-java/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -597,7 +597,7 @@ To get the entire code base of the above example, refer to this <a href="https:/
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/cca-f-domain-2-tool-design-and-mcp-integration-key-concepts/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -678,7 +678,7 @@ To get the entire code base of the above example, refer to this <a href="https:/
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

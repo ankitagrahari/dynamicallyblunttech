@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Reactive Programming in Java &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Reactive Programming in Java &middot; DynamicallyBluntTech" />
+  <title>Reactive Programming in Java &middot; Backend Brilliance</title>
+    <meta name="title" content="Reactive Programming in Java &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -80,24 +80,24 @@ Reactive programming is an asynchronous programming paradigm concerned with data
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/" />
+    <link rel="canonical" href="http://localhost:1313/posts/reactive-programming-in-java/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/reactive-programming-in-java/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Reactive Programming in Java">
 	<meta property="og:description" content="In this post, we will try to understand the basics of the Reactive programming, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.
 According to Wikipedia, Reactive Programming is defined as:
@@ -108,11 +108,11 @@ Reactive programming is an asynchronous programming paradigm concerned with data
 		<meta property="article:published_time" content="2026-10-27T08:14:13+05:30">
 		<meta property="article:modified_time" content="2026-10-27T08:14:13+05:30">
 		<meta property="article:tag" content="[]">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/reactive-programming-in-java/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/reactive-programming-in-java/feature.jpg">
 	<meta name="twitter:title" content="Reactive Programming in Java">
 	<meta name="twitter:description" content="In this post, we will try to understand the basics of the Reactive programming, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.
 According to Wikipedia, Reactive Programming is defined as:
@@ -129,7 +129,7 @@ Reactive programming is an asynchronous programming paradigm concerned with data
     
     "abstract": "\u003cp\u003eIn this post, we will try to understand the basics of the \u003cem\u003e\u003cstrong\u003eReactive programming\u003c\/strong\u003e\u003c\/em\u003e, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.\u003c\/p\u003e\n\u003cp\u003eAccording to Wikipedia, Reactive Programming is defined as:\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eReactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).\u003c\/p\u003e\n\u003c\/blockquote\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/reactive-programming-in-java\/",
+    "url" : "http:\/\/localhost:1313\/posts\/reactive-programming-in-java\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -154,19 +154,19 @@ Reactive programming is an asynchronous programming paradigm concerned with data
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/619c9d9d8da2c200166cb558/",
+       "item": "http://localhost:1313/categories/619c9d9d8da2c200166cb558/",
        "name": "[\"619c9d9d8da2c200166cb558\"",
        "position": 3
      },
@@ -218,8 +218,8 @@ Reactive programming is an asynchronous programming paradigm concerned with data
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -232,7 +232,7 @@ Reactive programming is an asynchronous programming paradigm concerned with data
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -345,12 +345,12 @@ Reactive programming is an asynchronous programming paradigm concerned with data
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_febd0629a7b78721.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_bf1b85b4c42ac9bb.webp 660w
+            srcset="http://localhost:1313/posts/reactive-programming-in-java/feature_hu_febd0629a7b78721.webp 330w,http://localhost:1313/posts/reactive-programming-in-java/feature_hu_bf1b85b4c42ac9bb.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_550cc7a54561df98.webp 1024w
+              ,http://localhost:1313/posts/reactive-programming-in-java/feature_hu_550cc7a54561df98.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_ba35a89b059cf981.webp 1320w
+              ,http://localhost:1313/posts/reactive-programming-in-java/feature_hu_ba35a89b059cf981.webp 1320w
             "
           
           sizes="100vw"
@@ -364,12 +364,12 @@ Reactive programming is an asynchronous programming paradigm concerned with data
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_80ae22a44163e5d0.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_c938daae88e96624.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_80ae22a44163e5d0.jpg 660w
+          src="http://localhost:1313/posts/reactive-programming-in-java/feature_hu_80ae22a44163e5d0.jpg" srcset="http://localhost:1313/posts/reactive-programming-in-java/feature_hu_c938daae88e96624.jpg 330w,http://localhost:1313/posts/reactive-programming-in-java/feature_hu_80ae22a44163e5d0.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_d9025f2c57d3df5.jpg 1024w
+            ,http://localhost:1313/posts/reactive-programming-in-java/feature_hu_d9025f2c57d3df5.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/reactive-programming-in-java/feature_hu_359ad6d869287203.jpg 1320w
+            ,http://localhost:1313/posts/reactive-programming-in-java/feature_hu_359ad6d869287203.jpg 1320w
           "
           sizes="100vw"
         
@@ -495,7 +495,7 @@ Reactive programming is an asynchronous programming paradigm concerned with data
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/read-write-excel-using-apache-poi-java/">
+            <a class="group flex" href="http://localhost:1313/posts/read-write-excel-using-apache-poi-java/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -517,7 +517,7 @@ Reactive programming is an asynchronous programming paradigm concerned with data
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/produce-consume-string-messages-using-apache-kafka-and-java/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/produce-consume-string-messages-using-apache-kafka-and-java/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -598,7 +598,7 @@ Reactive programming is an asynchronous programming paradigm concerned with data
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

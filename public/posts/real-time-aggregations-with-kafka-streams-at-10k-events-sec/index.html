@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Real-Time Aggregations with Kafka Streams at 10K Events/Sec &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec &middot; DynamicallyBluntTech" />
+  <title>Real-Time Aggregations with Kafka Streams at 10K Events/Sec &middot; Backend Brilliance</title>
+    <meta name="title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -88,24 +88,24 @@ How do you extract insights from that fire hose of data?
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/" />
+    <link rel="canonical" href="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec">
 	<meta property="og:description" content="Part 3 of the StreamMetrics Series
 *Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | * Part 4: From Localhost to Kubernetes
@@ -120,11 +120,11 @@ How do you extract insights from that fire hose of data?">
 		<meta property="article:tag" content="StreamMetrics">
 		<meta property="article:tag" content="Kafka">
 		<meta property="article:tag" content="Spring">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature.jpg">
 	<meta name="twitter:title" content="Real-Time Aggregations with Kafka Streams at 10K Events/Sec">
 	<meta name="twitter:description" content="Part 3 of the StreamMetrics Series
 *Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | * Part 4: From Localhost to Kubernetes
@@ -141,9 +141,9 @@ How do you extract insights from that fire hose of data?">
     "name": "Real-Time Aggregations with Kafka Streams at 10K Events\/Sec",
     "headline": "Real-Time Aggregations with Kafka Streams at 10K Events\/Sec",
     
-    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 3 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eBuilding production-grade streaming analytics: windows, state stores, and performance validation\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eIn Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:\u003c\/p\u003e\n\u003cp\u003e\u003cem\u003e\u003cstrong\u003eHow do you extract insights from that fire hose of data?\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 3 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/building-a-production-kafka-producer\/\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eBuilding production-grade streaming analytics: windows, state stores, and performance validation\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eIn Parts 1 and 2, we built a Kafka producer and consumer that process individual events reliably. But processing 10,000 raw events per second creates a new problem:\u003c\/p\u003e\n\u003cp\u003e\u003cem\u003e\u003cstrong\u003eHow do you extract insights from that fire hose of data?\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/",
+    "url" : "http:\/\/localhost:1313\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -168,19 +168,19 @@ How do you extract insights from that fire hose of data?">
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/streammetrics/",
+       "item": "http://localhost:1313/categories/streammetrics/",
        "name": "StreamMetrics",
        "position": 3
      },
@@ -232,8 +232,8 @@ How do you extract insights from that fire hose of data?">
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -246,7 +246,7 @@ How do you extract insights from that fire hose of data?">
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -359,12 +359,12 @@ How do you extract insights from that fire hose of data?">
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_194dba17e73a53b2.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_8ec9ad1ddfb69447.webp 660w
+            srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_194dba17e73a53b2.webp 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_8ec9ad1ddfb69447.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_e9087bbeb98e796d.webp 1024w
+              ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_e9087bbeb98e796d.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_fbdffbc4b8348efa.webp 1320w
+              ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_fbdffbc4b8348efa.webp 1320w
             "
           
           sizes="100vw"
@@ -378,12 +378,12 @@ How do you extract insights from that fire hose of data?">
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_f182aa8f2c0be378.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_18df986bf51cf2b2.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_f182aa8f2c0be378.jpg 660w
+          src="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_f182aa8f2c0be378.jpg" srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_18df986bf51cf2b2.jpg 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_f182aa8f2c0be378.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_bf106166a4157da8.jpg 1024w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_bf106166a4157da8.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_38a2b4ffe48301cd.jpg 1320w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/feature_hu_38a2b4ffe48301cd.jpg 1320w
           "
           sizes="100vw"
         
@@ -402,11 +402,11 @@ How do you extract insights from that fire hose of data?">
         <p><strong>Part 3 of the StreamMetrics Series</strong></p>
 <p>*Previous parts: <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/"><em>Part 1: Kafka Producer</em></a></em> | <em>
+    <a href="http://localhost:1313/posts/building-a-production-kafka-producer/"><em>Part 1: Kafka Producer</em></a></em> | <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | *
+    <a href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | *
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/"><em>Part 4: From Localhost to Kubernetes</em></a></p>
+    <a href="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/"><em>Part 4: From Localhost to Kubernetes</em></a></p>
 <blockquote>
 <p>Building production-grade streaming analytics: windows, state stores, and performance validation</p>
 </blockquote>
@@ -452,15 +452,15 @@ How do you extract insights from that fire hose of data?">
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_8df57b50c84e19a7.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_c6a35b0264f42907.webp 660w
+            srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_8df57b50c84e19a7.webp 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_c6a35b0264f42907.webp 660w
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_a0d940daadcd5518.webp 780w
+                ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_a0d940daadcd5518.webp 780w
               
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_a0d940daadcd5518.webp 780w
+                ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_a0d940daadcd5518.webp 780w
               
             "
           
@@ -475,12 +475,12 @@ How do you extract insights from that fire hose of data?">
         alt="Architecture"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_3d992ee7e1e5b775.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_c2ff2b786124820c.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_3d992ee7e1e5b775.jpg 660w
+          src="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_3d992ee7e1e5b775.jpg" srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_c2ff2b786124820c.jpg 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837_hu_3d992ee7e1e5b775.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837.jpg 780w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837.jpg 780w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837.jpg 780w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/df024c_3310fdf1735b4321b32a2da999c07837.jpg 780w
           "
           sizes="100vw"
         
@@ -725,12 +725,12 @@ How do you extract insights from that fire hose of data?">
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_96fb9b24d4093af9.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_cf1658210ea451e2.webp 660w
+            srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_96fb9b24d4093af9.webp 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_cf1658210ea451e2.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_ee17b394a6c063c9.webp 1024w
+              ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_ee17b394a6c063c9.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_38c720ec2b6093e9.webp 1320w
+              ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_38c720ec2b6093e9.webp 1320w
             "
           
           sizes="100vw"
@@ -744,12 +744,12 @@ How do you extract insights from that fire hose of data?">
         alt="Kafka UI"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_48fec1848d0449f3.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_c05f934c96b7f613.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_48fec1848d0449f3.jpg 660w
+          src="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_48fec1848d0449f3.jpg" srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_c05f934c96b7f613.jpg 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_48fec1848d0449f3.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_d3f4df3ba211a05d.jpg 1024w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_d3f4df3ba211a05d.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_126dad1007ace486.jpg 1320w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/kafka-UI_hu_126dad1007ace486.jpg 1320w
           "
           sizes="100vw"
         
@@ -796,12 +796,12 @@ How do you extract insights from that fire hose of data?">
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_41110c5c2320a000.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_c03cf58bef4a28b9.webp 660w
+            srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_41110c5c2320a000.webp 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_c03cf58bef4a28b9.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_c0c592e0b45ce186.webp 1024w
+              ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_c0c592e0b45ce186.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_7a11da3a7d3d68fe.webp 1320w
+              ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_7a11da3a7d3d68fe.webp 1320w
             "
           
           sizes="100vw"
@@ -815,12 +815,12 @@ How do you extract insights from that fire hose of data?">
         alt="9999 Events"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_e91ac93900eae03e.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_7897e179ad53b0c.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_e91ac93900eae03e.jpg 660w
+          src="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_e91ac93900eae03e.jpg" srcset="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_7897e179ad53b0c.jpg 330w,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_e91ac93900eae03e.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_5c1efad2bf407a93.jpg 1024w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_5c1efad2bf407a93.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_625bdde65fdf4452.jpg 1320w
+            ,http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/images/9999-events-log_hu_625bdde65fdf4452.jpg 1320w
           "
           sizes="100vw"
         
@@ -872,7 +872,7 @@ How do you extract insights from that fire hose of data?">
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/testing-in-microservices/">
+            <a class="group flex" href="http://localhost:1313/posts/testing-in-microservices/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -894,7 +894,7 @@ How do you extract insights from that fire hose of data?">
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/crud-operation-in-mongodb/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/crud-operation-in-mongodb/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -975,7 +975,7 @@ How do you extract insights from that fire hose of data?">
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Building a Production Kafka Producer &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Building a Production Kafka Producer &middot; DynamicallyBluntTech" />
+  <title>Building a Production Kafka Producer &middot; Backend Brilliance</title>
+    <meta name="title" content="Building a Production Kafka Producer &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -85,24 +85,24 @@ Here&rsquo;s to coding in an era of AI Agents. They suggest and are confident th
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/" />
+    <link rel="canonical" href="http://localhost:1313/posts/building-a-production-kafka-producer/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/building-a-production-kafka-producer/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Building a Production Kafka Producer">
 	<meta property="og:description" content="Part 1 of the StreamMetrics Series
 *Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: From Localhost to Kubernetes
@@ -116,11 +116,11 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
 		<meta property="article:tag" content="Kafka">
 		<meta property="article:tag" content="Spring">
 		<meta property="article:tag" content="Redis">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/building-a-production-kafka-producer/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/building-a-production-kafka-producer/feature.jpg">
 	<meta name="twitter:title" content="Building a Production Kafka Producer">
 	<meta name="twitter:description" content="Part 1 of the StreamMetrics Series
 *Previous parts: Part 2: Consumer &#43; DLQ | Part 3: Real-Time Aggregations | Part 4: From Localhost to Kubernetes
@@ -136,9 +136,9 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
     "name": "Building a Production Kafka Producer",
     "headline": "Building a Production Kafka Producer",
     
-    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 1 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e\u003c\/p\u003e\n\u003cp\u003eLove how it rhymes \u0026ldquo;Production Kafka Producer\u0026rdquo;.\u003c\/p\u003e\n\u003cp\u003eHere\u0026rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving \u0026ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the \u003cem\u003e\u003cstrong\u003eTale\u003c\/strong\u003e\u003c\/em\u003e of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 1 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/\u0022\u003e\u003cem\u003ePart 4: From Localhost to Kubernetes\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e\u003c\/p\u003e\n\u003cp\u003eLove how it rhymes \u0026ldquo;Production Kafka Producer\u0026rdquo;.\u003c\/p\u003e\n\u003cp\u003eHere\u0026rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving \u0026ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the \u003cem\u003e\u003cstrong\u003eTale\u003c\/strong\u003e\u003c\/em\u003e of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/",
+    "url" : "http:\/\/localhost:1313\/posts\/building-a-production-kafka-producer\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -163,19 +163,19 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/kafka/",
+       "item": "http://localhost:1313/categories/kafka/",
        "name": "Kafka",
        "position": 3
      },
@@ -227,8 +227,8 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -241,7 +241,7 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -354,12 +354,12 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_e91d10e5361c1f53.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_76a13a444c12e50e.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_e91d10e5361c1f53.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_76a13a444c12e50e.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_da79480629a526c3.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_da79480629a526c3.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_1641165996df4840.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_1641165996df4840.webp 1320w
             "
           
           sizes="100vw"
@@ -373,12 +373,12 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_748dc5e0f701e484.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_65419a78cda996eb.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_748dc5e0f701e484.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_748dc5e0f701e484.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_65419a78cda996eb.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_748dc5e0f701e484.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_7d3fedf7bdbe6d06.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_7d3fedf7bdbe6d06.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/feature_hu_42742697e4a97d0c.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/feature_hu_42742697e4a97d0c.jpg 1320w
           "
           sizes="100vw"
         
@@ -397,11 +397,11 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
         <p><strong>Part 1 of the StreamMetrics Series</strong></p>
 <p>*Previous parts: <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | <em>
+    <a href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/"><em>Part 3: Real-Time Aggregations</em></a></em> | <em>
+    <a href="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/"><em>Part 3: Real-Time Aggregations</em></a></em> | <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/"><em>Part 4: From Localhost to Kubernetes</em></a></em></p>
+    <a href="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/"><em>Part 4: From Localhost to Kubernetes</em></a></em></p>
 <p>Love how it rhymes &ldquo;Production Kafka Producer&rdquo;.</p>
 <p>Here&rsquo;s to coding in an era of AI Agents. They suggest and are confident that this time it will work, but then this cluster has its own plan, and it starts misbehaving &ndash; sometimes listens, and on others, feels cornered by his other siblings. This is the <em><strong>Tale</strong></em> of making the brothers listen and show how the configurations works when we enter the world of multi-node cluster in Kafka and Spring.</p>
 <h2 id="stream-metrics" class="relative group">Stream Metrics: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#stream-metrics" aria-label="Anchor">#</a></span></h2><p>StreamMetrics is a real-time analytics platform that processes application metrics from multiple Spring Boot microservices using Kafka, providing sub-second visibility into system health and performance.
@@ -433,12 +433,12 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_da7e02d9da5c44e4.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_f22d2c67b6bc9538.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_da7e02d9da5c44e4.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_f22d2c67b6bc9538.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_a01b334e4ce43d8f.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_a01b334e4ce43d8f.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_b30d9708870c7b28.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_b30d9708870c7b28.webp 1320w
             "
           
           sizes="100vw"
@@ -452,12 +452,12 @@ Here’s to coding in an era of AI Agents. They suggest and are confident that t
         alt="High Level Architecture"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_d9bde0b3962baab4.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_98a9fbb7154e2b52.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_d9bde0b3962baab4.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_d9bde0b3962baab4.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_98a9fbb7154e2b52.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_d9bde0b3962baab4.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_19ff74c3204b36d6.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_19ff74c3204b36d6.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/highlevelArch_hu_95ddf637e7703e1e.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/highlevelArch_hu_95ddf637e7703e1e.jpg 1320w
           "
           sizes="100vw"
         
@@ -519,7 +519,7 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
         <source
           
             
-              srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/project-structure_hu_d52f54c6f8c81af9.webp"
+              srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/project-structure_hu_d52f54c6f8c81af9.webp"
             
           
           sizes="100vw"
@@ -533,7 +533,7 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
         alt="Project Structure"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/project-structure.jpg"
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/project-structure.jpg"
         
       />
     </picture>
@@ -719,12 +719,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_64493fcd0c30d5fe.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_7fd41386f0be9896.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_64493fcd0c30d5fe.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_7fd41386f0be9896.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_357f48c30dda3ff2.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_357f48c30dda3ff2.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_269fa2f86167d095.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_269fa2f86167d095.webp 1320w
             "
           
           sizes="100vw"
@@ -738,12 +738,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
         alt="Serialize-Deserialize"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_32190f95ae717c18.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_b53274e1888af137.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_32190f95ae717c18.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_32190f95ae717c18.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_b53274e1888af137.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_32190f95ae717c18.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_26438937af32d5dd.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_26438937af32d5dd.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_7ee0c04c6175a042.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/serialize-deserialize_hu_7ee0c04c6175a042.jpg 1320w
           "
           sizes="100vw"
         
@@ -792,12 +792,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_1bdd81a8a598d6a1.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_b06ea36e7149cfcc.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_1bdd81a8a598d6a1.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_b06ea36e7149cfcc.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_cfa940a6b61b7148.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_cfa940a6b61b7148.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_4f8b138987bb0d4.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_4f8b138987bb0d4.webp 1320w
             "
           
           sizes="100vw"
@@ -811,12 +811,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
         alt="Producer Factory"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_803a698776fce955.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_d1e2ccd69b1600a6.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_803a698776fce955.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_803a698776fce955.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_d1e2ccd69b1600a6.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_803a698776fce955.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_c687520812dbcee9.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_c687520812dbcee9.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/producerfactory_hu_7f35934e20cd2c51.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/producerfactory_hu_7f35934e20cd2c51.jpg 1320w
           "
           sizes="100vw"
         
@@ -861,12 +861,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_b85ff9da327ec3e8.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_905c4ea35b5f6e6d.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_b85ff9da327ec3e8.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_905c4ea35b5f6e6d.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_a92f5bb4d82e7c52.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_a92f5bb4d82e7c52.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_8dd7f62490a4d226.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_8dd7f62490a4d226.webp 1320w
             "
           
           sizes="100vw"
@@ -880,12 +880,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
         alt="sendMetric"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_4474b1ff23028a7b.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_5d8ba17beb5bfa32.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_4474b1ff23028a7b.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_4474b1ff23028a7b.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_5d8ba17beb5bfa32.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_4474b1ff23028a7b.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_199f4eaef7dacae.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_199f4eaef7dacae.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-template_hu_21e4c314d7f7b609.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-template_hu_21e4c314d7f7b609.jpg 1320w
           "
           sizes="100vw"
         
@@ -1041,13 +1041,13 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_43553fae71ec1fb1.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_163151ad7f6aec98.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_43553fae71ec1fb1.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_163151ad7f6aec98.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_b71817be3417d32d.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_b71817be3417d32d.webp 1024w
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_9f149b1f0cbe87b8.webp 1182w
+                ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_9f149b1f0cbe87b8.webp 1182w
               
             "
           
@@ -1062,12 +1062,12 @@ So, Objective for this post is to establish a 3 node Kafka cluster, which enable
         alt="Kafka UI - Brokers"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_6f085ec1fed14266.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_17f5549682e69e3a.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_6f085ec1fed14266.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_6f085ec1fed14266.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_17f5549682e69e3a.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_6f085ec1fed14266.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_9c7359b317c56df5.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1_hu_9c7359b317c56df5.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-1.jpg 1182w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-1.jpg 1182w
           "
           sizes="100vw"
         
@@ -1124,12 +1124,12 @@ Can be accessed via: <a href="http://localhost:8080/ui/clusters/local/brokers" t
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_7d583f185905bf6a.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_da029091ba54de84.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_7d583f185905bf6a.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_da029091ba54de84.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_17f6ac003f7c82ba.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_17f6ac003f7c82ba.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_9a075f13884eb031.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_9a075f13884eb031.webp 1320w
             "
           
           sizes="100vw"
@@ -1143,12 +1143,12 @@ Can be accessed via: <a href="http://localhost:8080/ui/clusters/local/brokers" t
         alt="Kafka UI - Message Count"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_413f945860bc3e91.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_a54cc1fe117750ce.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_413f945860bc3e91.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_413f945860bc3e91.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_a54cc1fe117750ce.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_413f945860bc3e91.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_903e0703e80732d9.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_903e0703e80732d9.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_ad4c7e342b994e97.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/kafka-ui-2_hu_ad4c7e342b994e97.jpg 1320w
           "
           sizes="100vw"
         
@@ -1187,12 +1187,12 @@ Can be accessed via: <a href="http://localhost:8080/ui/clusters/local/brokers" t
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_5b04d570299a5bab.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_5881805b5175511c.webp 660w
+            srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_5b04d570299a5bab.webp 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_5881805b5175511c.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_d94d2343e51c3494.webp 1024w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_d94d2343e51c3494.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_827a4f7090db1695.webp 1320w
+              ,http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_827a4f7090db1695.webp 1320w
             "
           
           sizes="100vw"
@@ -1206,12 +1206,12 @@ Can be accessed via: <a href="http://localhost:8080/ui/clusters/local/brokers" t
         alt="Mind Map"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_32d9f84375ca7d8a.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_8baa89c79c6268a2.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_32d9f84375ca7d8a.jpg 660w
+          src="http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_32d9f84375ca7d8a.jpg" srcset="http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_8baa89c79c6268a2.jpg 330w,http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_32d9f84375ca7d8a.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_da3e465658441c01.jpg 1024w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_da3e465658441c01.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/images/mindmap_hu_11965ef999bb1edc.jpg 1320w
+            ,http://localhost:1313/posts/building-a-production-kafka-producer/images/mindmap_hu_11965ef999bb1edc.jpg 1320w
           "
           sizes="100vw"
         
@@ -1270,7 +1270,7 @@ Never forget, Learning is the primary goal.</p>
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/day-to-day-lambda-functional-programming-java-8/">
+            <a class="group flex" href="http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -1292,7 +1292,7 @@ Never forget, Learning is the primary goal.</p>
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/lc226-inversion-of-binary-tree-using-recursion/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/lc226-inversion-of-binary-tree-using-recursion/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -1373,7 +1373,7 @@ Never forget, Learning is the primary goal.</p>
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

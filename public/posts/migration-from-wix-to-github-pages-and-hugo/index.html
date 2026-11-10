@@ -1,0 +1,1354 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform &middot; Backend Brilliance</title>
+    <meta name="title" content="I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform &middot; Backend Brilliance" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
+  />
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        My journey of migrating dynamicallyblunttech.com using Hugo, Markdown, Congo and GitHub Actions — including custom Python scripts, media extraction, a few surprises, and the things I am still figuring out.
+There is something interesting about being a backend developer.
+You spend most of your working hours building systems, designing APIs, debugging production issues and figuring out why something that worked yesterday suddenly doesn&rsquo;t work today.
+Then one day, you decide to build your personal blog.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/">
+	<meta property="og:site_name" content="Backend Brilliance">
+	<meta property="og:title" content="I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform">
+	<meta property="og:description" content="My journey of migrating dynamicallyblunttech.com using Hugo, Markdown, Congo and GitHub Actions — including custom Python scripts, media extraction, a few surprises, and the things I am still figuring out.
+There is something interesting about being a backend developer.
+You spend most of your working hours building systems, designing APIs, debugging production issues and figuring out why something that worked yesterday suddenly doesn’t work today.
+Then one day, you decide to build your personal blog.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-11-10T04:40:00+05:30">
+		<meta property="article:modified_time" content="2026-11-10T04:40:00+05:30">
+		<meta property="article:tag" content="Github">
+		<meta property="article:tag" content="AI">
+		<meta property="article:tag" content="Hugo">
+		<meta property="article:tag" content="Wix">
+		<meta property="article:tag" content="Migration">
+		<meta property="article:tag" content="Python">
+		<meta property="og:image" content="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature.jpg">
+
+  
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature.jpg">
+	<meta name="twitter:title" content="I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform">
+	<meta name="twitter:description" content="My journey of migrating dynamicallyblunttech.com using Hugo, Markdown, Congo and GitHub Actions — including custom Python scripts, media extraction, a few surprises, and the things I am still figuring out.
+There is something interesting about being a backend developer.
+You spend most of your working hours building systems, designing APIs, debugging production issues and figuring out why something that worked yesterday suddenly doesn’t work today.
+Then one day, you decide to build your personal blog.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform",
+    "headline": "I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform",
+    
+    "abstract": "\u003cp\u003e\u003cem\u003eMy journey of migrating dynamicallyblunttech.com using Hugo, Markdown, Congo and GitHub Actions — including custom Python scripts, media extraction, a few surprises, and the things I am still figuring out.\u003c\/em\u003e\u003c\/p\u003e\n\u003cp\u003eThere is something interesting about being a backend developer.\u003c\/p\u003e\n\u003cp\u003eYou spend most of your working hours building systems, designing APIs, debugging production issues and figuring out why something that worked yesterday suddenly doesn\u0026rsquo;t work today.\u003c\/p\u003e\n\u003cp\u003eThen one day, you decide to build your \u003cstrong\u003epersonal blog\u003c\/strong\u003e.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/migration-from-wix-to-github-pages-and-hugo\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-11-10T04:40:00\u002b05:30",
+    "datePublished": "2026-11-10T04:40:00\u002b05:30",
+    
+    "dateModified": "2026-11-10T04:40:00\u002b05:30",
+    
+    "keywords": ["Github","AI","Hugo","Wix","Migration","Python"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3685"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/github/",
+       "name": "Github",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "I Moved My Blog From Wix to Git Hub Pages From a Managed Cms to a Developer Owned Platform",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Backend Brilliance</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              <button id="search-button-m0" title="Search (/)">
+                <span
+                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                >
+                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                </span>
+              </button>
+            </li>
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-11-10 04:40:00 &#43;0530 IST">November 10, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_fa7bf5188cda60ef.webp 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_f03698a978551926.webp 660w
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_cb1c4d3bff80c23a.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_de674a599d86f20a.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1752"
+        height="897"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_f3dafa5ed8604c65.jpg" srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_2fa0c64bdb8aa234.jpg 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_f3dafa5ed8604c65.jpg 660w
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_636ee5188abd6728.jpg 1024w
+          
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/feature_hu_f2847b13bd52379a.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><em>My journey of migrating dynamicallyblunttech.com using Hugo, Markdown, Congo and GitHub Actions — including custom Python scripts, media extraction, a few surprises, and the things I am still figuring out.</em></p>
+<p>There is something interesting about being a backend developer.</p>
+<p>You spend most of your working hours building systems, designing APIs, debugging production issues and figuring out why something that worked yesterday suddenly doesn&rsquo;t work today.</p>
+<p>Then one day, you decide to build your <strong>personal blog</strong>.</p>
+<p>And suddenly, you are dealing with things you never thought you would need to worry about: themes, typography, image formats, SEO, responsive layouts, content organization, DNS records and deployment pipelines.</p>
+<p>Welcome to frontend engineering. Apparently, there is no escape!</p>
+<p>My personal blog, <a href="https://www.dynamicallyblunttech.com/" target="_blank" rel="noreferrer">DynamicallyBluntTech</a>, started on Wix. It was convenient, easy to manage and had everything I needed to publish technical articles.</p>
+<p>But over time, I wanted more control.</p>
+<p>I wanted my content in Markdown, my changes in Git, my website deployment automated and, most importantly, the freedom to experiment with AI-powered development workflows.</p>
+<p>So I decided to migrate from Wix to:</p>
+<ul>
+<li><strong>Hugo</strong> – Static site generator.</li>
+<li><strong>Markdown</strong> – Content format.</li>
+<li><strong>Congo</strong> – Hugo theme.</li>
+<li><strong>GitHub Pages</strong> – Hosting.</li>
+<li><strong>GitHub Actions</strong> – Automated deployment.</li>
+<li><strong>Python</strong> – Custom migration and media extraction scripts.</li>
+</ul>
+<p>This article covers what I actually did, what worked, what didn&rsquo;t, and what I still need to improve.</p>
+<p>This is not a story about a perfect migration. It is about learning an unfamiliar publishing ecosystem while moving an existing website without losing its content.</p>
+<h2 id="1-why-i-decided-to-leave-wix" class="relative group">1. Why I decided to leave Wix <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-why-i-decided-to-leave-wix" aria-label="Anchor">#</a></span></h2><p>Wix served me well when I started.</p>
+<p>It provided a visual editor, CMS, media management, hosting and publishing capabilities without requiring me to understand the underlying infrastructure.</p>
+<p>For someone who wants to focus on writing, that&rsquo;s a very reasonable deal.</p>
+<p>However, my requirements started changing.</p>
+<p>I wanted to:</p>
+<ul>
+<li>Own my content in a portable format.</li>
+<li>Version-control every article.</li>
+<li>Customize the website without depending on platform limitations.</li>
+<li>Automate publishing.</li>
+<li>Experiment with AI-assisted content workflows.</li>
+<li>Reduce the recurring cost of hosting a mostly static website.</li>
+</ul>
+<p>The last point wasn&rsquo;t the only reason, but it certainly helped.</p>
+<p>I also wanted to treat my blog like a software project rather than just another website managed through a dashboard.</p>
+<p>That led me to Hugo and GitHub Pages.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_5fe5830a949b164a.webp 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_fcecc7f9c89878de.webp 660w
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_ddb4f5ac00e02909.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_2cb7e1f2d8217a74.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1360"
+        height="1290"
+        class="mx-auto my-0 rounded-md"
+        alt="Plan Cancelled"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_212aabf3f1641e30.png" srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_ab01274639aaa716.png 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_212aabf3f1641e30.png 660w
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_e0ebf98653dc1cbb.png 1024w
+          
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/plan-cancelled_hu_74aa98f452a83f94.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<h2 id="2-what-i-gained-and-what-i-missed" class="relative group">2. What I gained and what I missed <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-what-i-gained-and-what-i-missed" aria-label="Anchor">#</a></span></h2><p>Before getting into the migration, let&rsquo;s look at the trade-offs.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Area</th>
+					<th>Wix</th>
+					<th>Hugo + GitHub Pages</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Content management</td>
+					<td>Built-in CMS</td>
+					<td>Markdown files</td>
+			</tr>
+			<tr>
+					<td>Hosting</td>
+					<td>Managed platform</td>
+					<td>Static hosting</td>
+			</tr>
+			<tr>
+					<td>Version control</td>
+					<td>Limited developer workflow</td>
+					<td>Native Git history</td>
+			</tr>
+			<tr>
+					<td>Customization</td>
+					<td>Wix-dependent</td>
+					<td>Full control</td>
+			</tr>
+			<tr>
+					<td>Deployment</td>
+					<td>Wix publishing</td>
+					<td>GitHub Actions</td>
+			</tr>
+			<tr>
+					<td>Media management</td>
+					<td>Built-in Media Manager</td>
+					<td>Self-managed assets</td>
+			</tr>
+			<tr>
+					<td>SEO</td>
+					<td>Built-in tools</td>
+					<td>Configuration and additional work</td>
+			</tr>
+			<tr>
+					<td>AI integration</td>
+					<td>Platform-dependent</td>
+					<td>Direct repository access</td>
+			</tr>
+			<tr>
+					<td>Maintenance</td>
+					<td>Mostly managed</td>
+					<td>Developer-owned</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="what-i-gained" class="relative group">What I gained <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-i-gained" aria-label="Anchor">#</a></span></h3><p><strong>Content ownership</strong> : My articles are now individual Markdown files. I can edit them using any editor, keep them locally, push them to GitHub and even move to another static site generator in the future.</p>
+<p><strong>Version control</strong> : Every content change is tracked. I can compare versions, revert an accidental modification and review changes before publishing.
+A blog post is now treated like source code. Which, considering how many code examples I publish, feels appropriate.</p>
+<p><strong>Customization</strong> : I can modify templates, add shortcodes, change styles and introduce new functionality without waiting for a platform feature.</p>
+<p><strong>Automation</strong> : A Git push triggers the build and deployment pipeline. Publishing is now part of my normal development workflow.</p>
+<p><strong>AI compatibility</strong> : My content, configuration and website structure are available as files. This opens up possibilities for AI-assisted writing, reviews, content transformation and automation.</p>
+<h3 id="what-i-missed" class="relative group">What I missed <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-i-missed" aria-label="Anchor">#</a></span></h3><p>There are things Wix does much better out of the box.</p>
+<ul>
+<li>Visual content editing.</li>
+<li>Built-in CMS management.</li>
+<li>Media management.</li>
+<li>Ready-made website components.</li>
+<li>Integrated forms and other dynamic functionality.</li>
+<li>A managed publishing experience.</li>
+</ul>
+<p>With Hugo, I gained freedom but also inherited responsibility.</p>
+<p>For example, I now need to think about how recommendations should appear, how articles should be grouped into series, how visitors should discover related content and how the homepage should represent the person behind the blog.</p>
+<p>These things are not necessarily difficult, but they don&rsquo;t automatically happen just because the website builds successfully.</p>
+<p>And that brings us to the migration itself.</p>
+<h2 id="3-wix-backup-cms-export-was-only-the-beginning" class="relative group">3. Wix backup: CMS export was only the beginning <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-wix-backup-cms-export-was-only-the-beginning" aria-label="Anchor">#</a></span></h2><p>I didn&rsquo;t want to manually recreate every post and download every image.</p>
+<p>Instead, I treated the migration as a data extraction exercise.</p>
+<p>I used two approaches:</p>
+<ol>
+<li>Wix CMS export to obtain structured content.</li>
+<li>Wix APIs to retrieve additional information and media references.</li>
+</ol>
+<p>This gave me a starting point for building a repeatable migration process.</p>
+<h3 id="31-what-wix-already-provides" class="relative group">3.1 What Wix already provides <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#31-what-wix-already-provides" aria-label="Anchor">#</a></span></h3><p>Wix has a CMS and Media Manager that take care of much of the content storage and management.</p>
+<p>The CMS contains structured collections and their associated fields. Depending on how the original website was implemented, blog content can also be stored through the Wix Blog application.
+
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_4f248b0f3973ed0.webp 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_d920f27d7fc951dc.webp 660w
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_bff7713ae34ef7e8.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_876d7da725550ff1.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2630"
+        height="476"
+        class="mx-auto my-0 rounded-md"
+        alt="CMS Exported"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_2d7f8cf05c40dc46.png" srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_f15d6e49552e5edd.png 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_2d7f8cf05c40dc46.png 660w
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_c0a84d18dccf689a.png 1024w
+          
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/cms-export_hu_47466e9668fe6743.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+For my migration, I used the exported CMS dataset as the primary source for identifying the posts and their content.</p>
+<p>The export provided structured information, but it wasn&rsquo;t a complete collection of ready-to-use Hugo assets.</p>
+<p>I still needed to handle:</p>
+<ul>
+<li>Post titles and descriptions.</li>
+<li>Slugs and publication information.</li>
+<li>Categories and tags.</li>
+<li>Cover images.</li>
+<li>Images embedded inside articles.</li>
+<li>Video references.</li>
+<li>Static website pages.</li>
+</ul>
+<p>This was an important distinction: <strong>having the content data does not mean having all the media files required to rebuild the website.</strong></p>
+<h3 id="32-my-custom-python-migration-scripts" class="relative group">3.2 My custom Python migration scripts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#32-my-custom-python-migration-scripts" aria-label="Anchor">#</a></span></h3><p>This is where I started writing custom Python scripts.</p>
+<p>The objective was simple: Take the CMS-exported dataset, identify image and video references, download the corresponding assets and organize everything into a Hugo-compatible directory structure.</p>
+<p>The process looked like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>          Wix CMS Export
+</span></span><span style="display:flex;"><span>                 |
+</span></span><span style="display:flex;"><span>                 v
+</span></span><span style="display:flex;"><span>          Python Scripts
+</span></span><span style="display:flex;"><span>                 |
+</span></span><span style="display:flex;"><span>                 v
+</span></span><span style="display:flex;"><span>       Parse exported records
+</span></span><span style="display:flex;"><span>                 |
+</span></span><span style="display:flex;"><span>                 v
+</span></span><span style="display:flex;"><span>       Identify media references
+</span></span><span style="display:flex;"><span>                 |
+</span></span><span style="display:flex;"><span>          +------+------+
+</span></span><span style="display:flex;"><span>          |             |
+</span></span><span style="display:flex;"><span>          v             v
+</span></span><span style="display:flex;"><span>       Images         Videos
+</span></span><span style="display:flex;"><span>          |             |
+</span></span><span style="display:flex;"><span>          v             v
+</span></span><span style="display:flex;"><span>     Extract IDs    Extract URLs
+</span></span><span style="display:flex;"><span>          |             |
+</span></span><span style="display:flex;"><span>          v             v
+</span></span><span style="display:flex;"><span>       Wix Static Media API
+</span></span><span style="display:flex;"><span>                 |
+</span></span><span style="display:flex;"><span>                 v
+</span></span><span style="display:flex;"><span>         Download Assets
+</span></span><span style="display:flex;"><span>                 |
+</span></span><span style="display:flex;"><span>                 v
+</span></span><span style="display:flex;"><span>         Hugo Content Files
+</span></span></code></pre></div><p>The images were properly mapped to each post, which made the final structure predictable and easier to maintain.</p>
+<p>Refer <a href="wix_migrator.py">here</a> for the custom script I used for migration.</p>
+<h3 id="33-understanding-wix-image-urls" class="relative group">3.3 Understanding Wix image URLs <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#33-understanding-wix-image-urls" aria-label="Anchor">#</a></span></h3><p>When inspecting the exported content, I encountered image references in the following format:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wix:image://v1/&lt;media-id&gt;/&lt;filename&gt;
+</span></span></code></pre></div><p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wix:image://v1/abc123_image-id~mv2.jpg/
+</span></span><span style="display:flex;"><span>architecture-diagram.png
+</span></span></code></pre></div><p>This is a Wix-specific media reference, not a conventional image URL. The actual media can be accessed through Wix&rsquo;s static media infrastructure.</p>
+<p>The general URL pattern is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>https://static.wixstatic.com/media/&lt;media-id&gt;
+</span></span></code></pre></div><p>My Python scripts extracted the relevant media ID and used the Wix static media URL to download the corresponding asset.</p>
+<p>The basic logic was:</p>
+<ol>
+<li>Read the image reference from the CMS record.</li>
+<li>Extract the media identifier.</li>
+<li>Construct the static media URL.</li>
+<li>Download the asset.</li>
+<li>Save it under the corresponding post directory.</li>
+<li>Update the content references to use local paths.</li>
+</ol>
+<p>One thing worth mentioning: Wix media references can contain transformation information, dimensions and additional parameters. The original asset identifier needs to be separated from these details rather than blindly using the entire reference as a URL.</p>
+<p>I also validated the downloaded files because not every media reference necessarily resolves to a valid asset.</p>
+<h3 id="34-what-about-videos" class="relative group">3.4 What about videos? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#34-what-about-videos" aria-label="Anchor">#</a></span></h3><p>This was another interesting discovery.</p>
+<p>The CMS dataset I worked with did not contain the videos I expected to find. Wix supports video media, but that doesn&rsquo;t mean every CMS export automatically includes every video used across the website.
+Images and videos need to be considered separately when designing the extraction process.</p>
+<p>For my migration, I included video URL identification in the custom scripts so that media references could be detected and handled. If videos are not present in the exported dataset, you need an additional source of information, such as the relevant media records or embedded content references.</p>
+<p>Thankfully my videos were uploaded to my <a href="https://www.youtube.com/@ankitagrahari977" target="_blank" rel="noreferrer">yt channel</a>, so extraction was not the burden I took, but it was not hunky dory as well, in some posts this hard labour was unavoidable.</p>
+<h3 id="35-the-avif-surprise" class="relative group">3.5 The AVIF surprise <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#35-the-avif-surprise" aria-label="Anchor">#</a></span></h3><p>I thought downloading the images would be the end of the story.</p>
+<p>It wasn&rsquo;t.</p>
+<p>Some of the downloaded assets were in AVIF format.</p>
+<p>Hugo itself can work with several image formats, but the image-processing and theme workflow I was using did not handle my AVIF assets as expected. Rather than introduce more complexity into the content pipeline, I added another custom bash script to convert AVIF images into JPG.</p>
+<p>The resulting workflow became:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Download image
+</span></span><span style="display:flex;"><span>     |
+</span></span><span style="display:flex;"><span>     v
+</span></span><span style="display:flex;"><span>Identify image format
+</span></span><span style="display:flex;"><span>     |
+</span></span><span style="display:flex;"><span>     v
+</span></span><span style="display:flex;"><span>Is it AVIF?
+</span></span><span style="display:flex;"><span>     |
+</span></span><span style="display:flex;"><span>   Yes
+</span></span><span style="display:flex;"><span>     |
+</span></span><span style="display:flex;"><span>     v
+</span></span><span style="display:flex;"><span>Convert to JPG
+</span></span><span style="display:flex;"><span>     |
+</span></span><span style="display:flex;"><span>     v
+</span></span><span style="display:flex;"><span>Save under post directory
+</span></span></code></pre></div><p>This was a small addition where once all the images are downloaded, you can run the script once and it will pick all avif formatted images and convert to jpg, making the migration more predictable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Finds content folder, and then converts all avif images to jpg under images sub directory. </span>
+</span></span><span style="display:flex;"><span>find content -type f -path <span style="color:#e6db74">&#34;*images*&#34;</span> | <span style="color:#66d9ef">while</span> read -r f; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> file -b <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> | grep -q AVIF; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    sips -s format jpeg <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> --out <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">.tmp&#34;</span> <span style="color:#f92672">&amp;&amp;</span> mv <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">.tmp&#34;</span> <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;converted: </span>$f<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>It also reminded me that a successful download does not guarantee that an asset is immediately usable by the target platform.</p>
+<h2 id="4-preparing-the-content-structure-for-hugo" class="relative group">4. Preparing the content structure for Hugo <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-preparing-the-content-structure-for-hugo" aria-label="Anchor">#</a></span></h2><p>Once the content and assets were extracted, I needed to organize them in a way Hugo could understand.
+This was one of the most important parts of the migration. Hugo uses a content structure based on files and directories, and it supports page bundles. I decided to organize each blog post as its own directory.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>content/
+</span></span><span style="display:flex;"><span>└── posts/
+</span></span><span style="display:flex;"><span>    └── spring-boot-performance/
+</span></span><span style="display:flex;"><span>        ├── index.md
+</span></span><span style="display:flex;"><span>        ├── feature.jpg
+</span></span><span style="display:flex;"><span>        ├── architecture.png
+</span></span><span style="display:flex;"><span>        ├── metrics.png
+</span></span><span style="display:flex;"><span>        └── demo.mp4
+</span></span></code></pre></div><p>This approach keeps the article and its related assets together.</p>
+<h3 id="41-why-featurejpg" class="relative group">4.1 Why feature.jpg? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#41-why-featurejpg" aria-label="Anchor">#</a></span></h3><p>One useful convention in my setup is using <code>feature.jpg</code> as the cover image.</p>
+<p>Hugo and the Congo theme can use page resources and image configuration to display a featured image. By keeping the cover image consistently named, the migration script can automatically place it in the expected location. The Markdown file can then reference the image using the page bundle&rsquo;s resources.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Spring Boot Performance&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">date</span>: <span style="color:#e6db74">2026-10-20</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">draft</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Understanding Spring Boot performance.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tags</span>: [<span style="color:#e6db74">&#39;Java&#39;</span>, <span style="color:#e6db74">&#39;Spring Boot&#39;</span>, <span style="color:#e6db74">&#39;Performance&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#f92672">categories</span>: [<span style="color:#e6db74">&#39;Java&#39;</span>, <span style="color:#e6db74">&#39;Spring Boot&#39;</span>, <span style="color:#e6db74">&#39;Performance&#39;</span>]
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>The directory contains the featured image and any other assets used by the article.</p>
+<p>A typical page bundle therefore looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>content/posts/spring-boot-performance/
+</span></span><span style="display:flex;"><span>    index.md
+</span></span><span style="display:flex;"><span>    feature.jpg
+</span></span><span style="display:flex;"><span>    images/
+</span></span><span style="display:flex;"><span>      architecture.png
+</span></span></code></pre></div><h3 id="42-referencing-images-and-videos-inside-posts" class="relative group">4.2 Referencing images and videos inside posts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#42-referencing-images-and-videos-inside-posts" aria-label="Anchor">#</a></span></h3><p>The other images and videos can be referenced directly from the post content using their page-relative paths or Hugo resource handling.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>![<span style="color:#f92672">Spring Boot Architecture</span>](<span style="color:#a6e22e">architecture.png</span>)
+</span></span></code></pre></div><p>A video can be referenced using &ldquo;video&rdquo; Hugo shortcode:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>{{ &lt; video src=&#34;images/file.mp4&#34; &gt;}}
+</span></span></code></pre></div><p>For larger videos, I would consider external video hosting rather than putting every video inside the Git repository. The idea is to keep the content portable without unnecessarily increasing repository size.</p>
+<p>This structure also makes future AI-assisted content processing easier because all assets associated with an article are stored together.</p>
+<h2 id="5-choosing-hugo-and-the-congo-theme" class="relative group">5. Choosing Hugo and the Congo theme <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-choosing-hugo-and-the-congo-theme" aria-label="Anchor">#</a></span></h2><p>With the content migration underway, I needed a static site generator and a theme.</p>
+<p>I chose Hugo.</p>
+<p>Hugo generates static websites from Markdown content and configuration files. It is fast, relatively simple to operate and doesn&rsquo;t require a database or application server to serve blog articles.</p>
+<p>For a technical blog, it was a natural fit.</p>
+<h3 id="51-why-congo" class="relative group">5.1 Why Congo? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#51-why-congo" aria-label="Anchor">#</a></span></h3><p>I explored several Hugo themes before settling on Congo.</p>
+<p>Some alternatives worth considering are:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Theme</th>
+					<th>Characteristics</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Congo</td>
+					<td>Modern, clean and feature-rich</td>
+			</tr>
+			<tr>
+					<td>PaperMod</td>
+					<td>Minimal and lightweight</td>
+			</tr>
+			<tr>
+					<td>Stack</td>
+					<td>Magazine-style content layout</td>
+			</tr>
+			<tr>
+					<td>Blowfish</td>
+					<td>Flexible personal website</td>
+			</tr>
+			<tr>
+					<td>Mainroad</td>
+					<td>Traditional blog experience</td>
+			</tr>
+	</tbody>
+</table>
+<p>I chose <a href="https://jpanther.github.io/congo/" target="_blank" rel="noreferrer">Congo</a> because it offered a good balance between customization and a clean reading experience.</p>
+<p>I wanted the content to be the main attraction.</p>
+<p>Technical articles already contain enough complexity. The website doesn&rsquo;t need to compete with them.</p>
+<p>Congo provides useful features such as:</p>
+<ul>
+<li>Responsive design.</li>
+<li>Dark and light modes.</li>
+<li>Taxonomies and tags.</li>
+<li>Search support.</li>
+<li>Image handling.</li>
+<li>Customization options.</li>
+<li>Support for page bundles.</li>
+</ul>
+<h3 id="52-installing-congo-as-a-git-submodule" class="relative group">5.2 Installing Congo as a Git submodule <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#52-installing-congo-as-a-git-submodule" aria-label="Anchor">#</a></span></h3><p>I used Congo as a Git submodule rather than copying the theme files directly into my repository.</p>
+<p>This was an important decision.</p>
+<p>The theme remains a separate Git repository, while my website repository references a specific version of it.</p>
+<p>A simplified command looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git submodule add <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  https://github.com/jpanther/congo.git <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  themes/congo
+</span></span></code></pre></div><p>This gives me a clean separation between:</p>
+<ul>
+<li>My content.</li>
+<li>My website configuration.</li>
+<li>My customizations.</li>
+<li>The upstream theme.</li>
+</ul>
+<p>It also means I can update the theme deliberately instead of having theme files mixed with my own changes.</p>
+<p>One thing to remember is that Git submodules require recursive checkout in CI/CD. Otherwise, your local website might build successfully while GitHub Actions fails because the theme wasn&rsquo;t checked out.</p>
+<p>A small detail, but one that can waste a surprising amount of debugging time.</p>
+<h2 id="6-deploying-through-github-pages-and-github-actions" class="relative group">6. Deploying through GitHub Pages and GitHub Actions <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-deploying-through-github-pages-and-github-actions" aria-label="Anchor">#</a></span></h2><p>Once the site was working locally, I moved to deployment.</p>
+<p>I wanted a simple publishing workflow where committing an article would automatically build and deploy the website.</p>
+<p>The architecture is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Developer
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>Markdown / Hugo Configuration
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>Git Commit
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>GitHub Repository
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>GitHub Actions
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>Hugo Build
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>GitHub Pages
+</span></span><span style="display:flex;"><span>   |
+</span></span><span style="display:flex;"><span>   v
+</span></span><span style="display:flex;"><span>dynamicallyblunttech.com
+</span></span></code></pre></div><h3 id="61-repository-structure" class="relative group">6.1 Repository structure <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#61-repository-structure" aria-label="Anchor">#</a></span></h3><p>My repository follows the general Hugo structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>dynamicallyblunttech/
+</span></span><span style="display:flex;"><span>│
+</span></span><span style="display:flex;"><span>├── .github/
+</span></span><span style="display:flex;"><span>│   └── workflows/
+</span></span><span style="display:flex;"><span>│       └── hugo.yaml
+</span></span><span style="display:flex;"><span>│
+</span></span><span style="display:flex;"><span>├── assets/
+</span></span><span style="display:flex;"><span>├── config/
+</span></span><span style="display:flex;"><span>├── content/
+</span></span><span style="display:flex;"><span>│   ├── posts/
+</span></span><span style="display:flex;"><span>│   ├── about/
+</span></span><span style="display:flex;"><span>│   └── other-pages/
+</span></span><span style="display:flex;"><span>│
+</span></span><span style="display:flex;"><span>├── layouts/
+</span></span><span style="display:flex;"><span>├── static/
+</span></span><span style="display:flex;"><span>├── themes/
+</span></span><span style="display:flex;"><span>│   └── congo/
+</span></span><span style="display:flex;"><span>│
+</span></span><span style="display:flex;"><span>├── hugo.toml
+</span></span><span style="display:flex;"><span>└── go.mod
+</span></span></code></pre></div><p>The exact structure depends on the Hugo configuration and theme setup.</p>
+<h3 id="62-custom-domain-migration" class="relative group">6.2 Custom domain migration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#62-custom-domain-migration" aria-label="Anchor">#</a></span></h3><p>I already had a custom domain: dynamicallyblunttech.com.</p>
+<p>I wanted to retain it rather than introduce a new domain and potentially disrupt existing readers.</p>
+<p>The migration required configuring GitHub Pages with the existing custom domain and ensuring the DNS records pointed to GitHub Pages.</p>
+<p>I also needed to make sure the Hugo <code>baseURL</code> matched the production domain.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#34;https://www.dynamicallyblunttech.com/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#34;en&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;Dynamically Blunt Tech&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#34;congo&#34;</span>
+</span></span></code></pre></div><p>The DNS and HTTPS configuration are important because an incorrect domain or base URL can cause broken CSS, JavaScript and image references.</p>
+<h3 id="63-github-actions-deployment" class="relative group">6.3 GitHub Actions deployment <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#63-github-actions-deployment" aria-label="Anchor">#</a></span></h3><p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_4aa28a54695ec93e.webp 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_168645af78e61137.webp 660w
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_730d33f424c17c32.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_2cdd49076c9ab07e.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2206"
+        height="1222"
+        class="mx-auto my-0 rounded-md"
+        alt="Deployment"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_175c2186f03df6a1.png" srcset="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_4371d4a6db0d009.png 330w,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_175c2186f03df6a1.png 660w
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_1761d56e6634bf8a.png 1024w
+          
+          
+            ,http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/images/deployment_hu_65e2e4ce5be27e2b.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+I configured GitHub Actions to build and deploy the website whenever changes are pushed to the main branch.</p>
+<p>The basic workflow is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo Website</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">workflow_dispatch</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">permissions</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">contents</span>: <span style="color:#ae81ff">read</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pages</span>: <span style="color:#ae81ff">write</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">id-token</span>: <span style="color:#ae81ff">write</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">build</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">submodules</span>: <span style="color:#ae81ff">recursive</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install Hugo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#39;latest&#39;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">extended</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">hugo --minify</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload artifact</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/upload-pages-artifact@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./public</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">deploy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">build</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">github-pages</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">${{ steps.deployment.outputs.page_url }}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">id</span>: <span style="color:#ae81ff">deployment</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/deploy-pages@v4</span>
+</span></span></code></pre></div><p>This is an illustrative workflow. For a production setup, I recommend pinning the Hugo version and using tested action versions.</p>
+<p>The final publishing process is now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Add new technical article&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span></code></pre></div><p>GitHub Actions takes care of the rest.</p>
+<p>No manual deployment and no separate publishing interface.</p>
+<h2 id="7-the-biggest-benefit-github-pages-when-ai-enters-the-picture" class="relative group">7. The biggest benefit: GitHub Pages when AI enters the picture <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-the-biggest-benefit-github-pages-when-ai-enters-the-picture" aria-label="Anchor">#</a></span></h2><p>This is probably the most interesting part of the migration.</p>
+<p>A few years ago, I would have evaluated this decision primarily on hosting cost, performance and customization.</p>
+<p>Today, AI changes the equation.</p>
+<p>Consider the structure of my website now:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Component</th>
+					<th>Format</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Articles</td>
+					<td>Markdown</td>
+			</tr>
+			<tr>
+					<td>Configuration</td>
+					<td>TOML</td>
+			</tr>
+			<tr>
+					<td>Theme customizations</td>
+					<td>HTML, CSS, templates</td>
+			</tr>
+			<tr>
+					<td>Deployment</td>
+					<td>YAML</td>
+			</tr>
+			<tr>
+					<td>Images and videos</td>
+					<td>Static assets</td>
+			</tr>
+			<tr>
+					<td>Version history</td>
+					<td>Git</td>
+			</tr>
+	</tbody>
+</table>
+<p>Everything is accessible as files.</p>
+<p>This makes the website much easier for AI tools and coding assistants to understand.</p>
+<h3 id="71-ai-assisted-article-writing" class="relative group">7.1 AI-assisted article writing <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#71-ai-assisted-article-writing" aria-label="Anchor">#</a></span></h3><p>I can ask an AI coding assistant to inspect my existing articles and generate a new article using the same structure and metadata.</p>
+<p>It can understand my writing style, identify related content and help maintain consistency.</p>
+<h3 id="72-automated-content-review" class="relative group">7.2 Automated content review <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#72-automated-content-review" aria-label="Anchor">#</a></span></h3><p>I could introduce a GitHub Actions workflow that reviews Markdown files before deployment.</p>
+<p>An AI agent could check:</p>
+<ul>
+<li>Missing images.</li>
+<li>Broken internal links.</li>
+<li>Missing SEO descriptions.</li>
+<li>Inconsistent headings.</li>
+<li>Outdated technical references.</li>
+<li>Incorrect code samples.</li>
+</ul>
+<p>This is particularly useful for a technical blog where an article may remain online for years.</p>
+<h3 id="73-repurposing-technical-content" class="relative group">7.3 Repurposing technical content <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#73-repurposing-technical-content" aria-label="Anchor">#</a></span></h3><p>A single article can become multiple pieces of content.</p>
+<p>For example, an article on Kafka consumer performance could generate:</p>
+<ul>
+<li>A LinkedIn post.</li>
+<li>An Instagram carousel.</li>
+<li>A short reel script.</li>
+<li>Interview questions.</li>
+<li>A newsletter summary.</li>
+</ul>
+<p>Instead of maintaining separate content sources, Markdown can remain the original source of truth.</p>
+<h3 id="74-building-a-rag-based-technical-assistant" class="relative group">7.4 Building a RAG-based technical assistant <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#74-building-a-rag-based-technical-assistant" aria-label="Anchor">#</a></span></h3><p>This is an idea I particularly like.</p>
+<p>My blog already contains articles on Java, Spring Boot, Kafka, microservices and AI. I could index these Markdown files, generate embeddings and store them in a vector database such as PGVector. Then I could build an assistant that answers technical questions using my own published content.</p>
+<p>Essentially, the blog becomes a personal technical knowledge base.</p>
+<h3 id="75-the-actual-advantage" class="relative group">7.5 The actual advantage <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#75-the-actual-advantage" aria-label="Anchor">#</a></span></h3><p>I wouldn&rsquo;t say GitHub Pages itself is the AI advantage.</p>
+<ol>
+<li>The real advantage is having a website represented as structured, version-controlled source files.</li>
+<li>Hugo generates the website.</li>
+<li>Markdown stores the content.</li>
+<li>Git manages changes.</li>
+<li>GitHub Actions automates deployment.</li>
+<li>AI can work across all these layers.</li>
+</ol>
+<p>That combination gives me a lot more flexibility than a traditional visual CMS.</p>
+<h2 id="8-what-i-learned-a-working-website-is-not-necessarily-a-finished-website" class="relative group">8. What I learned: A working website is not necessarily a finished website <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-what-i-learned-a-working-website-is-not-necessarily-a-finished-website" aria-label="Anchor">#</a></span></h2><p>I was completely new to this style of blog development. I had experience building backend applications, APIs and distributed systems, but building a complete publishing experience was a different challenge.</p>
+<p>Initially, I was focused on getting the migration right:</p>
+<ul>
+<li>Extract the content.</li>
+<li>Download the images.</li>
+<li>Organize the Markdown files.</li>
+<li>Configure Hugo.</li>
+<li>Install the theme.</li>
+<li>Deploy through GitHub Actions.</li>
+<li>Retain the existing domain.</li>
+</ul>
+<p>Once all of that worked, I thought the major work was finished.</p>
+<p>Then I looked at the homepage.</p>
+<p>It was essentially a list of blog posts. The articles were there, the website was accessible and deployment was working.</p>
+<p>But something was missing.</p>
+<p>A personal technical blog should do more than display a chronological list of articles. It should help readers discover content, understand the author&rsquo;s interests and navigate related topics. And that&rsquo;s where I realized I had migrated the content successfully but hadn&rsquo;t finished designing the publishing experience.</p>
+<h2 id="9-whats-still-left-to-improve-on-dynamicallyblunttechcom" class="relative group">9. What&rsquo;s still left to improve on dynamicallyblunttech.com? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-whats-still-left-to-improve-on-dynamicallyblunttechcom" aria-label="Anchor">#</a></span></h2><p>There are several improvements on my roadmap.</p>
+<h3 id="91-content-grouping-and-learning-paths" class="relative group">9.1 Content grouping and learning paths <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#91-content-grouping-and-learning-paths" aria-label="Anchor">#</a></span></h3><p>This is currently one of my biggest concerns.</p>
+<p>For example, imagine I publish four articles on Spring AI. A reader should be able to discover all four as a related series.</p>
+<p>Instead, the current website primarily displays individual posts. Articles belonging to the same topic can appear on different pages, which makes the reading journey less intuitive.</p>
+<p>I need a more strategic content organization approach.</p>
+<p>Possible improvements:</p>
+<ul>
+<li>Topic-based landing pages.</li>
+<li>Series pages.</li>
+<li>Ordered article navigation.</li>
+<li>Previous and next article links within a series.</li>
+<li>Related article recommendations.</li>
+</ul>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Spring AI Learning Path
+</span></span><span style="display:flex;"><span>        |
+</span></span><span style="display:flex;"><span>        +-- 1. Introduction to Spring AI
+</span></span><span style="display:flex;"><span>        |
+</span></span><span style="display:flex;"><span>        +-- 2. Understanding Embeddings
+</span></span><span style="display:flex;"><span>        |
+</span></span><span style="display:flex;"><span>        +-- 3. Building RAG Applications
+</span></span><span style="display:flex;"><span>        |
+</span></span><span style="display:flex;"><span>        +-- 4. Implementing AI Agents
+</span></span></code></pre></div><p>This is more useful than expecting readers to discover related articles by scrolling through the entire blog.</p>
+<h3 id="92-homepage-redesign" class="relative group">9.2 Homepage redesign <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#92-homepage-redesign" aria-label="Anchor">#</a></span></h3><p>The current homepage is functional, but it still needs a proper identity.</p>
+<p>I want to move beyond a simple list of articles.</p>
+<p>Some elements I would like to introduce:</p>
+<ul>
+<li>A short introduction about the author.</li>
+<li>Featured technical articles.</li>
+<li>Topic-based content sections.</li>
+<li>Latest articles.</li>
+<li>Popular articles.</li>
+<li>Learning series.</li>
+<li>Recommendations for new readers.</li>
+</ul>
+<p>The homepage should answer three questions quickly:</p>
+<ol>
+<li>Who is behind this blog?</li>
+<li>What kind of technical content can I find here?</li>
+<li>Where should I start reading?</li>
+</ol>
+<h3 id="93-seo-and-url-redirects" class="relative group">9.3 SEO and URL redirects <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#93-seo-and-url-redirects" aria-label="Anchor">#</a></span></h3><p>Moving from Wix to Hugo should not mean losing the URL history of existing articles.</p>
+<p>I still need to complete a systematic review of:</p>
+<ul>
+<li>Old Wix URLs and their new Hugo equivalents.</li>
+<li>Redirect rules.</li>
+<li>Canonical URLs.</li>
+<li>Sitemap.</li>
+<li>Robots.txt.</li>
+<li>Structured data.</li>
+<li>Open Graph metadata.</li>
+<li>Search engine indexing.</li>
+</ul>
+<p>Preserving old URLs and implementing appropriate redirects is especially important for existing readers and search traffic.</p>
+<h3 id="94-analytics" class="relative group">9.4 Analytics <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#94-analytics" aria-label="Anchor">#</a></span></h3><p>I also need a better understanding of how people use the website.</p>
+<p>Some metrics worth tracking:</p>
+<ul>
+<li>Most-read articles.</li>
+<li>Popular categories.</li>
+<li>Traffic sources.</li>
+<li>Search terms.</li>
+<li>Reader engagement.</li>
+</ul>
+<p>This would help me decide what to write next.</p>
+<h3 id="95-image-optimization" class="relative group">9.5 Image optimization <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#95-image-optimization" aria-label="Anchor">#</a></span></h3><p>The migration handled image downloads and format conversion, but image optimization is a separate task. I still want to improve:</p>
+<ul>
+<li>Image dimensions.</li>
+<li>Responsive image delivery.</li>
+<li>File sizes.</li>
+<li>Modern image formats where supported.</li>
+<li>Lazy loading.</li>
+<li>Alt text.</li>
+</ul>
+<p>A static website can still become unnecessarily heavy if every article loads large original images.</p>
+<h2 id="10-final-thoughts" class="relative group">10. Final thoughts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-final-thoughts" aria-label="Anchor">#</a></span></h2><p>Moving from Wix to Hugo wasn&rsquo;t just a change in hosting. It changed how I think about managing my personal website. I moved from a managed CMS to a developer-owned publishing workflow built around Markdown, Git and automation. I gained control over my content, learned how to extract and organize media programmatically, built custom Python scripts and introduced automated deployment. I also discovered that building a website is not just about making it work. The content structure, navigation, homepage, reader experience and discoverability matter just as much.</p>
+<p>Would I recommend Hugo and GitHub Pages to everyone?</p>
+<p>Probably not.</p>
+<p>If you simply want to write and publish without worrying about infrastructure, Wix or another managed platform may be a better fit.</p>
+<p>But if you&rsquo;re a developer who enjoys building things, experimenting with automation and having control over your content, this approach is worth exploring.</p>
+<p>And with AI becoming part of everyday development, having your content and website represented as structured source files opens up some interesting possibilities.</p>
+<p>My blog is still a work in progress. The migration is done, but the publishing experience is evolving.</p>
+<p><strong>The goal isn&rsquo;t just to have a website that publishes articles. It&rsquo;s to build a technical knowledge platform that grows alongside what I learn and build.</strong></p>
+<p>And yes, I now have one more repository to maintain. Apparently, developers never really escape maintenance.</p>
+<hr>
+<p><strong>Website:</strong> <a href="https://www.dynamicallyblunttech.com/" target="_blank" rel="noreferrer">Dynamically Blunt Tech</a><br>
+<strong>Author:</strong> Ankit Agrahari</p>
+<hr>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/dynamic-scheduling-any-rest-api-s/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Dynamic Scheduling any REST API's</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-10-27 08:14:31 &#43;0530 IST">October 27, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

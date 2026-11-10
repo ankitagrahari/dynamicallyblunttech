@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Classes on DynamicallyBluntTech</title>
-		<link>http://localhost:1313/dynamicallyblunttech/tags/classes/</link>
-		<description>Recent content in Classes on DynamicallyBluntTech</description>
+		<title>Classes on Backend Brilliance</title>
+		<link>http://localhost:1313/tags/classes/</link>
+		<description>Recent content in Classes on Backend Brilliance</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Tue, 27 Oct 2026 08:14:16 +0530</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/classes/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/tags/classes/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Custom Java Class : Peculiar Cases</title>
-				<link>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</link>
+				<link>http://localhost:1313/posts/custom-java-class-peculiar-cases/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:16 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/posts/custom-java-class-peculiar-cases/</guid>
+				<guid>http://localhost:1313/posts/custom-java-class-peculiar-cases/</guid>
 				<description>&lt;p&gt;This post is about understanding the type of interview questions which can come from a Custom Java class where we can override &lt;em&gt;equals&lt;/em&gt;, &lt;em&gt;hashcode&lt;/em&gt;, *toString *or implements the Interface to *sort *the list of this custom Java class.&lt;/p&gt;&#xA;&lt;p&gt;Lets go one by one, where you start your coding round and the first information provided is&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; Create a Customer Java class which has Name, Age and Profession attributes. The interviewer also added override the *toString *method to display it in below format.&lt;/p&gt;</description>
 			</item>
 	</channel>

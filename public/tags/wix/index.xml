@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Wix on Backend Brilliance</title>
+		<link>http://localhost:1313/tags/wix/</link>
+		<description>Recent content in Wix on Backend Brilliance</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 10 Nov 2026 04:40:00 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/wix/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform</title>
+				<link>http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/</link>
+				<pubDate>Tue, 10 Nov 2026 04:40:00 +0530</pubDate>
+				<guid>http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/</guid>
+				<description>&lt;p&gt;&lt;em&gt;My journey of migrating dynamicallyblunttech.com using Hugo, Markdown, Congo and GitHub Actions — including custom Python scripts, media extraction, a few surprises, and the things I am still figuring out.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;There is something interesting about being a backend developer.&lt;/p&gt;&#xA;&lt;p&gt;You spend most of your working hours building systems, designing APIs, debugging production issues and figuring out why something that worked yesterday suddenly doesn&amp;rsquo;t work today.&lt;/p&gt;&#xA;&lt;p&gt;Then one day, you decide to build your &lt;strong&gt;personal blog&lt;/strong&gt;.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

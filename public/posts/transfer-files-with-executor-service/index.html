@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Transfer Files with Executor Service  &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="Transfer Files with Executor Service  &middot; DynamicallyBluntTech" />
+  <title>Transfer Files with Executor Service  &middot; Backend Brilliance</title>
+    <meta name="title" content="Transfer Files with Executor Service  &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -82,24 +82,24 @@ So lets start developing our main class which will hold the skeleton of the prog
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/" />
+    <link rel="canonical" href="http://localhost:1313/posts/transfer-files-with-executor-service/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/transfer-files-with-executor-service/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Transfer Files with Executor Service ">
 	<meta property="og:description" content="In this post we will move all files from one directory to another using Java’s Executor Service and will also discuss on how we can enhance the entire process.
 To move files from one directory to another:
@@ -111,11 +111,11 @@ List all files in the source directory Create a main class which will call the t
 		<meta property="article:modified_time" content="2026-10-27T08:14:29+05:30">
 		<meta property="article:tag" content="Executor">
 		<meta property="article:tag" content="Java">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/transfer-files-with-executor-service/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/transfer-files-with-executor-service/feature.jpg">
 	<meta name="twitter:title" content="Transfer Files with Executor Service ">
 	<meta name="twitter:description" content="In this post we will move all files from one directory to another using Java’s Executor Service and will also discuss on how we can enhance the entire process.
 To move files from one directory to another:
@@ -132,7 +132,7 @@ List all files in the source directory Create a main class which will call the t
     
     "abstract": "\u003cp\u003eIn this post we will move all files from one directory to another using Java\u0026rsquo;s Executor Service and will also discuss on how we can enhance the entire process.\u003c\/p\u003e\n\u003cp\u003eTo move files from one directory to another:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eList all files in the source directory\u003c\/li\u003e\n\u003cli\u003eCreate a main class which will call the threads to process all the files in given directory.\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003eSo lets start developing our main class which will hold the skeleton of the program to call executor thread which will in turn transfer all files from one directory to another.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/transfer-files-with-executor-service\/",
+    "url" : "http:\/\/localhost:1313\/posts\/transfer-files-with-executor-service\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -157,19 +157,19 @@ List all files in the source directory Create a main class which will call the t
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/executor/",
+       "item": "http://localhost:1313/categories/executor/",
        "name": "Executor",
        "position": 3
      },
@@ -221,8 +221,8 @@ List all files in the source directory Create a main class which will call the t
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -235,7 +235,7 @@ List all files in the source directory Create a main class which will call the t
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -349,7 +349,7 @@ List all files in the source directory Create a main class which will call the t
         <source
           
             
-              srcset="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/feature_hu_bf69f3b3004b29fe.webp"
+              srcset="http://localhost:1313/posts/transfer-files-with-executor-service/feature_hu_bf69f3b3004b29fe.webp"
             
           
           sizes="100vw"
@@ -363,7 +363,7 @@ List all files in the source directory Create a main class which will call the t
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/transfer-files-with-executor-service/feature.jpg"
+          src="http://localhost:1313/posts/transfer-files-with-executor-service/feature.jpg"
         
       />
     </picture>
@@ -547,7 +547,7 @@ List all files in the source directory Create a main class which will call the t
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/cca-f-domain-1-agentic-architecture-orchestration-key-concepts/">
+            <a class="group flex" href="http://localhost:1313/posts/cca-f-domain-1-agentic-architecture-orchestration-key-concepts/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -569,7 +569,7 @@ List all files in the source directory Create a main class which will call the t
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/iii-named-entity-recognition-apache-opennlp/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/iii-named-entity-recognition-apache-opennlp/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -650,7 +650,7 @@ List all files in the source directory Create a main class which will call the t
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

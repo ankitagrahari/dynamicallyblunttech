@@ -1,6 +1,6 @@
 baseURL = "https://dynamicallyblunttech.com/"
 locale = 'en-us'
-title = 'DynamicallyBluntTech'
+title = 'Backend Brilliance'
 theme = 'congo'
 
 [outputs]

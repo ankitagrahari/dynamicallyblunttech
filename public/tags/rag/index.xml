@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>RAG on DynamicallyBluntTech</title>
-		<link>http://localhost:1313/dynamicallyblunttech/tags/rag/</link>
-		<description>Recent content in RAG on DynamicallyBluntTech</description>
+		<title>RAG on Backend Brilliance</title>
+		<link>http://localhost:1313/tags/rag/</link>
+		<description>Recent content in RAG on Backend Brilliance</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
@@ -12,13 +12,13 @@
 		
 			<lastBuildDate>Tue, 27 Oct 2026 08:14:21 +0530</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/dynamicallyblunttech/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/tags/rag/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Building the Foundation: APIs, Prompts, and First Runs</title>
-				<link>http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/</link>
+				<link>http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:21 +0530</pubDate>
-				<guid>http://localhost:1313/dynamicallyblunttech/posts/building-the-foundation-apis-prompts-and-first-runs/</guid>
-				<description>&lt;p&gt;In &#xA;      &#xA;    &lt;a href=&#34;http://localhost:1313/dynamicallyblunttech/posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far/&#34;&gt;Part 1&lt;/a&gt; of this series, we introduced the &lt;strong&gt;Smart DevOps Assistant (SDA)&lt;/strong&gt; — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.&lt;/p&gt;&#xA;&lt;p&gt;Now it’s time to get our hands dirty. In this post, we’ll:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Scaffold core APIs (/generate-summary, /analyze-pr)&lt;/li&gt;&#xA;&lt;li&gt;Wire up our first &lt;strong&gt;prompt templates&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Connect Spring AI to an LLM&lt;/li&gt;&#xA;&lt;li&gt;Run our very first &lt;strong&gt;end-to-end test&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;By the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀&lt;/p&gt;</description>
+				<guid>http://localhost:1313/posts/building-the-foundation-apis-prompts-and-first-runs/</guid>
+				<description>&lt;p&gt;In &#xA;      &#xA;    &lt;a href=&#34;http://localhost:1313/posts/meet-smart-devops-assistant-vision-stack-and-journey-so-far/&#34;&gt;Part 1&lt;/a&gt; of this series, we introduced the &lt;strong&gt;Smart DevOps Assistant (SDA)&lt;/strong&gt; — an AI-powered helper that reviews pull requests, generates tests, and writes scrum updates.&lt;/p&gt;&#xA;&lt;p&gt;Now it’s time to get our hands dirty. In this post, we’ll:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Scaffold core APIs (/generate-summary, /analyze-pr)&lt;/li&gt;&#xA;&lt;li&gt;Wire up our first &lt;strong&gt;prompt templates&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Connect Spring AI to an LLM&lt;/li&gt;&#xA;&lt;li&gt;Run our very first &lt;strong&gt;end-to-end test&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;By the end, you’ll have a working backend service that can summarize PRs and hint at improvements. 🚀&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

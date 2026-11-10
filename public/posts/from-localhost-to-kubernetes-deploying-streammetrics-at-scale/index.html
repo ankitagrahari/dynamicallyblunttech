@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>From Localhost to Kubernetes: Deploying StreamMetrics at Scale &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale &middot; DynamicallyBluntTech" />
+  <title>From Localhost to Kubernetes: Deploying StreamMetrics at Scale &middot; Backend Brilliance</title>
+    <meta name="title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -88,24 +88,24 @@ Love how after building something locally, you think &ldquo;okay, it works on my
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/" />
+    <link rel="canonical" href="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale">
 	<meta property="og:description" content="Part 4 of the StreamMetrics Series
 *Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | * Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
@@ -118,11 +118,11 @@ Love how after building something locally, you think “okay, it works on my mac
 		<meta property="article:tag" content="StreamMetrics">
 		<meta property="article:tag" content="Kafka">
 		<meta property="article:tag" content="Spring">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature.jpg">
 	<meta name="twitter:title" content="From Localhost to Kubernetes: Deploying StreamMetrics at Scale">
 	<meta name="twitter:description" content="Part 4 of the StreamMetrics Series
 *Previous parts: Part 1: Kafka Producer | Part 2: Consumer &#43; DLQ | * Part 3: Real-Time AggregationsStreammetric Bottleneck Explainer by NotebookLM
@@ -137,9 +137,9 @@ Love how after building something locally, you think “okay, it works on my mac
     "name": "From Localhost to Kubernetes: Deploying StreamMetrics at Scale",
     "headline": "From Localhost to Kubernetes: Deploying StreamMetrics at Scale",
     
-    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 4 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-a-production-kafka-producer\/\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003eStreammetric Bottleneck Explainer by NotebookLM\u003c\/p\u003e\n\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/2Bs8K6folk0?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cp\u003eLove how after building something locally, you think \u0026ldquo;\u003cem\u003eokay, it works on my machine!\u003c\/em\u003e\u0026rdquo; and then reality hits when you try to deploy it. Docker says \u0026ldquo;\u003cem\u003eworks on my machine\u003c\/em\u003e\u0026rdquo; is not an excuse anymore, and Kubernetes says \u0026ldquo;\u003cem\u003ehold my beer, let\u0026rsquo;s make it production-ready.\u003c\/em\u003e\u0026rdquo;\u003c\/p\u003e",
+    "abstract": "\u003cp\u003e\u003cstrong\u003ePart 4 of the StreamMetrics Series\u003c\/strong\u003e\u003c\/p\u003e\n\u003cp\u003e*Previous parts: \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/building-a-production-kafka-producer\/\u0022\u003e\u003cem\u003ePart 1: Kafka Producer\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | \u003cem\u003e\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/building-production-grade-kafka-consumer-patterns\/\u0022\u003e\u003cem\u003ePart 2: Consumer \u002b DLQ\u003c\/em\u003e\u003c\/a\u003e\u003c\/em\u003e | *\n      \n    \u003ca href=\u0022http:\/\/localhost:1313\/posts\/real-time-aggregations-with-kafka-streams-at-10k-events-sec\/\u0022\u003e\u003cem\u003ePart 3: Real-Time Aggregations\u003c\/em\u003e\u003c\/a\u003eStreammetric Bottleneck Explainer by NotebookLM\u003c\/p\u003e\n\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/2Bs8K6folk0?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cp\u003eLove how after building something locally, you think \u0026ldquo;\u003cem\u003eokay, it works on my machine!\u003c\/em\u003e\u0026rdquo; and then reality hits when you try to deploy it. Docker says \u0026ldquo;\u003cem\u003eworks on my machine\u003c\/em\u003e\u0026rdquo; is not an excuse anymore, and Kubernetes says \u0026ldquo;\u003cem\u003ehold my beer, let\u0026rsquo;s make it production-ready.\u003c\/em\u003e\u0026rdquo;\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/",
+    "url" : "http:\/\/localhost:1313\/posts\/from-localhost-to-kubernetes-deploying-streammetrics-at-scale\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -164,19 +164,19 @@ Love how after building something locally, you think “okay, it works on my mac
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/streammetrics/",
+       "item": "http://localhost:1313/categories/streammetrics/",
        "name": "StreamMetrics",
        "position": 3
      },
@@ -228,8 +228,8 @@ Love how after building something locally, you think “okay, it works on my mac
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -242,7 +242,7 @@ Love how after building something locally, you think “okay, it works on my mac
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -355,12 +355,12 @@ Love how after building something locally, you think “okay, it works on my mac
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_238dd391352e2ee.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_8010a8d6d47f0af5.webp 660w
+            srcset="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_238dd391352e2ee.webp 330w,http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_8010a8d6d47f0af5.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_eaa2f82a49c86e5f.webp 1024w
+              ,http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_eaa2f82a49c86e5f.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_2cc1d5ae69fc65e4.webp 1320w
+              ,http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_2cc1d5ae69fc65e4.webp 1320w
             "
           
           sizes="100vw"
@@ -374,12 +374,12 @@ Love how after building something locally, you think “okay, it works on my mac
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_38341c351310ce41.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_b3dc3e93e8d69687.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_38341c351310ce41.jpg 660w
+          src="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_38341c351310ce41.jpg" srcset="http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_b3dc3e93e8d69687.jpg 330w,http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_38341c351310ce41.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_a43e506b6e9f5d4a.jpg 1024w
+            ,http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_a43e506b6e9f5d4a.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_b9cd24227d2d4354.jpg 1320w
+            ,http://localhost:1313/posts/from-localhost-to-kubernetes-deploying-streammetrics-at-scale/feature_hu_b9cd24227d2d4354.jpg 1320w
           "
           sizes="100vw"
         
@@ -398,11 +398,11 @@ Love how after building something locally, you think “okay, it works on my mac
         <p><strong>Part 4 of the StreamMetrics Series</strong></p>
 <p>*Previous parts: <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-a-production-kafka-producer/"><em>Part 1: Kafka Producer</em></a></em> | <em>
+    <a href="http://localhost:1313/posts/building-a-production-kafka-producer/"><em>Part 1: Kafka Producer</em></a></em> | <em>
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | *
+    <a href="http://localhost:1313/posts/building-production-grade-kafka-consumer-patterns/"><em>Part 2: Consumer + DLQ</em></a></em> | *
       
-    <a href="http://localhost:1313/dynamicallyblunttech/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/"><em>Part 3: Real-Time Aggregations</em></a>Streammetric Bottleneck Explainer by NotebookLM</p>
+    <a href="http://localhost:1313/posts/real-time-aggregations-with-kafka-streams-at-10k-events-sec/"><em>Part 3: Real-Time Aggregations</em></a>Streammetric Bottleneck Explainer by NotebookLM</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2Bs8K6folk0?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
 		</div>
@@ -957,7 +957,7 @@ Love how after building something locally, you think “okay, it works on my mac
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/">
+            <a class="group flex" href="http://localhost:1313/posts/production-monitoring-you-can-t-fix-what-you-can-t-see/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -979,7 +979,7 @@ Love how after building something locally, you think “okay, it works on my mac
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/testing-in-microservices/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/testing-in-microservices/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -1060,7 +1060,7 @@ Love how after building something locally, you think “okay, it works on my mac
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

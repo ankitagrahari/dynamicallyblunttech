@@ -11,13 +11,13 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"
-><head><script src="/dynamicallyblunttech/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=dynamicallyblunttech/livereload" data-no-instant defer></script>
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally &middot; DynamicallyBluntTech</title>
-    <meta name="title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally &middot; DynamicallyBluntTech" />
+  <title>CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally &middot; Backend Brilliance</title>
+    <meta name="title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally &middot; Backend Brilliance" />
   
   
   
@@ -25,7 +25,7 @@
   
   <script
     type="text/javascript"
-    src="http://localhost:1313/dynamicallyblunttech/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
     integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
   ></script>
   
@@ -39,7 +39,7 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="http://localhost:1313/dynamicallyblunttech/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
+    href="http://localhost:1313/css/main.bundle.min.52403b25103126e59d16cb2e053b72b15729e2dc4ade60dfad80d1e7d1b3560d.css"
     integrity="sha256-UkA7JRAxJuWdFssuBTtysVcp4txK3mDfrYDR59GzVg0="
   />
   
@@ -57,7 +57,7 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/dynamicallyblunttech/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
       integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
       data-copy="Copy"
       data-copied="Copied"
@@ -109,24 +109,24 @@ What We Learned
   
   
   
-    <link rel="canonical" href="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/" />
+    <link rel="canonical" href="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/" />
   
   
   
-    <link rel="apple-touch-icon" sizes="180x180" href="/dynamicallyblunttech/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/dynamicallyblunttech/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/dynamicallyblunttech/favicon-16x16.png" />
-    <link rel="manifest" href="/dynamicallyblunttech/site.webmanifest" />
-  
-  
-  
-  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   
   
   
   
-  <meta property="og:url" content="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/">
-	<meta property="og:site_name" content="DynamicallyBluntTech">
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/">
+	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally">
 	<meta property="og:description" content="TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
 Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Architecture The 5 Agents — Deep Dive Business Analyst Agent Code Generator Agent Code Review Agent Test Generator Agent Test Executor Agent RAG: Codebase Ingestion &amp; Vector Store The Hardest Part: Running Multiple LLMs Locally via Ollama Hardware Constraints Models We Evaluated The num_ctx Uniformity Breakthrough Final Model Decision Ollama Environment Variables That Mattered Challenges We Solved Code Structure Real-Time UI with Vaadin &amp; Server Push Jira Integration Human-in-the-Loop Checkpoints What We Learned 1. Motivation &amp; Goals #Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that’s a hard blocker.">
@@ -137,11 +137,11 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
 		<meta property="article:modified_time" content="2026-10-27T08:14:17+05:30">
 		<meta property="article:tag" content="MultiAgent">
 		<meta property="article:tag" content="AIPipeline">
-		<meta property="og:image" content="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg">
+		<meta property="og:image" content="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg">
 
   
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg">
+	<meta name="twitter:image" content="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg">
 	<meta name="twitter:title" content="CodeForgeAI: Building a 5-Agent Multi-LLM Pipeline That Writes, Reviews, Tests, and Deploys Java Code — Entirely Locally">
 	<meta name="twitter:description" content="TL;DR — CodeForgeAI is a Spring Boot &#43; Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.
 Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Architecture The 5 Agents — Deep Dive Business Analyst Agent Code Generator Agent Code Review Agent Test Generator Agent Test Executor Agent RAG: Codebase Ingestion &amp; Vector Store The Hardest Part: Running Multiple LLMs Locally via Ollama Hardware Constraints Models We Evaluated The num_ctx Uniformity Breakthrough Final Model Decision Ollama Environment Variables That Mattered Challenges We Solved Code Structure Real-Time UI with Vaadin &amp; Server Push Jira Integration Human-in-the-Loop Checkpoints What We Learned 1. Motivation &amp; Goals #Generative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that’s a hard blocker.">
@@ -157,7 +157,7 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
     
     "abstract": "\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR\u003c\/strong\u003e — CodeForgeAI is a Spring Boot \u002b Vaadin application that orchestrates five specialised AI agents (Business Analyst → Code Generator → Code Reviewer → Test Generator → Test Executor) to transform a PDF requirements document into reviewed, tested, and deployed Java code — all running on-premise on a developer laptop, with no cloud LLM calls, no data leaving the machine.\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003ch2 id=\u0022table-of-contents\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003eTable of Contents\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#table-of-contents\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003col\u003e\n\u003cli\u003eMotivation \u0026amp; Goals\u003c\/li\u003e\n\u003cli\u003eTech Stack\u003c\/li\u003e\n\u003cli\u003eEnd-to-End Pipeline Architecture\n\u003col\u003e\n\u003cli\u003eThe 5 Agents — Deep Dive\u003c\/li\u003e\n\u003cli\u003eBusiness Analyst Agent\u003c\/li\u003e\n\u003cli\u003eCode Generator Agent\u003c\/li\u003e\n\u003cli\u003eCode Review Agent\u003c\/li\u003e\n\u003cli\u003eTest Generator Agent\u003c\/li\u003e\n\u003cli\u003eTest Executor Agent\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003eRAG: Codebase Ingestion \u0026amp; Vector Store\u003c\/li\u003e\n\u003cli\u003eThe Hardest Part: Running Multiple LLMs Locally via Ollama\n\u003col\u003e\n\u003cli\u003eHardware Constraints\u003c\/li\u003e\n\u003cli\u003eModels We Evaluated\u003c\/li\u003e\n\u003cli\u003eThe num_ctx Uniformity Breakthrough\u003c\/li\u003e\n\u003cli\u003eFinal Model Decision\u003c\/li\u003e\n\u003cli\u003eOllama Environment Variables That Mattered\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003c\/li\u003e\n\u003cli\u003eChallenges We Solved\u003c\/li\u003e\n\u003cli\u003eCode Structure\u003c\/li\u003e\n\u003cli\u003eReal-Time UI with Vaadin \u0026amp; Server Push\u003c\/li\u003e\n\u003cli\u003eJira Integration\u003c\/li\u003e\n\u003cli\u003eHuman-in-the-Loop Checkpoints\u003c\/li\u003e\n\u003cli\u003eWhat We Learned\u003c\/li\u003e\n\u003c\/ol\u003e\n\u003ch2 id=\u00221-motivation--goals\u0022 class=\u0022relative group\u0022\u003e\u003cstrong\u003e1. Motivation \u0026amp; Goals\u003c\/strong\u003e \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#1-motivation--goals\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eGenerative AI is reshaping software development, but most AI coding tools are cloud-hosted, meaning proprietary code is sent to external servers. For enterprise environments where source code must never leave the network, that\u0026rsquo;s a hard blocker.\u003c\/p\u003e",
     "inLanguage": "en-us",
-    "url" : "http:\/\/localhost:1313\/dynamicallyblunttech\/posts\/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod\/",
+    "url" : "http:\/\/localhost:1313\/posts\/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod\/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -182,19 +182,19 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/",
-       "name": "Dynamically Blunt Tech",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/dynamicallyblunttech/categories/spring/",
+       "item": "http://localhost:1313/categories/spring/",
        "name": "Spring",
        "position": 3
      },
@@ -246,8 +246,8 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
   <a
     class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
     rel="me"
-    href="/dynamicallyblunttech/"
-    >DynamicallyBluntTech</a
+    href="/"
+    >Backend Brilliance</a
   >
 
     </div>
@@ -260,7 +260,7 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
               
                 <a
-                  href="/dynamicallyblunttech/posts/"
+                  href="/posts/"
                   title="Posts"
                   
                   
@@ -373,15 +373,15 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_b4b98ea36acca28e.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_161ad2107fb238ff.webp 660w
+            srcset="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_b4b98ea36acca28e.webp 330w,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_161ad2107fb238ff.webp 660w
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_fad4834cf967739.webp 1024w
+                ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_fad4834cf967739.webp 1024w
               
             
             
               
-                ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_fad4834cf967739.webp 1024w
+                ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_fad4834cf967739.webp 1024w
               
             "
           
@@ -396,12 +396,12 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
         
         
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_dee3472f6d3c7540.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_4d427606f6329c9a.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_dee3472f6d3c7540.jpg 660w
+          src="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_dee3472f6d3c7540.jpg" srcset="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_4d427606f6329c9a.jpg 330w,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature_hu_dee3472f6d3c7540.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg 1024w
+            ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg 1024w
+            ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/feature.jpg 1024w
           "
           sizes="100vw"
         
@@ -541,12 +541,12 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_fc0e1c5b39e8d2a7.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_3bacf5c18cf0f138.webp 660w
+            srcset="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_fc0e1c5b39e8d2a7.webp 330w,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_3bacf5c18cf0f138.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_b25f9b441d72a3b8.webp 1024w
+              ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_b25f9b441d72a3b8.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_3c8df4b2af73b7ef.webp 1320w
+              ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_3c8df4b2af73b7ef.webp 1320w
             "
           
           sizes="100vw"
@@ -560,12 +560,12 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
         alt="End to End Pipeline Architecture"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_aea8db9dec463451.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_f1011f9680ef66aa.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_aea8db9dec463451.jpg 660w
+          src="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_aea8db9dec463451.jpg" srcset="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_f1011f9680ef66aa.jpg 330w,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_aea8db9dec463451.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_82fed40733c73852.jpg 1024w
+            ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_82fed40733c73852.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_5130a51bc3b58510.jpg 1320w
+            ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_2c2b809ba57d4585a0e5bf45c40913b2_hu_5130a51bc3b58510.jpg 1320w
           "
           sizes="100vw"
         
@@ -604,12 +604,12 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
       
         <source
           
-            srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_d5c6d84c564225ee.webp 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_3adb321d50d383f4.webp 660w
+            srcset="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_d5c6d84c564225ee.webp 330w,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_3adb321d50d383f4.webp 660w
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_51561ae278788311.webp 1024w
+              ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_51561ae278788311.webp 1024w
             
             
-              ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_a38cbf538c0f6caf.webp 1320w
+              ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_a38cbf538c0f6caf.webp 1320w
             "
           
           sizes="100vw"
@@ -623,12 +623,12 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
         alt="State Machine"
         loading="lazy" decoding="async"
         
-          src="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c0928bf98fcb3e4.jpg" srcset="http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c8fb58a81d37be84.jpg 330w,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c0928bf98fcb3e4.jpg 660w
+          src="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c0928bf98fcb3e4.jpg" srcset="http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c8fb58a81d37be84.jpg 330w,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_c0928bf98fcb3e4.jpg 660w
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_f67849d9460e2bed.jpg 1024w
+            ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_f67849d9460e2bed.jpg 1024w
           
           
-            ,http://localhost:1313/dynamicallyblunttech/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_d5dd43dbe3f14bd6.jpg 1320w
+            ,http://localhost:1313/posts/codeforgeai-building-a-5-agent-multi-llm-pipeline-that-writes-reviews-tests-and-deploys-java-cod/images/df024c_d0b5141b44c94d20b4a1774e3a3122f6_hu_d5dd43dbe3f14bd6.jpg 1320w
           "
           sizes="100vw"
         
@@ -1299,7 +1299,7 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="http://localhost:1313/dynamicallyblunttech/posts/log4j-vulnerability-continued/">
+            <a class="group flex" href="http://localhost:1313/posts/log4j-vulnerability-continued/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -1321,7 +1321,7 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
         </span>
         <span>
           
-            <a class="group flex text-right" href="http://localhost:1313/dynamicallyblunttech/posts/set-swappiness-in-linux/">
+            <a class="group flex text-right" href="http://localhost:1313/posts/set-swappiness-in-linux/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -1402,7 +1402,7 @@ Table of Contents # Motivation &amp; Goals Tech Stack End-to-End Pipeline Archit
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/dynamicallyblunttech/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"
