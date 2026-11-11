@@ -8,6 +8,13 @@ enableRobotsTXT = true
   [services.googleAnalytics]
     id = "G-DBHXRZP2DM"
 
+[outputFormats.RSS]
+  mediaType = "application/rss+xml"
+  baseName = "blog-feed"
+
+[services.rss]
+  limit = 7
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]
   page = ["HTML"]

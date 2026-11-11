@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Reactive on Backend Brilliance</title>
+		<link>http://localhost:1313/categories/reactive/</link>
+		<description>Recent content in Reactive on Backend Brilliance</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:26 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/categories/reactive/blog-feed.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Reactive Programming in Java with Spring (AI Generated)</title>
+				<link>http://localhost:1313/posts/reactive-programming-in-java-with-spring-ai-generated/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:26 +0530</pubDate>
+				<guid>http://localhost:1313/posts/reactive-programming-in-java-with-spring-ai-generated/</guid>
+				<description>&lt;p&gt;Harnessing the power of reactive programming in Java opens up endless opportunities for crafting responsive, resilient applications. With an emphasis on asynchronous data streams, this approach allows you to manage system resources efficiently while enhancing user experiences. In this blog post, we&amp;rsquo;ll explore two leading frameworks—RxJava and Spring Reactive—sharing specific scenarios to illustrate practical reactive programming techniques.&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-reactive-programming&#34; class=&#34;relative group&#34;&gt;Understanding Reactive Programming &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#understanding-reactive-programming&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Reactive programming promotes a non-blocking data flow, enabling components to respond to events as they occur. This approach is crucial for modern web applications, which demand real-time capabilities. By leveraging the observer pattern, reactive programming allows your application to respond to streams of data swiftly, enhancing user interactivity.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

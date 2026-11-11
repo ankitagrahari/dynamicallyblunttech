@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>[&#34;6249579158f0bd10b2a57273&#34;] on Backend Brilliance</title>
+		<link>http://localhost:1313/categories/6249579158f0bd10b2a57273/</link>
+		<description>Recent content in [&#34;6249579158f0bd10b2a57273&#34;] on Backend Brilliance</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:12 +0530</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/categories/6249579158f0bd10b2a57273/blog-feed.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Day to Day Lambda &amp; Functional Programming in Java 8</title>
+				<link>http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:12 +0530</pubDate>
+				<guid>http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/</guid>
+				<description>&lt;p&gt;If you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.&lt;/p&gt;&#xA;&lt;p&gt;This post will be a bit lengthy where we will write &lt;em&gt;Junit5&lt;/em&gt; tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
+lockquote&gt;</description>
+			</item>
+	</channel>
+</rss>
+video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;Today, I successfully built and deployed a &lt;strong&gt;Model Context Protocol (MCP) server&lt;/strong&gt; using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&amp;rsquo;s just say it involved more debugging than coding.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll walk you through:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;What we built (the DevOps Intelligence Platform)&lt;/li&gt;&#xA;&lt;li&gt;The tools we created (K8s, Prometheus, Logs, Deployments)&lt;/li&gt;&#xA;&lt;li&gt;Every challenge we faced (and how we solved them)&lt;/li&gt;&#xA;&lt;li&gt;Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; Built an MCP server with 5+ DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
