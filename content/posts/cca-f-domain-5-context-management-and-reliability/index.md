@@ -1,9 +1,11 @@
 ---
 title: "CCA-F Domain 5: Context Management and Reliability"
-date: 2026-10-27T08:14:27+05:30
+date: 2026-11-02T08:20:27+05:30
 draft: false
 tags: ['CCAF', 'Claude', 'GenAI']
 categories: ['Claude', 'CCAF']
+series: ["Claude Certified Architect - Foundations"]
+series_weight: 5
 showReadingTime: true
 ---
 

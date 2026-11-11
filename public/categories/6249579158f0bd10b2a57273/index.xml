@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>[&#34;6249579158f0bd10b2a57273&#34;] on Backend Brilliance</title>
+		<title>&#34;6249579158f0bd10b2a57273&#34;] on Backend Brilliance</title>
 		<link>http://localhost:1313/categories/6249579158f0bd10b2a57273/</link>
-		<description>Recent content in [&#34;6249579158f0bd10b2a57273&#34;] on Backend Brilliance</description>
+		<description>Recent content in &#34;6249579158f0bd10b2a57273&#34;] on Backend Brilliance</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
 		
 		
 		
-			<lastBuildDate>Tue, 27 Oct 2026 08:14:12 +0530</lastBuildDate>
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:13 +0530</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/categories/6249579158f0bd10b2a57273/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Day to Day Lambda &amp; Functional Programming in Java 8</title>
-				<link>http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:12 +0530</pubDate>
-				<guid>http://localhost:1313/posts/day-to-day-lambda-functional-programming-java-8/</guid>
-				<description>&lt;p&gt;If you have seen lately, everyone has shifted to Java 8 and is more or less trying to move from lengthy code blocks to few lines/precise use of Lambda and Functional Programming introduced in Java 8. So, we will talk about all day to day operations that can be converted to use lambda or functional programming and make our code precise and simple.&lt;/p&gt;&#xA;&lt;p&gt;This post will be a bit lengthy where we will write &lt;em&gt;Junit5&lt;/em&gt; tests and the code for every scenario. It will be interesting to know, as these days, a lot of companies are focusing on candidates to know the use of lambda expressions at least.&lt;/p&gt;</description>
+				<title>Reactive Programming in Java</title>
+				<link>http://localhost:1313/posts/reactive-programming-in-java/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:13 +0530</pubDate>
+				<guid>http://localhost:1313/posts/reactive-programming-in-java/</guid>
+				<description>&lt;p&gt;In this post, we will try to understand the basics of the &lt;em&gt;&lt;strong&gt;Reactive programming&lt;/strong&gt;&lt;/em&gt;, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.&lt;/p&gt;&#xA;&lt;p&gt;According to Wikipedia, Reactive Programming is defined as:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
 			</item>
 	</channel>
 </rss>

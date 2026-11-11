@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>[&#34;619c9d9d8da2c200166cb558&#34; on Backend Brilliance</title>
+		<title>[&#34;619c9d9d8da2c200166cb558&#34;] on Backend Brilliance</title>
 		<link>http://localhost:1313/categories/619c9d9d8da2c200166cb558/</link>
-		<description>Recent content in [&#34;619c9d9d8da2c200166cb558&#34; on Backend Brilliance</description>
+		<description>Recent content in [&#34;619c9d9d8da2c200166cb558&#34;] on Backend Brilliance</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
 		
 		
 		
-			<lastBuildDate>Tue, 27 Oct 2026 08:14:24 +0530</lastBuildDate>
+			<lastBuildDate>Tue, 27 Oct 2026 08:14:26 +0530</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/categories/619c9d9d8da2c200166cb558/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges &amp; Solutions</title>
-				<link>http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:24 +0530</pubDate>
-				<guid>http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/</guid>
-				<description>&lt;p&gt;Devops Intelligence&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/DLVG0z-aHV4?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;Today, I successfully built and deployed a &lt;strong&gt;Model Context Protocol (MCP) server&lt;/strong&gt; using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&amp;rsquo;s just say it involved more debugging than coding.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll walk you through:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;What we built (the DevOps Intelligence Platform)&lt;/li&gt;&#xA;&lt;li&gt;The tools we created (K8s, Prometheus, Logs, Deployments)&lt;/li&gt;&#xA;&lt;li&gt;Every challenge we faced (and how we solved them)&lt;/li&gt;&#xA;&lt;li&gt;Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; Built an MCP server with 5+ DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.&lt;/p&gt;</description>
+				<title>Junit5 with Mockito Framework</title>
+				<link>http://localhost:1313/posts/junit5-with-mockito-framework/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:26 +0530</pubDate>
+				<guid>http://localhost:1313/posts/junit5-with-mockito-framework/</guid>
+				<description>&lt;p&gt;In this blog post we will talk about one of the testing framework which I wanted to try it on, and rather use it in my day to day coding.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Mockito framework is the mocking framework that tastes really good.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;This is from the official Mockito &lt;a href=&#34;https://site.mockito.org/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;website&lt;/em&gt;&lt;/a&gt;, and I have not played with words here. :)&lt;/p&gt;&#xA;&lt;p&gt;But as it says, it did taste good and you might extend your Junits with Mocks, because this is clean, readable and produce clean verification errors. Also it will become addictive.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>Reactive Programming in Java</title>
-				<link>http://localhost:1313/posts/reactive-programming-in-java/</link>
-				<pubDate>Tue, 27 Oct 2026 08:14:13 +0530</pubDate>
-				<guid>http://localhost:1313/posts/reactive-programming-in-java/</guid>
-				<description>&lt;p&gt;In this post, we will try to understand the basics of the &lt;em&gt;&lt;strong&gt;Reactive programming&lt;/strong&gt;&lt;/em&gt;, what are the core features of it and how to handle the errors in reactive programming. This post will be more on the explanation section and less on coding something. That will come later.&lt;/p&gt;&#xA;&lt;p&gt;According to Wikipedia, Reactive Programming is defined as:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+				<title>Exploring Spring Thymeleaf</title>
+				<link>http://localhost:1313/posts/exploring-spring-thymeleaf/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:23 +0530</pubDate>
+				<guid>http://localhost:1313/posts/exploring-spring-thymeleaf/</guid>
+				<description>&lt;p&gt;In this post we will be creating a registration form which will include textbox, dropdown with multi-select option, file pickers and then bind it with backend REST services which can be further stored in some database or can be used for any other purpose.&lt;/p&gt;&#xA;&lt;h2 id=&#34;thymeleaf&#34; class=&#34;relative group&#34;&gt;&lt;strong&gt;Thymeleaf&lt;/strong&gt; &lt;span class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100&#34;&gt;&lt;a class=&#34;group-hover:text-primary-300 dark:group-hover:text-neutral-700&#34; style=&#34;text-decoration-line: none !important;&#34; href=&#34;#thymeleaf&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;As stated in official &lt;a href=&#34;https://www.thymeleaf.org/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;em&gt;Thymeleaf website&lt;/em&gt;&lt;/a&gt;,&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Thymeleaf&lt;/strong&gt; is a modern server-side Java template engine for both web and standalone environments.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
 			</item>
-	</channel>
-</rss>
-guration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.&lt;/p&gt;</description>
+			<item>
+				<title>Spring Boot Application External Configurations</title>
+				<link>http://localhost:1313/posts/spring-boot-application-external-configurations/</link>
+				<pubDate>Tue, 27 Oct 2026 08:14:21 +0530</pubDate>
+				<guid>http://localhost:1313/posts/spring-boot-application-external-configurations/</guid>
+				<description>&lt;p&gt;Spring boot application provides a quick and elegant way to create REST API&amp;rsquo;s with minimal boiler plate code and resolves any dependency that is present in the &lt;em&gt;classpath&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;In this plethora of new technologies era, it is evident that your spring boot application can have multiple configuration files which is configured, to be used by different parts of your code.&lt;/p&gt;&#xA;&lt;p&gt;For example the database specific configuration can go in a different location which more secure, while an environment specific configuration is kept in a different configuration file. Its more on how the design and implementation goes.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Testing in Microservices</title>

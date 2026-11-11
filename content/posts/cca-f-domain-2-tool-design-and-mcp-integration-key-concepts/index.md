@@ -1,9 +1,11 @@
 ---
 title: "CCA-F Domain 2: Tool Design and MCP Integration - Key Concepts"
-date: 2026-10-27T08:14:13+05:30
+date: 2026-11-02T08:15:13+05:30
 draft: false
 tags: ['CCAF', 'Claude', 'GenAI']
 categories: ['CCAF', 'Claude', 'GenAI']
+series: ["Claude Certified Architect - Foundations"]
+series_weight: 2
 showReadingTime: true
 ---
 

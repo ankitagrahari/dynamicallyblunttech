@@ -30,3 +30,8 @@ enableRobotsTXT = true
 [article]
   showBreadcrumbs = true
   showPagination = true
+
+[taxonomies]
+  categories = "categories"
+  tags = "tags"
+  series = "series"

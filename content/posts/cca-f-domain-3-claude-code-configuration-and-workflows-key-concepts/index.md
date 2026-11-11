@@ -1,9 +1,11 @@
 ---
 title: "CCA-F Domain 3: Claude Code Configuration and Workflows - Key Concepts"
-date: 2026-10-27T08:14:21+05:30
+date: 2026-11-02T08:17:21+05:30
 draft: false
 tags: ['CCAF', 'Claude', 'GenAI']
 categories: ['CCAF', 'Claude', 'GenAI']
+series: ["Claude Certified Architect - Foundations"]
+series_weight: 3
 showReadingTime: true
 ---
 
