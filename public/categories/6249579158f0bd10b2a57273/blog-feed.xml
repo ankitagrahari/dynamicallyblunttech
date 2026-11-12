@@ -22,11 +22,3 @@
 			</item>
 	</channel>
 </rss>
-lockquote&gt;</description>
-			</item>
-	</channel>
-</rss>
-video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;Today, I successfully built and deployed a &lt;strong&gt;Model Context Protocol (MCP) server&lt;/strong&gt; using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&amp;rsquo;s just say it involved more debugging than coding.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll walk you through:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;What we built (the DevOps Intelligence Platform)&lt;/li&gt;&#xA;&lt;li&gt;The tools we created (K8s, Prometheus, Logs, Deployments)&lt;/li&gt;&#xA;&lt;li&gt;Every challenge we faced (and how we solved them)&lt;/li&gt;&#xA;&lt;li&gt;Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; Built an MCP server with 5+ DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
