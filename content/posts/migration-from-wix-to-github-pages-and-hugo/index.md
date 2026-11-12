@@ -802,12 +802,3 @@ My blog is still a work in progress. The migration is done, but the publishing e
 **The goal isn't just to have a website that publishes articles. It's to build a technical knowledge platform that grows alongside what I learn and build.**
 
 And yes, I now have one more repository to maintain. Apparently, developers never really escape maintenance.
-
----
-
-**Author:** Ankit Agrahari  
-**Github:** [ankitagrahari](https://github.com/ankitagrahari)  
-**Instagram:** [backendbrilliance](https://www.instagram.com/backendbrilliance/)  
-**Medium:** [@ankitagrahari.rkgit](https://medium.com/@ankitagrahari.rkgit) 
-
----
