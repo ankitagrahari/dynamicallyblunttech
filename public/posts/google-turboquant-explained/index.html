@@ -1,0 +1,2159 @@
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>TurboQuant Explained: How Google Is Making AI Memory More Efficient &middot; Backend Brilliance</title>
+    <meta name="title" content="TurboQuant Explained: How Google Is Making AI Memory More Efficient &middot; Backend Brilliance" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="http://localhost:1313/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="http://localhost:1313/css/main.bundle.min.a8fe17b46e4633517eb21a36234b3ddf702792509fc937b8314f930b5e7aea98.css"
+    integrity="sha256-qP4XtG5GM1F&#43;sho2I0s933AnklCfyTe4MU&#43;TC1566pg="
+  />
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
+      integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        Understanding vector compression, KV Cache, PolarQuant and QJL through simple explanations and hands-on experiments.
+Introduction #Have you ever wondered why running an AI model requires so much memory, even when the model itself is already loaded?
+One of the reasons is something called the KV Cache.
+As an AI model processes a conversation, it needs to retain information from previously processed tokens. Rather than calculating everything again for every new token, it stores intermediate information in memory and reuses it.
+      
+    "
+  />
+  
+  
+  
+  
+    <link rel="canonical" href="http://localhost:1313/posts/google-turboquant-explained/" />
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/google-turboquant-explained/">
+	<meta property="og:site_name" content="Backend Brilliance">
+	<meta property="og:title" content="TurboQuant Explained: How Google Is Making AI Memory More Efficient">
+	<meta property="og:description" content="Understanding vector compression, KV Cache, PolarQuant and QJL through simple explanations and hands-on experiments.
+Introduction #Have you ever wondered why running an AI model requires so much memory, even when the model itself is already loaded?
+One of the reasons is something called the KV Cache.
+As an AI model processes a conversation, it needs to retain information from previously processed tokens. Rather than calculating everything again for every new token, it stores intermediate information in memory and reuses it.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-11-16T05:40:06+05:30">
+		<meta property="article:modified_time" content="2026-11-16T05:40:06+05:30">
+		<meta property="article:tag" content="Google AI">
+		<meta property="article:tag" content="TurboQuant">
+		<meta property="article:tag" content="AI">
+		<meta property="og:image" content="http://localhost:1313/posts/google-turboquant-explained/feature.png">
+
+  
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="http://localhost:1313/posts/google-turboquant-explained/feature.png">
+	<meta name="twitter:title" content="TurboQuant Explained: How Google Is Making AI Memory More Efficient">
+	<meta name="twitter:description" content="Understanding vector compression, KV Cache, PolarQuant and QJL through simple explanations and hands-on experiments.
+Introduction #Have you ever wondered why running an AI model requires so much memory, even when the model itself is already loaded?
+One of the reasons is something called the KV Cache.
+As an AI model processes a conversation, it needs to retain information from previously processed tokens. Rather than calculating everything again for every new token, it stores intermediate information in memory and reuses it.">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "TurboQuant Explained: How Google Is Making AI Memory More Efficient",
+    "headline": "TurboQuant Explained: How Google Is Making AI Memory More Efficient",
+    
+    "abstract": "\u003cp\u003e\u003cem\u003eUnderstanding vector compression, KV Cache, PolarQuant and QJL through simple explanations and hands-on experiments.\u003c\/em\u003e\u003c\/p\u003e\n\u003ch2 id=\u0022introduction\u0022 class=\u0022relative group\u0022\u003eIntroduction \u003cspan class=\u0022absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100\u0022\u003e\u003ca class=\u0022group-hover:text-primary-300 dark:group-hover:text-neutral-700\u0022 style=\u0022text-decoration-line: none !important;\u0022 href=\u0022#introduction\u0022 aria-label=\u0022Anchor\u0022\u003e#\u003c\/a\u003e\u003c\/span\u003e\u003c\/h2\u003e\u003cp\u003eHave you ever wondered why running an AI model requires so much memory, even when the model itself is already loaded?\u003c\/p\u003e\n\u003cp\u003eOne of the reasons is something called the \u003cstrong\u003eKV Cache\u003c\/strong\u003e.\u003c\/p\u003e\n\u003cp\u003eAs an AI model processes a conversation, it needs to retain information from previously processed tokens. Rather than calculating everything again for every new token, it stores intermediate information in memory and reuses it.\u003c\/p\u003e",
+    "inLanguage": "en-us",
+    "url" : "http:\/\/localhost:1313\/posts\/google-turboquant-explained\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-11-16T05:40:06\u002b05:30",
+    "datePublished": "2026-11-16T05:40:06\u002b05:30",
+    
+    "dateModified": "2026-11-16T05:40:06\u002b05:30",
+    
+    "keywords": ["Google AI","TurboQuant","AI"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3496"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Backend Brilliance",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/categories/performance/",
+       "name": "Performance",
+       "position": 3
+     },
+     {
+       "@type": "ListItem",
+       "name": "Turbo Quant Explained How Google Is Making Ai Memory More Efficient",
+       "position": 4
+     }
+   ]
+ }
+  </script>
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3048750092046854"
+    crossorigin="anonymous"></script>
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+    <a href="/" class="mr-2">
+      
+      <img
+        src="http://localhost:1313/img/logo.jpg"
+        width="165"
+        height="149"
+        class="max-h-[10rem] max-w-[10rem] object-scale-down object-left
+        dark:hidden flex"
+        alt="Backend Brilliance"
+      />
+        <img
+          src="http://localhost:1313/img/dark-logo.jpg"
+          width="256"
+          height="256"
+          class="hidden max-h-[10rem] max-w-[10rem] object-scale-down object-left dark:flex"
+          alt="Backend Brilliance"
+        />
+    </a>
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Backend Brilliance</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title="Posts"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >All Posts</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              <button id="search-button-m0" title="Search (/)">
+                <span
+                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                >
+                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                </span>
+              </button>
+            </li>
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        TurboQuant Explained: How Google Is Making AI Memory More Efficient
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-11-16 05:40:06 &#43;0530 IST">November 16, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/feature_hu_3d413b3d84c3d73c.webp 330w,http://localhost:1313/posts/google-turboquant-explained/feature_hu_3f760439efc44760.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/feature_hu_53cb4a4b6791af95.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/feature_hu_65bd45f2a6fedf13.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1672"
+        height="941"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/feature_hu_3b2daf61bf482cb7.png" srcset="http://localhost:1313/posts/google-turboquant-explained/feature_hu_3077f7ca27798f84.png 330w,http://localhost:1313/posts/google-turboquant-explained/feature_hu_3b2daf61bf482cb7.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/feature_hu_82dee1569e2a563d.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/feature_hu_c1bb3f97ab7867e1.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+        </div>
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p><em>Understanding vector compression, KV Cache, PolarQuant and QJL through simple explanations and hands-on experiments.</em></p>
+<h2 id="introduction" class="relative group">Introduction <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor">#</a></span></h2><p>Have you ever wondered why running an AI model requires so much memory, even when the model itself is already loaded?</p>
+<p>One of the reasons is something called the <strong>KV Cache</strong>.</p>
+<p>As an AI model processes a conversation, it needs to retain information from previously processed tokens. Rather than calculating everything again for every new token, it stores intermediate information in memory and reuses it.</p>
+<p>This makes text generation faster, but it introduces another challenge: the longer the conversation, the more memory the model needs.</p>
+<p>Google Research introduced <strong>TurboQuant</strong>, a technique designed to address this problem through extreme vector compression.</p>
+<p>The interesting part isn&rsquo;t just that TurboQuant compresses data. It&rsquo;s how it tries to preserve the mathematical information that AI models need even after compression.</p>
+<p>In this article, we&rsquo;ll understand the problem from scratch, explore the ideas behind TurboQuant, and perform a few Python experiments to see what happens when we compress vectors ourselves.</p>
+<p>You don&rsquo;t need an ML background to follow along. We&rsquo;ll use simple examples and focus on understanding what the results actually mean.</p>
+<h2 id="1-why-does-ai-need-so-much-memory" class="relative group">1. Why does AI need so much memory? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1-why-does-ai-need-so-much-memory" aria-label="Anchor">#</a></span></h2><p>Let&rsquo;s start with something familiar: a conversation with ChatGPT.</p>
+<p>Imagine asking an AI model:</p>
+<ol>
+<li>Explain Java garbage collection.</li>
+<li>How does it differ from reference counting?</li>
+<li>Can you give me an example?</li>
+<li>How does this affect Spring Boot applications?</li>
+</ol>
+<p>The model needs to consider the previous conversation when generating each new response.</p>
+<p>Reprocessing everything from scratch would be inefficient.</p>
+<p>Transformer models solve this using something called <strong>Key-Value Cache (KV Cache)</strong>.</p>
+<h3 id="what-is-a-kv-cache" class="relative group">What is a KV Cache? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-a-kv-cache" aria-label="Anchor">#</a></span></h3><p>During attention calculations, a Transformer generates two important representations for each token:</p>
+<ul>
+<li><strong>Key (K):</strong> Represents information that can be matched against a query.</li>
+<li><strong>Value (V):</strong> Contains information that can be retrieved when that key is relevant.</li>
+</ul>
+<p>The model stores these Key and Value representations in memory so they can be reused during subsequent token generation.</p>
+<p>Think of it as keeping notes while reading a book.</p>
+<p>Instead of reading the entire book again whenever someone asks a question, you refer to the notes you&rsquo;ve already created.</p>
+<p>That&rsquo;s essentially what the KV Cache helps the model do.</p>
+<h3 id="why-does-this-become-a-problem" class="relative group">Why does this become a problem? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-does-this-become-a-problem" aria-label="Anchor">#</a></span></h3><p>As the conversation grows, more tokens need to be represented in the cache.</p>
+<p>The memory requirement depends on several factors:</p>
+<ul>
+<li>Number of Transformer layers.</li>
+<li>Number of Key-Value attention heads.</li>
+<li>Dimension of each attention head.</li>
+<li>Number of tokens stored.</li>
+<li>Precision used to store the values.</li>
+</ul>
+<p>Long-context models and multiple concurrent requests can make KV Cache memory a significant bottleneck.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_db0c81efe2c568ad.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_477bc237eb3990ac.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_27954a59ea3d0e06.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_94481a8a0a9d7643.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2055"
+        height="1118"
+        class="mx-auto my-0 rounded-md"
+        alt="Why KV Cache grow"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_fdf3b16b0dd07c8c.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_6bfb8725c7440c7f.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_fdf3b16b0dd07c8c.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_e4b956a684916451.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/01-kv-cache_hu_6c28d7bfdf5784d5.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>This is where compression becomes interesting.</p>
+<h2 id="2-what-is-quantization" class="relative group">2. What is quantization? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2-what-is-quantization" aria-label="Anchor">#</a></span></h2><p>Before understanding TurboQuant, let&rsquo;s understand a fundamental concept: quantization.</p>
+<p>Imagine storing a numerical value:</p>
+<p><code>0.123456789</code></p>
+<p>Do we always need to store all these decimal places?</p>
+<p>What if we could represent it approximately as:</p>
+<p><code>0.12</code></p>
+<p>We would lose some precision, but we would also need less information to represent the value.</p>
+<p>This is the basic idea behind quantization.</p>
+<p>In machine learning, numerical values are often stored using different representations:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Representation</th>
+					<th style="text-align: right">Bits per value</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>FP32</td>
+					<td style="text-align: right">32</td>
+			</tr>
+			<tr>
+					<td>FP16</td>
+					<td style="text-align: right">16</td>
+			</tr>
+			<tr>
+					<td>INT8</td>
+					<td style="text-align: right">8</td>
+			</tr>
+			<tr>
+					<td>INT4</td>
+					<td style="text-align: right">4</td>
+			</tr>
+	</tbody>
+</table>
+<p>Reducing the number of bits reduces the amount of storage required.</p>
+<p>For example:</p>
+<ul>
+<li>FP32 requires 4 bytes.</li>
+<li>INT8 requires 1 byte.</li>
+<li>INT4 requires half a byte when values are packed efficiently.</li>
+</ul>
+<p>However, there is a catch.</p>
+<p><strong>The fewer bits we use, the more carefully we need to preserve the information that matters.</strong></p>
+<p>Consider compressing a photograph. We don&rsquo;t necessarily need every original pixel value, but we still want the photograph to look similar.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_2468a74554d94c33.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_2a8b1fcc6edaa18d.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_a04ffaca3b9c1ef2.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_d110016e2c413006.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1752"
+        height="897"
+        class="mx-auto my-0 rounded-md"
+        alt="Photo compression analogy"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_bbf7479605fb7eca.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_d6fdb3e20493d9d.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_bbf7479605fb7eca.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_edd2cfc6657160dc.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/compression-analogy_hu_f372d7fe09035fd7.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>Vector compression faces a comparable challenge.</p>
+<h2 id="3-why-isnt-ordinary-quantization-enough" class="relative group">3. Why isn&rsquo;t ordinary quantization enough? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3-why-isnt-ordinary-quantization-enough" aria-label="Anchor">#</a></span></h2><p>Let&rsquo;s consider a simple numerical vector:</p>
+<p><code>[0.82, 0.45, 0.67, 0.12]</code></p>
+<p>Suppose we compress it:</p>
+<p><code>[0.86, 0.43, 0.71, 0.14]</code></p>
+<p>The reconstructed vector is not identical to the original.</p>
+<p>This difference is called <strong>quantization error</strong> or reconstruction error.</p>
+<p>For many applications, a small error is acceptable. But consider a vector database or Transformer attention calculation. The relationships between vectors are often more important than the individual numerical values. A small change in coordinates can change similarity rankings or attention scores. Therefore, a good compression technique must consider not just how much memory it saves, but also what information it preserves.</p>
+<p>This is the problem TurboQuant attempts to solve.</p>
+<h2 id="4-introducing-turboquant" class="relative group">4. Introducing TurboQuant <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#4-introducing-turboquant" aria-label="Anchor">#</a></span></h2><p>Google Research introduced TurboQuant in March 2026.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+      <img
+        width="1920"
+        height="1000"
+        class="mx-auto my-0 rounded-md"
+        alt="TurboQuant"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/Quantization-hero_hu_513ac01aac57a288.gif" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/Quantization-hero_hu_2a63f88b214af27d.gif 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/Quantization-hero_hu_513ac01aac57a288.gif 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/Quantization-hero_hu_e0e4ee8ac07a294c.gif 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/Quantization-hero_hu_bfad1eb89aea2ae4.gif 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>The underlying research paper, <em>TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate</em>, was published as an arXiv preprint in April 2025 and was accepted for ICLR 2026.</p>
+<p>The research focuses on efficiently compressing high-dimensional vectors without requiring model retraining or a calibration dataset.</p>
+<p>The key ideas involve:</p>
+<ol>
+<li>Random rotation.</li>
+<li>Efficient scalar quantization.</li>
+<li>Residual correction using QJL(Quantized Johnson–Lindenstrauss).</li>
+</ol>
+<p>Let&rsquo;s understand them individually.</p>
+<h2 id="5-random-rotation-changing-representation-without-losing-geometry" class="relative group">5. Random rotation: Changing representation without losing geometry <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#5-random-rotation-changing-representation-without-losing-geometry" aria-label="Anchor">#</a></span></h2><p>Imagine a point on a piece of paper. You rotate the paper by 90 degrees. The point&rsquo;s coordinates change, but its distance from the centre remains the same. Random rotation applies a similar mathematical operation to high-dimensional vectors.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_d20412462fdc99f3.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_d9d189264cf381e9.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_e71e8e132a52058.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_59bd0f64d7843333.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2055"
+        height="1040"
+        class="mx-auto my-0 rounded-md"
+        alt="Random Rotation"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_eb959404bc92f7ef.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_9357cf57969147a.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_eb959404bc92f7ef.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_c05ee04364aaf1d7.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/05-random-rotation_hu_c04174802aa1999e.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>For a vector V, we multiply it by an orthogonal matrix R:</p>
+<blockquote>
+<p><code>V' = V × R</code></p>
+</blockquote>
+<p>The important property of this matrix is:</p>
+<blockquote>
+<p><code>Rᵀ × R = I</code></p>
+</blockquote>
+<p>This means the transformation preserves vector lengths and inner products when applied consistently.</p>
+<p><em><strong>Why does this help?</strong></em></p>
+<p>High-dimensional vectors can have uneven coordinate distributions.</p>
+<p>Random rotation changes the coordinate representation and makes the resulting coordinates more statistically suitable for efficient scalar quantization.</p>
+<p>The goal is to make compression more efficient without losing the important geometric relationships.</p>
+<h3 id="our-first-experiment-verify-random-rotation" class="relative group">Our first experiment: Verify random rotation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#our-first-experiment-verify-random-rotation" aria-label="Anchor">#</a></span></h3><p>We generated a random vector and an orthogonal matrix using NumPy. We then compared the original vector&rsquo;s length with its rotated version.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Check orthogonality</span>
+</span></span><span style="display:flex;"><span>identity <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>eye(dimensions)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>orthogonality_error <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(
+</span></span><span style="display:flex;"><span>    rotation_matrix<span style="color:#f92672">.</span>T <span style="color:#f92672">@</span> rotation_matrix <span style="color:#f92672">-</span> identity
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Orthogonality error:&#34;</span>, orthogonality_error)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check vector norm preservation</span>
+</span></span><span style="display:flex;"><span>original_norm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(sample_vector)
+</span></span><span style="display:flex;"><span>rotated_norm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(rotated_vector)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Original norm:&#34;</span>, original_norm)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Rotated norm:&#34;</span>, rotated_norm)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Norm difference:&#34;</span>,
+</span></span><span style="display:flex;"><span>    abs(original_norm <span style="color:#f92672">-</span> rotated_norm)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>Our result:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Measurement</th>
+					<th style="text-align: right">Result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Orthogonality error</td>
+					<td style="text-align: right">5.78 × 10⁻¹⁴</td>
+			</tr>
+			<tr>
+					<td>Original vector norm</td>
+					<td style="text-align: right">1.0</td>
+			</tr>
+			<tr>
+					<td>Rotated vector norm</td>
+					<td style="text-align: right">1.000000034</td>
+			</tr>
+	</tbody>
+</table>
+<p>The difference is extremely small and comes from floating-point precision. This confirms that our rotation implementation preserves vector length.</p>
+<p><strong>One important lesson</strong>: rotation changes the coordinates, not the underlying geometry.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_e20beffa617541ee.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_1bdd9a1bddb90fa1.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_45ca35195fcb1109.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_c5c0886b8fec3fa9.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1752"
+        height="897"
+        class="mx-auto my-0 rounded-md"
+        alt="Verifying random rotation: vector properties and experimental results"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_77ee3cd37c3afa60.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_69d7f43bce587adb.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_77ee3cd37c3afa60.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_4a106d70a8f39b46.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/random-rotation-verification_hu_ce751f8dbb88d754.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<h2 id="6-polarquant-making-vector-compression-more-efficient" class="relative group">6. PolarQuant: Making vector compression more efficient <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#6-polarquant-making-vector-compression-more-efficient" aria-label="Anchor">#</a></span></h2><p>PolarQuant is a related quantization technique presented alongside TurboQuant by Google Research.</p>
+<p>Instead of treating every vector coordinate independently in its original Cartesian representation, PolarQuant uses polar-coordinate-based transformations.</p>
+<p>Think about describing a location.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_f490b082f7712d65.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_436b429870888b20.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_14cce5626ac45851.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_9bc6564a06d2931a.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1752"
+        height="897"
+        class="mx-auto my-0 rounded-md"
+        alt="Cartesian and polar coordinates describing the same point"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_fb16635441e5b107.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_565139af93605732.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_fb16635441e5b107.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_6837e4cea1b06385.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/cartesian-vs-polar-coordinates_hu_d5a3b30484ba7e62.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>You could say:</p>
+<ul>
+<li>Move 3 units horizontally.</li>
+<li>Move 4 units vertically.</li>
+</ul>
+<p>Or you could say:</p>
+<ul>
+<li>Move 5 units.</li>
+<li>Follow an angle of approximately 53 degrees.</li>
+</ul>
+<p>Both describe the same location, but the representation is different.</p>
+<p>PolarQuant uses a related mathematical idea for high-dimensional vectors.</p>
+<p>Its recursive polar transformations help represent vector information through radii and angles while reducing the need for conventional per-block normalization metadata.</p>
+<p><em><strong>Why is this useful?</strong></em></p>
+<p>Traditional quantization techniques may need additional scale and normalization values for individual blocks. These extra values consume memory and reduce the benefit of compression. PolarQuant aims to reduce that overhead.</p>
+<p>The important takeaway:</p>
+<blockquote>
+<p><strong>Compression isn&rsquo;t only about reducing the size of the original values. We must also reduce the extra information required to decode them.</strong></p>
+</blockquote>
+<h2 id="7-qjl-what-happens-to-the-information-lost-during-compression" class="relative group">7. QJL: What happens to the information lost during compression? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#7-qjl-what-happens-to-the-information-lost-during-compression" aria-label="Anchor">#</a></span></h2><p>This is one of the most interesting ideas in the research.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_c2210b7ab570cff.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_7ef325cae684e42b.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_ceb14116e0e8dd1c.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_d4771b2a444c7e3e.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2055"
+        height="1118"
+        class="mx-auto my-0 rounded-md"
+        alt="QJL"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_72fe87c037cef32d.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_a8d60112795aed31.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_72fe87c037cef32d.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_b283284395ec7ef4.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/07-qjl-concept_hu_4144e13cc150cfc4.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>Even after carefully designed quantization, some information is lost.</p>
+<p>Let&rsquo;s take a simple example:</p>
+<p>Original vector:</p>
+<p><code>[0.8, 0.4, 0.6, 0.2]</code></p>
+<p>Compressed vector:</p>
+<p><code>[0.7, 0.5, 0.6, 0.2]</code></p>
+<p>The difference is:</p>
+<p><code>[0.1, -0.1, 0.0, 0.0]</code></p>
+<p>This difference is called the <strong>residual</strong>.</p>
+<p>A conventional approach might try to store enough information to reconstruct the residual accurately.
+But TurboQuant takes a more interesting approach.
+It uses QJL (Quantized Johnson–Lindenstrauss) to encode residual information using one-bit signs of random projections.</p>
+<h3 id="how-does-qjl-work" class="relative group">How does QJL work? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#how-does-qjl-work" aria-label="Anchor">#</a></span></h3><p>Imagine taking a high-dimensional residual vector and projecting it onto several random directions.</p>
+<p>Instead of storing every projected numerical value, QJL stores only its sign:</p>
+<ul>
+<li>Positive values become +1.</li>
+<li>Negative values become -1.</li>
+</ul>
+<p>The residual&rsquo;s magnitude is also retained.</p>
+<p>This produces a compact representation.</p>
+<p>At query time, the system uses the stored sign information, residual magnitude and query projections to estimate the missing contribution to an inner-product calculation.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_9c4b0b5065af1843.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_239ccbcd0713cf90.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_1c2433b03feb5bee.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_d4d8b88ebe02f687.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1752"
+        height="897"
+        class="mx-auto my-0 rounded-md"
+        alt="QJL residual correction explained"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_825aebc0efeec17e.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_e4844d953506df5d.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_825aebc0efeec17e.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_21b387869544cb80.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/QJL-residual-correction_hu_5fd487582960c23.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<h3 id="why-is-this-clever" class="relative group">Why is this clever? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-is-this-clever" aria-label="Anchor">#</a></span></h3><p>Remember that the objective isn&rsquo;t necessarily to reconstruct every original coordinate perfectly. For Transformer attention, we particularly care about the inner product between Query and Key vectors. QJL is designed to produce an unbiased estimate of the residual&rsquo;s contribution to that inner product.</p>
+<p>In simpler words:</p>
+<blockquote>
+<p>Instead of remembering every detail that was lost, we preserve enough information to estimate the mathematical operation that matters.</p>
+</blockquote>
+<p>That&rsquo;s the interesting part of QJL.</p>
+<h3 id="our-qjl-experiment-can-we-recover-the-accuracy-lost-during-compression" class="relative group">Our QJL experiment: Can we recover the accuracy lost during compression? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#our-qjl-experiment-can-we-recover-the-accuracy-lost-during-compression" aria-label="Anchor">#</a></span></h3><p>We understood the concept of QJL. But does it actually help?</p>
+<p>Let&rsquo;s try a small experiment using Python.</p>
+<p>We took two 128-dimensional vectors:</p>
+<ul>
+<li>A query vector.</li>
+<li>A key vector.</li>
+</ul>
+<p>We compressed the key using our simplified INT4 quantizer and calculated the difference between the original and reconstructed key. This difference is called the residual.</p>
+<p>Next, we applied a simplified QJL-style random projection experiment to encode the residual using one-bit signs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rng <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>default_rng(<span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use 128 dimensions to keep the demonstration lightweight</span>
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> vectors[<span style="color:#ae81ff">0</span>, :d]<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>key <span style="color:#f92672">=</span> vectors[<span style="color:#ae81ff">1</span>, :d]<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 1: Quantize the key using our existing INT4 quantizer</span>
+</span></span><span style="display:flex;"><span>q_key, scale <span style="color:#f92672">=</span> quantize_vector(key, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reconstructed_key <span style="color:#f92672">=</span> q_key<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 2: Calculate the residual</span>
+</span></span><span style="display:flex;"><span>residual <span style="color:#f92672">=</span> key <span style="color:#f92672">-</span> reconstructed_key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>residual_norm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(residual)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 3: Calculate original and compressed dot products</span>
+</span></span><span style="display:flex;"><span>original_dot <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(query, key)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>compressed_dot <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(query, reconstructed_key)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 4: Apply QJL repeatedly using independent</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># random Gaussian projection matrices</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>corrected_estimates <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> residual_norm <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1e-12</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    unit_residual <span style="color:#f92672">=</span> residual <span style="color:#f92672">/</span> residual_norm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        S <span style="color:#f92672">=</span> rng<span style="color:#f92672">.</span>standard_normal((d, d))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># One-bit encoding of projected residual</span>
+</span></span><span style="display:flex;"><span>        sign_bits <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sign(S <span style="color:#f92672">@</span> unit_residual)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Project the query using the same matrix</span>
+</span></span><span style="display:flex;"><span>        projected_query <span style="color:#f92672">=</span> S <span style="color:#f92672">@</span> query
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># QJL estimate of the missing inner product</span>
+</span></span><span style="display:flex;"><span>        correction <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>            residual_norm
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sqrt(np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">/</span> d
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>dot(projected_query, sign_bits)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        corrected_estimates<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>            compressed_dot <span style="color:#f92672">+</span> correction
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    qjl_estimate <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(corrected_estimates)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    qjl_estimate <span style="color:#f92672">=</span> compressed_dot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Original inner product:&#34;</span>, original_dot)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Compressed inner product:&#34;</span>, compressed_dot)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;QJL corrected estimate:&#34;</span>, qjl_estimate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Original error:&#34;</span>,
+</span></span><span style="display:flex;"><span>      abs(original_dot <span style="color:#f92672">-</span> compressed_dot))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;QJL corrected error:&#34;</span>,
+</span></span><span style="display:flex;"><span>      abs(original_dot <span style="color:#f92672">-</span> qjl_estimate))
+</span></span></code></pre></div><p>We repeated the experiment with 100 independent random projections and averaged the corrected estimates.</p>
+<p>Here are our results:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Measurement</th>
+					<th style="text-align: right">Result</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Original inner product</td>
+					<td style="text-align: right">0.020597</td>
+			</tr>
+			<tr>
+					<td>Compressed inner product</td>
+					<td style="text-align: right">0.019468</td>
+			</tr>
+			<tr>
+					<td>QJL-corrected estimate</td>
+					<td style="text-align: right">0.020790</td>
+			</tr>
+			<tr>
+					<td>Error before correction</td>
+					<td style="text-align: right">0.001129</td>
+			</tr>
+			<tr>
+					<td>Error after correction</td>
+					<td style="text-align: right">0.000193</td>
+			</tr>
+	</tbody>
+</table>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_756249430940e71.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_a9306e0d1645188.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_609d9234b4492ee1.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_133149a6136d95c9.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1889"
+        height="1216"
+        class="mx-auto my-0 rounded-md"
+        alt="QJL inner-product estimation error comparison"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_a58387e1bf26c344.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_1d5c185ce1e019d1.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_a58387e1bf26c344.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_e34a879f0039ff09.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/08-qjl-error-results_hu_c89d68cfb4d7a6c2.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>Look at the difference.</p>
+<p>Before correction, our error was approximately 0.001129. After applying the QJL-style correction, it reduced to approximately 0.000193. That&rsquo;s an 82.9% reduction in estimation error for this particular experiment. The corrected estimate is slightly higher than the original, but it is considerably closer.</p>
+<p><strong>What did we learn?</strong></p>
+<p>We didn&rsquo;t reconstruct the original residual coordinate by coordinate.</p>
+<p>Instead, we used a compact representation of its projected signs to estimate its contribution to the inner product.</p>
+<p>That&rsquo;s the central intuition behind QJL.</p>
+<blockquote>
+<p>A word of caution: this is an educational demonstration using one query-key pair and 100 random projections. It illustrates the estimator&rsquo;s behaviour; it is not a benchmark or a full reproduction of Google&rsquo;s TurboQuant implementation.</p>
+</blockquote>
+<h2 id="8-putting-it-all-together" class="relative group">8. Putting it all together <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#8-putting-it-all-together" aria-label="Anchor">#</a></span></h2><p>Here&rsquo;s a simplified view of the TurboQuant approach:</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_65f967c8b9ce6742.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_ba62253c59ca7677.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_2dd72f131c9b6e58.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_67ee8a5060f01c72.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1881"
+        height="836"
+        class="mx-auto my-0 rounded-md"
+        alt="TurboQuant pipeline from input vector to efficient attention"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_59cf1a91a79c4750.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_1ce33b5949088085.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_59cf1a91a79c4750.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_9f643e7a16e249cc.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/turboquant-pipeline-v2_hu_4c108e6713c2b9fd.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ol>
+<li>Start with an original high-dimensional vector.</li>
+<li>Apply a random rotation and efficient scalar quantization.</li>
+<li>Calculate the remaining residual.</li>
+<li>Apply the one-bit QJL transformation to the residual.</li>
+<li>Use the compressed representation and correction information to estimate inner products.</li>
+</ol>
+<p>Google&rsquo;s announcement presents TurboQuant, QJL and PolarQuant as closely related techniques for improving AI memory efficiency.</p>
+<p>They address different parts of the compression problem, and their individual algorithms should not be confused with one another.</p>
+<h2 id="9-lets-perform-our-own-experiment" class="relative group">9. Let&rsquo;s perform our own experiment <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#9-lets-perform-our-own-experiment" aria-label="Anchor">#</a></span></h2><p>Now that we understand the concepts, let&rsquo;s see what happens when we compress vectors ourselves.</p>
+<p>We won&rsquo;t run a local LLM or download an embedding model. Instead, we&rsquo;ll generate synthetic vectors using Python and NumPy. This is sufficient to demonstrate basic quantization and similarity-search behaviour on an ordinary laptop.</p>
+<h3 id="step-1-generate-synthetic-vectors" class="relative group">Step 1: Generate synthetic vectors <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-1-generate-synthetic-vectors" aria-label="Anchor">#</a></span></h3><p>We generated:</p>
+<ul>
+<li>5,000 vectors.</li>
+<li>768 dimensions per vector.</li>
+<li>FP32 numerical representation.</li>
+<li>Five mathematical clusters.</li>
+</ul>
+<p><strong>Why synthetic vectors?</strong></p>
+<p>Normally, an embedding model converts text into numerical vectors. For our experiment, we only need the numerical vectors, not the actual embedding model.</p>
+<p>This lets us focus on compression without consuming unnecessary memory or computing resources.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rng <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>default_rng(seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NUMBER_OF_VECTORS <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>DIMENSIONS <span style="color:#f92672">=</span> <span style="color:#ae81ff">768</span>
+</span></span><span style="display:flex;"><span>NUMBER_OF_CLUSTERS <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>centroids <span style="color:#f92672">=</span> rng<span style="color:#f92672">.</span>standard_normal(
+</span></span><span style="display:flex;"><span>    (NUMBER_OF_CLUSTERS, DIMENSIONS)
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cluster_ids <span style="color:#f92672">=</span> rng<span style="color:#f92672">.</span>integers(
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span>, NUMBER_OF_CLUSTERS,
+</span></span><span style="display:flex;"><span>    size<span style="color:#f92672">=</span>NUMBER_OF_VECTORS
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>noise <span style="color:#f92672">=</span> rng<span style="color:#f92672">.</span>normal(
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.15</span>,
+</span></span><span style="display:flex;"><span>    size<span style="color:#f92672">=</span>(NUMBER_OF_VECTORS, DIMENSIONS)
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vectors <span style="color:#f92672">=</span> centroids[cluster_ids] <span style="color:#f92672">+</span> noise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>norms <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(
+</span></span><span style="display:flex;"><span>    vectors, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, keepdims<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vectors <span style="color:#f92672">=</span> vectors <span style="color:#f92672">/</span> norms
+</span></span></code></pre></div><p>We now have 5,000 vectors, each containing 768 numerical values.</p>
+<h3 id="step-2-understand-the-original-memory-requirement" class="relative group">Step 2: Understand the original memory requirement <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-2-understand-the-original-memory-requirement" aria-label="Anchor">#</a></span></h3><p>Each FP32 value occupies 4 bytes.</p>
+<p>Therefore:</p>
+<p><code>5000 × 768 × 4 = 15,360,000 bytes</code></p>
+<p>That&rsquo;s approximately <strong>14.65 MiB</strong>.</p>
+<p>This is our baseline.</p>
+<h3 id="step-3-apply-simple-quantization" class="relative group">Step 3: Apply simple quantization <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-3-apply-simple-quantization" aria-label="Anchor">#</a></span></h3><p>We implemented a simplified per-vector quantizer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quantize_vector</span>(vector, bits):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Scalar quantization for a single FP32 vector.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.0</span> <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>bits)
+</span></span><span style="display:flex;"><span>    scaled <span style="color:#f92672">=</span> vector <span style="color:#f92672">/</span> delta
+</span></span><span style="display:flex;"><span>    quantized <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>clip(np<span style="color:#f92672">.</span>round(scaled), <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>(bits<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>(bits<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>int8)
+</span></span><span style="display:flex;"><span>    reconstructed <span style="color:#f92672">=</span> (quantized<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">*</span> delta
+</span></span><span style="display:flex;"><span>    scale <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([delta], dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> quantized, scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Apply 4-bit quantization</span>
+</span></span><span style="display:flex;"><span>    q_vectors_4bit, scales_4bit <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>vectorize(
+</span></span><span style="display:flex;"><span>        quantize_vector, signature<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;(n),(n)-&gt;(n),(n)&#39;</span>, otypes<span style="color:#f92672">=</span>[np<span style="color:#f92672">.</span>int8, np<span style="color:#f92672">.</span>float32]
+</span></span><span style="display:flex;"><span>    )(vectors, <span style="color:#ae81ff">4</span>)
+</span></span></code></pre></div><p>It calculates an individual scale for each vector and uses that scale to convert floating-point values into lower-bit integer representations.</p>
+<p>The important point is that we&rsquo;re experimenting with conventional quantization, not implementing TurboQuant itself.</p>
+<h3 id="step-4-measure-memory-savings" class="relative group">Step 4: Measure memory savings <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-4-measure-memory-savings" aria-label="Anchor">#</a></span></h3><p>Our theoretical storage comparison:</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_b9404ee84110f2b5.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_6a8337b5fd465c88.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_9d4e00d265c31695.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_3474bd1b06f36436.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1767"
+        height="1244"
+        class="mx-auto my-0 rounded-md"
+        alt="Theoretical memory comparison across different precisions"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_97acd50c87ae7267.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_90a526c2e83a1688.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_97acd50c87ae7267.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_1d8e1f8a6b756783.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/02-memory-by-precision_hu_60dd55c6fb9b44e0.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<table>
+	<thead>
+			<tr>
+					<th>Representation</th>
+					<th style="text-align: right">Theoretical memory</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>FP32</td>
+					<td style="text-align: right">14.65 MiB</td>
+			</tr>
+			<tr>
+					<td>INT8</td>
+					<td style="text-align: right">3.66 MiB</td>
+			</tr>
+			<tr>
+					<td>INT4</td>
+					<td style="text-align: right">1.83 MiB</td>
+			</tr>
+			<tr>
+					<td>INT2</td>
+					<td style="text-align: right">0.92 MiB</td>
+			</tr>
+	</tbody>
+</table>
+<p>The compression ratios are:</p>
+<ul>
+<li>INT8: 4×</li>
+<li>INT4: 8×</li>
+<li>INT2: 16×</li>
+</ul>
+<p>These figures assume tightly packed values and exclude scales, metadata and alignment overhead.</p>
+<p>Our NumPy implementation stores all quantized values in <code>int8</code> arrays, so <code>INT4</code> and <code>INT2</code> storage savings are theoretical at this stage.</p>
+<h3 id="step-5-does-compression-affect-similarity-search" class="relative group">Step 5: Does compression affect similarity search? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-5-does-compression-affect-similarity-search" aria-label="Anchor">#</a></span></h3><p>This is where things become interesting.</p>
+<p>Imagine searching a vector database for the five documents most similar to your query. We first perform similarity search using the original vectors. Then we repeat the search using the reconstructed compressed vectors.</p>
+<p>We compare the results using <strong>Recall@5</strong>.</p>
+<p>Recall@5 tells us how many of the original top-five results were retained after compression.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> bits <span style="color:#f92672">in</span> [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>]:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    quantized, scales, reconstructed <span style="color:#f92672">=</span> quantize_per_vector(
+</span></span><span style="display:flex;"><span>        vectors, bits
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Reconstruction error</span>
+</span></span><span style="display:flex;"><span>    mse <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean((vectors <span style="color:#f92672">-</span> reconstructed) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Normalize for cosine similarity</span>
+</span></span><span style="display:flex;"><span>    reconstructed_normalized <span style="color:#f92672">=</span> normalize(reconstructed)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    recalls <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> query_index <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>        query <span style="color:#f92672">=</span> original_vectors[query_index]
+</span></span><span style="display:flex;"><span>        original_top5 <span style="color:#f92672">=</span> top_k_search(
+</span></span><span style="display:flex;"><span>            query, original_vectors, <span style="color:#ae81ff">5</span>, query_index
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        compressed_top5 <span style="color:#f92672">=</span> top_k_search(
+</span></span><span style="display:flex;"><span>            query, reconstructed_normalized, <span style="color:#ae81ff">5</span>, query_index
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        recall <span style="color:#f92672">=</span> len(
+</span></span><span style="display:flex;"><span>            set(original_top5) <span style="color:#f92672">&amp;</span> set(compressed_top5)
+</span></span><span style="display:flex;"><span>        ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>        recalls<span style="color:#f92672">.</span>append(recall)
+</span></span><span style="display:flex;"><span>    avg_recall <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(recalls)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Bits&#34;</span>: bits,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;MSE&#34;</span>: mse,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Recall@5&#34;</span>: avg_recall
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    results<span style="color:#f92672">.</span>append(result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>bits<span style="color:#e6db74">}</span><span style="color:#e6db74">-bit quantization&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Average scale:&#34;</span>, scales<span style="color:#f92672">.</span>mean())
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;MSE:&#34;</span>, mse)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Average Recall@5:&#34;</span>, round(avg_recall, <span style="color:#ae81ff">4</span>))
+</span></span></code></pre></div><p>For example:</p>
+<p>Original search:</p>
+<p><code>[12, 45, 89, 120, 250]</code></p>
+<p>Compressed search:</p>
+<p><code>[12, 45, 90, 120, 300]</code></p>
+<p>Four out of five results match.</p>
+<p>Recall@5 = 4 / 5 = 80%.</p>
+<h3 id="our-results" class="relative group">Our results <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#our-results" aria-label="Anchor">#</a></span></h3><p>We evaluated 100 queries using per-vector quantization.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_d800e934a9745323.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_56d6e53c74abe727.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_a8de5777c419abc8.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_8535de92df10ca0c.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1701"
+        height="1216"
+        class="mx-auto my-0 rounded-md"
+        alt="Recall at 5 comparison"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_b57e355ff01c6255.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_d163704327a3d57e.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_b57e355ff01c6255.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_b2da5c4834f840b4.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/03-recall-at-5_hu_10b700ceae09410b.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<table>
+	<thead>
+			<tr>
+					<th>Precision</th>
+					<th style="text-align: right">Average Recall@5</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>FP32 baseline</td>
+					<td style="text-align: right">100%</td>
+			</tr>
+			<tr>
+					<td>INT8</td>
+					<td style="text-align: right">90.6%</td>
+			</tr>
+			<tr>
+					<td>INT4</td>
+					<td style="text-align: right">19%</td>
+			</tr>
+			<tr>
+					<td>INT2</td>
+					<td style="text-align: right">0.2%</td>
+			</tr>
+	</tbody>
+</table>
+<p>Look at the difference.</p>
+<p>INT8 retained most of the original nearest neighbours. However, INT4 and INT2 experienced significant degradation.</p>
+<p><strong>What does this tell us?</strong></p>
+<p>Reducing the number of bits can save a lot of memory, but it can also change the relationships between vectors. That&rsquo;s why evaluating compression only through memory savings is insufficient.</p>
+<p>We also need to understand how much useful information is preserved.</p>
+<h3 id="step-6-measure-reconstruction-error" class="relative group">Step 6: Measure reconstruction error <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-6-measure-reconstruction-error" aria-label="Anchor">#</a></span></h3><p>We also calculated Mean Squared Error (MSE).</p>
+<p>MSE measures the average squared difference between original and reconstructed vector values.</p>
+<p>Our results:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Precision</th>
+					<th style="text-align: right">MSE</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>INT8</td>
+					<td style="text-align: right">6.87 × 10⁻⁸</td>
+			</tr>
+			<tr>
+					<td>INT4</td>
+					<td style="text-align: right">2.26 × 10⁻⁵</td>
+			</tr>
+			<tr>
+					<td>INT2</td>
+					<td style="text-align: right">8.97 × 10⁻⁴</td>
+			</tr>
+	</tbody>
+</table>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_62d9deec5c5465e7.webp 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_2f7b049ae0a0a4a3.webp 660w
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_4100def20ef5d30d.webp 1024w
+            
+            
+              ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_1afcfe0d462ea814.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1713"
+        height="1216"
+        class="mx-auto my-0 rounded-md"
+        alt="Reconstruction error comparison"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_5ae87f1427ee1bb0.png" srcset="http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_b458e360923242cd.png 330w,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_5ae87f1427ee1bb0.png 660w
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_d502cf85e6a6389f.png 1024w
+          
+          
+            ,http://localhost:1313/posts/google-turboquant-explained/images/turboquant/04-reconstruction-mse_hu_df31154af7c8a284.png 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p>As we reduce precision, reconstruction error increases. But there is another interesting observation.</p>
+<p>A relatively small reconstruction error does not guarantee that the nearest-neighbour rankings will remain unchanged. This is why TurboQuant&rsquo;s focus on vector geometry and inner-product estimation matters.</p>
+<h2 id="10-one-more-experiment-does-random-rotation-automatically-improve-quantization" class="relative group">10. One more experiment: Does random rotation automatically improve quantization? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#10-one-more-experiment-does-random-rotation-automatically-improve-quantization" aria-label="Anchor">#</a></span></h2><p>We also experimented with random rotation before applying our simple INT4 quantizer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rotation_mses <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>baseline_mses <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    vector <span style="color:#f92672">=</span> vectors[i]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Generate a separate random orthogonal matrix</span>
+</span></span><span style="display:flex;"><span>    random_matrix <span style="color:#f92672">=</span> rng<span style="color:#f92672">.</span>standard_normal(
+</span></span><span style="display:flex;"><span>        (<span style="color:#ae81ff">768</span>, <span style="color:#ae81ff">768</span>)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    rotation, _ <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>qr(random_matrix)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Baseline quantization</span>
+</span></span><span style="display:flex;"><span>    q1, s1 <span style="color:#f92672">=</span> quantize_vector(vector, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    reconstructed1 <span style="color:#f92672">=</span> q1<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> s1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    baseline_mses<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>        reconstruction_mse(vector, reconstructed1)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Rotate, quantize and reverse</span>
+</span></span><span style="display:flex;"><span>    rotated <span style="color:#f92672">=</span> vector <span style="color:#f92672">@</span> rotation
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    q2, s2 <span style="color:#f92672">=</span> quantize_vector(rotated, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    reconstructed2 <span style="color:#f92672">=</span> q2<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> s2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    restored <span style="color:#f92672">=</span> reconstructed2 <span style="color:#f92672">@</span> rotation<span style="color:#f92672">.</span>T
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    rotation_mses<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>        reconstruction_mse(vector, restored)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Average baseline MSE:&#34;</span>, np<span style="color:#f92672">.</span>mean(baseline_mses))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Average rotated MSE:&#34;</span>, np<span style="color:#f92672">.</span>mean(rotation_mses))
+</span></span></code></pre></div><p>The objective was to understand whether rotation alone improves reconstruction accuracy.</p>
+<p>We compared 100 vectors.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Approach</th>
+					<th style="text-align: right">Average MSE</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Without rotation</td>
+					<td style="text-align: right">2.228 × 10⁻⁵</td>
+			</tr>
+			<tr>
+					<td>With rotation</td>
+					<td style="text-align: right">2.494 × 10⁻⁵</td>
+			</tr>
+	</tbody>
+</table>
+<p>Surprisingly, reconstruction error increased by approximately 11.9%.</p>
+<p>We then compared inner-product estimation across 1,000 query-key pairs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>NUMBER_OF_PAIRS <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>errors_without_rotation <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>errors_with_rotation <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(NUMBER_OF_PAIRS):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    query <span style="color:#f92672">=</span> vectors[i]
+</span></span><span style="display:flex;"><span>    key <span style="color:#f92672">=</span> vectors[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1000</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    original_dot <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(query, key)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Without rotation</span>
+</span></span><span style="display:flex;"><span>    q1, s1 <span style="color:#f92672">=</span> quantize_vector(query, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    k1, s2 <span style="color:#f92672">=</span> quantize_vector(key, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    reconstructed_q <span style="color:#f92672">=</span> q1<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> s1
+</span></span><span style="display:flex;"><span>    reconstructed_k <span style="color:#f92672">=</span> k1<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> s2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    dot_without <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(
+</span></span><span style="display:flex;"><span>        reconstructed_q, reconstructed_k
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    errors_without_rotation<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>        abs(original_dot <span style="color:#f92672">-</span> dot_without)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># With the same orthogonal rotation</span>
+</span></span><span style="display:flex;"><span>    rq <span style="color:#f92672">=</span> query <span style="color:#f92672">@</span> rotation_matrix
+</span></span><span style="display:flex;"><span>    rk <span style="color:#f92672">=</span> key <span style="color:#f92672">@</span> rotation_matrix
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    q2, s3 <span style="color:#f92672">=</span> quantize_vector(rq, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    k2, s4 <span style="color:#f92672">=</span> quantize_vector(rk, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    restored_q <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        q2<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> s3
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">@</span> rotation_matrix<span style="color:#f92672">.</span>T
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    restored_k <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        k2<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">*</span> s4
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">@</span> rotation_matrix<span style="color:#f92672">.</span>T
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    dot_with <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(restored_q, restored_k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    errors_with_rotation<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>        abs(original_dot <span style="color:#f92672">-</span> dot_with)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Mean error without rotation:&#34;</span>,
+</span></span><span style="display:flex;"><span>    np<span style="color:#f92672">.</span>mean(errors_without_rotation)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Mean error with rotation:&#34;</span>,
+</span></span><span style="display:flex;"><span>    np<span style="color:#f92672">.</span>mean(errors_with_rotation)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><table>
+	<thead>
+			<tr>
+					<th>Approach</th>
+					<th style="text-align: right">Mean absolute error</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Without rotation</td>
+					<td style="text-align: right">0.004982</td>
+			</tr>
+			<tr>
+					<td>With rotation</td>
+					<td style="text-align: right">0.005846</td>
+			</tr>
+	</tbody>
+</table>
+<p>In this experiment, rotation also increased the average inner-product error.</p>
+<p>Does that mean random rotation is ineffective?</p>
+<p>No.</p>
+<p>It means that random rotation by itself does not guarantee better results when combined with a basic uniform quantizer.</p>
+<p>TurboQuant uses carefully designed quantization techniques rather than simply rotating a vector and applying an ordinary INT4 conversion.</p>
+<p>This experiment helped us understand an important distinction:</p>
+<blockquote>
+<p><strong>Preserving vector geometry and designing an effective quantization strategy are two different problems.</strong></p>
+</blockquote>
+<h2 id="11-what-did-google-actually-achieve" class="relative group">11. What did Google actually achieve? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#11-what-did-google-actually-achieve" aria-label="Anchor">#</a></span></h2><p>Our experiments demonstrate the fundamentals of compression, but they do not reproduce TurboQuant.</p>
+<p>For the actual research results, we should refer to Google&rsquo;s evaluation.</p>
+<p>Google reports:</p>
+<ul>
+<li>At least 6× reduction in KV Cache memory in its reported evaluations.</li>
+<li>Quality-neutral KV Cache compression at 3.5 bits per channel in the paper&rsquo;s evaluation.</li>
+<li>Marginal quality degradation at 2.5 bits per channel.</li>
+<li>Up to 8× speedup in attention-logit computation with 4-bit TurboQuant compared with uncompressed 32-bit keys on NVIDIA H100 GPUs.</li>
+</ul>
+<p>The researchers evaluated the approach using long-context benchmarks, including Needle-in-a-Haystack and LongBench, with models such as Gemma and Mistral.</p>
+<p>These are research benchmark results, not guaranteed improvements for every model or hardware configuration.</p>
+<p>Also, TurboQuant compresses the KV Cache; it does not magically reduce the memory occupied by the entire model&rsquo;s weights.</p>
+<h2 id="12-what-does-this-mean-for-developers" class="relative group">12. What does this mean for developers? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#12-what-does-this-mean-for-developers" aria-label="Anchor">#</a></span></h2><p>If you&rsquo;re building AI applications, especially those involving RAG, vector databases or long-context LLMs, TurboQuant is worth understanding.</p>
+<p>A few potential implications:</p>
+<p><strong>1. More efficient LLM inference</strong> : Smaller KV Caches can reduce memory pressure during long-context inference.</p>
+<p><strong>2. Better memory utilization</strong> : Less memory per cached token can potentially allow more concurrent requests within the same hardware capacity.</p>
+<p><strong>3. More efficient vector search</strong> : Compact vector representations can reduce indexing memory and improve search efficiency.</p>
+<p><strong>4. Better compression strategies</strong> : The research demonstrates why optimizing mathematical operations such as inner products can be more important than simply minimizing numerical reconstruction error.</p>
+<h2 id="13-final-thoughts" class="relative group">13. Final thoughts <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#13-final-thoughts" aria-label="Anchor">#</a></span></h2><p>What I found most interesting about TurboQuant is not just the compression ratio.</p>
+<p>It&rsquo;s the approach to solving a fundamental problem.</p>
+<p>We started with a simple question:</p>
+<p>Can we store AI vectors using fewer bits?</p>
+<p>But the deeper question is:</p>
+<p>Can we reduce memory consumption while preserving the information that AI models actually need?</p>
+<p>Random rotation, carefully designed quantization and QJL residual correction work together to address that challenge.</p>
+<p>Our experiments with synthetic vectors also taught us something valuable: aggressive compression can save memory, but the quality of the downstream operation matters just as much.</p>
+<p>TurboQuant is a good example of how mathematical research can translate into practical improvements in AI infrastructure.</p>
+<p>And perhaps the biggest takeaway is this:</p>
+<p><strong>In AI systems, sometimes the goal isn&rsquo;t to preserve every bit of information. It&rsquo;s to preserve the information that matters.</strong></p>
+<hr>
+<h2 id="references-and-further-reading" class="relative group">References and further reading <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references-and-further-reading" aria-label="Anchor">#</a></span></h2><ol>
+<li><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/" target="_blank" rel="noreferrer">Google Research: TurboQuant – Redefining AI Efficiency with Extreme Compression</a></li>
+<li><a href="https://arxiv.org/abs/2504.19874" target="_blank" rel="noreferrer">TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate – Original Research Paper</a></li>
+<li><a href="https://arxiv.org/abs/2502.02617" target="_blank" rel="noreferrer">PolarQuant Research Paper</a></li>
+</ol>
+<p><em>Note: The Python experiments in this article are educational demonstrations of conventional quantization and vector similarity search. They are not a reproduction of Google&rsquo;s TurboQuant implementation or its published benchmarks.</em></p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+    <div class="place-self-center">
+      
+      
+      <div class="text-2xl sm:text-lg">
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="http://localhost:1313/posts/migration-from-wix-to-github-pages-and-hugo/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >I Moved My Blog from Wix to GitHub Pages: From a Managed CMS to a Developer-Owned Platform</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2026-11-10 04:40:00 &#43;0530 IST">November 10, 2026</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2026
+            
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+        <div
+          class="me-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        >
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              title="Switch to dark appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+              title="Switch to light appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+            </div>
+          </button>
+        </div>
+      
+    </div>
+  </div>
+  
+  
+    
+<div class="author-social-links">
+    <span class="author-name">Written by Ankit Agrahari</span>
+
+    <span class="social-separator">|</span>
+
+    <a href="https://github.com/ankitagrahari" target="_blank" rel="noopener noreferrer">
+        GitHub
+    </a>
+
+    <span class="social-separator">|</span>
+
+    <a href="https://www.instagram.com/backendbrilliance/" target="_blank" rel="noopener noreferrer">
+        Instagram
+    </a>
+
+    <span class="social-separator">|</span>
+
+    <a href="https://medium.com/@ankitagrahari.rkgit" target="_blank" rel="noopener noreferrer">
+        Medium
+    </a>
+</div>
+
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>
