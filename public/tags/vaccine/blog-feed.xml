@@ -5,7 +5,7 @@
 		<link>http://localhost:1313/tags/vaccine/</link>
 		<description>Recent content in Vaccine on Backend Brilliance</description>
 		<generator>Hugo</generator>
-		<language>en-us</language>
+		<language>en</language>
 		
 		
 		
@@ -18,7 +18,7 @@
 				<link>http://localhost:1313/posts/exploring-government-s-cowin-apis/</link>
 				<pubDate>Tue, 27 Oct 2026 08:14:14 +0530</pubDate>
 				<guid>http://localhost:1313/posts/exploring-government-s-cowin-apis/</guid>
-				<description>&lt;p&gt;In this post we will be looking into the CoWIN APIs which GoI has published during the covid period where the third party app can utilize the APIs to create there own app.&lt;/p&gt;&#xA;&lt;p&gt;We used only few API from the public list and created a &lt;em&gt;&lt;strong&gt;Spring boot application&lt;/strong&gt;&lt;/em&gt; which will get me the list of all the available slots for either the old or young people based on their age on a given date and list of pin codes.&lt;/p&gt;</description>
+				<description></description>
 			</item>
 	</channel>
 </rss>
