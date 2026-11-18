@@ -199,7 +199,7 @@ This one took the longest. Curl worked, SDK didn't.
 
 ### **5. Razorpay JS SDK Undefined**
 
-*<script>* tags inside React JSX don't execute. *window.Razorpay* was always undefined. 
+`<script>` tags inside React JSX don't execute. *window.Razorpay* was always undefined. 
 
 **Fix:** load in index.html before React mounts.
 
