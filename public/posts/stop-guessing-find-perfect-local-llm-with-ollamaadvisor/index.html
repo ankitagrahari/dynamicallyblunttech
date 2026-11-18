@@ -1,12 +1,14 @@
 
 
 
+  
+
 
 
 
 <!doctype html>
 <html
-  lang="en-us"
+  lang="en"
   dir="ltr"
   class="scroll-smooth"
   data-default-appearance="light"
@@ -51,6 +53,9 @@
   
   
   
+    
+    
+  
   
   
   
@@ -59,8 +64,8 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
-      integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
+      src="http://localhost:1313/js/main.bundle.min.167efd96c29259046e711c52c0db66536f497aad73a774cd6f28fc408f2d2688.js"
+      integrity="sha256-Fn79lsKSWQRucRxSwNtmU29Jeq1zp3TNbyj8QI8tJog="
       data-copy="Copy"
       data-copied="Copied"
     ></script>
@@ -70,9 +75,7 @@
     name="description"
     content="
       
-        Have you ever excitedly run ollama run llama3:70b on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.
-The biggest bottleneck in local AI isn&rsquo;t the models themselves—it&rsquo;s hardware-model mismatch.
-Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.
+        
       
     "
   />
@@ -99,10 +102,8 @@ Engineers are blindly downloading quantized models without calculating the overh
   <meta property="og:url" content="http://localhost:1313/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/">
 	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Stop Guessing, Find Perfect Local LLM with OllamaAdvisor">
-	<meta property="og:description" content="Have you ever excitedly run ollama run llama3:70b on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.
-The biggest bottleneck in local AI isn’t the models themselves—it’s hardware-model mismatch.
-Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.">
-	<meta property="og:locale" content="en_us">
+	<meta property="og:description" content="Deep dives into backend architecture, Java, and AI engineering.">
+	<meta property="og:locale" content="en">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:28+05:30">
@@ -116,9 +117,7 @@ Engineers are blindly downloading quantized models without calculating the overh
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/feature.jpg">
 	<meta name="twitter:title" content="Stop Guessing, Find Perfect Local LLM with OllamaAdvisor">
-	<meta name="twitter:description" content="Have you ever excitedly run ollama run llama3:70b on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.
-The biggest bottleneck in local AI isn’t the models themselves—it’s hardware-model mismatch.
-Engineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens/second to a painful 1 token/second.">
+	<meta name="twitter:description" content="Deep dives into backend architecture, Java, and AI engineering.">
 
   
   <script type="application/ld+json">
@@ -129,12 +128,12 @@ Engineers are blindly downloading quantized models without calculating the overh
     "name": "Stop Guessing, Find Perfect Local LLM with OllamaAdvisor",
     "headline": "Stop Guessing, Find Perfect Local LLM with OllamaAdvisor",
     
-    "abstract": "\u003cp\u003eHave you ever excitedly run \u003cem\u003eollama run llama3:70b\u003c\/em\u003e on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.\u003c\/p\u003e\n\u003cp\u003eThe biggest bottleneck in local AI isn\u0026rsquo;t the models themselves—it\u0026rsquo;s \u003cstrong\u003ehardware-model mismatch\u003c\/strong\u003e.\u003c\/p\u003e\n\u003cp\u003eEngineers are blindly downloading quantized models without calculating the overhead of the OS, background applications, model weights, and the often-ignored KV (Key-Value) cache. When a model spills from VRAM\/Unified Memory into CPU system RAM (or worse, disk swap), inference speed drops from a usable 30 tokens\/second to a painful 1 token\/second.\u003c\/p\u003e",
-    "inLanguage": "en-us",
+    
+    "inLanguage": "en",
     "url" : "http:\/\/localhost:1313\/posts\/stop-guessing-find-perfect-local-llm-with-ollamaadvisor\/",
     "author" : {
       "@type": "Person",
-      "name": ""
+      "name": "Ankit Agrahari"
     },
     "copyrightYear": "2026",
     "dateCreated": "2026-10-27T08:14:28\u002b05:30",
@@ -183,6 +182,20 @@ Engineers are blindly downloading quantized models without calculating the overh
 
   
   
+    <meta name="author" content="Ankit Agrahari" />
+  
+  
+    
+      <link href="mailto:support.hookspy@gmail.com" rel="me" />
+    
+      <link href="https://www.dynamicallyblunttech.com/" rel="me" />
+    
+      <link href="https://github.com/ankitagrahari" rel="me" />
+    
+      <link href="https://medium.com/@ankitagrahari.rkgit" rel="me" />
+    
+      <link href="https://www.instagram.com/backendbrilliance/" rel="me" />
+    
   
   
   
@@ -262,24 +275,89 @@ Engineers are blindly downloading quantized models without calculating the overh
                   
                   ><span
                       class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
-                      >All Posts</span
+                      >Blog</span
                     >
                   </a
                 >
               
             </li>
           
-          
-            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
-              <button id="search-button-m0" title="Search (/)">
-                <span
-                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/about/"
+                  title="About Me"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >About</span
+                    >
+                  </a
                 >
-                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
-</span>
-                </span>
-              </button>
+              
             </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title="Categories"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title="Tags"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+                  <button
+                    id="search-button-1"
+                    title="Search (/)"
+                  >
+                    
+                      <span
+                        class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                      ><span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span></span><span
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        ></span
+                      >
+                    
+                  </button>
+                
+              
+            </li>
+          
+            
+              
           
         
       </ul>
@@ -293,6 +371,43 @@ Engineers are blindly downloading quantized models without calculating the overh
         
   <article>
     <header class="max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="http://localhost:1313/"
+      >Backend Brilliance</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class=" inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="http://localhost:1313/posts/"
+      >Posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="http://localhost:1313/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/"
+      >Stop Guessing, Find Perfect Local LLM with OllamaAdvisor</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
       
       <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
         Stop Guessing, Find Perfect Local LLM with OllamaAdvisor
@@ -326,12 +441,32 @@ Engineers are blindly downloading quantized models without calculating the overh
   
 
   
+    
+  
 
 
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+      <time datetime="2026-10-27 08:14:28 &#43;0530 IST">27 October 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span><span class="px-2 text-primary-500">&middot;</span>
+
+
+  
+    
+  
+  
+
+<span class="mb-[2px]">
+  <a
+    href="https://github.com/ankitagrahari/dynamicallyblunttech/posts/stop-guessing-find-perfect-local-llm-with-ollamaadvisor/index.md"
+    class="text-lg hover:text-primary-500"
+    rel="noopener noreferrer"
+    target="_blank"
+    title="Edit content"
+    ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z"/></svg>
+</span></a
+  >
+</span>
     
 
     
@@ -339,6 +474,50 @@ Engineers are blindly downloading quantized models without calculating the overh
   </div>
 
   
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="http://localhost:1313/categories/ai/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >AI</a
+            >
+          
+            <a
+              href="http://localhost:1313/categories/ollama/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Ollama</a
+            >
+          
+        
+      
+        
+      
+        
+          
+            <a
+              href="http://localhost:1313/tags/ollama/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >Ollama</a
+            >
+          
+            <a
+              href="http://localhost:1313/tags/localmodel/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >LocalModel</a
+            >
+          
+            <a
+              href="http://localhost:1313/tags/ai/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >AI</a
+            >
+          
+        
+      
+    </div>
   
 
 
@@ -412,6 +591,29 @@ Engineers are blindly downloading quantized models without calculating the overh
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#architecture--repo-map"><strong>Architecture &amp; Repo Map</strong></a></li>
+    <li><a href="#core-features--technical-capabilities"><strong>Core Features &amp; Technical Capabilities</strong></a></li>
+    <li><a href="#code-snippet-deep-dive-the-recommendation-engine"><strong>Code Snippet Deep-Dive: The Recommendation Engine</strong></a></li>
+    <li><a href="#dynamic-roi--resource-calculator"><strong>Dynamic ROI / Resource Calculator</strong></a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+      
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Have you ever excitedly run <em>ollama run llama3:70b</em> on your 16GB MacBook Air, only to watch your system grind to an absolute halt? The fan spins up like a jet engine, your cursor freezes, and your swap memory immediately maxes out.</p>
 <p>The biggest bottleneck in local AI isn&rsquo;t the models themselves—it&rsquo;s <strong>hardware-model mismatch</strong>.</p>
@@ -419,7 +621,7 @@ Engineers are blindly downloading quantized models without calculating the overh
 <p>We got tired of guessing. To solve this, we built <strong>OllamaAdvisor</strong>: an intelligent, zero-backend React web application that profiles your hardware, mathematically predicts Out-of-Memory (OOM) errors before you download a model, and dynamically generates the exact configurations required to run it smoothly.</p>
 <p>Here’s a deep dive into how we engineered it.</p>
 <p><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/dd9u8YdyXnA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/dd9u8YdyXnA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
 		</div>
 
 Ollama Advisor Walkthrough</p>
@@ -455,36 +657,36 @@ Ollama Advisor Walkthrough</p>
 <li><strong>Auto-Generated Fine-Tuning Artifacts:</strong> It programmatically generates customized <em>Modelfile</em> parameters (like <em>num_thread</em> calculated based on CPU cores) and critical environment variables (like <em>OLLAMA_FLASH_ATTENTION=1</em> and <em>OLLAMA_KV_CACHE_TYPE=q8_0</em> for low-RAM machines).Ollama Advisor Explanation</li>
 </ul>
 <h2 id="code-snippet-deep-dive-the-recommendation-engine" class="relative group"><strong>Code Snippet Deep-Dive: The Recommendation Engine</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#code-snippet-deep-dive-the-recommendation-engine" aria-label="Anchor">#</a></span></h2><p>The magic happens in <em>src/utils/advisor.ts</em>. Let&rsquo;s look at a critical section of the <em>getRecommendations</em> loop where we determine if a model actually fits and how we penalize it if the memory budget is too tight.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>typescript
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Effective pool limits based on unified memory vs discrete VRAM</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> effectivePool <span style="color:#f92672">=</span>
-</span></span><span style="display:flex;"><span>  hw.<span style="color:#a6e22e">gpuType</span> <span style="color:#f92672">===</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>apple<span style="color:#f92672">-</span>silicon<span style="color:#960050;background-color:#1e0010">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> totalAvailable
-</span></span><span style="display:flex;"><span>    : hw.<span style="color:#a6e22e">gpuType</span> <span style="color:#f92672">===</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>none<span style="color:#960050;background-color:#1e0010">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">?</span> totalAvailable
-</span></span><span style="display:flex;"><span>    : Math.<span style="color:#a6e22e">min</span>(totalAvailable, hw.<span style="color:#a6e22e">gpuVRAMGB</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Inside the model evaluation loop:</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> remainingAfterModel <span style="color:#f92672">=</span> effectivePool <span style="color:#f92672">-</span> model.<span style="color:#a6e22e">sizeGB</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Hard skip: can&#39;t even hold model weights</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (remainingAfterModel <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span>1) <span style="color:#66d9ef">continue</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> fits <span style="color:#f92672">=</span> remainingAfterModel <span style="color:#f92672">&gt;=</span> model.<span style="color:#a6e22e">kvCacheGB8k</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> tight <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>fits <span style="color:#f92672">||</span> (model.<span style="color:#a6e22e">sizeGB</span> <span style="color:#f92672">/</span> effectivePool) <span style="color:#f92672">&gt;</span> 0.<span style="color:#a6e22e">72</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Dynamically scale context window based on remaining budget</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> recommendedCtx <span style="color:#f92672">=</span> fits
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">?</span> recommendedCtxForBudget(model, remainingAfterModel)
-</span></span><span style="display:flex;"><span>  : 4096;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> kvCacheActual <span style="color:#f92672">=</span> model.<span style="color:#a6e22e">kvCacheGB8k</span> <span style="color:#f92672">*</span> (recommendedCtx <span style="color:#f92672">/</span> 8192);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> freeBuffer <span style="color:#f92672">=</span> hw.<span style="color:#a6e22e">totalRAMGB</span> <span style="color:#f92672">-</span> osOverhead <span style="color:#f92672">-</span> hw.<span style="color:#a6e22e">activeAppsGB</span> <span style="color:#f92672">-</span> model.<span style="color:#a6e22e">sizeGB</span> <span style="color:#f92672">-</span> kvCacheActual;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// ── Scoring ──────────────────────────────────────────────────────────</span>
-</span></span><span style="display:flex;"><span>let score <span style="color:#f92672">=</span> model.<span style="color:#a6e22e">qualityScore</span> <span style="color:#f92672">*</span> 10
-</span></span></code></pre></div><h2 id="dynamic-roi--resource-calculator" class="relative group"><strong>Dynamic ROI / Resource Calculator</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dynamic-roi--resource-calculator" aria-label="Anchor">#</a></span></h2><p>Wondering how much memory you&rsquo;re actually wasting?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">typescript</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Effective pool limits based on unified memory vs discrete VRAM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">effectivePool</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">hw</span><span class="p">.</span><span class="na">gpuType</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="err">&#39;</span><span class="n">apple</span><span class="o">-</span><span class="n">silicon</span><span class="err">&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">?</span><span class="w"> </span><span class="n">totalAvailable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="n">hw</span><span class="p">.</span><span class="na">gpuType</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="err">&#39;</span><span class="n">none</span><span class="err">&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">?</span><span class="w"> </span><span class="n">totalAvailable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">totalAvailable</span><span class="p">,</span><span class="w"> </span><span class="n">hw</span><span class="p">.</span><span class="na">gpuVRAMGB</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Inside the model evaluation loop:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">remainingAfterModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">effectivePool</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">sizeGB</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Hard skip: can&#39;t even hold model weights</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">remainingAfterModel</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">fits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remainingAfterModel</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">kvCacheGB8k</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">tight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">fits</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="na">sizeGB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">effectivePool</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">0</span><span class="p">.</span><span class="na">72</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Dynamically scale context window based on remaining budget</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">recommendedCtx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fits</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="n">recommendedCtxForBudget</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">remainingAfterModel</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">4096</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">kvCacheActual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">kvCacheGB8k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">recommendedCtx</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">8192</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">freeBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hw</span><span class="p">.</span><span class="na">totalRAMGB</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">osOverhead</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">hw</span><span class="p">.</span><span class="na">activeAppsGB</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">sizeGB</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">kvCacheActual</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ── Scoring ──────────────────────────────────────────────────────────</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">let</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="na">qualityScore</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">10</span><span class="w">
+</span></span></span></code></pre></div><h2 id="dynamic-roi--resource-calculator" class="relative group"><strong>Dynamic ROI / Resource Calculator</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dynamic-roi--resource-calculator" aria-label="Anchor">#</a></span></h2><p>Wondering how much memory you&rsquo;re actually wasting?</p>
 <p>Use this mental model when setting up your next local LLM:</p>
 <p><strong>The Ollama Memory Formula:</strong> Total RAM - (OS Overhead + App Usage) = Your True AI Budget</p>
 <p><em>Example Scenario:</em></p>
@@ -508,10 +710,132 @@ Ollama Advisor Walkthrough</p>
     
     
     
+      
+      
+        
+        
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+      
+    >
+      
+      
+      
+      
+      <img
+        width="1080"
+        height="1080"
+        class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+        alt="Ankit Agrahari"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/img/dp_hu_39b84e63a7ad2892.jpg" srcset="http://localhost:1313/img/dp_hu_3eb6f74c98a9118d.jpg 330w,http://localhost:1313/img/dp_hu_39b84e63a7ad2892.jpg 660w
+          
+            ,http://localhost:1313/img/dp_hu_357cd210031b9ca.jpg 1024w
+          
+          
+            ,http://localhost:1313/img/dp.jpg 1080w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+      
+    
     <div class="place-self-center">
       
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          Author
+        </div>
+        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+          Ankit Agrahari
+        </div>
+      
+      
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">Building scalable systems and exploring modern AI architecture.</div>
       
       <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="mailto:support.hookspy@gmail.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.dynamicallyblunttech.com/"
+          target="_blank"
+          aria-label="Link"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://github.com/ankitagrahari"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://medium.com/@ankitagrahari.rkgit"
+          target="_blank"
+          aria-label="Medium"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M180.5,74.262C80.813,74.262,0,155.633,0,256S80.819,437.738,180.5,437.738,361,356.373,361,256,280.191,74.262,180.5,74.262Zm288.25,10.646c-49.845,0-90.245,76.619-90.245,171.095s40.406,171.1,90.251,171.1,90.251-76.619,90.251-171.1H559C559,161.5,518.6,84.908,468.752,84.908Zm139.506,17.821c-17.526,0-31.735,68.628-31.735,153.274s14.2,153.274,31.735,153.274S640,340.631,640,256C640,171.351,625.785,102.729,608.258,102.729Z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.instagram.com/backendbrilliance/"
+          target="_blank"
+          aria-label="Instagram"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+</span></a
+        >
+      
+    
+  </div>
+
 </div>
     </div>
   </div>
@@ -542,7 +866,7 @@ Ollama Advisor Walkthrough</p>
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2026-10-27 08:14:27 &#43;0530 IST">October 27, 2026</time>
+                    <time datetime="2026-10-27 08:14:27 &#43;0530 IST">27 October 2026</time>
                   
                 </span>
               </span>
@@ -559,7 +883,7 @@ Ollama Advisor Walkthrough</p>
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2026-10-27 08:14:28 &#43;0530 IST">October 27, 2026</time>
+                    <time datetime="2026-10-27 08:14:28 &#43;0530 IST">27 October 2026</time>
                   
                 </span>
               </span>
@@ -576,6 +900,19 @@ Ollama Advisor Walkthrough</p>
   
 
 
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+            <div class="pt-3">
+              <script src="https://giscus.app/client.js" data-repo="ankitagrahari/dynamicallyblunttech" data-repo-id="R_kgDOVbSxZw"
+    data-category="Announcements" data-category-id="DIC_kwDOVbSxZ84DLT4_" data-mapping="pathname" data-strict="0"
+    data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme"
+    data-lang="en" crossorigin="anonymous" async>
+    </script>
+            </div>
+          </div>
+        
       
     </footer>
   </article>
@@ -599,6 +936,50 @@ Ollama Advisor Walkthrough</p>
       <footer class="py-10 print:hidden">
   
   
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex list-none flex-col sm:flex-row">
+        
+          
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            
+              <a
+                href="/tags/"
+                title="Tags"
+                
+                
+                ><span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    >Tags</span
+                  >
+                </a
+              >
+            
+          </li>
+        
+          
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            
+              <a
+                href="/blog-feed.xml"
+                title=""
+                
+                target="_blank"
+                >
+                  <span
+                    class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                  ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+</span></span><span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    ></span
+                  >
+                </a
+              >
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
   <div class="flex items-center justify-between">
     <div>
       
@@ -606,7 +987,7 @@ Ollama Advisor Walkthrough</p>
         <p class="text-sm text-neutral-500 dark:text-neutral-400">
             &copy;
             2026
-            
+            Ankit Agrahari
         </p>
       
       

@@ -18,7 +18,7 @@
 [[main]]
   name = "About"
   pageRef = "about"
-  weight = 90
+  weight = 20
 
 [[main]]
   name = "Categories"
@@ -50,3 +50,12 @@
   name = "Tags"
   pageRef = "tags"
   weight = 10
+
+[[footer]] # Or use [[main]] to put it in the top header
+  identifier = "rss"
+  url = "/blog-feed.xml"
+  weight = 90
+  [footer.params]
+    icon = "rss"
+    showName = true
+    target = "_blank"

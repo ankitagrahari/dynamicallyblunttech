@@ -1,12 +1,14 @@
 
 
 
+  
+
 
 
 
 <!doctype html>
 <html
-  lang="en-us"
+  lang="en"
   dir="ltr"
   class="scroll-smooth"
   data-default-appearance="light"
@@ -51,6 +53,9 @@
   
   
   
+    
+    
+  
   
   
   
@@ -59,8 +64,8 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="http://localhost:1313/js/main.bundle.min.0221623774b4ffae62d33aaf8aa954618227c122f904ee05c0e6ded32c9ea373.js"
-      integrity="sha256-AiFiN3S0/65i0zqviqlUYYInwSL5BO4FwObe0yyeo3M="
+      src="http://localhost:1313/js/main.bundle.min.167efd96c29259046e711c52c0db66536f497aad73a774cd6f28fc408f2d2688.js"
+      integrity="sha256-Fn79lsKSWQRucRxSwNtmU29Jeq1zp3TNbyj8QI8tJog="
       data-copy="Copy"
       data-copied="Copied"
     ></script>
@@ -70,20 +75,7 @@
     name="description"
     content="
       
-        Devops Intelligence
-
-			
-		
-
-Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&rsquo;s just say it involved more debugging than coding.
-In this post, I&rsquo;ll walk you through:
-
-What we built (the DevOps Intelligence Platform)
-The tools we created (K8s, Prometheus, Logs, Deployments)
-Every challenge we faced (and how we solved them)
-Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)
-
-TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.
+        
       
     "
   />
@@ -110,11 +102,8 @@ TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. S
   <meta property="og:url" content="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/">
 	<meta property="og:site_name" content="Backend Brilliance">
 	<meta property="og:title" content="Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions">
-	<meta property="og:description" content="Devops Intelligence
-Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let’s just say it involved more debugging than coding.
-In this post, I’ll walk you through:
-What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prometheus, Logs, Deployments) Every challenge we faced (and how we solved them) Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2) TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.">
-	<meta property="og:locale" content="en_us">
+	<meta property="og:description" content="Deep dives into backend architecture, Java, and AI engineering.">
+	<meta property="og:locale" content="en">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-10-27T08:14:24+05:30">
@@ -126,10 +115,7 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/feature.jpg">
 	<meta name="twitter:title" content="Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions">
-	<meta name="twitter:description" content="Devops Intelligence
-Today, I successfully built and deployed a Model Context Protocol (MCP) server using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let’s just say it involved more debugging than coding.
-In this post, I’ll walk you through:
-What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prometheus, Logs, Deployments) Every challenge we faced (and how we solved them) Why Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2) TL;DR: Built an MCP server with 5&#43; DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.">
+	<meta name="twitter:description" content="Deep dives into backend architecture, Java, and AI engineering.">
 
   
   <script type="application/ld+json">
@@ -140,12 +126,12 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
     "name": "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges \u0026 Solutions",
     "headline": "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges \u0026 Solutions",
     
-    "abstract": "\u003cp\u003eDevops Intelligence\u003c\/p\u003e\n\u003cdiv style=\u0022position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\u0022\u003e\n\t\t\t\u003ciframe allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen\u0022 loading=\u0022eager\u0022 referrerpolicy=\u0022strict-origin-when-cross-origin\u0022 src=\u0022https:\/\/www.youtube.com\/embed\/DLVG0z-aHV4?autoplay=0\u0026amp;controls=1\u0026amp;end=0\u0026amp;loop=0\u0026amp;mute=0\u0026amp;start=0\u0022 style=\u0022position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\u0022 title=\u0022YouTube video\u0022\u003e\u003c\/iframe\u003e\n\t\t\u003c\/div\u003e\n\n\u003cp\u003eToday, I successfully built and deployed a \u003cstrong\u003eModel Context Protocol (MCP) server\u003c\/strong\u003e using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let\u0026rsquo;s just say it involved more debugging than coding.\u003c\/p\u003e\n\u003cp\u003eIn this post, I\u0026rsquo;ll walk you through:\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eWhat we built (the DevOps Intelligence Platform)\u003c\/li\u003e\n\u003cli\u003eThe tools we created (K8s, Prometheus, Logs, Deployments)\u003c\/li\u003e\n\u003cli\u003eEvery challenge we faced (and how we solved them)\u003c\/li\u003e\n\u003cli\u003eWhy Spring AI 2.0.0-M2 is the sweet spot (M3 has still in development and after hours of debugging, settled with M2)\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003cp\u003e\u003cstrong\u003eTL;DR:\u003c\/strong\u003e Built an MCP server with 5\u002b DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.\u003c\/p\u003e",
-    "inLanguage": "en-us",
+    
+    "inLanguage": "en",
     "url" : "http:\/\/localhost:1313\/posts\/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions\/",
     "author" : {
       "@type": "Person",
-      "name": ""
+      "name": "Ankit Agrahari"
     },
     "copyrightYear": "2026",
     "dateCreated": "2026-10-27T08:14:24\u002b05:30",
@@ -194,6 +180,20 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 
   
   
+    <meta name="author" content="Ankit Agrahari" />
+  
+  
+    
+      <link href="mailto:support.hookspy@gmail.com" rel="me" />
+    
+      <link href="https://www.dynamicallyblunttech.com/" rel="me" />
+    
+      <link href="https://github.com/ankitagrahari" rel="me" />
+    
+      <link href="https://medium.com/@ankitagrahari.rkgit" rel="me" />
+    
+      <link href="https://www.instagram.com/backendbrilliance/" rel="me" />
+    
   
   
   
@@ -273,24 +273,89 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
                   
                   ><span
                       class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
-                      >All Posts</span
+                      >Blog</span
                     >
                   </a
                 >
               
             </li>
           
-          
-            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
-              <button id="search-button-m0" title="Search (/)">
-                <span
-                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/about/"
+                  title="About Me"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >About</span
+                    >
+                  </a
                 >
-                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
-</span>
-                </span>
-              </button>
+              
             </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/categories/"
+                  title="Categories"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Categories</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/tags/"
+                  title="Tags"
+                  
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Tags</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                
+                
+                  <button
+                    id="search-button-1"
+                    title="Search (/)"
+                  >
+                    
+                      <span
+                        class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                      ><span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span></span><span
+                        class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                        ></span
+                      >
+                    
+                  </button>
+                
+              
+            </li>
+          
+            
+              
           
         
       </ul>
@@ -304,6 +369,43 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
         
   <article>
     <header class="max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="http://localhost:1313/"
+      >Backend Brilliance</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class=" inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="http://localhost:1313/posts/"
+      >Posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="http://localhost:1313/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/"
+      >Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges &amp; Solutions</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
       
       <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
         Building DevOps Intelligence using MCP Server with Spring AI: Tools, Challenges & Solutions
@@ -337,12 +439,32 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
   
 
   
+    
+  
 
 
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span>
+      <time datetime="2026-10-27 08:14:24 &#43;0530 IST">27 October 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span><span class="px-2 text-primary-500">&middot;</span>
+
+
+  
+    
+  
+  
+
+<span class="mb-[2px]">
+  <a
+    href="https://github.com/ankitagrahari/dynamicallyblunttech/posts/building-devops-intelligence-using-mcp-server-with-spring-ai-tools-challenges-solutions/index.md"
+    class="text-lg hover:text-primary-500"
+    rel="noopener noreferrer"
+    target="_blank"
+    title="Edit content"
+    ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z"/></svg>
+</span></a
+  >
+</span>
     
 
     
@@ -350,6 +472,44 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
   </div>
 
   
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="http://localhost:1313/categories/619c9d9d8da2c200166cb558/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >[&#34;619c9d9d8da2c200166cb558&#34;</a
+            >
+          
+            <a
+              href="http://localhost:1313/categories/6249579158f0bd10b2a57273/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >&#34;6249579158f0bd10b2a57273&#34;</a
+            >
+          
+            <a
+              href="http://localhost:1313/categories/681676055d80aaac0c9329be/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >&#34;681676055d80aaac0c9329be&#34;]</a
+            >
+          
+        
+      
+        
+      
+        
+          
+            <a
+              href="http://localhost:1313/tags/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >[]</a
+            >
+          
+        
+      
+    </div>
   
 
 
@@ -419,10 +579,51 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-mcp">What is MCP?</a></li>
+    <li><a href="#the-devops-intelligence-platform-what-we-built-">The DevOps Intelligence Platform: What We Built 🛠️</a>
+      <ul>
+        <li><a href="#tools-implemented">Tools Implemented:</a></li>
+      </ul>
+    </li>
+    <li><a href="#architecture-how-it-all-fits-together">Architecture: How It All Fits Together</a></li>
+    <li><a href="#challenge-1-tomcat-web-server-pollution">Challenge #1: Tomcat Web Server Pollution</a></li>
+    <li><a href="#challenge-2-process-exits-immediately-">Challenge #2: Process Exits Immediately ⚡💀</a></li>
+    <li><a href="#challenge-3-json-protocol-corruption">Challenge #3: JSON Protocol Corruption</a></li>
+    <li><a href="#challenge-4-permission-denied-eacces">Challenge #4: Permission Denied (EACCES)</a></li>
+    <li><a href="#challenge-5-request-timeout-32001">Challenge #5: Request Timeout (32001)</a></li>
+    <li><a href="#challenge-6-tools-not-discovered">Challenge #6: Tools Not Discovered</a></li>
+    <li><a href="#the-final-solution-applicationyml">The Final Solution: application.yml</a></li>
+    <li><a href="#tool-implementation-example-k8stools">Tool Implementation Example: K8sTools</a></li>
+    <li><a href="#testing-with-mcp-inspector">Testing with MCP Inspector</a></li>
+    <li><a href="#github-repository">GitHub Repository</a></li>
+    <li><a href="#lessons-learned-">Lessons Learned 📚</a></li>
+    <li><a href="#whats-next">What&rsquo;s Next?</a></li>
+    <li><a href="#final-thoughts">Final Thoughts</a></li>
+    <li><a href="#stay-updated">Stay Updated</a></li>
+    <li><a href="#happy-building">Happy building!</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+      
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Devops Intelligence</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/DLVG0z-aHV4?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/DLVG0z-aHV4?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
 		</div>
 
 <p>Today, I successfully built and deployed a <strong>Model Context Protocol (MCP) server</strong> using Spring AI that exposes real DevOps infrastructure through intelligent tools. But the journey? Let&rsquo;s just say it involved more debugging than coding.</p>
@@ -436,12 +637,12 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 <p><strong>TL;DR:</strong> Built an MCP server with 5+ DevOps tools. Spent 6 hours debugging. Spring AI 2.0.0-M2 is your friend. No manual bean configuration needed if you know what to configure.</p>
 <h2 id="what-is-mcp" class="relative group">What is MCP? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-mcp" aria-label="Anchor">#</a></span></h2><p><strong>Model Context Protocol</strong> lets Claude (or any AI) directly access your tools through a standardized interface.</p>
 <p>Instead of:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Me <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#e6db74">&#34;Claude, what&#39;s my cluster health?&#34;</span>
-</span></span><span style="display:flex;"><span>Claude <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#e6db74">&#34;I don&#39;t know, you need to tell me&#34;</span>
-</span></span></code></pre></div><p>Now:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Me <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#e6db74">&#34;Claude, what&#39;s my cluster health?&#34;</span>
-</span></span><span style="display:flex;"><span>Claude <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#f92672">*</span>calls k8s_cluster_health tool<span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">→</span> Returns real data
-</span></span></code></pre></div><p>That&rsquo;s the power of MCP. Your AI gets <strong>direct access</strong> to your infrastructure.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Me</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s">&#34;Claude, what&#39;s my cluster health?&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Claude</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s">&#34;I don&#39;t know, you need to tell me&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>Now:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Me</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s">&#34;Claude, what&#39;s my cluster health?&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Claude</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="o">*</span><span class="n">calls</span><span class="w"> </span><span class="n">k8s_cluster_health</span><span class="w"> </span><span class="n">tool</span><span class="o">*</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">Returns</span><span class="w"> </span><span class="n">real</span><span class="w"> </span><span class="n">data</span><span class="w">
+</span></span></span></code></pre></div><p>That&rsquo;s the power of MCP. Your AI gets <strong>direct access</strong> to your infrastructure.</p>
 <h2 id="the-devops-intelligence-platform-what-we-built-" class="relative group">The DevOps Intelligence Platform: What We Built 🛠️ <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-devops-intelligence-platform-what-we-built-" aria-label="Anchor">#</a></span></h2><p>We created a Spring Boot application that exposes <strong>real DevOps infrastructure</strong> as MCP tools:</p>
 <h3 id="tools-implemented" class="relative group">Tools Implemented: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tools-implemented" aria-label="Anchor">#</a></span></h3><p><strong>K8s Tools</strong> (KubernetesTools)</p>
 <ul>
@@ -596,86 +797,86 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 </figure>
 </p>
 <h2 id="challenge-1-tomcat-web-server-pollution" class="relative group">Challenge #1: Tomcat Web Server Pollution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-1-tomcat-web-server-pollution" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>mvn spring<span style="color:#f92672">-</span>boot:run
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>20:01:48.<span style="color:#a6e22e">612</span> <span style="color:#f92672">[</span>main<span style="color:#f92672">]</span> INFO o.<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">boot</span>.<span style="color:#a6e22e">tomcat</span>.<span style="color:#a6e22e">TomcatWebServer</span> <span style="color:#f92672">-</span> Tomcat initialized <span style="color:#66d9ef">with</span> port 8080
-</span></span><span style="display:flex;"><span>20:01:48.<span style="color:#a6e22e">616</span> <span style="color:#f92672">[</span>main<span style="color:#f92672">]</span> INFO o.<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">catalina</span>.<span style="color:#a6e22e">core</span>.<span style="color:#a6e22e">StandardService</span> <span style="color:#f92672">-</span> Starting service <span style="color:#f92672">[</span>Tomcat<span style="color:#f92672">]</span>
-</span></span></code></pre></div><p>When you add spring-boot-starter-web, Spring Boot starts <strong>Tomcat HTTP server automatically</strong>. But MCP STDIO protocol needs <strong>pure process I/O</strong>, not HTTP.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">mvn</span><span class="w"> </span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="p">:</span><span class="n">run</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">20</span><span class="p">:</span><span class="n">01</span><span class="p">:</span><span class="n">48</span><span class="p">.</span><span class="na">612</span><span class="w"> </span><span class="o">[</span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">boot</span><span class="p">.</span><span class="na">tomcat</span><span class="p">.</span><span class="na">TomcatWebServer</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Tomcat</span><span class="w"> </span><span class="n">initialized</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="n">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">20</span><span class="p">:</span><span class="n">01</span><span class="p">:</span><span class="n">48</span><span class="p">.</span><span class="na">616</span><span class="w"> </span><span class="o">[</span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="na">a</span><span class="p">.</span><span class="na">catalina</span><span class="p">.</span><span class="na">core</span><span class="p">.</span><span class="na">StandardService</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Starting</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">[</span><span class="n">Tomcat</span><span class="o">]</span><span class="w">
+</span></span></span></code></pre></div><p>When you add spring-boot-starter-web, Spring Boot starts <strong>Tomcat HTTP server automatically</strong>. But MCP STDIO protocol needs <strong>pure process I/O</strong>, not HTTP.</p>
 <p><strong>The Solution:</strong> Remove spring-boot-starter-web from pom.xml:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;!--</span> REMOVE THIS <span style="color:#f92672">--&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>web<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span></code></pre></div><p>Keep only:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>mcp<span style="color:#f92672">-</span>server<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span><span style="color:#f92672">-</span>M2<span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;!--</span><span class="w"> </span><span class="n">REMOVE</span><span class="w"> </span><span class="n">THIS</span><span class="w"> </span><span class="o">--&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">web</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></div><p>Keep only:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">ai</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">mcp</span><span class="o">-</span><span class="n">server</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">2</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">0</span><span class="o">-</span><span class="n">M2</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
 <p><strong>Lesson:</strong> MCP STDIO doesn&rsquo;t need a web server. It communicates directly via stdin/stdout.</p>
 </blockquote>
 <h2 id="challenge-2-process-exits-immediately-" class="relative group">Challenge #2: Process Exits Immediately ⚡💀 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-2-process-exits-immediately-" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Started DevopsIntelligenceApplication in 0.<span style="color:#a6e22e">301</span> seconds
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> BUILD <span style="color:#a6e22e">SUCCESS</span>
-</span></span><span style="display:flex;"><span>(process exits)
-</span></span></code></pre></div><p>Without Tomcat (or WebFlux), Spring Boot has nothing to keep the process alive.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Started</span><span class="w"> </span><span class="n">DevopsIntelligenceApplication</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">0</span><span class="p">.</span><span class="na">301</span><span class="w"> </span><span class="n">seconds</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="w"> </span><span class="n">BUILD</span><span class="w"> </span><span class="nf">SUCCESS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">process</span><span class="w"> </span><span class="n">exits</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p>Without Tomcat (or WebFlux), Spring Boot has nothing to keep the process alive.</p>
 <p><strong>The Solution:</strong></p>
 <p><strong>Option A:</strong> Add spring-boot-starter-webflux (for light reactive server):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>webflux<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
-</span></span></code></pre></div><p><strong>Option B:</strong> Keep process alive manually:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
-</span></span><span style="display:flex;"><span>    SpringApplication.<span style="color:#a6e22e">run</span>(
-</span></span><span style="display:flex;"><span>        DevopsIntelligenceApplication.<span style="color:#a6e22e">class</span>, args);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">join</span>();
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
-</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">interrupt</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>I went with <strong>Option A (WebFlux)</strong> because it&rsquo;s the Spring Boot standard.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">webflux</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Option B:</strong> Keep process alive manually:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DevopsIntelligenceApplication</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">join</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">interrupt</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>I went with <strong>Option A (WebFlux)</strong> because it&rsquo;s the Spring Boot standard.</p>
 <blockquote>
 <p><strong>Lesson:</strong> Something must keep the Spring Boot process alive. Either a server component or explicit thread joining.</p>
 </blockquote>
 <h2 id="challenge-3-json-protocol-corruption" class="relative group">Challenge #3: JSON Protocol Corruption <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-3-json-protocol-corruption" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>STDIO transport: command<span style="color:#f92672">=</span>...<span style="color:#a6e22e">jar</span>
-</span></span><span style="display:flex;"><span>Error in <span style="color:#f92672">/</span>stdio route: SyntaxError: Unexpected non<span style="color:#f92672">-</span>whitespace character after JSON at position 2
-</span></span><span style="display:flex;"><span>Error from MCP server: SyntaxError: Unexpected token <span style="color:#e6db74">&#39;.&#39;</span>, <span style="color:#e6db74">&#34;  .   ____  &#34;</span>... is not valid JSON
-</span></span></code></pre></div><p><strong>What was happening:</strong> </p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">STDIO</span><span class="w"> </span><span class="n">transport</span><span class="p">:</span><span class="w"> </span><span class="n">command</span><span class="o">=</span><span class="p">...</span><span class="na">jar</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Error</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">/</span><span class="n">stdio</span><span class="w"> </span><span class="n">route</span><span class="p">:</span><span class="w"> </span><span class="n">SyntaxError</span><span class="p">:</span><span class="w"> </span><span class="n">Unexpected</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">whitespace</span><span class="w"> </span><span class="n">character</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="n">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Error</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">MCP</span><span class="w"> </span><span class="n">server</span><span class="p">:</span><span class="w"> </span><span class="n">SyntaxError</span><span class="p">:</span><span class="w"> </span><span class="n">Unexpected</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;  .   ____  &#34;</span><span class="p">...</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="n">JSON</span><span class="w">
+</span></span></span></code></pre></div><p><strong>What was happening:</strong> </p>
 <p>Spring Boot was printing startup banners and logs to STDOUT, which <strong>corrupted the MCP protocol messages</strong>. MCP STDIO uses stdin/stdout exclusively.</p>
 <p>ANY other output breaks the JSON-RPC protocol.</p>
 <p><strong>The Solution:</strong></p>
 <p>Configure application.yml to suppress all output:</p>
 <p>yaml</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
-</span></span><span style="display:flex;"><span>  main:
-</span></span><span style="display:flex;"><span>    banner<span style="color:#f92672">-</span>mode: <span style="color:#e6db74">&#34;off&#34;</span>           <span style="color:#960050;background-color:#1e0010">#</span> No ASCII art
-</span></span><span style="display:flex;"><span>    log<span style="color:#f92672">-</span>startup<span style="color:#f92672">-</span>info: <span style="color:#66d9ef">false</span>      <span style="color:#960050;background-color:#1e0010">#</span> No startup messages
-</span></span><span style="display:flex;"><span>  application:
-</span></span><span style="display:flex;"><span>    name: devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>mcp
-</span></span><span style="display:flex;"><span>  ai:
-</span></span><span style="display:flex;"><span>    mcp:
-</span></span><span style="display:flex;"><span>      server:
-</span></span><span style="display:flex;"><span>        name: devops<span style="color:#f92672">-</span>intelligence
-</span></span><span style="display:flex;"><span>        version: 1.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span>
-</span></span><span style="display:flex;"><span>        type: SYNC
-</span></span><span style="display:flex;"><span>        protocol: STDIO
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>logging:
-</span></span><span style="display:flex;"><span>  level:
-</span></span><span style="display:flex;"><span>    root: OFF                     <span style="color:#960050;background-color:#1e0010">#</span> Turn off ALL logging
-</span></span><span style="display:flex;"><span>  file:
-</span></span><span style="display:flex;"><span>    name: mcp<span style="color:#f92672">-</span>server.<span style="color:#a6e22e">log</span>         <span style="color:#960050;background-color:#1e0010">#</span> Send logs <span style="color:#66d9ef">to</span> file instead
-</span></span></code></pre></div><p><strong>Key Settings:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">main</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">banner</span><span class="o">-</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;off&#34;</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">ASCII</span><span class="w"> </span><span class="n">art</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="n">info</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">startup</span><span class="w"> </span><span class="n">messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="o">-</span><span class="n">mcp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ai</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mcp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="n">1</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">SYNC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">protocol</span><span class="p">:</span><span class="w"> </span><span class="n">STDIO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">root</span><span class="p">:</span><span class="w"> </span><span class="n">OFF</span><span class="w">                     </span><span class="err">#</span><span class="w"> </span><span class="n">Turn</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="n">ALL</span><span class="w"> </span><span class="n">logging</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">file</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">mcp</span><span class="o">-</span><span class="n">server</span><span class="p">.</span><span class="na">log</span><span class="w">         </span><span class="err">#</span><span class="w"> </span><span class="n">Send</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="kd">to</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">instead</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Key Settings:</strong></p>
 <ul>
 <li>banner-mode: &ldquo;off&rdquo; - No Spring Boot ASCII art</li>
 <li>log-startup-info: false - No startup logs</li>
@@ -686,52 +887,52 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 <p><strong>Lesson:</strong> For STDIO protocol, STDOUT must be <strong>completely clean</strong>. Even whitespace or warning messages break it.</p>
 </blockquote>
 <h2 id="challenge-4-permission-denied-eacces" class="relative group">Challenge #4: Permission Denied (EACCES) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-4-permission-denied-eacces" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Error: spawn <span style="color:#f92672">/</span>Users<span style="color:#f92672">/</span>...<span style="color:#f92672">/</span>target<span style="color:#f92672">/</span>devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span> EACCES
-</span></span><span style="display:flex;"><span>errno: <span style="color:#f92672">-</span>13
-</span></span><span style="display:flex;"><span>code: <span style="color:#960050;background-color:#1e0010">&#39;</span>EACCES<span style="color:#960050;background-color:#1e0010">&#39;</span> (permission denied)
-</span></span></code></pre></div><p><strong>The Solution:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>chmod <span style="color:#f92672">+</span>x target<span style="color:#f92672">/</span>devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span>
-</span></span></code></pre></div><p>BUT this still didn&rsquo;t work because <strong>JAR files aren&rsquo;t executable binaries</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">Error</span><span class="p">:</span><span class="w"> </span><span class="n">spawn</span><span class="w"> </span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="p">...</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="o">-</span><span class="n">0</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">1</span><span class="o">-</span><span class="n">SNAPSHOT</span><span class="p">.</span><span class="na">jar</span><span class="w"> </span><span class="n">EACCES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">errno</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">13</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">code</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="n">EACCES</span><span class="err">&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">permission</span><span class="w"> </span><span class="n">denied</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><p><strong>The Solution:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">chmod</span><span class="w"> </span><span class="o">+</span><span class="n">x</span><span class="w"> </span><span class="n">target</span><span class="o">/</span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="o">-</span><span class="n">0</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">1</span><span class="o">-</span><span class="n">SNAPSHOT</span><span class="p">.</span><span class="na">jar</span><span class="w">
+</span></span></span></code></pre></div><p>BUT this still didn&rsquo;t work because <strong>JAR files aren&rsquo;t executable binaries</strong>.</p>
 <p><strong>Real Solution:</strong> Use java -jar instead in MCP Inspector UI:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Command: java
-</span></span><span style="display:flex;"><span>Arguments: <span style="color:#f92672">-</span>jar <span style="color:#f92672">/</span>full<span style="color:#f92672">/</span>path<span style="color:#f92672">/</span><span style="color:#66d9ef">to</span><span style="color:#f92672">/</span>target<span style="color:#f92672">/</span>devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>0.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT.<span style="color:#a6e22e">jar</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">Command</span><span class="p">:</span><span class="w"> </span><span class="n">java</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">Arguments</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">jar</span><span class="w"> </span><span class="o">/</span><span class="n">full</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="kd">to</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="o">-</span><span class="n">0</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">1</span><span class="o">-</span><span class="n">SNAPSHOT</span><span class="p">.</span><span class="na">jar</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
 <p><strong>Lesson:</strong> JAR files need java -jar to execute, not direct execution.</p>
 </blockquote>
 <h2 id="challenge-5-request-timeout-32001" class="relative group">Challenge #5: Request Timeout (32001) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-5-request-timeout-32001" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>MCPError: 32001: Request timed out
-</span></span><span style="display:flex;"><span>Connection Error <span style="color:#f92672">-</span> Check <span style="color:#66d9ef">if</span> your MCP server is running and proxy token is correct
-</span></span></code></pre></div><p><strong>Root Cause:</strong> The server was running, but the <strong>MCP Server bean wasn&rsquo;t being initialized</strong>. The annotation scanner found tools, but there was no actual server to respond to protocol messages.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">MCPError</span><span class="p">:</span><span class="w"> </span><span class="n">32001</span><span class="p">:</span><span class="w"> </span><span class="n">Request</span><span class="w"> </span><span class="n">timed</span><span class="w"> </span><span class="n">out</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="w"> </span><span class="n">Error</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">MCP</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">proxy</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">correct</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Root Cause:</strong> The server was running, but the <strong>MCP Server bean wasn&rsquo;t being initialized</strong>. The annotation scanner found tools, but there was no actual server to respond to protocol messages.</p>
 <p><strong>The &ldquo;<strong><strong>Fix</strong></strong>&rdquo; I Tried (Didn&rsquo;t Work):</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Bean</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> McpSyncServer <span style="color:#a6e22e">mcpSyncServer</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> McpSyncServer.<span style="color:#a6e22e">builder</span>()  <span style="color:#75715e">// ← This doesn&#39;t exist in M2!</span>
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#34;devops-intelligence&#34;</span>)
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">build</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Error:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>There is no builder <span style="color:#66d9ef">with</span> io.<span style="color:#a6e22e">modelcontextprotocol</span>.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">McpSyncServer</span>
-</span></span></code></pre></div><p><strong>The Real Fix:</strong> Upgrade to <strong>Spring AI 2.0.0-M2</strong> (not M1 or M3)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Bean</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">McpSyncServer</span><span class="w"> </span><span class="nf">mcpSyncServer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">McpSyncServer</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span><span class="w">  </span><span class="c1">// ← This doesn&#39;t exist in M2!</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="s">&#34;devops-intelligence&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Error:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">There</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">io</span><span class="p">.</span><span class="na">modelcontextprotocol</span><span class="p">.</span><span class="na">server</span><span class="p">.</span><span class="na">McpSyncServer</span><span class="w">
+</span></span></span></code></pre></div><p><strong>The Real Fix:</strong> Upgrade to <strong>Spring AI 2.0.0-M2</strong> (not M1 or M3)</p>
 <p>In M2, the annotation scanner + auto-configuration handles everything:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
-</span></span><span style="display:flex;"><span>  ai:
-</span></span><span style="display:flex;"><span>    mcp:
-</span></span><span style="display:flex;"><span>      server:
-</span></span><span style="display:flex;"><span>        name: devops<span style="color:#f92672">-</span>intelligence
-</span></span><span style="display:flex;"><span>        version: 1.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span>
-</span></span><span style="display:flex;"><span>        type: SYNC
-</span></span><span style="display:flex;"><span>        protocol: STDIO
-</span></span></code></pre></div><p>That&rsquo;s it. No manual bean creation needed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ai</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mcp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="n">1</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">SYNC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">protocol</span><span class="p">:</span><span class="w"> </span><span class="n">STDIO</span><span class="w">
+</span></span></span></code></pre></div><p>That&rsquo;s it. No manual bean creation needed.</p>
 <blockquote>
 <p><strong>Lesson:</strong> Spring AI versions matter. M2 has the sweet spot. M1 is outdated, M3 has bugs.</p>
 </blockquote>
 <h2 id="challenge-6-tools-not-discovered" class="relative group">Challenge #6: Tools Not Discovered <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#challenge-6-tools-not-discovered" aria-label="Anchor">#</a></span></h2><p><strong>The Problem:</strong> Server connected but tools tab was greyed out. No tools were visible.</p>
 <p><strong>Diagnosis:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✗</span><span style="color:#f92672">]</span> MCP Server bean NOT found
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✓</span><span style="color:#f92672">]</span> Found: org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">ai</span>.<span style="color:#a6e22e">mcp</span>.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">autoconfigure</span>.<span style="color:#a6e22e">annotations</span>.<span style="color:#a6e22e">McpServerAnnotationScannerAutoConfiguration</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✓</span><span style="color:#f92672">]</span> Found tool bean: k8sTools
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span><span style="color:#960050;background-color:#1e0010">✓</span><span style="color:#f92672">]</span> Found tool bean: prometheusTools
-</span></span></code></pre></div><p>Tools were registered as Spring beans, but the MCP Server wasn&rsquo;t being created.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">[</span><span class="err">✗</span><span class="o">]</span><span class="w"> </span><span class="n">MCP</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">bean</span><span class="w"> </span><span class="n">NOT</span><span class="w"> </span><span class="n">found</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">[</span><span class="err">✓</span><span class="o">]</span><span class="w"> </span><span class="n">Found</span><span class="p">:</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">ai</span><span class="p">.</span><span class="na">mcp</span><span class="p">.</span><span class="na">server</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">autoconfigure</span><span class="p">.</span><span class="na">annotations</span><span class="p">.</span><span class="na">McpServerAnnotationScannerAutoConfiguration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">[</span><span class="err">✓</span><span class="o">]</span><span class="w"> </span><span class="n">Found</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="n">bean</span><span class="p">:</span><span class="w"> </span><span class="n">k8sTools</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="o">[</span><span class="err">✓</span><span class="o">]</span><span class="w"> </span><span class="n">Found</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="n">bean</span><span class="p">:</span><span class="w"> </span><span class="n">prometheusTools</span><span class="w">
+</span></span></span></code></pre></div><p>Tools were registered as Spring beans, but the MCP Server wasn&rsquo;t being created.</p>
 <p><strong>The Root Cause:</strong> In Spring AI 2.0.0-M2, the auto-configuration for MCP server <strong>isn&rsquo;t fully automatic</strong>. The annotation scanner finds tools, but you need to ensure all components are properly wired.</p>
 <p><strong>Solution 1 (Tried First - Overcomplicated):</strong> Created a custom McpServerConfiguration with manual tool registration. Didn&rsquo;t work because the API wasn&rsquo;t right.</p>
 <p><strong>Solution 2 (What Actually Worked - SIMPLE):</strong> Just ensure:</p>
@@ -744,92 +945,92 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 <p><strong>Lesson:</strong> Less is more. Don&rsquo;t overthink it. Spring AI M2 is designed to auto-discover tools if configured correctly.</p>
 </blockquote>
 <h2 id="the-final-solution-applicationyml" class="relative group">The Final Solution: application.yml <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#the-final-solution-applicationyml" aria-label="Anchor">#</a></span></h2><p>Here&rsquo;s the <strong>complete, minimal configuration</strong> that works:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>spring:
-</span></span><span style="display:flex;"><span>  main:
-</span></span><span style="display:flex;"><span>    web<span style="color:#f92672">-</span>application<span style="color:#f92672">-</span>type: none
-</span></span><span style="display:flex;"><span>    banner<span style="color:#f92672">-</span>mode: <span style="color:#e6db74">&#34;off&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>    log<span style="color:#f92672">-</span>startup<span style="color:#f92672">-</span>info: <span style="color:#66d9ef">false</span>
-</span></span><span style="display:flex;"><span>  application:
-</span></span><span style="display:flex;"><span>    name: devops<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">-</span>mcp
-</span></span><span style="display:flex;"><span>  ai:
-</span></span><span style="display:flex;"><span>    mcp:
-</span></span><span style="display:flex;"><span>      server:
-</span></span><span style="display:flex;"><span>        name: devops<span style="color:#f92672">-</span>intelligence
-</span></span><span style="display:flex;"><span>        version: 1.<span style="color:#a6e22e">0</span>.<span style="color:#a6e22e">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>        type: SYNC
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>        protocol: STDIO
-</span></span><span style="display:flex;"><span>        stdio: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>logging:
-</span></span><span style="display:flex;"><span>  level:
-</span></span><span style="display:flex;"><span>    root: INFO
-</span></span><span style="display:flex;"><span>  file:
-</span></span><span style="display:flex;"><span>    name: mcp<span style="color:#f92672">-</span>server.<span style="color:#a6e22e">log</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>server:
-</span></span><span style="display:flex;"><span>  port: 8080
-</span></span></code></pre></div><p><strong>That&rsquo;s it. Everything else is default.</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">main</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">web</span><span class="o">-</span><span class="n">application</span><span class="o">-</span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">banner</span><span class="o">-</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;off&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">#</span><span class="w">    </span><span class="n">log</span><span class="o">-</span><span class="n">startup</span><span class="o">-</span><span class="n">info</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="o">-</span><span class="n">mcp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ai</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mcp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">devops</span><span class="o">-</span><span class="n">intelligence</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="n">1</span><span class="p">.</span><span class="na">0</span><span class="p">.</span><span class="na">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">#</span><span class="w">        </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">SYNC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="err">#</span><span class="w">        </span><span class="n">protocol</span><span class="p">:</span><span class="w"> </span><span class="n">STDIO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">stdio</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">logging</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">level</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">root</span><span class="p">:</span><span class="w"> </span><span class="n">INFO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">file</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">mcp</span><span class="o">-</span><span class="n">server</span><span class="p">.</span><span class="na">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nl">server</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">port</span><span class="p">:</span><span class="w"> </span><span class="n">8080</span><span class="w">
+</span></span></span></code></pre></div><p><strong>That&rsquo;s it. Everything else is default.</strong></p>
 <h2 id="tool-implementation-example-k8stools" class="relative group">Tool Implementation Example: K8sTools <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#tool-implementation-example-k8stools" aria-label="Anchor">#</a></span></h2><p>Here&rsquo;s how a tool class looks:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">K8sTools</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> K8sMockClient k8sClient;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">K8sTools</span>(K8sMockClient k8sClient) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">k8sClient</span> <span style="color:#f92672">=</span> k8sClient;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@McpTool</span>(
-</span></span><span style="display:flex;"><span>            name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;k8s_cluster_health&#34;</span>,
-</span></span><span style="display:flex;"><span>            description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Get overall Kubernetes cluster health including node and pod status&#34;</span>
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">describeClusterHealth</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> pods <span style="color:#f92672">=</span> k8sClient.<span style="color:#a6e22e">listPods</span>();
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> nodes <span style="color:#f92672">=</span> k8sClient.<span style="color:#a6e22e">listNodes</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> healthyPods <span style="color:#f92672">=</span> pods.<span style="color:#a6e22e">stream</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">filter</span>(p <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Running&#34;</span>.<span style="color:#a6e22e">equals</span>(p.<span style="color:#a6e22e">status</span>()) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;1/1&#34;</span>.<span style="color:#a6e22e">equals</span>(p.<span style="color:#a6e22e">ready</span>()))
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">count</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> readyNodes <span style="color:#f92672">=</span> nodes.<span style="color:#a6e22e">stream</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">filter</span>(n <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Ready&#34;</span>.<span style="color:#a6e22e">equals</span>(n.<span style="color:#a6e22e">status</span>()))
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">count</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
-</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#34;Cluster Health Summary:\n&#34;</span>);
-</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(String.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Nodes: %d/%d Ready\n&#34;</span>, readyNodes, nodes.<span style="color:#a6e22e">size</span>()));
-</span></span><span style="display:flex;"><span>        sb.<span style="color:#a6e22e">append</span>(String.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;Pods: %d/%d Running\n&#34;</span>, healthyPods, pods.<span style="color:#a6e22e">size</span>()));
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sb.<span style="color:#a6e22e">toString</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@McpTool</span>(
-</span></span><span style="display:flex;"><span>            name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;k8s_list_pods&#34;</span>,
-</span></span><span style="display:flex;"><span>            description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;List all Kubernetes pods with their status&#34;</span>
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">listPods</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@McpToolParam</span>(description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Filter by namespace (optional)&#34;</span>, required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>)
-</span></span><span style="display:flex;"><span>            String namespace) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> pods <span style="color:#f92672">=</span> k8sClient.<span style="color:#a6e22e">listPods</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (namespace <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>namespace.<span style="color:#a6e22e">isEmpty</span>()) {
-</span></span><span style="display:flex;"><span>            pods <span style="color:#f92672">=</span> pods.<span style="color:#a6e22e">stream</span>()
-</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">filter</span>(p <span style="color:#f92672">-&gt;</span> p.<span style="color:#a6e22e">namespace</span>().<span style="color:#a6e22e">equals</span>(namespace))
-</span></span><span style="display:flex;"><span>                    .<span style="color:#a6e22e">collect</span>(Collectors.<span style="color:#a6e22e">toList</span>());
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder(<span style="color:#e6db74">&#34;Kubernetes Pods:\n&#34;</span>);
-</span></span><span style="display:flex;"><span>        pods.<span style="color:#a6e22e">forEach</span>(p <span style="color:#f92672">-&gt;</span>
-</span></span><span style="display:flex;"><span>                sb.<span style="color:#a6e22e">append</span>(String.<span style="color:#a6e22e">format</span>(
-</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;  %s/%s - Status: %s, Ready: %s\n&#34;</span>,
-</span></span><span style="display:flex;"><span>                        p.<span style="color:#a6e22e">namespace</span>(), p.<span style="color:#a6e22e">name</span>(), p.<span style="color:#a6e22e">status</span>(), p.<span style="color:#a6e22e">ready</span>()
-</span></span><span style="display:flex;"><span>                ))
-</span></span><span style="display:flex;"><span>        );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sb.<span style="color:#a6e22e">toString</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Key Points:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">K8sTools</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">K8sMockClient</span><span class="w"> </span><span class="n">k8sClient</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">K8sTools</span><span class="p">(</span><span class="n">K8sMockClient</span><span class="w"> </span><span class="n">k8sClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">k8sClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k8sClient</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@McpTool</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;k8s_cluster_health&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;Get overall Kubernetes cluster health including node and pod status&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">describeClusterHealth</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">pods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k8sClient</span><span class="p">.</span><span class="na">listPods</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k8sClient</span><span class="p">.</span><span class="na">listNodes</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">healthyPods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pods</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&#34;Running&#34;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">status</span><span class="p">())</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="s">&#34;1/1&#34;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">ready</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">count</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">readyNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nodes</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&#34;Ready&#34;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="na">status</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">count</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&#34;Cluster Health Summary:\n&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;Nodes: %d/%d Ready\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">readyNodes</span><span class="p">,</span><span class="w"> </span><span class="n">nodes</span><span class="p">.</span><span class="na">size</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;Pods: %d/%d Running\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">healthyPods</span><span class="p">,</span><span class="w"> </span><span class="n">pods</span><span class="p">.</span><span class="na">size</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@McpTool</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;k8s_list_pods&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;List all Kubernetes pods with their status&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">listPods</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@McpToolParam</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;Filter by namespace (optional)&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">namespace</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">pods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k8sClient</span><span class="p">.</span><span class="na">listPods</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">namespace</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">namespace</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">pods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pods</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">namespace</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">namespace</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="s">&#34;Kubernetes Pods:\n&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">pods</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="s">&#34;  %s/%s - Status: %s, Ready: %s\n&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">p</span><span class="p">.</span><span class="na">namespace</span><span class="p">(),</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">name</span><span class="p">(),</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">status</span><span class="p">(),</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">ready</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Key Points:</strong></p>
 <ul>
 <li>@Component - Spring discovers this as a bean</li>
 <li>@McpTool - Spring AI discovers this as an MCP tool</li>
@@ -839,91 +1040,91 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
 </ul>
 <p>Since these are getting mock data, we can use the client libraries for Kuberentes, or ELK, or Github, to fetch data from the infrastructure you are going to connect this tool with.</p>
 <p>For example using the Kubernetes client libraries</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Ref Source: https://github.com/kubernetes-client/java/blob/master/examples/
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">KubernetesClient</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Class<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> KubernetesObject<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getClassForKind</span>(String kind) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> (kind) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;pod&#34;</span>, <span style="color:#e6db74">&#34;pods&#34;</span> <span style="color:#f92672">-&gt;</span> V1Pod.<span style="color:#a6e22e">class</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;deployment&#34;</span>, <span style="color:#e6db74">&#34;deployments&#34;</span> <span style="color:#f92672">-&gt;</span> V1Deployment.<span style="color:#a6e22e">class</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;service&#34;</span>, <span style="color:#e6db74">&#34;services&#34;</span> <span style="color:#f92672">-&gt;</span> V1Service.<span style="color:#a6e22e">class</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;node&#34;</span>, <span style="color:#e6db74">&#34;nodes&#34;</span> <span style="color:#f92672">-&gt;</span> V1Node.<span style="color:#a6e22e">class</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;replicationcontroller&#34;</span>, <span style="color:#e6db74">&#34;replicationcontrollers&#34;</span> <span style="color:#f92672">-&gt;</span> V1ReplicationController.<span style="color:#a6e22e">class</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">null</span>;
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    String PADDING <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;                              &#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">pad</span>(String value) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (value.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">&lt;</span> PADDING.<span style="color:#a6e22e">length</span>()) {
-</span></span><span style="display:flex;"><span>            value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34; &#34;</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> value;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> KubernetesObject <span style="color:#a6e22e">delete</span>(String kind, String ns, String name) <span style="color:#66d9ef">throws</span> KubectlException {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">delete</span>(getClassForKind(kind))
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> KubernetesObject <span style="color:#a6e22e">drain</span>(ApiClient apiClient, String name) <span style="color:#66d9ef">throws</span> KubectlException, IOException {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">drain</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">portForwarding</span>(ApiClient apiClient, String ns, String name, String port) <span style="color:#66d9ef">throws</span> KubectlException {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//port: 8080:8080</span>
-</span></span><span style="display:flex;"><span>        KubectlPortForward forward <span style="color:#f92672">=</span> Kubectl.<span style="color:#a6e22e">portforward</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> ports <span style="color:#f92672">=</span> port.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;:&#34;</span>);
-</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Forwarding &#34;</span> <span style="color:#f92672">+</span> ns <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> ports<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;-&gt;&#34;</span> <span style="color:#f92672">+</span> ports<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>);
-</span></span><span style="display:flex;"><span>        forward.<span style="color:#a6e22e">ports</span>(Integer.<span style="color:#a6e22e">parseInt</span>(ports<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>), Integer.<span style="color:#a6e22e">parseInt</span>(ports<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>));
-</span></span><span style="display:flex;"><span>        forward.<span style="color:#a6e22e">execute</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scale</span>(ApiClient apiClient, String kind, String ns, String name, Integer replicas) <span style="color:#66d9ef">throws</span> KubectlException {
-</span></span><span style="display:flex;"><span>        Kubectl.<span style="color:#a6e22e">scale</span>(getClassForKind(kind))
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">replicas</span>(replicas)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> String <span style="color:#a6e22e">getVersion</span>(ApiClient apiClient) <span style="color:#66d9ef">throws</span> KubectlException {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">version</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">toString</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Integer <span style="color:#a6e22e">execute</span>(ApiClient apiClient, String ns, String name, String container, String<span style="color:#f92672">[]</span> command) <span style="color:#66d9ef">throws</span> KubectlException {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Kubectl.<span style="color:#a6e22e">exec</span>()
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">apiClient</span>(apiClient)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">namespace</span>(ns)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">name</span>(name)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">command</span>(command)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">container</span>(container)
-</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">execute</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    .
-</span></span><span style="display:flex;"><span>    .
-</span></span><span style="display:flex;"><span>    .
-</span></span><span style="display:flex;"><span>    .
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Refer to the repo for the complete code base. Similarly ELK and Github should be using their client libraries.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Ref Source: https://github.com/kubernetes-client/java/blob/master/examples/
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">KubernetesClient</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">KubernetesObject</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getClassForKind</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&#34;pod&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;pods&#34;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">V1Pod</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&#34;deployment&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;deployments&#34;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">V1Deployment</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&#34;service&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;services&#34;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">V1Service</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&#34;node&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;nodes&#34;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">V1Node</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&#34;replicationcontroller&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;replicationcontrollers&#34;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">V1ReplicationController</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">PADDING</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;                              &#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">pad</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">PADDING</span><span class="p">.</span><span class="na">length</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">KubernetesObject</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">kind</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ns</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">KubectlException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Kubectl</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">getClassForKind</span><span class="p">(</span><span class="n">kind</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">namespace</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">KubernetesObject</span><span class="w"> </span><span class="nf">drain</span><span class="p">(</span><span class="n">ApiClient</span><span class="w"> </span><span class="n">apiClient</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">KubectlException</span><span class="p">,</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Kubectl</span><span class="p">.</span><span class="na">drain</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">apiClient</span><span class="p">(</span><span class="n">apiClient</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">portForwarding</span><span class="p">(</span><span class="n">ApiClient</span><span class="w"> </span><span class="n">apiClient</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ns</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">KubectlException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//port: 8080:8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">KubectlPortForward</span><span class="w"> </span><span class="n">forward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Kubectl</span><span class="p">.</span><span class="na">portforward</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">apiClient</span><span class="p">(</span><span class="n">apiClient</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">namespace</span><span class="p">(</span><span class="n">ns</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">ports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">port</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;:&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Forwarding &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ports</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;-&gt;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ports</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">forward</span><span class="p">.</span><span class="na">ports</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">ports</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">),</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">ports</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">forward</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">ApiClient</span><span class="w"> </span><span class="n">apiClient</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">kind</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ns</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">replicas</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">KubectlException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Kubectl</span><span class="p">.</span><span class="na">scale</span><span class="p">(</span><span class="n">getClassForKind</span><span class="p">(</span><span class="n">kind</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">apiClient</span><span class="p">(</span><span class="n">apiClient</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">namespace</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">replicas</span><span class="p">(</span><span class="n">replicas</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getVersion</span><span class="p">(</span><span class="n">ApiClient</span><span class="w"> </span><span class="n">apiClient</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">KubectlException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Kubectl</span><span class="p">.</span><span class="na">version</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">apiClient</span><span class="p">(</span><span class="n">apiClient</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">execute</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">ApiClient</span><span class="w"> </span><span class="n">apiClient</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ns</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">KubectlException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Kubectl</span><span class="p">.</span><span class="na">exec</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">apiClient</span><span class="p">(</span><span class="n">apiClient</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">namespace</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">container</span><span class="p">(</span><span class="n">container</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Refer to the repo for the complete code base. Similarly ELK and Github should be using their client libraries.</p>
 <h2 id="testing-with-mcp-inspector" class="relative group">Testing with MCP Inspector <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#testing-with-mcp-inspector" aria-label="Anchor">#</a></span></h2><p>Once connected, you can:</p>
 <ul>
 <li><strong>See all tools</strong> in the Tools tab</li>
@@ -981,10 +1182,132 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
     
     
     
+      
+      
+        
+        
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+      
+    >
+      
+      
+      
+      
+      <img
+        width="1080"
+        height="1080"
+        class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+        alt="Ankit Agrahari"
+        loading="lazy" decoding="async"
+        
+          src="http://localhost:1313/img/dp_hu_39b84e63a7ad2892.jpg" srcset="http://localhost:1313/img/dp_hu_3eb6f74c98a9118d.jpg 330w,http://localhost:1313/img/dp_hu_39b84e63a7ad2892.jpg 660w
+          
+            ,http://localhost:1313/img/dp_hu_357cd210031b9ca.jpg 1024w
+          
+          
+            ,http://localhost:1313/img/dp.jpg 1080w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+      
+    
     <div class="place-self-center">
       
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          Author
+        </div>
+        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+          Ankit Agrahari
+        </div>
+      
+      
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">Building scalable systems and exploring modern AI architecture.</div>
       
       <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="mailto:support.hookspy@gmail.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.dynamicallyblunttech.com/"
+          target="_blank"
+          aria-label="Link"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://github.com/ankitagrahari"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://medium.com/@ankitagrahari.rkgit"
+          target="_blank"
+          aria-label="Medium"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M180.5,74.262C80.813,74.262,0,155.633,0,256S80.819,437.738,180.5,437.738,361,356.373,361,256,280.191,74.262,180.5,74.262Zm288.25,10.646c-49.845,0-90.245,76.619-90.245,171.095s40.406,171.1,90.251,171.1,90.251-76.619,90.251-171.1H559C559,161.5,518.6,84.908,468.752,84.908Zm139.506,17.821c-17.526,0-31.735,68.628-31.735,153.274s14.2,153.274,31.735,153.274S640,340.631,640,256C640,171.351,625.785,102.729,608.258,102.729Z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.instagram.com/backendbrilliance/"
+          target="_blank"
+          aria-label="Instagram"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+</span></a
+        >
+      
+    
+  </div>
+
 </div>
     </div>
   </div>
@@ -1015,7 +1338,7 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2026-10-27 08:14:23 &#43;0530 IST">October 27, 2026</time>
+                    <time datetime="2026-10-27 08:14:23 &#43;0530 IST">27 October 2026</time>
                   
                 </span>
               </span>
@@ -1032,7 +1355,7 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2026-10-27 08:14:24 &#43;0530 IST">October 27, 2026</time>
+                    <time datetime="2026-10-27 08:14:24 &#43;0530 IST">27 October 2026</time>
                   
                 </span>
               </span>
@@ -1049,6 +1372,19 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
   
 
 
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+            <div class="pt-3">
+              <script src="https://giscus.app/client.js" data-repo="ankitagrahari/dynamicallyblunttech" data-repo-id="R_kgDOVbSxZw"
+    data-category="Announcements" data-category-id="DIC_kwDOVbSxZ84DLT4_" data-mapping="pathname" data-strict="0"
+    data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme"
+    data-lang="en" crossorigin="anonymous" async>
+    </script>
+            </div>
+          </div>
+        
       
     </footer>
   </article>
@@ -1072,6 +1408,50 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
       <footer class="py-10 print:hidden">
   
   
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex list-none flex-col sm:flex-row">
+        
+          
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            
+              <a
+                href="/tags/"
+                title="Tags"
+                
+                
+                ><span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    >Tags</span
+                  >
+                </a
+              >
+            
+          </li>
+        
+          
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            
+              <a
+                href="/blog-feed.xml"
+                title=""
+                
+                target="_blank"
+                >
+                  <span
+                    class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                  ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+</span></span><span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    ></span
+                  >
+                </a
+              >
+            
+          </li>
+        
+      </ul>
+    </nav>
+  
   <div class="flex items-center justify-between">
     <div>
       
@@ -1079,7 +1459,7 @@ What we built (the DevOps Intelligence Platform) The tools we created (K8s, Prom
         <p class="text-sm text-neutral-500 dark:text-neutral-400">
             &copy;
             2026
-            
+            Ankit Agrahari
         </p>
       
       

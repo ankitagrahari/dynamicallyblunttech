@@ -11,13 +11,15 @@ autoSwitchAppearance = true
 
 defaultThemeColor = "#FFFFFF"
 
-enableSearch = false
-enableCodeCopy = false
+enableSearch = true
+enableCodeCopy = true
 enableImageLazyLoading = true
 enableImageWebp = true
 
 # robots = ""
 fingerprintAlgorithm = "sha256"
+
+mainSections = ["posts"]
 
 [header]
   layout = "basic" # valid options: basic, hamburger, hybrid, custom
@@ -32,34 +34,36 @@ fingerprintAlgorithm = "sha256"
   showScrollToTop = true
 
 [homepage]
-  layout = "page" # valid options: page, profile, custom
-  showRecent = false
-  recentLimit = 5
+  layout = "profile"        # Shows your author card + recent posts below
+  showRecent = true         # Displays the Recent Posts section on the homepage
+  showRecentItems = 10      # Number of recent posts to show (defaults to 5 if omitted)
+  showMoreLink = true       # Adds a "Show More" button at the bottom linking to /posts/
+  showMoreLinkDest = "posts"
 
 [article]
   showDate = true
   showDateUpdated = false
   showAuthor = true
-  showBreadcrumbs = false
+  showBreadcrumbs = true
   showDraftLabel = true
-  showEdit = false
-  # editURL = "https://github.com/username/repo/"
+  showEdit = true
+  editURL = "https://github.com/ankitagrahari/dynamicallyblunttech"
   editAppendPath = true
   showHeadingAnchors = true
   showPagination = true
   invertPagination = false
   showReadingTime = true
-  showTableOfContents = false
-  showTaxonomies = false
+  showTableOfContents = true
+  showTaxonomies = true
   showWordCount = false
-  showComments = false
+  showComments = true
   # sharingLinks = ["facebook", "x-twitter", "mastodon", "pinterest", "reddit", "linkedin", "email", "threads", "telegram", "line", "weibo", "xing", "bluesky"]
 
 [list]
   showBreadcrumbs = false
-  showSummary = false
-  showTableOfContents = false
-  showTaxonomies = false
+  showSummary = true
+  showTableOfContents = true
+  showTaxonomies = true
   groupByYear = true
   paginationWidth = 1
 
