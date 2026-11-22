@@ -3,8 +3,8 @@ title: "Building DevOps Intelligence using MCP Server with Spring AI: Tools, Cha
 date: 2026-10-27T08:14:24+05:30
 draft: false
 featureImage: "images/df024c_f14bf2fc595446eebc628214a8897012.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"', '"6249579158f0bd10b2a57273"', '"681676055d80aaac0c9329be"]']
+tags: ['Spring Boot', 'Devops', 'AI', 'MCP']
+categories: ['Spring Boot', 'Devops', 'AI', 'MCP']
 showReadingTime: true
 ---
 

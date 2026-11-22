@@ -3,8 +3,10 @@ title: "II - Tokenization using Apache OpenNLP"
 date: 2026-10-27T08:14:14+05:30
 draft: false
 featureImage: "images/df024c_92241e7958db4302be98777f82fd896f.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Apache OpenNLP']
+categories: ['Natural Language Processing']
+series: ["Natural Language Processing"]
+series_weight: 2
 showReadingTime: true
 ---
 

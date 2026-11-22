@@ -3,8 +3,8 @@ title: "System Design with Agentic AI - 1"
 date: 2026-10-27T08:14:22+05:30
 draft: false
 featureImage: "images/df024c_d1e02e494979447e8cb767d5f7199892.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Agentic AI', 'System Design', 'RAG']
+categories: ['System Design', 'AI']
 showReadingTime: true
 ---
 

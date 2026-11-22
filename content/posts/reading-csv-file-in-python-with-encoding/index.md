@@ -3,8 +3,8 @@ title: "Reading CSV file in Python with Encoding"
 date: 2026-10-27T08:14:12+05:30
 draft: false
 featureImage: "images/df024c_21f3d9b138934d98ad850671807a4922.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Python']
+categories: ['Python', 'CSV']
 showReadingTime: true
 ---
 

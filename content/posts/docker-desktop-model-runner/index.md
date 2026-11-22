@@ -3,8 +3,8 @@ title: "Docker Desktop Model Runner"
 date: 2026-10-27T08:14:18+05:30
 draft: false
 featureImage: "images/df024c_01c95619b9114c40930c5673d29a2457.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Docker']
+categories: ['Docker', 'AI', 'LLM']
 showReadingTime: true
 ---
 

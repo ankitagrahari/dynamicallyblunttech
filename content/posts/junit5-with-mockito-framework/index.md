@@ -3,8 +3,8 @@ title: "Junit5 with Mockito Framework"
 date: 2026-10-27T08:14:26+05:30
 draft: false
 featureImage: "images/df024c_e7626a0fdfbe45d187b1b7703bd15778.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Junit5', 'Mockito', 'Testing']
+categories: ['Junit5', 'Mockito', 'Testing']
 showReadingTime: true
 ---
 

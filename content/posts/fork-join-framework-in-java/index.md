@@ -3,8 +3,8 @@ title: "Fork-Join Framework in Java"
 date: 2026-10-27T08:14:21+05:30
 draft: false
 featureImage: "images/df024c_a0d024bca07c43a5aa61a451c20ac021.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Java', 'Fork Join']
+categories: ['Concurrency']
 showReadingTime: true
 ---
 

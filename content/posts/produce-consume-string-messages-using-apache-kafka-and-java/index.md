@@ -3,8 +3,8 @@ title: "Produce & Consume Messages Using Apache Kafka"
 date: 2026-10-27T08:14:13+05:30
 draft: false
 featureImage: "images/df024c_a5726e451bc844f7881b2b72ba949c1c.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Java', 'Kafka', 'Producer', 'Consumer']
+categories: ['Apache Kafka', 'Java']
 showReadingTime: true
 ---
 

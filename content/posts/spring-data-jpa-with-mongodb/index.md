@@ -3,8 +3,8 @@ title: "Spring Data JPA with MongoDB"
 date: 2026-10-27T08:14:17+05:30
 draft: false
 featureImage: "images/df024c_bc378f880a5e4dea9d61c68fdcdf418a.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Spring', 'JPA', 'MongoDB']
+categories: ['Spring Data', 'MongoDB']
 showReadingTime: true
 ---
 

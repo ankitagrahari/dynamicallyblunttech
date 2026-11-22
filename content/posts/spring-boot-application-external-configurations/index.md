@@ -3,8 +3,8 @@ title: "Spring Boot Application External Configurations"
 date: 2026-10-27T08:14:21+05:30
 draft: false
 featureImage: "images/df024c_09d10c65f576482b8dcc2642c0985e30.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Spring', 'External Configuration']
+categories: ['Spring Boot']
 showReadingTime: true
 ---
 

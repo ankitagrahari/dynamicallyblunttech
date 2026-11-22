@@ -3,8 +3,8 @@ title: "Using Twilio for Sending WhatsApp Message in Java"
 date: 2026-10-27T08:14:22+05:30
 draft: false
 featureImage: "images/df024c_792ebe5e0a3d490cb4d343575fca93f5.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Automation', 'Twilio', 'Java']
+categories: ['Automation']
 showReadingTime: true
 ---
 
