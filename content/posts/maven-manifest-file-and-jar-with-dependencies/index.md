@@ -3,8 +3,8 @@ title: "Maven - Manifest file and Jar with Dependencies"
 date: 2026-10-27T08:14:12+05:30
 draft: false
 featureImage: "images/df024c_bddbb63a21c24fd8a343882d412e38f9.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Maven', 'Dependencies']
+categories: ['Maven']
 showReadingTime: true
 ---
 

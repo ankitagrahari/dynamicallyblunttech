@@ -3,8 +3,8 @@ title: "Exploring Spring Thymeleaf"
 date: 2026-10-27T08:14:23+05:30
 draft: false
 featureImage: "images/df024c_bed0012116914ff9bc094cf4412257f7.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Spring', 'Thymeleaf']
+categories: ['Spring', 'Web']
 showReadingTime: true
 ---
 

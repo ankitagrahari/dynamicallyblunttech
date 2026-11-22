@@ -3,8 +3,10 @@ title: "IV - Recognizing Parts Of Speech Using Apache OpenNLP"
 date: 2026-10-27T08:14:14+05:30
 draft: false
 featureImage: "images/df024c_828f36bcaae74db99e5f086c33fff6f9.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Apache OpenNLP']
+categories: ['Natural Language Processing']
+series: ["Natural Language Processing"]
+series_weight: 4
 showReadingTime: true
 ---
 

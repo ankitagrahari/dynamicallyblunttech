@@ -3,8 +3,8 @@ title: "Read/Write Excel Using Apache POI & Java"
 date: 2026-10-27T08:14:13+05:30
 draft: false
 featureImage: "images/df024c_01ca01aeb48a49938c332028f8b412ef.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Java', 'Excel']
+categories: ['Apache POI']
 showReadingTime: true
 ---
 

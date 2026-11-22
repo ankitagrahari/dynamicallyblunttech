@@ -3,7 +3,7 @@ title: "Aspect Programming in Spring - Logging"
 date: 2026-10-27T08:14:14+05:30
 draft: false
 tags: ['Spring Boot', 'Aspects']
-categories: ['Spring Boot']
+categories: ['Spring Boot', 'AOP']
 showReadingTime: true
 ---
 

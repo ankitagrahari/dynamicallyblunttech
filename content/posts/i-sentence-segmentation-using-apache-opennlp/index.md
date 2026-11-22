@@ -3,8 +3,10 @@ title: "I - Sentence Segmentation Using Apache  OpenNLP"
 date: 2026-10-27T08:14:26+05:30
 draft: false
 featureImage: "images/df024c_828f36bcaae74db99e5f086c33fff6f9.jpg"
-tags: ['Apache', 'OpenNLP']
-categories: ['Apache', 'OpenNLP']
+tags: ['Apache OpenNLP']
+categories: ['Natural Language Processing']
+series: ["Natural Language Processing"]
+series_weight: 1
 showReadingTime: true
 ---
 

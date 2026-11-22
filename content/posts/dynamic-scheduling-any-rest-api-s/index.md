@@ -2,8 +2,8 @@
 title: "Dynamic Scheduling any REST API's"
 date: 2026-10-27T08:14:31+05:30
 draft: false
-tags: ['Spring Boot']
-categories: ['Spring Boot']
+tags: ['Spring Boot', 'Scheduling']
+categories: ['Spring Boot', 'Scheduling']
 showReadingTime: true
 ---
 

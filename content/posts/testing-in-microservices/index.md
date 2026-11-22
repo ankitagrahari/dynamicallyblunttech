@@ -3,8 +3,8 @@ title: "Testing in Microservices"
 date: 2026-10-27T08:14:20+05:30
 draft: false
 featureImage: "images/df024c_86bd74d688bd45d8b3da7eae9f2405a9.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"]']
+tags: ['Microservices','Testing']
+categories: ['Microservices']
 showReadingTime: true
 ---
 

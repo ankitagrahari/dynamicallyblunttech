@@ -1,2 +1,7 @@
 .DS_Store
 .hugo_build.lock
+
+# Hugo-generated site and asset cache
+/public/*
+/resources/_gen/
+/hugo_stats.json

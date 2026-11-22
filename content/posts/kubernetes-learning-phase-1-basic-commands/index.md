@@ -3,8 +3,8 @@ title: "KUBERNETES LEARNING PHASE 1 - BASIC COMMANDS"
 date: 2026-10-27T08:14:15+05:30
 draft: false
 featureImage: "images/df024c_61094322f36648a4a0f160386f593577.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Kubernetes', 'Basic Commands']
+categories: ['Kubernetes']
 showReadingTime: true
 ---
 

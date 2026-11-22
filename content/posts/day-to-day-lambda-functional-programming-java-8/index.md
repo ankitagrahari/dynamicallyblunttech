@@ -3,8 +3,8 @@ title: "Day to Day Lambda & Functional Programming in Java 8"
 date: 2026-10-27T08:14:12+05:30
 draft: false
 featureImage: "images/df024c_4c93affe98db4da7897808708a5f1a3c.jpg"
-tags: ['[]']
-categories: ['["6249579158f0bd10b2a57273"]']
+tags: ['Java 8', 'Functional Programming']
+categories: ['Java', 'Functional Programming']
 showReadingTime: true
 ---
 

@@ -3,8 +3,8 @@ title: "Reactive Programming in Java"
 date: 2026-10-27T08:14:13+05:30
 draft: false
 featureImage: "images/df024c_67132d7c8df4416b97856a3cb317f28a.jpg"
-tags: ['[]']
-categories: ['["619c9d9d8da2c200166cb558"', '"6249579158f0bd10b2a57273"]']
+tags: ['Java', 'RxJava']
+categories: ['Reactive Programming']
 showReadingTime: true
 ---
 

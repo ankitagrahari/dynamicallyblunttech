@@ -2,8 +2,10 @@
 title: "III - Named Entity Recognition - Apache OpenNLP"
 date: 2026-10-27T08:14:29+05:30
 draft: false
-tags: ['Apache', 'OpenNLP']
-categories: ['Apache', 'NLP']
+tags: ['Apache OpenNLP']
+categories: ['Natural Language Processing']
+series: ["Natural Language Processing"]
+series_weight: 3
 showReadingTime: true
 ---
 

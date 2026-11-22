@@ -3,8 +3,8 @@ title: "Scraping Youtube Videos - Using Python's Requests & JSON Libraries"
 date: 2026-10-27T08:14:17+05:30
 draft: false
 featureImage: "images/df024c_9caecd0715d949b39ff82979a6ff9c4a.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Python', 'Scraping']
+categories: ['Python']
 showReadingTime: true
 ---
 

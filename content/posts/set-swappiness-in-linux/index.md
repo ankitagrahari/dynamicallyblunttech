@@ -3,8 +3,8 @@ title: "Set Swappiness in Linux"
 date: 2026-10-27T08:14:18+05:30
 draft: false
 featureImage: "images/df024c_2f3925c35c5d43feb72a4dd9d4883a0c.jpg"
-tags: ['[]']
-categories: ['[]']
+tags: ['Linux']
+categories: ['Linux']
 showReadingTime: true
 ---
 
